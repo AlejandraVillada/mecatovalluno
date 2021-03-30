@@ -1,3 +1,38 @@
 .color{
     background-color: azure;
 }
+
+.textopromo{
+    padding: 50px; 
+    left: 20px; 
+    top:20px;
+}
+
+.btnvermas{
+    position: relative; 
+    top:20px;
+}
+
+.imgpromo{
+    width: 400px; 
+    height: 355px; 
+    position: relative; 
+    left:90px;
+}
+
+.misionvision{
+    border: 1px solid LightGray; 
+    margin-top:10px;
+    padding: 10px;
+}
+
+.contenido_vision{
+    text-align: center;
+}
+
+.prod{
+    border: 1px solid lightgrey;
+    border-radius: 300px;
+    width:150px; height:150px;
+    margin-top:20px;
+}
