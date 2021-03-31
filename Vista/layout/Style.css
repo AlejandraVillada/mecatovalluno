@@ -2,6 +2,8 @@
     background-color: azure;
 }
 
+/* home */
+
 .textopromo{
     padding: 50px; 
     left: 20px; 
@@ -109,5 +111,40 @@ div .descripcion_prod{
     background-image: url(../img/picadita_MCC.jpg) ;
     object-fit: contain;
     object-position: center;
+}
+
+/* jefe produccion */
+.opcion{
+    border: 1px solid lightgrey;
+    border-radius: 300px;
+    width:150px; height:150px;
+    margin-top:20px;
+}
+
+
+.texto_bienvenido{
+    padding: 50px; 
+    right: 30px; 
+    top:20px;
+}
+
+.botones_acceso{
+    position: relative;
+    left: 100px;
+}
+
+.descripcion_boton{
+    text-align: center;
+}
+
+.linea{
+    position: relative;
+    left: 20px;
+}
+
+.descripcion_boton1{
+    text-align: center;
+    position: relative;
+    right: 40px;
 }
 
