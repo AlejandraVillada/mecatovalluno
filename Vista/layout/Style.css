@@ -20,13 +20,13 @@
     left:90px;
 }
 
-.misionvision{
+#mision_vision{
     border: 1px solid LightGray; 
     margin-top:10px;
     padding: 10px;
 }
 
-.contenido_vision{
+.contenido_mv{
     text-align: center;
 }
 
@@ -36,3 +36,78 @@
     width:150px; height:150px;
     margin-top:20px;
 }
+
+.productos{
+    margin-top: 10px;
+}
+
+div .alert{
+    text-align: center;
+}
+
+div .descripcion_prod{
+    text-align: left;
+    position: relative;
+    left: 35px;
+    margin-top:10px ;
+}
+
+.conjunto_prod{
+    position: relative;
+    left: 35px;
+}
+
+.img_contacto{
+    width: 550px; 
+    height: 355px; 
+    position: relative; 
+    right: 30px;
+   top: 20px;
+}
+
+.contacto{
+    border: 1px solid lightgrey;
+   
+    margin-top: 40px;
+    height: 400px;
+    
+}
+
+.copyright{
+    margin-top: 60px;
+    border: 1px solid lightgray;
+    width: auto;
+    height: 30px;
+}
+
+.texto_contacto{
+    display: table;
+    margin: auto;
+    position: relative;
+    left: 60px;
+}
+
+.prod1{
+    background-image: url(../img/picadita_MCC.jpg) ;
+    object-fit: contain;
+    object-position: center;
+}
+
+.prod2{
+    background-image: url(../img/picadita_MCC.jpg) ;
+    object-fit: contain;
+    object-position: center;
+}
+
+.prod3{
+    background-image: url(../img/picadita_MCC.jpg) ;
+    object-fit: contain;
+    object-position: center;
+}
+
+.prod4{
+    background-image: url(../img/picadita_MCC.jpg) ;
+    object-fit: contain;
+    object-position: center;
+}
+
