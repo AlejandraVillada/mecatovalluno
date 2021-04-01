@@ -113,7 +113,7 @@ div .descripcion_prod{
     object-position: center;
 }
 
-/* jefe produccion */
+/* Jefe Produccion y Asesor de Ventas*/
 .opcion{
     border: 1px solid lightgrey;
     border-radius: 300px;
@@ -121,11 +121,10 @@ div .descripcion_prod{
     margin-top:20px;
 }
 
-
 .texto_bienvenido{
     padding: 50px; 
     right: 30px; 
-    top:20px;
+    top: 20px;
 }
 
 .botones_acceso{
@@ -148,3 +147,15 @@ div .descripcion_prod{
     right: 40px;
 }
 
+/* Botones Asesor Ventas */
+.descripcion_botones{
+    text-align: center;
+    position: relative;
+    right: 55px;
+}
+
+.descripcion_botones2{
+    text-align: center;
+    position: relative;
+    right: 46px;
+}
