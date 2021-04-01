@@ -8,6 +8,5 @@
 </head>
 <body>
 <h1>Holas</h1>
-<h1>Holas2</h1>
 </body>
 </html>
