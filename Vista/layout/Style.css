@@ -147,17 +147,39 @@ div .descripcion_prod{
     right: 40px;
 }
 
-/* Botones Asesor Ventas */
+/* Botones y Textos Asesor Ventas */
 .descripcion_botones{
     text-align: center;
     position: relative;
-    right: 55px;
+    right: 54px;
 }
 
 .descripcion_botones2{
     text-align: center;
     position: relative;
     right: 46px;
+}
+
+.descripcion_botones3{
+    text-align: center;
+    position: relative;
+    right: 6px;
+}
+
+.conjunto_asesor{
+    position: relative;
+    left: -35px;
+}
+
+.conjunto_asesor2{
+    position: relative;
+    left: 5px;
+}
+
+.texto_bienvenida{
+    padding: 50px; 
+    right: 35px; 
+    top: 20px;
 }
 
 /* seccion productos */

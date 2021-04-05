@@ -24,9 +24,7 @@ include_once ("../layout/header.php");
                                 <a href="#"></a>
                             </div>
                             <div class="descripcion_botones2">
-                                <p>Actualizar Datos Cliente
-                                </p>
-                                
+                                <p>Actualizar Datos Cliente</p>                                
                             </div>
                         </div>
                     </div>
@@ -36,8 +34,7 @@ include_once ("../layout/header.php");
                                 <a href="#"></a>
                             </div>
                             <div class="descripcion_botones2">
-                                <p>Venta de Productos
-                                </p>
+                                <p>Venta de Productos</p>
                             </div>
                         </div>
                     </div>
@@ -45,17 +42,16 @@ include_once ("../layout/header.php");
             </div>
         </div>
     </div>
-    <!-- Botones de seccion -->
+    <!-- Botones de Seccion -->
     <div class="seccion_botones">
         <div class="botones_acceso">
-            <div class="row linea">
+            <div class="row conjunto_asesor">
                 <div class="col-3">
                     <div class="opcion opcion3">
                         <a href="#"></a>
                     </div>
                     <div class="descripcion_botones">
-                        <p>Compra Materia Prima
-                        </p>
+                        <p>Compra Materia Prima</p>
                     </div>
                 </div>
                 <div class="col-3">
@@ -63,8 +59,7 @@ include_once ("../layout/header.php");
                         <a href="#"></a>
                     </div>
                     <div class="descripcion_botones">
-                        <p>Ingreso Productos
-                        </p>
+                        <p>Ingreso Productos</p>
                     </div>
                 </div>
                 <div class="col-3">

@@ -1,5 +1,3 @@
-<?php include_once __DIR__."../../layout/header.php"?>
-
 <link rel="stylesheet" href="../layout/style.css">
 <?php
 include_once ("../layout/header.php");
@@ -15,9 +13,9 @@ include_once ("../layout/header.php");
         <div class="card">
             <div class="card-body" style="padding: 30px;">
                 <div class="row botones_acceso">
-                    <div class="col-3 texto_bienvenido2">
+                    <div class="col-3 texto_bienvenida">
                             <h1 class="card-title">Bienvenido</h1>
-                            <h4 class="card-text">Jefe de produccion</h4>
+                            <h4 class="card-text">Administrador</h4>
                             <p id="nombre_empleado"></p>
                     </div>
                     <div class="col-3">
@@ -25,10 +23,10 @@ include_once ("../layout/header.php");
                             <div class="opcion opcion1">
                                 <a href="#"></a>
                             </div>
-                            <div class="descripcion_boton1">
-                                <p>Programacion de
-                                <br>
-                                    Produccion
+                            <div class="descripcion_botones2">
+                                <p>Actualizar Datos
+                                    <br>
+                                    Cliente
                                 </p>
                                 
                             </div>
@@ -39,10 +37,10 @@ include_once ("../layout/header.php");
                             <div class="opcion opcion2">
                                 <a href="#"></a>
                             </div>
-                            <div class="descripcion_boton1">
-                                <p>Ingreso producto
-                                <br>
-                                    Terminado
+                            <div class="descripcion_botones2">
+                                <p>Venta de
+                                    <br>
+                                    Productos
                                 </p>
                             </div>
                         </div>
@@ -52,8 +50,11 @@ include_once ("../layout/header.php");
                             <div class="opcion opcion3">
                                 <a href="#"></a>
                             </div>
-                            <div class="descripcion_boton1">
-                                <p>Gestion Proveedores</p>
+                            <div class="descripcion_botones2">
+                                <p>Gestión Producto
+                                    <br>
+                                    Terminado
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -61,17 +62,18 @@ include_once ("../layout/header.php");
             </div>
         </div>
     </div>
-    <!-- Botones de seccion -->
+
+    <!-- Botones Primera Seccion -->
     <div class="seccion_botones">
         <div class="botones_acceso">
-            <div class="row linea">
+            <div class="row conjunto_asesor2">
                 <div class="col-2">
                     <div class="opcion opcion4">
                         <a href="#"></a>
                     </div>
-                    <div class="descripcion_boton">
+                    <div class="descripcion_botones3">
                         <p>Compra Materia
-                        <br>
+                            <br>
                             Prima
                         </p>
                     </div>
@@ -80,18 +82,15 @@ include_once ("../layout/header.php");
                     <div class="opcion opcion5">
                         <a href="#"></a>
                     </div>
-                    <div class="descripcion_boton">
-                        <p>Gestion Inventario
-                        <br>
-                            Producto Terminado
-                        </p>
+                    <div class="descripcion_botones3">
+                        <p>Descripción Productos</p>
                     </div>
                 </div>
                 <div class="col-2">
                     <div class="opcion opcion6">
                         <a href="#"></a>
                     </div>
-                    <div class="descripcion_boton">
+                    <div class="descripcion_botones3">
                         <p>Visualizar Nomina</p>
                     </div>
                 </div>
@@ -99,9 +98,9 @@ include_once ("../layout/header.php");
                     <div class="opcion opcion7">
                         <a href="#"></a>
                     </div>
-                    <div class="descripcion_boton">
-                        <p>Actualizacion Datos
-                        <br>
+                    <div class="descripcion_botones3">
+                        <p>Actualización Datos
+                            <br>
                             Personales
                         </p>
                     </div>
@@ -110,20 +109,119 @@ include_once ("../layout/header.php");
                     <div class="opcion opcion8">
                         <a href="#"></a>
                     </div>
-                    <div class="descripcion_boton">
-                        <p>Gestion Inventario
-                        <br>
-                            Materia Prima
+                    <div class="descripcion_botones3">
+                        <p>Gestion Materia
+                            <br>
+                            Prima
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!--Botones Segunda Sección-->
+    <div class="seccion_botones">
+        <div class="botones_acceso">
+            <div class="row conjunto_asesor2">
+                <div class="col-2">
+                    <div class="opcion opcion4">
+                        <a href="#"></a>
+                    </div>
+                    <div class="descripcion_botones3">
+                        <p>Gestión Proveedores</p>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="opcion opcion5">
+                        <a href="#"></a>
+                    </div>
+                    <div class="descripcion_botones3">
+                        <p>Gestión Empleados</p>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="opcion opcion6">
+                        <a href="#"></a>
+                    </div>
+                    <div class="descripcion_botones3">
+                        <p>Gestión Clientes</p>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="opcion opcion7">
+                        <a href="#"></a>
+                    </div>
+                    <div class="descripcion_botones3">
+                        <p>Nómina</p>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="opcion opcion8">
+                        <a href="#"></a>
+                    </div>
+                    <div class="descripcion_botones3">
+                        <p>Programación de
+                            <br>
+                            Producción
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Botones Tercera Sección-->
+    <div class="seccion_botones">
+        <div class="botones_acceso">
+            <div class="row conjunto_asesor2">
+                <div class="col-2">
+                    <div class="opcion opcion4">
+                        <a href="#"></a>
+                    </div>
+                    <div class="descripcion_botones3">
+                        <p>Gestión Localidades</p>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="opcion opcion5">
+                        <a href="#"></a>
+                    </div>
+                    <div class="descripcion_botones3">
+                        <p>Gestión de Inventario
+                            <br>
+                            Producto Terminado
+                        </p>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="opcion opcion6">
+                        <a href="#"></a>
+                    </div>
+                    <div class="descripcion_botones3">
+                        <p>Gestión Inventario
+                            <br>
+                            Materia Prima
+                        </p>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="opcion opcion7">
+                        <a href="#"></a>
+                    </div>
+                    <div class="descripcion_botones3">
+                        <p>Gestión Nómina</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Contactanos -->
     <?php
     include_once("../layout/contactanos.php");
     ?>
+
     <!-- Copyright -->
     <div class="copyright">
         <h5 style="text-align: center;">@COPYRIGHT</h5>
