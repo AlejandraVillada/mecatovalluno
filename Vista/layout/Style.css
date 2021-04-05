@@ -159,3 +159,29 @@ div .descripcion_prod{
     position: relative;
     right: 46px;
 }
+
+/* seccion productos */
+
+.seccion_productos, .titulo_prod{
+    margin-top: 10px;
+}
+
+.imgprod1, .imgprod2, .imgprod3,.imgprod4,.imgprod5,.imgprod6{
+    border-radius: 40px;
+    width: 150px;
+    height: 150px;
+    border: 1px solid lightgrey;
+    position: relative;
+    left: 40px;
+    background-image: url(../img/picadita_MCC.jpg) ;
+    object-fit: contain;
+    object-position: center;
+}
+
+.cantidad{
+    float: right;
+}
+
+.seccion1, .seccion2 , .seccion3{
+    margin-top: 10px;
+}
