@@ -3,11 +3,13 @@
 include_once ("../layout/header.php");
 ?>
 
-<div class="container">
+<div class="container-fluid">
 <!-- menu -->
-<?php
-    include_once ("../layout/menu_cerrarEmpleados.php");
-?>
+    <?php
+        include_once ("../layout/menu_cerrarEmpleados.php");
+    ?>
+</div>
+<div class="container">
     <!-- acceso rapido -->
     <div class="acceso_rapido" style="margin-top: 20px;">
         <div class="card">
@@ -84,8 +86,16 @@ include_once ("../layout/header.php");
             </div>
         </div>
     </div>
+    <?php
+        include_once ("../layout/contactanos.php");
+    ?>
+    <!-- copyright -->
+    <div class="copyright">
+        <h5 style="text-align: center;">@COPYRIGHT</h5>
+    </div>
 </div>
 
 <?php
+
 include_once ("../layout/footer.php");
 ?>

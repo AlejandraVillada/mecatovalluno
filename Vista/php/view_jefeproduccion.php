@@ -3,11 +3,14 @@
 include_once ("../layout/header.php");
 ?>
 
-<div class="container">
+<div class="container-fluid">
 <!-- menu -->
-<?php
-    include_once ("../layout/menu_cerrarEmpleados.php");
-?>
+    <?php
+        include_once ("../layout/menu_cerrarEmpleados.php");
+    ?>
+</div>
+
+<div class="container">
     <!-- acceso rapido -->
     <div class="acceso_rapido" style="margin-top: 20px;">
         <div class="card">

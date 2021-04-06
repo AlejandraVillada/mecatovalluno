@@ -3,12 +3,14 @@
 include_once ("../layout/header.php");
 ?>
 
-<div class="container">
+<div class="container-fluid">
 <!-- menu -->
-<?php
-    include_once ("../layout/menu_inicioEmpleados.php");
-?>
+    <?php
+        include_once ("../layout/menu_cerrarEmpleados.php");
+    ?>
+</div>
 
+<div class="container">
 <!-- seccion de productos -->
 <div class="titulo_prod">
     <div class="alert alert-secondary" role="alert">
