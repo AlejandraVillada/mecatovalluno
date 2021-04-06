@@ -6,7 +6,7 @@ include_once ("../layout/header.php");
 <div class="container-fluid">
 <!-- menu -->
     <?php
-        include_once ("../layout/menu_cerrarEmpleados.php");
+        include_once ("../layout/menu_cerrarSesion.php");
     ?>
 </div>
 
