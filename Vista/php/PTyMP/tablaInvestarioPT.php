@@ -1,0 +1,3 @@
+<table id="tablaInventarioPT">
+    
+</table>

@@ -1,209 +1,241 @@
-.color{
+.color {
     background-color: azure;
 }
 
+
 /* home */
 
-.textopromo{
-    padding: 50px; 
-    left: 20px; 
-    top:20px;
+.textopromo {
+    padding: 50px;
+    left: 20px;
+    top: 20px;
 }
 
-.btnvermas{
-    position: relative; 
-    top:20px;
+.btnvermas {
+    position: relative;
+    top: 20px;
 }
 
-.imgpromo{
-    width: 400px; 
-    height: 355px; 
-    position: relative; 
-    left:90px;
+.imgpromo {
+    width: 400px;
+    height: 355px;
+    position: relative;
+    left: 90px;
 }
 
-#mision_vision{
-    border: 1px solid LightGray; 
-    margin-top:10px;
+#mision_vision {
+    border: 1px solid LightGray;
+    margin-top: 10px;
     padding: 10px;
 }
 
-.contenido_mv{
+.contenido_mv {
     text-align: center;
 }
 
-.prod{
+.prod {
     border: 1px solid lightgrey;
     border-radius: 300px;
-    width:150px; height:150px;
-    margin-top:20px;
+    width: 150px;
+    height: 150px;
+    margin-top: 20px;
 }
 
-.productos{
+.productos {
     margin-top: 10px;
 }
 
-div .alert{
+div .alert {
     text-align: center;
 }
 
-div .descripcion_prod{
+div .descripcion_prod {
     text-align: left;
     position: relative;
     left: 35px;
-    margin-top:10px ;
+    margin-top: 10px;
 }
 
-.conjunto_prod{
+.conjunto_prod {
     position: relative;
     left: 35px;
 }
 
-.img_contacto{
-    width: 550px; 
-    height: 355px; 
-    position: relative; 
+.img_contacto {
+    width: 550px;
+    height: 355px;
+    position: relative;
     right: 30px;
-   top: 20px;
+    top: 20px;
 }
 
-.contacto{
+.contacto {
     border: 1px solid lightgrey;
-   
     margin-top: 40px;
     height: 400px;
-    
 }
 
-.copyright{
+.copyright {
     margin-top: 60px;
     border: 1px solid lightgray;
     width: auto;
     height: 30px;
 }
 
-.texto_contacto{
+.texto_contacto {
     display: table;
     margin: auto;
     position: relative;
     left: 60px;
 }
 
-.prod1{
-    background-image: url(../img/picadita_MCC.jpg) ;
+.prod1 {
+    background-image: url(../img/picadita_MCC.jpg);
     object-fit: contain;
     object-position: center;
 }
 
-.prod2{
-    background-image: url(../img/picadita_MCC.jpg) ;
+.prod2 {
+    background-image: url(../img/picadita_MCC.jpg);
     object-fit: contain;
     object-position: center;
 }
 
-.prod3{
-    background-image: url(../img/picadita_MCC.jpg) ;
+.prod3 {
+    background-image: url(../img/picadita_MCC.jpg);
     object-fit: contain;
     object-position: center;
 }
 
-.prod4{
-    background-image: url(../img/picadita_MCC.jpg) ;
+.prod4 {
+    background-image: url(../img/picadita_MCC.jpg);
     object-fit: contain;
     object-position: center;
 }
+
 
 /* Jefe Produccion y Asesor de Ventas*/
-.opcion{
+
+.opcion {
     border: 1px solid lightgrey;
     border-radius: 300px;
-    width:150px; height:150px;
-    margin-top:20px;
+    width: 150px;
+    height: 150px;
+    margin-top: 20px;
 }
 
-.texto_bienvenido{
-    padding: 50px; 
-    right: 30px; 
+.texto_bienvenido {
+    padding: 50px;
+    right: 30px;
     top: 20px;
 }
 
-.botones_acceso{
+.botones_acceso {
     position: relative;
     left: 100px;
 }
 
-.descripcion_boton{
+.descripcion_boton {
     text-align: center;
 }
 
-.linea{
+.linea {
     position: relative;
     left: 20px;
 }
 
-.descripcion_boton1{
+.descripcion_boton1 {
     text-align: center;
     position: relative;
     right: 40px;
 }
 
+
 /* Botones y Textos Asesor Ventas */
-.descripcion_botones{
+
+.descripcion_botones {
     text-align: center;
     position: relative;
     right: 54px;
 }
 
-.descripcion_botones2{
+.descripcion_botones2 {
     text-align: center;
     position: relative;
     right: 46px;
 }
 
-.descripcion_botones3{
+.descripcion_botones3 {
     text-align: center;
     position: relative;
     right: 6px;
 }
 
-.conjunto_asesor{
+.conjunto_asesor {
     position: relative;
     left: -35px;
 }
 
-.conjunto_asesor2{
+.conjunto_asesor2 {
     position: relative;
     left: 5px;
 }
 
-.texto_bienvenida{
-    padding: 50px; 
-    right: 35px; 
+.texto_bienvenida {
+    padding: 50px;
+    right: 35px;
     top: 20px;
 }
 
+
 /* seccion productos */
 
-.seccion_productos, .titulo_prod{
+.seccion_productos,
+.titulo_prod {
     margin-top: 10px;
 }
 
-.imgprod1, .imgprod2, .imgprod3,.imgprod4,.imgprod5,.imgprod6{
+.imgprod1,
+.imgprod2,
+.imgprod3,
+.imgprod4,
+.imgprod5,
+.imgprod6 {
     border-radius: 40px;
     width: 150px;
     height: 150px;
     border: 1px solid lightgrey;
     position: relative;
     left: 40px;
-    background-image: url(../img/picadita_MCC.jpg) ;
+    background-image: url(../img/picadita_MCC.jpg);
     object-fit: contain;
     object-position: center;
 }
 
-.cantidad{
+.cantidad {
     float: right;
 }
 
-.seccion1, .seccion2 , .seccion3{
+.seccion1,
+.seccion2,
+.seccion3 {
     margin-top: 10px;
+}
+
+
+/* PT y MP */
+
+.banner-links {
+    margin-top: 10px;
+    width: 250px;
+    height: 500px;
+    border: 1px solid lightgrey;
+    position: relative;
+    left: 15px;
+}
+
+.links1 {
+    position: relative;
+    top: 150px;
+    text-align: center;
 }
