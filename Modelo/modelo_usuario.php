@@ -1,68 +1,75 @@
 <?php
     
 class modelo_usuario {
+    private $IdUsuario;
     private $usuario;
+    private $IdTipoUsuario;
     private $contrasena;
 
+    function __construct(){
+        
+    }    
 
-    function _construct($usuario){
-        $this->usuario=$usuario;
+    public function getIdUsuario()
+    {
+        return $this->IdUsuario;
     }
 
-    function listar(){
-
-    }
-    function consultar($id){
-
-    }
-    function nuevo(){
-
-    }
-    function modificar(){
-
+    public function setIdUsuario($IdUsuario)
+    {
+        $this->IdUsuario = $IdUsuario;
     }
     
-    
-    /**
-     * Get the value of usuario
-     */ 
     public function getUsuario()
     {
         return $this->usuario;
     }
 
-    /**
-     * Set the value of usuario
-     *
-     * @return  self
-     */ 
     public function setUsuario($usuario)
     {
         $this->usuario = $usuario;
-
-        return $this;
     }
 
-    /**
-     * Get the value of contrasena
-     */ 
+    public function getIdTipoUsuario()
+    {
+        return $this->IdTipoUsuario;
+    }
+ 
+    public function setIdTipoUsuario($IdTipoUsuario)
+    {
+        $this->IdTipoUsuario = $IdTipoUsuario;
+    }
+
     public function getContrasena()
     {
         return $this->contrasena;
     }
-
-    /**
-     * Set the value of contrasena
-     *
-     * @return  self
-     */ 
+    
     public function setContrasena($contrasena)
     {
         $this->contrasena = $contrasena;
-
-        return $this;
     }
-}
 
+    public function lista(){
+
+    }
+
+    public function consultar(){
+
+    }
+
+    public function nuevo(){
+
+    }
+
+    public function editar(){
+
+    }
+
+    public function borrar(){
+
+    }
+    
+}
 
 ?>
