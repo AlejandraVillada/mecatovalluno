@@ -22,15 +22,8 @@
 
                     <form  name="formulario" action="" method="POST">  
 
-                        <div class="form-group">
-                            <button class="btn btn-success dropdown-toggle" type="button" name="productos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Seleccione el Producto
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#">Salchipapa</a>
-                              <a class="dropdown-item" href="#">Papa Aborrajada</a>
-                              <a class="dropdown-item" href="#">Empanada</a>
-                            </div>
+                        <div class="form-group"> 
+                            <input type="text" class="form-control" name="id-produccion" placeholder="Ingrese ID de Producción">                            
                         </div>
 
                         <div class="form-group">
@@ -62,7 +55,7 @@
                                 
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Registrar</button>
-                            <!--<a class="btn btn-primary" href="../index.html" role="button">Listado de Programas</a>-->
+                            <a href="#" class="btn btn-dark">Regresar</a>
                         </div>
 
                     </form>
