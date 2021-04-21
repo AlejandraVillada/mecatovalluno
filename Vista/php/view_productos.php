@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="../layout/style.css">
 <?php
 include_once ("../layout/header.php");
 ?>

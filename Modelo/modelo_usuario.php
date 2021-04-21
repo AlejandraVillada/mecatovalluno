@@ -1,12 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOLA MUNDO</title>
-</head>
-<body>
-    <H1>HOLA MUNDO</H1>
-</body>
-</html>
+<?php
+    
+class modelo_usuario {
+    private $usuario;
+    private $contrasena;
+
+
+    function _construct($usuario){
+        $this->usuario=$usuario;
+    }
+
+    function listar(){
+
+    }
+    function consultar($id){
+
+    }
+    function nuevo(){
+
+    }
+    function modificar(){
+
+    }
+    
+    
+    /**
+     * Get the value of usuario
+     */ 
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * Set the value of usuario
+     *
+     * @return  self
+     */ 
+    public function setUsuario($usuario)
+    {
+        $this->usuario = $usuario;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of contrasena
+     */ 
+    public function getContrasena()
+    {
+        return $this->contrasena;
+    }
+
+    /**
+     * Set the value of contrasena
+     *
+     * @return  self
+     */ 
+    public function setContrasena($contrasena)
+    {
+        $this->contrasena = $contrasena;
+
+        return $this;
+    }
+}
+
+
+?>
