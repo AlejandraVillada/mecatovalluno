@@ -15,13 +15,7 @@ include_once ("../../layout/header.php");
             <div class="links1">
                 <a href="#" id="inventarioPT">Inventario Producto Terminado</a>
                 <br>
-                <a href="#" id="inventarioMP">Inventario Materia Prima</a>
-                <br>
                 <a href="#" id="gestionPT">Gestion de Producto Terminado</a>
-                <br>
-                <a href="#" id="gestionMP">Gestion de Materia Prima</a>
-                <br>
-                <a href="#" id="compraMP">Compra de Materia Prima</a>
             </div>
         </div>
         <div class="col-8 tabla-form">
