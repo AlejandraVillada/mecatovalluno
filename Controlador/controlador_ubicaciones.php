@@ -1,5 +1,7 @@
 <?php
- include_once __DIR__."../modelo/modelo_usuario";//corregir ruta
+ include_once __DIR__."../modelo/modelo_sede";
+ include_once __DIR__."../modelo/modelo_ciudades";
+ include_once __DIR__."../modelo/modelo_pais";
 
 $datos=$_POST;//datos
 
