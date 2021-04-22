@@ -1,5 +1,7 @@
 <?php
-    class modelo_tipo_usuario {
+include_once __DIR__ . "/modeloAbstractoDB.php";
+
+    class modelo_tipo_usuario extends ModeloAbstractoDB{
         private $IdTipoUsuario;
         private $TipoUsuario;
 

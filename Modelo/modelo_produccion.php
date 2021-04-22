@@ -1,6 +1,7 @@
 <?php
+include_once __DIR__ . "/modeloAbstractoDB.php";
 
-    class modelo_produccion {
+    class modelo_produccion extends ModeloAbstractoDB{
         private $IdProduccion;
         private $IdMateriaPrima;
         private $DiaProduccion;
