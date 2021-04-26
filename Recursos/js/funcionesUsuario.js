@@ -5,7 +5,7 @@ function usuario(){
         //console.log(datos)
         $.ajax({
             type:"post",
-            url:"./Controlador/controlador_Usuario.php",
+            url:"./Controlador/controlador_usuario.php",
             data: datos,
             dataType:"json"
           }).done(function( resultado ) {
