@@ -60,7 +60,7 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" id="ingresar" class="btn btn-primary btn-block btn-flat">Ingresar</button>
+          <button href="submit" id="ingresar" class="btn btn-primary btn-block btn-flat">Ingresar</button>
         </div>
         <!-- /.col -->
         <input type="hidden" value="login" name="accion">

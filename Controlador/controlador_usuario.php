@@ -1,5 +1,5 @@
 <?php
- include_once __DIR__."../modelo/modelo_usuario";//corregir ruta
+ include_once __DIR__."/../modelo/modelo_usuario.php";//corregir ruta
 
 $datos=$_POST;//datos
 
@@ -7,11 +7,33 @@ $accion=$_POST['accion'];
 
 switch($accion){
     //Case/ contenido variable accion
-    case "hola":
-    
-        //contenido
+    case 'login':
+        $usuario = new modelo_usuario();
+        $usuario->consultar($datos);
 
-    break;//cierre
+        if($usuario->getUsua_codi() == null) {
+            $respuesta = array(
+                'respuesta' => 'no existe'
+            );
+        }  else {
+            if(password_verify($datos['password'],$usuario->getUsua_pass())){
+                session_start();
+                $_SESSION['usuario'] = $usuario->getUsua_user();
+                $_SESSION['nombre'] = $usuario->getUsua_nomb();
+            //    $_SESSION['foto'] = $usuario->getUsua_foto();
+                $respuesta = array(
+                    'respuesta' =>'existe'
+                );
+            } else {
+                $respuesta = array(
+                    'respuesta' => 'no existe'
+                );
+            }
+            
+        }
+        echo json_encode($respuesta);
+        break;
+    break;
 }
 
 

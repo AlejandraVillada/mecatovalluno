@@ -10,7 +10,40 @@ class modelo_usuario extends ModeloAbstractoDB{
     function __construct(){
         
     }    
+    public function lista(){
 
+    }
+
+    public function consultar($datos=array()){
+        $usuario = $datos['usuario'];
+			$password = $datos['password'];
+            $this->query = "
+            SELECT *
+			FROM usuarios 
+			WHERE Usuario = '$usuario'
+			";
+
+            $this->obtener_resultados_query();
+			
+			if(count($this->rows) == 1):
+				foreach ($this->rows[0] as $propiedad=>$valor):
+					$this->$propiedad = $valor;
+				endforeach;
+			endif;
+
+    }
+
+    public function nuevo(){
+
+    }
+
+    public function editar(){
+
+    }
+
+    public function borrar(){
+
+    }
     public function getIdUsuario()
     {
         return $this->IdUsuario;
@@ -51,25 +84,7 @@ class modelo_usuario extends ModeloAbstractoDB{
         $this->contrasena = $contrasena;
     }
 
-    public function lista(){
-
-    }
-
-    public function consultar(){
-
-    }
-
-    public function nuevo(){
-
-    }
-
-    public function editar(){
-
-    }
-
-    public function borrar(){
-
-    }
+    
     
 }
 
