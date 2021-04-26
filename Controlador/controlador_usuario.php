@@ -1,6 +1,10 @@
 <?php
  include_once __DIR__."/../modelo/modelo_usuario.php";//corregir ruta
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $datos=$_POST;//datos
 
 $accion=$_POST['accion'];
