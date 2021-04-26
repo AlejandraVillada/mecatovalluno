@@ -27,7 +27,8 @@ class modelo_usuario extends ModeloAbstractoDB{
 			
 			if(count($this->rows) == 1):
 				foreach ($this->rows[0] as $propiedad=>$valor):
-					echo $this->$propiedad = $valor;
+					 $this->$propiedad = $valor;
+	    echo $this->$propiedad;
 				endforeach;
 			endif;
 	    var_dump($this->rows);
