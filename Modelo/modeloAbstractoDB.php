@@ -1,6 +1,6 @@
 <?php
 	abstract class ModeloAbstractoDB {
-		private static $db_host ="localhost";
+		private static $db_host ="127.0.0.1";
 		private static $db_user = "u310614642_admin";
 		private static $db_pass = "M3cat0Vallun0";
 		protected $db_name = "u310614642_mecatovalluno";
