@@ -1,5 +1,5 @@
 <?php
- include_once __DIR__."/../modelo/modelo_usuario.php";//corregir ruta
+ include_once __DIR__."/../Modelo/modelo_usuario.php";//corregir ruta
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
