@@ -15,14 +15,14 @@ switch($accion){
         $usuario = new modelo_usuario();
         $usuario->consultar($datos);
 
-        if($usuario->getUsua_codi() == null) {
+        if($usuario->getIdUsuario() == null) {
             $respuesta = array(
                 'respuesta' => 'no existe'
             );
         }  else {
-            if(password_verify($datos['password'],$usuario->getUsua_pass())){
+            if(password_verify($datos['password'],$usuario->getContrasena())){
                 session_start();
-                $_SESSION['usuario'] = $usuario->getUsua_user();
+                $_SESSION['usuario'] = $usuario->getUsuario();
               //  $_SESSION['nombre'] = $usuario->getUsua_nomb();
             //    $_SESSION['foto'] = $usuario->getUsua_foto();
                 $respuesta = array(
