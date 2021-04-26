@@ -17,7 +17,7 @@ switch($accion){
         echo "id".$usuario->getIdUsuario();
         echo "contra".$usuario->getContrasena();
         
-        if($resultado['Usuario'] == null) {
+        if($usuario->getIdUsuario() == null) {
             $respuesta = array(
                 'respuesta' => 'no existe'
             );
