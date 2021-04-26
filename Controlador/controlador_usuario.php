@@ -14,8 +14,8 @@ switch($accion){
     case 'login':
         $usuario = new modelo_usuario();
        $resultado= $usuario->consultar($datos);
-        echo "id".$usuario->getIdUsuario();
-        echo "contra".$usuario->getContrasena();
+        //echo "id".$usuario->getIdUsuario();
+      //  echo "contra".$usuario->getContrasena();
         
         if($usuario->getIdUsuario() == null) {
             $respuesta = array(
