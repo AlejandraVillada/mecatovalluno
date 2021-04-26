@@ -30,6 +30,7 @@ class modelo_usuario extends ModeloAbstractoDB{
 					$this->$propiedad = $valor;
 				endforeach;
 			endif;
+	    var_dump($this->rows);
 
     }
 
