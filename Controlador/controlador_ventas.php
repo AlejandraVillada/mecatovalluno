@@ -1,6 +1,6 @@
 <?php
- include_once __DIR__."../modelo/modelo_factura";
- include_once __DIR__."../modelo/modelo_detallefact";
+ include_once __DIR__."../modelo/modelo_factura.php";
+ include_once __DIR__."../modelo/modelo_detallefact.php";
 
 $datos=$_POST;//datos
 
