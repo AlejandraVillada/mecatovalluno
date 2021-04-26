@@ -16,15 +16,15 @@ switch($accion){
        $resultado= $usuario->consultar($datos);
         echo "id".$usuario->getIdUsuario();
         echo "contra".$usuario->getContrasena();
-        var_dump($resultado);
+        
         if($resultado['Usuario'] == null) {
             $respuesta = array(
                 'respuesta' => 'no existe'
             );
         }  else {
-            if(password_verify($datos['password'],$resultado['Contrasena'])){
+            if(password_verify($datos['password'],$usuario->getContrasena())){
                 session_start();
-                $_SESSION['usuario'] = $resultado['Usuario'];
+                $_SESSION['usuario'] = $usuario->getUsuario();
               //  $_SESSION['nombre'] = $usuario->getUsua_nomb();
             //    $_SESSION['foto'] = $usuario->getUsua_foto();
                 $respuesta = array(
