@@ -13,18 +13,18 @@ switch($accion){
     //Case/ contenido variable accion
     case 'login':
         $usuario = new modelo_usuario();
-        $usuario->consultar($datos);
+       $resultado= $usuario->consultar($datos);
         echo "id".$usuario->getIdUsuario();
         echo "contra".$usuario->getContrasena();
-  
-        if($usuario->getIdUsuario() == null) {
+        var_dump($resultado);
+        if($resultado['Usuario'] == null) {
             $respuesta = array(
                 'respuesta' => 'no existe'
             );
         }  else {
-            if(password_verify($datos['password'],$usuario->getContrasena())){
+            if(password_verify($datos['password'],$resultado['Contrasena'])){
                 session_start();
-                $_SESSION['usuario'] = $usuario->getUsuario();
+                $_SESSION['usuario'] = $resultado['Usuario'];
               //  $_SESSION['nombre'] = $usuario->getUsua_nomb();
             //    $_SESSION['foto'] = $usuario->getUsua_foto();
                 $respuesta = array(
