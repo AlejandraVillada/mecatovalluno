@@ -23,7 +23,7 @@ switch($accion){
             if(password_verify($datos['password'],$usuario->getUsua_pass())){
                 session_start();
                 $_SESSION['usuario'] = $usuario->getUsua_user();
-                $_SESSION['nombre'] = $usuario->getUsua_nomb();
+              //  $_SESSION['nombre'] = $usuario->getUsua_nomb();
             //    $_SESSION['foto'] = $usuario->getUsua_foto();
                 $respuesta = array(
                     'respuesta' =>'existe'
