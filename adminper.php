@@ -1,10 +1,10 @@
 <?php
-  include_once ("./Funciones/sessiones.php");
-  include_once ('./templates/header.php');
+  include_once ("Funciones/sessiones.php");
+  include_once ('Templates/header.php');
 
-  include_once ('./templates/barra.php');
+  include_once ('Templates/barra.php');
 
-   include_once ('./templates/navegacion.php');
+   include_once ('Templates/navegacion.php');
   
 ?>
 
@@ -19,7 +19,7 @@
   <!-- /.content-wrapper -->
 
 <?php
-  include_once ('./templates/footer.php')
+  include_once ('Templates/footer.php')
 ?>
 
 
