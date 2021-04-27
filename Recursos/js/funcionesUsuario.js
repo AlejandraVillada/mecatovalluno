@@ -9,6 +9,7 @@ function usuario(){
             data: datos,
             dataType:"json"
           }).done(function( resultado ) {
+              console.log(resultado);
             if(resultado.respuesta == "existe"){
                 location.href ="adminper.php";
             }

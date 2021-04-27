@@ -3,11 +3,12 @@
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
+    <div class="pull-left image">
           <img src="./Vista/img/logo.png" class="img-circle" alt="User Image">
         </div>
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        
         <div class="pull-left info">
           <p><?php echo $_SESSION["nombre"]; ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>

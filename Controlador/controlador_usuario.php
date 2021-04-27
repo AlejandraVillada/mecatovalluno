@@ -24,9 +24,8 @@ switch($accion){
         }  else {
             if(password_verify($datos['password'],$usuario->getContrasena())){
                 session_start();
-                $_SESSION['usuario'] = $usuario->getUsuario();
-              //  $_SESSION['nombre'] = $usuario->getUsua_nomb();
-            //    $_SESSION['foto'] = $usuario->getUsua_foto();
+                $_SESSION['Usuario'] = $usuario->getUsuario();
+              
                 $respuesta = array(
                     'respuesta' =>'existe'
                 );
