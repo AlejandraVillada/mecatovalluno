@@ -25,6 +25,7 @@
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
+      <?php if($_SESSION['nombre']=="x"){?>
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENÚ DE ADMINSITRACIÓN</li>
         <li class="treeview">
@@ -44,14 +45,12 @@
             <span>Entidades Pricipales</span>
           </a>
           <ul class="treeview-menu">
-            <li><a id="prueba" href="#"><i class="fa fa-home"></i> Barrios</a></li>
-            <li><a href="./vistas/comuna/comuna.php"><i class="fas fa-building"></i> Comunas</a></li>
-            <li><a href="#"><i class="fa fa-city"></i> Municipios</a></li>
             <li><a href="#"><i class="fas fa-archway"></i> Departamentos</a></li>
             <li><a href="#"><i class="fas fa-globe-americas"></i> Paises</a></li>
              <li><a href="#"><i class="fas fa-users"></i> Personas</a></li>
           </ul>
         </li>
+      <?php }?>
        
     </section>
     <!-- /.sidebar -->
