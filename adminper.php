@@ -1,10 +1,10 @@
 <?php
-  include_once __DIR__."Funciones/sessiones.php";
-  include_once __DIR__.'Templates/header.php';
+  include_once __DIR__."./Funciones/sessiones.php";
+  include_once __DIR__.'./Templates/header.php';
 
-  include_once __DIR__.'Templates/barra.php';
+  include_once __DIR__.'./Templates/barra.php';
 
-   include_once __DIR__.'Templates/navegacion.php';
+   include_once __DIR__.'./Templates/navegacion.php';
   
 ?>
 
