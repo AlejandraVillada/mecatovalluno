@@ -6,7 +6,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="./Recursos/img/yova.png" class="img-circle" alt="User Image">
+          <img src="./Vista/img/logo.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p><?php echo $_SESSION["nombre"]; ?></p>
@@ -25,7 +25,7 @@
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <?php if($_SESSION['nombre']=="x"){?>
+      <?php if($_SESSION['Usuario']=="Mvillada"){?>
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENÚ DE ADMINSITRACIÓN</li>
         <li class="treeview">
