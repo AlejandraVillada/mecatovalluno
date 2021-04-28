@@ -11,7 +11,7 @@ function usuario() {
         }).done(function(resultado) {
             console.log(resultado);
             if (resultado.respuesta == "existe") {
-                verificarUsuario();
+                // verificarUsuario();
                 location.href = "adminper.php";
             } else {
                 swal({

@@ -3,12 +3,11 @@
         if(!verificarUsuario()){ 
             header("location:login.php");
             exit();
-            echo "entra";
+           
         }
     }
     function verificarUsuario(){
-        return isset($_SESSION["usuario"]);
-        echo "verificardo usuario";
+        return isset($_SESSION["Usuario"]);
     }
     session_start();
     usuarioAutenticado();

@@ -19,7 +19,7 @@
   <!-- /.content-wrapper -->
 
 <?php
-  include_once __DIR__.'Templates/footer.php';
+  include_once __DIR__.'./Templates/footer.php';
 ?>
 
 
