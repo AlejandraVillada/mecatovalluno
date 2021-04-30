@@ -1,6 +1,6 @@
 <?php
 
-    include_once __DIR__ . "/modeloAbstractoDB.php";
+    require_once("modeloAbstractoDB.php");
 
     class modelo_empleados extends ModeloAbstractoDB {
 
@@ -20,89 +20,49 @@
         public function getIdEmpleado()
         {
             return $this->IdEmpleado;
-        }
-
-        public function setIdEmpleado($IdEmpleado)
-        {
-            $this->IdEmpleado = $IdEmpleado;
-        }
+        }        
 
         public function getNombreEmpleado()
         {
             return $this->NombreEmpleado;
-        }
-
-        public function setNombreEmpleado($NombreEmpleado)
-        {
-            $this->NombreEmpleado = $NombreEmpleado;
-        }
+        }        
 
         public function getEmail()
         {
             return $this->Email;
-        }
-
-        public function setEmail($Email)
-        {
-            $this->Email = $Email;
-        }
+        }        
 
         public function getSueldoBase()
         {
             return $this->SueldoBase;
-        }
-
-        public function setSueldoBase($SueldoBase)
-        {
-            $this->SueldoBase = $SueldoBase;
-        }
+        }        
 
         public function getTelefono()
         {
             return $this->Telefono;
-        }
-
-        public function setTelefono($Telefono)
-        {
-            $this->Telefono = $Telefono;
-        }
+        }        
 
         public function getCargo()
         {
             return $this->Cargo;
-        }
-    
-        public function setCargo($Cargo)
-        {
-            $this->Cargo = $Cargo;
-        }
+        }        
     
         public function getIdSede()
         {
             return $this->IdSede;
-        }
-    
-        public function setIdSede($IdSede)
-        {
-            $this->IdSede = $IdSede;
-        }
+        }           
 
         public function getEstado()
         {
             return $this->Estado;
-        }
-
-        public function setEstado($Estado)
-        {
-            $this->Estado = $Estado;
-        }
+        }       
     
         //Metodos    
     
         public function lista(){
             $this->query = "
 			SELECT e.IdEmpleado, e.NombreEmpleado, e.Email, e.SueldoBase, e.Telefono,
-            c.TipoUsuario, s.IdSede, e.Estado
+            c.TipoUsuario, s.NombreSede, e.Estado
 			FROM empleados AS e INNER JOIN sede AS s
 			ON (e.IdSede = s.IdSede) 
             INNER JOIN tipo_usuario AS c

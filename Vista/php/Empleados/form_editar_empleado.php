@@ -10,97 +10,95 @@
     <title>Empleados</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
         integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../layout/Style.css">
 </head>
 
 <body class="container">
     <div id="seccion-empleados">
 
-        <div class="container mt-4">
+        <div class="mt-4">
             <div class="jumbotron">
-                <h1 align="center">Gestión de Empleados</h1>
+                <h1 align="center">Modificación de Empleados</h1>
             </div>
         </div>
 
         <div>
-            <button type="button" class="btn btn-secondary btncerrar2" data-toggle="tooltip" data-placement="right" title="Cerrar"></button>
+            <button type="button" class="btn btn-danger btncerrar2" data-toggle="tooltip" data-placement="left" title="Cerrar">
+                <i class="fa fa-times"></i>
+            </button>
         </div>
 
-        <div class="box-body">
-            <div class="card">
-                <div class="card card-primary">
-                    <div class="card-header bg-success text-center text-white">Datos de Ingreso</div>
+        <div class="card">
+            <div class="card card-primary">
+                <div class="card-header bg-primary text-center text-white">Datos a Modificar</div>
 
-                    <div class="card-body">
+                <div class="card-body">
 
-                        <form role="form" id="fcomuna">
+                    <form role="form" id="form-empleados">
 
+                        <div class="form-group">
+                            <label>Id</label>
+                            <input type="text" class="form-control" id="IdEmpleado" name="IdEmpleado"
+                                placeholder="Modifique ID o CC del Empleado" value="">
+                        </div>
 
-                            <div class="form-group">
-                                <label>Id</label>
-                                <input type="text" class="form-control" id="IdEmpleado" name="IdEmpleado"
-                                    placeholder="Ingrese ID o CC del Empleado" value="">
-                            </div>
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" id="NombreEmpleado" name="NombreEmpleado"
+                                placeholder="Modifique Nombre del Empleado" value="">
+                        </div>
 
-                            <div class="form-group">
-                                <label>Nombre</label>
-                                <input type="text" class="form-control" id="NombreEmpleado" name="NombreEmpleado"
-                                    placeholder="Ingrese Nombre del Empleado" value="">
-                            </div>
+                        <div class="form-group">
+                            <label>E-mail</label>
+                            <input type="text" class="form-control" id="Email" name="Email"
+                                placeholder="Modifique Correo del Empleado" value="">
+                        </div>
 
-                            <div class="form-group">
-                                <label>E-mail</label>
-                                <input type="text" class="form-control" id="Email" name="Email"
-                                    placeholder="Ingrese Correo del Empleado" value="">
-                            </div>
+                        <div class="form-group">
+                            <label>Sueldo Base</label>
+                            <input type="text" class="form-control" id="SueldoBase" name="SueldoBase"
+                                placeholder="Modifique Sueldo del Empleado" value="">
+                        </div>
 
-                            <div class="form-group">
-                                <label>Sueldo Base</label>
-                                <input type="text" class="form-control" id="SueldoBase" name="SueldoBase"
-                                    placeholder="Ingrese Sueldo del Empleado" value="">
-                            </div>
+                        <div class="form-group">
+                            <label>Telefono</label>
+                            <input type="text" class="form-control" id="Telefono" name="Telefono"
+                                placeholder="Modifique Telefono del Empleado" value="">
+                        </div>
 
-                            <div class="form-group">
-                                <label>Telefono</label>
-                                <input type="text" class="form-control" id="Telefono" name="Telefono"
-                                    placeholder="Ingrese Telefono del Empleado" value="">
-                            </div>
+                        <div class="form-group">
+                            <label for="muni_codi">Cargo</label>
+                            <select class="form-control" id="Cargo" name="Cargo">
 
-                            <div class="form-group">
-                                <label for="muni_codi">Cargo</label>
-                                <select class="form-control" id="Cargo" name="Cargo">
+                            </select>
+                        </div>
 
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            <label for="muni_codi">Sede</label>
+                            <select class="form-control" id="IdSede" name="IdSede">
 
-                            <div class="form-group">
-                                <label for="muni_codi">Sede</label>
-                                <select class="form-control" id="IdSede" name="IdSede">
+                            </select>
+                        </div>
 
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            <label>Estado</label>
+                            <input type="text" class="form-control" id="Estado" name="Estado"
+                                placeholder="Modifique Estado Actual del Empleado" value="">
+                        </div>
 
-                            <div class="form-group">
-                                <label>Estado</label>
-                                <input type="text" class="form-control" id="Estado" name="Estado"
-                                    placeholder="Ingrese Estado Actual del Empleado" value="">
-                            </div>
+                        <div class="form-group">
+                            <button type="button" id="actualizar" data-toggle="tooltip" title="Actualizar Comuna"
+                                class="btn btn-primary">Actualizar</button>
+                            <button type="button" id="cancelar" data-toggle="tooltip" title="Cancelar Edición"
+                                class="btn btn-danger btncerrar3"> Cancelar </button>
+                        </div>
 
-                            <div class="form-group">
-                                <button type="button" id="actualizar" data-toggle="tooltip" title="Actualizar Comuna"
-                                    class="btn btn-primary">Actualizar</button>
-                                <button type="button" id="cancelar" data-toggle="tooltip" title="Cancelar Edición"
-                                    class="btn btn-success btncerrar2"> Cancelar </button>
-                            </div>
+                        <input type="hidden" id="editar" value="editar" name="accion" />
+                        </fieldset>
 
-                            <input type="hidden" id="editar" value="editar" name="accion" />
-                            </fieldset>
-
-                        </form>
-                    </div>
-                    <input type="hidden" id="pagina" value="editar" name="editar" />
+                    </form>
                 </div>
-
-
+                <input type="hidden" id="pagina" value="editar" name="editar" />
             </div>
         </div>
     </div>

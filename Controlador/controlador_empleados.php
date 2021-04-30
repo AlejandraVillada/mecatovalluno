@@ -1,8 +1,8 @@
 <?php
 
-    include_once __DIR__."../modelo/modelo_empleados";
+    require_once("../modelo/modelo_empleados");
 
-    $datos = $_POST;//datos
+    $datos = $_POST;
     $accion = $_POST['accion'];
 
     switch ($accion){

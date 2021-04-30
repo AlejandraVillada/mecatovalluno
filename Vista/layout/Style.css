@@ -239,3 +239,10 @@ div .descripcion_prod {
     top: 150px;
     text-align: center;
 }
+
+/* Formulario Editar Empleado*/
+
+.btncerrar2 {
+    position: relative;
+    left: 1070px;
+}
