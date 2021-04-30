@@ -51,6 +51,16 @@
              <li><a href="#"><i class="fas fa-users"></i> Personas</a></li>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fas fa-hand-holding-water"></i>
+            <span> Materia Prima</span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a id="linkGestionMP"><i class="fas fa-book-reader"></i> Gestion Materia Prima</a></li>
+            <li><a id="linkCompraMP"><i class="fas fa-cart-plus"></i> Compra Materia Prima</a></li>
+          </ul>
+        </li>
       <?php }?>
 
       
