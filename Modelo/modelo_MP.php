@@ -1,10 +1,11 @@
 <?php
-include_once __DIR__ . "/modeloAbstractoDB.php";
+include_once __DIR__ . "modeloAbstractoDB.php";
 
 class modelo_materiaPrima extends ModeloAbstractoDB {
     private $IdMateriaPrima;
     private $NombreMateriaPrima;
     private $Stock;
+    private $Medida;
   
 
     function __construct(){
@@ -41,11 +42,22 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
         $this->Stock = $Stock;
     }
 
+    public function getMedida()
+    {
+        return $this->Medida;
+    }
+
+    public function setMedida($Medida)
+    {
+        $this->Medida = $Medida;
+
+    }
+
 
    
     public function lista(){
         $this->query = "
-		SELECT IdMateriaPrima,NombreMateriaPrima,Stock
+		SELECT IdMateriaPrima,NombreMateriaPrima,Stock,Medida
 		FROM materiaprima 
         ORDER BY NombreMateriaPrima";
 		$this->obtener_resultados_query();
@@ -55,7 +67,7 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
     public function consultar($id=''){
         if($id != ''):
             $this->query = "
-		    SELECT IdMateriaPrima,NombreMateriaPrima,Stock
+		    SELECT IdMateriaPrima,NombreMateriaPrima,Stock,Medida
 		    FROM materiaprima 
             WHERE IdMateriaPrima = '$id'";
             $this->obtener_resultados_query();
@@ -74,9 +86,9 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
             endforeach;
             $this->query = "
             INSERT INTO materiaprima
-            (IdMateriaPrima, NombreMateriaPrima, Stock)
+            (IdMateriaPrima, NombreMateriaPrima, Stock,Medida)
             VALUES
-            ('$IdMateriaPrima', '$NombreMateriaPrima', '$Stock')
+            ('$IdMateriaPrima', '$NombreMateriaPrima', '$Stock','$Medida')
             ";
             $resultado = $this->ejecutar_query_simple();
             return $resultado;
@@ -91,7 +103,8 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
         $this->query = "
         UPDATE materiaprima
         SET NombreMateriaPrima='$NombreMateriaPrima',
-        Stock='$Stock'
+        Stock='$Stock',
+        Medida='$Medida'
         WHERE IdMateriaPrima = '$IdMateriaPrima'
         ";
         $resultado = $this->ejecutar_query_simple();
@@ -103,6 +116,9 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
 
     }
     
+
+   
+   
 }
 
 ?>

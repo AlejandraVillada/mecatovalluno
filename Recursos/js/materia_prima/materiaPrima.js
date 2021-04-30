@@ -1,19 +1,20 @@
 function materiaPrima() {
     var dt = $("#tabla").DataTable({
-        "ajax": "./Controlador/controladorComuna.php?accion=listar",
+        "ajax": "./Controlador/controlador_mp.php?accion=listar",
         "columns": [
-            { "data": "comu_codi" },
-            { "data": "comu_nomb" },
-            { "data": "muni_nomb" },
+            { "data": "IdMateriaPrima" },
+            { "data": "NombreMateriaPrima" },
+            { "data": "Stock" },
+            { "data": "Medida" },
             {
-                "data": "comu_codi",
+                "data": "IdMateriaPrima",
                 render: function(data) {
                     return '<a href="#" data-codigo="' + data +
-                        '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>' +
-                        '<a href="#" data-codigo="' + data +
                         '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>'
                 }
             }
         ]
+
     });
+    materiaPrima();
 }

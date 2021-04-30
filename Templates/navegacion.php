@@ -57,8 +57,7 @@
             <span> Materia Prima</span>
           </a>
           <ul class="treeview-menu">
-            <li><a id="linkGestionMP"><i class="fas fa-book-reader"></i> Gestion Materia Prima</a></li>
-            <li><a id="linkCompraMP"><i class="fas fa-cart-plus"></i> Compra Materia Prima</a></li>
+            <li><a href="./Vista/php/MateriaPrima/view_MateriaPrima.php"><i class="fas fa-book-reader"></i> Gestion Materia Prima</a></li>
           </ul>
         </li>
       <?php }?>
