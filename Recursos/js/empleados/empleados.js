@@ -1,7 +1,15 @@
 function empleados(){
 
+    $.ajax({
+        type:"get",
+        url:"../../../Controlador/controlador_empleados.php?accion=listar",
+        dataType:"json"
+        }).done(function( comuna ) {        
+            console.log(comuna);
+    });
+
     var dt = $("#tabla").DataTable({
-            "ajax": "../../Controlador/controlador_empleados.php?accion=listar",
+            "ajax": "../../../Controlador/controlador_empleados.php?accion=listar",
             "columns": [
                 { "data": "IdEmpleado" } ,
                 { "data": "NombreEmpleado" },
@@ -181,6 +189,8 @@ function empleados(){
       })
 
   });
+
+  
   
   $(".box-body").on("click","a.editar",function(){
      //$("#titulo").html("Editar Comuna");

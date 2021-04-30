@@ -1,9 +1,9 @@
 <?php
 
-    require_once("../modelo/modelo_empleados");
+    require_once("../modelo/modelo_empleados.php");
 
-    $datos = $_POST;
-    $accion = $_POST['accion'];
+    $datos = $_GET;
+    $accion = $_GET['accion'];
 
     switch ($accion){
         case 'listar':

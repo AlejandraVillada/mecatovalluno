@@ -4,6 +4,9 @@
     <title>Empleados</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
         integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 </head>
 
 <body class="container">
@@ -36,8 +39,7 @@
                         <th>Cargo</th>
                         <th>Sede</th>
                         <th>Estado</th>
-                        <th>&nbsp;</th>
-                        <th>&nbsp;</th>
+                        <th>//</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,7 +49,11 @@
         </div><!-- /.box-body -->
 
     </div>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="../../../Recursos/js/empleados/empleados.js"></script>
     <script>
     $(document).ready(empleados);
