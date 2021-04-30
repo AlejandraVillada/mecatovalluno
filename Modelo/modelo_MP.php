@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . "modeloAbstractoDB.php";
+include_once "modeloAbstractoDB.php";
 
 class modelo_materiaPrima extends ModeloAbstractoDB {
     private $IdMateriaPrima;

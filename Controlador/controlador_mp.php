@@ -1,6 +1,6 @@
 <?php
 
-    include_once "../Modelo/modelo_MP.php";
+    require_once("../Modelo/modelo_MP.php");
    
     $datos=$_GET;//datos
 

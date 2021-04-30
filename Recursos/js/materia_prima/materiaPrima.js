@@ -1,6 +1,8 @@
 function materiaPrima() {
+    console.log("algo");
+
     var dt = $("#tabla").DataTable({
-        "ajax": "./Controlador/controlador_mp.php?accion=listar",
+        "ajax": "../../../Controlador/controlador_mp.php?accion=listar",
         "columns": [
             { "data": "IdMateriaPrima" },
             { "data": "NombreMateriaPrima" },
@@ -16,5 +18,4 @@ function materiaPrima() {
         ]
 
     });
-    materiaPrima();
 }

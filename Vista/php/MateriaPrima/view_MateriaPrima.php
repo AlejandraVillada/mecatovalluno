@@ -1,4 +1,17 @@
 
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="./Recursos/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/9804ed7a29.js" crossorigin="anonymous"></script>
+
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+
+</head>
+<body>
+    
+
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1 class="display-4">Gestión Materia Prima</h1>
@@ -23,9 +36,25 @@
         </tbody>
     </table>
 </div>
+<footer class="main-footer">
+   
+<!-- jQuery 3 -->
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script>
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.all.js"></script>
 
-<script src="./Recursos/js/materia_prima/materiaPrima.js"></script>
-<!-- <script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="../../../Recursos/js/materia_prima/materiaPrima.js"></script>
+<script>
     $(document).ready(materiaPrima);
-</script> -->
+</script>
+
+
+
