@@ -1,141 +1,185 @@
 <?php
-include_once __DIR__ . "/modeloAbstractoDB.php";
 
-class modelo_empleados extends ModeloAbstractoDB{
-    private $IdEmpleado;
-    private $NombreEmpleado;
-    private $Email;
-    private $SueldoBase;
-    private $Telefono;
-    private $Cargo;
-    private $IdSede;
-    private $Estado;
-  
+    include_once __DIR__ . "/modeloAbstractoDB.php";
 
-    function __construct(){
-        
-    } 
+    class modelo_empleados extends ModeloAbstractoDB {
 
-    public function getIdEmpleado()
-    {
-        return $this->IdEmpleado;
-    }
-
-    public function setIdEmpleado($IdEmpleado)
-    {
-        $this->IdEmpleado = $IdEmpleado;
-    }
-
-    public function getNombreEmpleado()
-    {
-        return $this->NombreEmpleado;
-    }
-
-    public function setNombreEmpleado($NombreEmpleado)
-    {
-        $this->NombreEmpleado = $NombreEmpleado;
-    }
-
-    public function getEmail()
-    {
-        return $this->Email;
-    }
-
-    public function setEmail($Email)
-    {
-        $this->Email = $Email;
-    }
-
-    public function getSueldoBase()
-    {
-        return $this->SueldoBase;
-    }
-
-
-    public function setSueldoBase($SueldoBase)
-    {
-        $this->SueldoBase = $SueldoBase;
-
-    }
-
-    public function getTelefono()
-    {
-        return $this->Telefono;
-    }
-
-    public function setTelefono($Telefono)
-    {
-        $this->Telefono = $Telefono;
-
-        return $this;
-    }
-
-    public function getCargo()
-    {
-        return $this->Cargo;
-    }
-
-   
-    public function setCargo($Cargo)
-    {
-        $this->Cargo = $Cargo;
-
-        return $this;
-    }
-
- 
-    public function getIdSede()
-    {
-        return $this->IdSede;
-    }
-
- 
-    public function setIdSede($IdSede)
-    {
-        $this->IdSede = $IdSede;
-
-        return $this;
-    }
-
-    public function getEstado()
-    {
-        return $this->Estado;
-    }
-
-
-    public function setEstado($Estado)
-    {
-        $this->Estado = $Estado;
-
-        return $this;
-    }
-   
-
-   
-   
-    public function lista(){
-
-    }
-
-    public function consultar(){
-
-    }
-
-    public function nuevo(){
-
-    }
-
-    public function editar(){
-
-    }
-
-    public function borrar(){
-
-    }
+        private $IdEmpleado;
+        private $NombreEmpleado;
+        private $Email;
+        private $SueldoBase;
+        private $Telefono;
+        private $Cargo;
+        private $IdSede;
+        private $Estado;
     
+        function __construct(){
+            
+        } 
 
+        public function getIdEmpleado()
+        {
+            return $this->IdEmpleado;
+        }
 
+        public function setIdEmpleado($IdEmpleado)
+        {
+            $this->IdEmpleado = $IdEmpleado;
+        }
+
+        public function getNombreEmpleado()
+        {
+            return $this->NombreEmpleado;
+        }
+
+        public function setNombreEmpleado($NombreEmpleado)
+        {
+            $this->NombreEmpleado = $NombreEmpleado;
+        }
+
+        public function getEmail()
+        {
+            return $this->Email;
+        }
+
+        public function setEmail($Email)
+        {
+            $this->Email = $Email;
+        }
+
+        public function getSueldoBase()
+        {
+            return $this->SueldoBase;
+        }
+
+        public function setSueldoBase($SueldoBase)
+        {
+            $this->SueldoBase = $SueldoBase;
+        }
+
+        public function getTelefono()
+        {
+            return $this->Telefono;
+        }
+
+        public function setTelefono($Telefono)
+        {
+            $this->Telefono = $Telefono;
+        }
+
+        public function getCargo()
+        {
+            return $this->Cargo;
+        }
     
-}
+        public function setCargo($Cargo)
+        {
+            $this->Cargo = $Cargo;
+        }
+    
+        public function getIdSede()
+        {
+            return $this->IdSede;
+        }
+    
+        public function setIdSede($IdSede)
+        {
+            $this->IdSede = $IdSede;
+        }
+
+        public function getEstado()
+        {
+            return $this->Estado;
+        }
+
+        public function setEstado($Estado)
+        {
+            $this->Estado = $Estado;
+        }
+    
+        //Metodos    
+    
+        public function lista(){
+            $this->query = "
+			SELECT e.IdEmpleado, e.NombreEmpleado, e.Email, e.SueldoBase, e.Telefono,
+            c.TipoUsuario, s.IdSede, e.Estado
+			FROM empleados AS e INNER JOIN sede AS s
+			ON (e.IdSede = s.IdSede) 
+            INNER JOIN tipo_usuario AS c
+            ON (e.Cargo = c.IdTipoUsuario)
+            ORDER BY IdEmpleado
+			";
+			
+			$this->obtener_resultados_query();
+			return $this->rows;
+        }
+
+        public function consultar($IdEmpleado = ''){
+            if($IdEmpleado != ''):
+				$this->query = "
+				SELECT IdEmpleado, NombreEmpleado, Email, SueldoBase, Telefono, Cargo, IdSede, Estado
+				FROM empleados
+				WHERE IdEmpleado = '$IdEmpleado' ORDER BY IdEmpleado
+				";
+				$this->obtener_resultados_query();
+			endif;
+			if(count($this->rows) == 1):
+				foreach ($this->rows[0] as $propiedad=>$valor):
+					$this->$propiedad = $valor;
+				endforeach;
+			endif;
+        }
+
+        public function nuevo($datos = array()){
+            if(array_key_exists('IdEmpleado', $datos)):
+				foreach ($datos as $campo => $valor):
+					$$campo = $valor;
+				endforeach;
+				$NombreEmpleado = utf8_decode($NombreEmpleado);
+                $Email = utf8_decode($Email);
+                $Estado = utf8_decode($Estado);
+				$this->query = "
+					INSERT INTO empleados
+					(IdEmpleado, NombreEmpleado, Email, SueldoBase, Telefono, Cargo, IdSede, Estado)
+					VALUES
+					('$IdEmpleado', '$NombreEmpleado', '$Email', '$SueldoBase', '$Telefono', '$Cargo', '$IdSede', '$Estado')
+					";
+				$resultado = $this->ejecutar_query_simple();
+				return $resultado;
+			endif;
+        }
+
+        public function editar($datos = array()){
+            foreach ($datos as $campo => $valor):
+				$$campo = $valor;
+			endforeach;
+			$NombreEmpleado = utf8_decode($NombreEmpleado);
+            $Email = utf8_decode($Email);
+            $Estado = utf8_decode($Estado);
+			$this->query = "
+			UPDATE empleados
+			SET NombreEmpleado = '$NombreEmpleado',
+			Email = '$Email',
+			SueldoBase = '$SueldoBase',
+			Telefono = '$Telefono',
+			Cargo = '$Cargo',
+			IdSede = '$IdSede',
+			Estado = '$Estado'
+			WHERE IdEmpleado = '$IdEmpleado'
+			";
+			$resultado = $this->ejecutar_query_simple();
+			return $resultado;
+        }
+
+        public function borrar($IdEmpleado = ''){
+            $this->query = "
+			DELETE FROM empleados
+			WHERE IdEmpleado = '$IdEmpleado'
+			";
+			$resultado = $this->ejecutar_query_simple();
+
+			return $resultado;
+        } 
+    }
 
 ?>
