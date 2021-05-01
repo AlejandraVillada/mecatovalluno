@@ -5,7 +5,7 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
     private $IdMateriaPrima;
     private $NombreMateriaPrima;
     private $Stock;
-    private $Medida;
+    private $IdMedida;
   
 
     function __construct(){
@@ -42,12 +42,12 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
         $this->Stock = $Stock;
     }
 
-    public function getMedida()
+    public function getIdMedida()
     {
         return $this->Medida;
     }
 
-    public function setMedida($Medida)
+    public function setIdMedida($Medida)
     {
         $this->Medida = $Medida;
 
@@ -57,9 +57,18 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
    
     public function lista(){
         $this->query = "
-		SELECT IdMateriaPrima,NombreMateriaPrima,Stock,Medida
-		FROM materiaprima 
+		SELECT IdMateriaPrima,NombreMateriaPrima,Stock,m.NombreMedida
+		FROM materiaprima AS mp INNER JOIN Medidas AS m
+        ON(mp.IdMedida = m.IdMedida)
         ORDER BY NombreMateriaPrima";
+		$this->obtener_resultados_query();
+		return $this->rows;
+    }
+
+    public function lista_medidas(){
+        $this->query = "
+		SELECT IdMedida,NombreMedida
+		FROM Medidas";
 		$this->obtener_resultados_query();
 		return $this->rows;
     }

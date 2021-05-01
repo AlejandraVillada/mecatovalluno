@@ -42,7 +42,7 @@
                     'codigo' => $materiaPrima->getIdMateriaPrima(),
                     'materiaPrima' => $materiaPrima->getNombreMateriaPrima(),
                     'stock' =>$materiaPrima->getStock(),
-                    'medida' =>$materiaPrima->getMedida(),
+                    'medida' =>$materiaPrima->getIdMedida(),
                     'respuesta' =>'existe'
                 );
             }
@@ -54,5 +54,12 @@
             $listado = $materiaPrima->lista();        
             echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
             break;
+
+        case 'listar_medidas':
+            $medidas = new modelo_materiaPrima();
+            $listado = $medidas->lista_medidas();        
+            echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
+            break;
+
     }
 ?>
