@@ -44,7 +44,8 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
 
    
     public function lista(){
-        $this->query="SELECT * FROM materiaprima ORDER BY NombreMateriaPrima";
+        $this->query="SELECT mp.*,m.NombreMedida FROM materiaprima mp 
+        INNER JOIN Medidas m ON(mp.IdMedida=m.idMedida)ORDER BY NombreMateriaPrima";
 		$this->obtener_resultados_query();
 		return $this->rows;
     }

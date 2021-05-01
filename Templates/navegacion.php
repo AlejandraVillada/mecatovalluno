@@ -4,13 +4,12 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
     <div class="pull-left image">
-          <img src="./Vista/img/logo.png" class="img-circle" alt="User Image">
         </div>
       <!-- Sidebar user panel -->
       <div class="user-panel">
         
         <div class="pull-left info">
-          <p><?php echo $_SESSION["nombre"]; ?></p>
+          <p><?php// echo $_SESSION["Usuario"]; ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -48,7 +47,7 @@
           <ul class="treeview-menu">
             <li><a href="#"><i class="fas fa-archway"></i> Departamentos</a></li>
             <li><a href="#"><i class="fas fa-globe-americas"></i> Paises</a></li>
-             <li><a href="#"><i class="fas fa-users"></i> Personas</a></li>
+             <li><a href="./Vista/php/InventarioMateriaPrima/view_inventarioMateriaPrima1.php"><i class="fas fa-users"></i> Inventario MP</a></li>
           </ul>
         </li>
         <li class="treeview">

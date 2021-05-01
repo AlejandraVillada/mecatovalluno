@@ -1,20 +1,21 @@
 function materiaprima(){
-    $.ajax({
-        type:"get",
-        url:"../../../Controlador/controlador_inventarioMP.php?accion=listar",
+    // $.ajax({
+    //     type:"get",
+    //     url:"../../../Controlador/controlador_inventarioMP.php?accion=listar",
         
-        dataType:"json"
-     }).done(function( resultado ) {                    ;
-        // console.log(resultado);
-     });
+    //     dataType:"json"
+    //  }).done(function( resultado ) {                    ;
+    //     // console.log(resultado);
+    //  });
     var dt = $("#tabla").DataTable({
-        "ajax": "../../../Controlador/controlador_inventarioMP.php?accion=listar",
+       // "ajax": "../../../Controlador/controlador_inventarioMP.php?accion=listar",
+        "ajax": "Controlador/controlador_inventarioMP.php?accion=listar",
 
         "columns": [
             { "data": "IdMateriaPrima" },
             { "data": "NombreMateriaPrima" },
             { "data": "Stock" },
-            { "data": "Medida" },
+            { "data": "NombreMedida" },
             {
                 "data": "IdMateriaPrima",
                 render: function(data) {
