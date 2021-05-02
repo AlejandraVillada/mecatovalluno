@@ -61,8 +61,8 @@
     
         public function lista(){
             $this->query = "
-			SELECT e.IdEmpleado, e.NombreEmpleado, e.Email, e.SueldoBase, e.Telefono,
-            c.TipoUsuario, s.NombreSede, e.Estado
+			SELECT IdEmpleado, NombreEmpleado, Email, SueldoBase, Telefono,
+            c.TipoUsuario, s.NombreSede, Estado
 			FROM empleados AS e INNER JOIN sede AS s
 			ON (e.IdSede = s.IdSede) 
             INNER JOIN tipo_usuario AS c
@@ -73,6 +73,37 @@
 			$this->obtener_resultados_query();
 			return $this->rows;
         }
+
+        public function usuarios(){
+            $this->query = "
+			SELECT IdTipoUsuario, TipoUsuario
+			FROM tipo_usuario
+			";
+			
+			$this->obtener_resultados_query();
+			return $this->rows;
+        }
+
+        public function sedes(){
+            $this->query = "
+			SELECT IdSede, IdCiudad, NombreSede
+			FROM sede
+			";
+			
+			$this->obtener_resultados_query();
+			return $this->rows;
+        }
+
+        public function lista2(){
+            $this->query = "
+			SELECT IdTipoUsuario, TipoUsuario
+			FROM tipo_usuario
+            ORDER BY IdTipoUsuario
+			";
+			
+			$this->obtener_resultados_query();
+			return $this->rows;
+        }        
 
         public function consultar($IdEmpleado = ''){
             if($IdEmpleado != ''):
@@ -113,9 +144,9 @@
             foreach ($datos as $campo => $valor):
 				$$campo = $valor;
 			endforeach;
-			$NombreEmpleado = utf8_decode($NombreEmpleado);
-            $Email = utf8_decode($Email);
-            $Estado = utf8_decode($Estado);
+			// $NombreEmpleado = utf8_decode($NombreEmpleado);
+            // $Email = utf8_decode($Email);
+            // $Estado = utf8_decode($Estado);
 			$this->query = "
 			UPDATE empleados
 			SET NombreEmpleado = '$NombreEmpleado',

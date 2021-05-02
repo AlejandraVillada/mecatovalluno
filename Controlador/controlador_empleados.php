@@ -12,6 +12,18 @@
             echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE);    
         break;
 
+        case 'listar_usuarios':
+            $usuarios = new modelo_empleados();
+            $listado = $usuarios->usuarios();
+            echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE);    
+        break;
+
+        case 'listar_sedes':
+            $sedes = new modelo_empleados();
+            $listado = $sedes->sedes();
+            echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE);    
+        break;
+
         case 'consultar':
             $empleados = new modelo_empleados();
             $empleados->consultar($datos['codigo']);
@@ -61,18 +73,7 @@
         break;
 
         case 'borrar':
-            $empleados = new modelo_empleados();
-            $resultado = $empleados->borrar($datos['codigo']);
-            if($resultado > 0) {
-                $respuesta = array(
-                    'respuesta' => 'correcto'
-                );
-            }  else {
-                $respuesta = array(
-                    'respuesta' => 'error'
-                );
-            }
-            echo json_encode($respuesta);
+            //No se usa
         break;
     }
 
