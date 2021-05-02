@@ -44,12 +44,12 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
 
     public function getIdMedida()
     {
-        return $this->Medida;
+        return $this->IdMedida;
     }
 
-    public function setIdMedida($Medida)
+    public function setIdMedida($IdMedida)
     {
-        $this->Medida = $Medida;
+        $this->IdMedida = $IdMedida;
 
     }
 
@@ -76,7 +76,7 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
     public function consultar($id=''){
         if($id != ''):
             $this->query = "
-		    SELECT IdMateriaPrima,NombreMateriaPrima,Stock,Medida
+		    SELECT IdMateriaPrima,NombreMateriaPrima,Stock,IdMedida
 		    FROM materiaprima 
             WHERE IdMateriaPrima = '$id'";
             $this->obtener_resultados_query();
@@ -89,19 +89,17 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
     }
 
     public function nuevo($datos=array()){
-        if(array_key_exists('IdMateriaPrima', $datos)):
             foreach ($datos as $campo=>$valor):
                 $$campo = $valor;
             endforeach;
             $this->query = "
             INSERT INTO materiaprima
-            (IdMateriaPrima, NombreMateriaPrima, Stock,Medida)
+            (NombreMateriaPrima, Stock,IdMedida)
             VALUES
-            ('$IdMateriaPrima', '$NombreMateriaPrima', '$Stock','$Medida')
+            ('$NombreMateriaPrima', '$Stock','$IdMedida')
             ";
             $resultado = $this->ejecutar_query_simple();
             return $resultado;
-        endif;
 
     }
 
@@ -113,7 +111,7 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
         UPDATE materiaprima
         SET NombreMateriaPrima='$NombreMateriaPrima',
         Stock='$Stock',
-        Medida='$Medida'
+        IdMedida='$IdMedida'
         WHERE IdMateriaPrima = '$IdMateriaPrima'
         ";
         $resultado = $this->ejecutar_query_simple();

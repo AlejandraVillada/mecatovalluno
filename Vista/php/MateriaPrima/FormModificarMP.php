@@ -1,25 +1,26 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 <div class="card">
-    <div class="card-header" style="text-align: center; ">
-        <h1>Modificar Materia Prima</h1>
-    </div>
     <div class="card-body">
-        <form action="" method="POST" id="formModificarMP">
-        <div class="form-group">
-                <label for="idMP">Id Materia Prima</label>
-                <input type="text" placeholder="Ingerese el id de Materia Prima" class="form-control">
+        <form id="formModificarMP">
+        <input type="hidden" id="IdMateriaPrima" name="IdMateriaPrima">
+
+            <div class="form-group">
+                <label for="NombreMateriaPrima">Nombre Materia Prima</label>
+                <input type="text" class="form-control" name="NombreMateriaPrima" id="NombreMateriaPrima">
             </div>
             <div class="form-group">
-                <label for="nombreMP">Nombre Materia Prima</label>
-                <input type="text" placeholder="Ingerese el nombre de Materia Prima" class="form-control">
+                <label for="Stock">Stock Materia Prima</label>
+                <input type="text" class="form-control" name="Stock" id="Stock">
             </div>
             <div class="form-group">
-                <label for="stockMP">Stock Materia Prima</label>
-                <input type="text" placeholder="Ingerese el stock de Materia Prima" class="form-control">
+                <label for="IdMedida">Seleccione Medida</label>
+                <select name="IdMedida" id="IdMedida" class="form-control">
+
+                </select>
             </div>
             <br>
-            <button class="btn btn-dark">Modificar registro</button>
-            <a href="#" class="btn btn-dark">Regresar</a>
+            <button class="btn btn-dark" id="actualizar">Modificar registro</button>
+            <a href="../MateriaPrima/view_MateriaPrima.php" class="btn btn-dark">Regresar</a>
+            <input type="hidden" id="editar" value="editar" name="accion"/>
         </form>
     </div>
 </div>
