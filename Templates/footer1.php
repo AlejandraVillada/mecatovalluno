@@ -25,7 +25,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../../Recursos/js/demo.js"></script>
 <script src="../../../Recursos/js/funcionesJquery.js"></script>
-<script language="javascript" src="./Recursos/js/jquery.validate.js"></script>
+<script language="javascript" src="../../../Recursos/js/jquery.validate.js"></script>
 <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.all.js"></script>
