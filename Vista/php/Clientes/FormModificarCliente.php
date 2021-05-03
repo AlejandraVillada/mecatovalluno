@@ -3,7 +3,7 @@
         <form id="formModificarCliente">
             <div class="form-group">
                 <label for="IdCliente">Cédula del cliente</label>
-                <input type="text" class="form-control" name="IdCliente" id="IdCliente">
+                <input type="text" class="form-control" name="IdCliente" id="IdCliente" readonly>
             </div>
             <div class="form-group">
                 <label for="NombreCliente">Nombre Cliente</label>

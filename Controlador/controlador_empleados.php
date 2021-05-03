@@ -24,6 +24,12 @@
             echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE);    
         break;
 
+        case 'listar_estados':
+            $estado = new modelo_empleados();
+            $listado = $estado->estado();
+            echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE);    
+        break;
+
         case 'consultar':
             $empleados = new modelo_empleados();
             $empleados->consultar($datos['codigo']);
@@ -41,7 +47,7 @@
                     'telefono' => $empleados->getTelefono(),
                     'cargo' => $empleados->getCargo(),
                     'sede' => $empleados->getIdSede(),
-                    'estado' => $empleados->getEstado(),
+                    'estado' => $empleados->getIdEstado(),
                     'respuesta' => 'existe'
                 );
             }

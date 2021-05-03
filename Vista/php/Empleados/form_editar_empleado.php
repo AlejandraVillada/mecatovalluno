@@ -9,7 +9,7 @@
                 <div class="form-group">
                     <label>Cedula</label>
                     <input type="text" class="form-control" id="IdEmpleado" name="IdEmpleado"
-                        placeholder="Modifique ID o CC del Empleado" value="" disabled="disabled">
+                        placeholder="Modifique ID o CC del Empleado" value="" readonly>
                 </div>
 
                 <div class="form-group">
@@ -52,8 +52,9 @@
 
                 <div class="form-group">
                     <label>Estado</label>
-                    <input type="text" class="form-control" id="Estado" name="Estado"
-                        placeholder="Modifique Estado Actual del Empleado" value="">
+                    <select class="form-control" id="IdEstado" name="IdEstado">
+                        <option value="default">Seleccione Estado</option>
+                    </select>
                 </div>
 
                 <div class="form-group">

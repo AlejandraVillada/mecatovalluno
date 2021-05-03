@@ -11,7 +11,7 @@
         private $Telefono;
         private $Cargo;
         private $IdSede;
-        private $Estado;
+        private $IdEstado;
     
         function __construct(){
             
@@ -52,9 +52,9 @@
             return $this->IdSede;
         }           
 
-        public function getEstado()
+        public function getIdEstado()
         {
-            return $this->Estado;
+            return $this->IdEstado;
         }       
     
         //Metodos    
@@ -62,11 +62,13 @@
         public function lista(){
             $this->query = "
 			SELECT IdEmpleado, NombreEmpleado, Email, SueldoBase, Telefono,
-            c.TipoUsuario, s.NombreSede, Estado
+            c.TipoUsuario, s.NombreSede, es.Estado
 			FROM empleados AS e INNER JOIN sede AS s
 			ON (e.IdSede = s.IdSede) 
             INNER JOIN tipo_usuario AS c
             ON (e.Cargo = c.IdTipoUsuario)
+            INNER JOIN estados AS es
+            ON (e.IdEstado = es.IdEstado)
             ORDER BY IdEmpleado
 			";
 			
@@ -94,6 +96,16 @@
 			return $this->rows;
         }
 
+        public function estado(){
+            $this->query = "
+			SELECT IdEstado, Estado
+			FROM estados
+			";
+			$this->obtener_resultados_query();
+			return $this->rows;
+        }
+
+
         public function lista2(){
             $this->query = "
 			SELECT IdTipoUsuario, TipoUsuario
@@ -108,7 +120,7 @@
         public function consultar($IdEmpleado = ''){
             if($IdEmpleado != ''):
 				$this->query = "
-				SELECT IdEmpleado, NombreEmpleado, Email, SueldoBase, Telefono, Cargo, IdSede, Estado
+				SELECT IdEmpleado, NombreEmpleado, Email, SueldoBase, Telefono, Cargo, IdSede, IdEstado
 				FROM empleados
 				WHERE IdEmpleado = '$IdEmpleado' ORDER BY IdEmpleado
 				";
@@ -128,12 +140,11 @@
 				endforeach;
 				$NombreEmpleado = utf8_decode($NombreEmpleado);
                 $Email = utf8_decode($Email);
-                $Estado = utf8_decode($Estado);
 				$this->query = "
 					INSERT INTO empleados
-					(IdEmpleado, NombreEmpleado, Email, SueldoBase, Telefono, Cargo, IdSede, Estado)
+					(IdEmpleado, NombreEmpleado, Email, SueldoBase, Telefono, Cargo, IdSede, IdEstado)
 					VALUES
-					('$IdEmpleado', '$NombreEmpleado', '$Email', '$SueldoBase', '$Telefono', '$Cargo', '$IdSede', '$Estado')
+					('$IdEmpleado', '$NombreEmpleado', '$Email', '$SueldoBase', '$Telefono', '$Cargo', '$IdSede', '$IdEstado')
 					";
 				$resultado = $this->ejecutar_query_simple();
 				return $resultado;
@@ -155,21 +166,15 @@
 			Telefono = '$Telefono',
 			Cargo = '$Cargo',
 			IdSede = '$IdSede',
-			Estado = '$Estado'
+			IdEstado = '$IdEstado'
 			WHERE IdEmpleado = '$IdEmpleado'
 			";
 			$resultado = $this->ejecutar_query_simple();
 			return $resultado;
         }
 
-        public function borrar($IdEmpleado = ''){
-            $this->query = "
-			DELETE FROM empleados
-			WHERE IdEmpleado = '$IdEmpleado'
-			";
-			$resultado = $this->ejecutar_query_simple();
-
-			return $resultado;
+        public function borrar(){
+           
         } 
     }
 
