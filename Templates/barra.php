@@ -28,7 +28,7 @@
                         <li class="dropdown user user-menu" style="">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="./Vista/img/logo.png" class="user-image" alt="User Image">
-                                <span class="hidden-xs"> <?php// echo $_SESSION["nombre"]; ?></span>
+                                <span class="hidden-xs"> <?php // echo $_SESSION["nombre"]; ?></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->

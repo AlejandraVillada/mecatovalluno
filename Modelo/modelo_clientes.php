@@ -1,31 +1,68 @@
 <?php
 
-include_once __DIR__ . "/modeloAbstractoDB.php";
+include_once "modeloAbstractoDB.php";
 
-class detalle_clientes extends ModeloAbstractoDB{
+class clientes extends ModeloAbstractoDB{
 
-    private  $idCliente;
+    private  $IdCliente;
     private  $NombreCliente;
     private  $Email;
     private  $Direccion;
-    private  $telefono;
-    private  $estado;
+    private  $Telefono;
+    private  $IdEstado;
+    private  $IdCiudad;
 
     function __construct(){
 
     }
-    public function consultar()
+    public function consultar($id='')
     {
+        if($id != ''):
+            $this->query = "
+		    SELECT IdCliente,NombreCliente,Email,Direccion,Telefono,IdEstado,IdCiudad
+		    FROM clientes
+            WHERE IdCliente = '$id'";
+            $this->obtener_resultados_query();
+        endif;
+        if(count($this->rows) == 1):
+            foreach ($this->rows[0] as $propiedad=>$valor):
+                $this->$propiedad = $valor;
+            endforeach;
+        endif;
 
     }
 
-    public function nuevo()
+    public function nuevo($datos=array())
     {
-
+        foreach ($datos as $campo=>$valor):
+            $$campo = $valor;
+        endforeach;
+        $this->query = "
+        INSERT INTO clientes
+        (IdCliente,NombreCliente,Email,Direccion,Telefono,IdEstado,IdCiudad)
+        VALUES
+        ('$IdCliente', '$NombreCliente','$Email','$Direccion','$Telefono','$IdEstado','$IdCiudad')
+        ";
+        $resultado = $this->ejecutar_query_simple();
+        return $resultado;
     }
-    public function editar()
+    public function editar($datos=array())
     {
-
+        foreach ($datos as $campo=>$valor):
+            $$campo = $valor;
+        endforeach;
+        $this->query = "
+        UPDATE clientes
+        SET NombreCliente='$NombreCliente',
+        Email='$Email',
+        Direccion='$Direccion',
+        Telefono='$Telefono',
+        IdEstado='$IdEstado',
+        IdCiudad='$IdCiudad'
+        WHERE IdCliente = '$IdCliente'
+        ";
+        $resultado = $this->ejecutar_query_simple();
+        return $resultado;
     }
 
     public function borrar()
@@ -35,27 +72,50 @@ class detalle_clientes extends ModeloAbstractoDB{
 
     public function lista()
     {
+        $this->query = "
+		SELECT IdCliente,NombreCliente,Email,Direccion,Telefono,e.Estado,c.NombreCiudad
+		FROM clientes AS cl INNER JOIN estados AS e
+        ON(cl.IdEstado = e.IdEstado)
+        INNER JOIN ciudad AS c
+        ON(cl.IdCiudad = c.IdCiudad)
+        ORDER BY IdCliente";
+		$this->obtener_resultados_query();
+		return $this->rows;
 
     }
 
+    public function lista_estados(){
+        $this->query = "
+		SELECT IdEstado,Estado
+		FROM estados";
+		$this->obtener_resultados_query();
+		return $this->rows;
+    }
 
+    public function lista_ciudad(){
+        $this->query = "
+		SELECT IdPais,IdCiudad,NombreCiudad
+		FROM ciudad";
+		$this->obtener_resultados_query();
+		return $this->rows;
+    }
 
     /**
-     * Get the value of idCliente
+     * Get the value of IdCliente
      */ 
     public function getIdCliente()
     {
-        return $this->idCliente;
+        return $this->IdCliente;
     }
 
     /**
-     * Set the value of idCliente
+     * Set the value of IdCliente
      *
      * @return  self
      */ 
-    public function setIdCliente($idCliente)
+    public function setIdCliente($IdCliente)
     {
-        $this->idCliente = $idCliente;
+        $this->IdCliente = $IdCliente;
 
         return $this;
     }
@@ -120,43 +180,62 @@ class detalle_clientes extends ModeloAbstractoDB{
         return $this;
     }
 
-
     /**
-     * Get the value of telefono
+     * Get the value of Telefono
      */ 
     public function getTelefono()
     {
-        return $this->telefono;
+        return $this->Telefono;
     }
 
     /**
-     * Set the value of telefono
+     * Set the value of Telefono
      *
      * @return  self
      */ 
-    public function setTelefono($telefono)
+    public function setTelefono($Telefono)
     {
-        $this->telefono = $telefono;
+        $this->Telefono = $Telefono;
 
         return $this;
     }
 
     /**
-     * Get the value of estado
+     * Get the value of IdEstado
      */ 
-    public function getEstado()
+    public function getIdEstado()
     {
-        return $this->estado;
+        return $this->IdEstado;
     }
 
     /**
-     * Set the value of estado
+     * Set the value of IdEstado
      *
      * @return  self
      */ 
-    public function setEstado($estado)
+    public function setIdEstado($IdEstado)
     {
-        $this->estado = $estado;
+        $this->IdEstado = $IdEstado;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of IdCiudad
+     */ 
+    public function getIdCiudad()
+    {
+        return $this->IdCiudad;
+    }
+
+    /**
+     * Set the value of IdCiudad
+     *
+     * @return  self
+     */ 
+    public function setIdCiudad($IdCiudad)
+    {
+        $this->IdCiudad = $IdCiudad;
 
         return $this;
     }
