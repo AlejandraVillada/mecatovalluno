@@ -63,7 +63,8 @@
             $this->query = "
 			SELECT IdEmpleado, NombreEmpleado, Email, SueldoBase, Telefono,
             c.TipoUsuario, s.NombreSede, es.Estado
-			FROM empleados AS e INNER JOIN sede AS s
+			FROM empleados AS e 
+            INNER JOIN sede AS s
 			ON (e.IdSede = s.IdSede) 
             INNER JOIN tipo_usuario AS c
             ON (e.Cargo = c.IdTipoUsuario)

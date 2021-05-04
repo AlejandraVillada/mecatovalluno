@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empleados</title>
+    <title>Proveedores</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -21,32 +21,57 @@
 <body class="container">
     <div class="mt-4">
         <div class="jumbotron">
-            <h1 class="text-center" id="titulo">Gestión de Empleados</h1>
+            <h1 class="text-center" id="titulo">Gestión de Proveedores</h1>
         </div>
-    </div>    
+    </div>
+
+    <!-- Proveedores -->
 
     <div class="card card-primary">
-        <div class="card-header bg-dark text-center text-white titulo">Empleados</div>
+        <div class="card-header bg-dark text-center text-white titulo">Proveedores</div>
         <div class="card-body">
             <div class="pull-right box-tools">
-                <button class="btn btn-dark btn-sm" id="nuevo" data-toggle="tooltip" title="Registrar Nuevo Empleado">Registrar Empleado</button>
+                <button class="btn btn-dark btn-sm" id="nuevo" data-toggle="tooltip"
+                    title="Registrar Nuevo Proveedor">Registrar Proveedor</button>
             </div>
         </div>
 
-        <div class="card-body contenedor">
-            <div id="edicion"></div>
-            <div id="listado">
-                <table id="tabla" class="table table-striped table-bordered text-center">
+        <div class="card-body contenedor1">
+            <div id="edicion1"></div>
+            <div id="listado1">
+                <table id="tabla1" class="table table-striped table-bordered text-center">
                     <thead>
                         <tr class="text-center">
-                            <th>Cedula</th>
-                            <th>Nombres</th>
-                            <th>E-mail</th>
-                            <th>Sueldo Base</th>
-                            <th>Telefono</th>
-                            <th>Cargo</th>
-                            <th>Sede</th>
-                            <th>Estado</th>
+                            <th>NIT</th>
+                            <th>Proveedor</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>    
+
+    <!-- Detalle Proveedores -->
+
+    <div class="card card-primary mt-5">
+        <div class="card-header bg-dark text-center text-white titulo">Detalle de Proveedores</div>
+        <div class="card-body">
+            <div class="pull-right box-tools">
+                <button class="btn btn-dark btn-sm" id="nuevo" data-toggle="tooltip"
+                    title="Asignar MP a Proveedor">Asignar Producto a Proveedor</button>
+            </div>
+        </div>
+
+        <div class="card-body contenedor2">
+            <div id="edicion2"></div>
+            <div id="listado2">
+                <table id="tabla2" class="table table-striped table-bordered text-center">
+                    <thead>
+                        <tr class="text-center">
+                            <th># Detalle Factura</th>
+                            <th>Proveedor</th>
+                            <th>Materia Prima</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
@@ -61,7 +86,7 @@
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
     </script>
 
-    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>    
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
@@ -74,10 +99,14 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.all.js"></script>
 
-    <script src="../../../Recursos/js/empleados/empleados.js"></script>
+    <script src="../../../Recursos/js/proveedores/proveedores.js"></script>
 
     <script>
-    $(document).ready(empleados);
+    $(document).ready(proveedor);
+    </script>
+
+    <script>
+    $(document).ready(det_proveedor);
     </script>
 
 </body>
