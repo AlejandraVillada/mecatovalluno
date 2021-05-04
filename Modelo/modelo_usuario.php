@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . "/modeloAbstractoDB.php";
+include_once "modeloAbstractoDB.php";
     
 class modelo_usuario extends ModeloAbstractoDB{
     private $IdUsuario;
@@ -11,9 +11,16 @@ class modelo_usuario extends ModeloAbstractoDB{
         
     }    
     public function lista(){
-
+        $this->query = "
+		SELECT IdUsuario,Usuario,t.TipoUsuario,Contrasena
+		FROM usuarios AS u INNER JOIN tipo_usuario AS t
+        ON(u.IdTipoUsuario = t.IdTipoUsuario)
+        ORDER BY IdUsuario";
+		$this->obtener_resultados_query();
+		return $this->rows;
     }
 
+    
     public function consultar($datos=array()){
              $usuario = $datos['usuario'];
 		//	$password = $datos['password'];
@@ -35,12 +42,49 @@ class modelo_usuario extends ModeloAbstractoDB{
 
     }
 
-    public function nuevo(){
-
+    public function consultarUsu($id=''){
+        if($id != ''):
+            $this->query = "
+		    SELECT IdUsuario,Usuario,IdTipoUsuario,Contrasena
+		    FROM usuarios 
+            WHERE IdUsuario = '$id'";
+            $this->obtener_resultados_query();
+        endif;
+        if(count($this->rows) == 1):
+            foreach ($this->rows[0] as $propiedad=>$valor):
+                $this->$propiedad = $valor;
+            endforeach;
+        endif;
     }
 
-    public function editar(){
+    public function nuevo($datos=array()){
+        foreach ($datos as $campo=>$valor):
+            $$campo = $valor;
+        endforeach;
+        $this->query = "
+        INSERT INTO usuarios
+        (IdUsuario,Usuario,IdTipoUsuario,Contrasena)
+        VALUES
+        ('$IdUsuario', '$Usuario','$IdTipoUsuario','$Contrasena')
+        ";
+        $resultado = $this->ejecutar_query_simple();
+        return $resultado;
+    }
 
+    public function editar($datos=array()){
+        foreach ($datos as $campo=>$valor):
+            $$campo = $valor;
+        endforeach;
+        $this->query = "
+        UPDATE usuarios
+        SET IdUsuario='$IdUsuario',
+        Usuario='$Usuario',
+        IdTipoUsuario='$IdTipoUsuario',
+        Contrasena='$Contrasena'
+        WHERE IdUsuario = '$IdUsuario'
+        ";
+        $resultado = $this->ejecutar_query_simple();
+        return $resultado;
     }
 
     public function borrar(){

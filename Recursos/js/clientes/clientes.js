@@ -21,6 +21,7 @@ function clientes() {
 
     });
 
+
     $("#editado").hide();
 
     $("#crear").on("click", function() {

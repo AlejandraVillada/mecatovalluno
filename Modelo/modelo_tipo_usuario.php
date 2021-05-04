@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . "/modeloAbstractoDB.php";
+include_once "modeloAbstractoDB.php";
 
     class modelo_tipo_usuario extends ModeloAbstractoDB{
         private $IdTipoUsuario;
@@ -30,7 +30,14 @@ include_once __DIR__ . "/modeloAbstractoDB.php";
         }
 
         public function lista(){
-
+                
+                $this->query = "
+                SELECT IdTipoUsuario,TipoUsuario
+                FROM tipo_usuario";
+                $this->obtener_resultados_query();
+                return $this->rows;
+                    
+                
         }
 
         public function consultar(){

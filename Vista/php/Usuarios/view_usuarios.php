@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Materia Prima</title>
+    <title>Usuarios</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -28,15 +28,15 @@
     <div class="container">
         <div class="jumbotron jumbotron-fluid" style="text-align: center;">
             <div class="container">
-                <h1 id="titulo" class="display-4">Gestión Materia Prima</h1>
+                <h1 id="titulo" class="display-4">Gestión Usarios</h1>
             </div>
         </div>
         <div class="card card-primary">
-            <div class="card-header bg-dark text-center text-white titulo">Materia Prima</div>
+            <div class="card-header bg-dark text-center text-white titulo">Usuarios</div>
             <div class="card-body">
                 <div class="pull-right box-tools">
                     <button class="btn btn-dark btn-sm" id="crear" data-toggle="tooltip"
-                        title="Registrar Nuevo Empleado">Registrar Materia Prima</button>
+                        title="Registrar Nuevo Empleado">Registrar Usuario</button>
                 </div>
             </div>
 
@@ -47,10 +47,10 @@
                     <table id="tabla" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Id Materia Prima</th>
-                                <th scope="col">Materia Prima</th>
-                                <th scope="col">Stock</th>
-                                <th scope="col">Medida</th>
+                                <th scope="col">Id Usuario</th>
+                                <th scope="col">Usuario</th>
+                                <th scope="col">Tipo Usuario</th>
+                                <th scope="col">Contraseña</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
@@ -81,9 +81,9 @@
         <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.all.js"></script>
-        <script src="../../../Recursos/js/materia_prima/materiaPrima.js"></script>
+        <script src="../../../Recursos/js/usuarios/usuarios.js"></script>
         <script>
-        $(document).ready(materiaPrima);
+        $(document).ready(usuarios);
         </script>
 
 </body>

@@ -1,15 +1,11 @@
 <?php
- include_once __DIR__."/../Modelo/modelo_usuario.php";//corregir ruta
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+    require_once("../Modelo/modelo_usuario.php");
+    require_once("../Modelo/modelo_tipo_usuario.php");
+   
+    $datos=$_GET;//datos
 
-$datos=$_POST;//datos
-
-$accion=$_POST['accion'];
-
-switch($accion){
+    switch ($_GET['accion']){
     //Case/ contenido variable accion
     case 'login':
         $usuario = new modelo_usuario();
@@ -39,10 +35,62 @@ switch($accion){
         echo json_encode($respuesta);
         break;
     break;
-}
 
+    case 'editar':
+        $usuario = new modelo_usuario();
+        $resultado = $usuario->editar($datos);
+        $respuesta = array(
+                'respuesta' => $resultado
+            );
+        echo json_encode($respuesta);
+        break;
+    case 'nuevo':
+        $usuarios = new modelo_usuario();
+        $resultado = $usuarios->nuevo($datos);
+        if($resultado > 0) {
+            $respuesta = array(
+                'respuesta' => 'correcto'
+            );
+        }  else {
+            $respuesta = array(
+                'respuesta' => 'error'
+            );
+        }
+        echo json_encode($respuesta);
+        break;
+    case 'borrar':
+      break;
+    case 'consultar':
+        $usuarios = new modelo_usuario();
+        $usuarios->consultarUsu($datos['codigo']);
 
+        if($usuarios->getIdUsuario() == null) {
+            $respuesta = array(
+                'respuesta' => 'no existe'
+            );
+        }  else {
+            $respuesta = array(
+                'codigo' => $usuarios->getIdUsuario(),
+                'usuario' => $usuarios->getUsuario(),
+                'tipoUsuario' =>$usuarios->getIdTipoUsuario(),
+                'contrasena' =>$usuarios->getContrasena(),
+                'respuesta' =>'existe'
+            );
+        }
+        echo json_encode($respuesta);
+        break;
 
+    case 'listar':
+        $usuario = new modelo_usuario();
+        $listado = $usuario->lista();        
+        echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
+        break;
 
-
+        case 'listar_tipo_usu':
+            $tipoUsu = new modelo_tipo_usuario();
+            $listado = $tipoUsu->lista();        
+            echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
+            break;
+   
+        }
 ?>

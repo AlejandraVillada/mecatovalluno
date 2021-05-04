@@ -5,5 +5,5 @@
     $pass = $_GET["pass"];
     $passwordHashed = password_hash($pass, PASSWORD_BCRYPT, $opciones);
 
-    echo $passwordHashed;
+    echo json_encode($passwordHashed);
 ?>
