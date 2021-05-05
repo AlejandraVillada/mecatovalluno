@@ -1,20 +1,114 @@
 <?php
- include_once __DIR__."../modelo/modelo_sede";
- include_once __DIR__."../modelo/modelo_ciudades";
- include_once __DIR__."../modelo/modelo_pais";
+  require_once("../Modelo/modelo_sede.php");
+  require_once("../Modelo/modelo_pais.php");
+  require_once("../Modelo/modelo_ciudades.php");
 
-$datos=$_POST;//datos
+$datos=$_GET;
 
-$accion=$_POST['accion'];
+$accion=$_GET['accion'];
 
 switch($accion){
-    //Case/ contenido variable accion
-    case "hola":
-    
-        //contenido
+    case 'editar_pais':
+        $pais = new modelo_pais();
+        $resultado = $pais->editar($datos);
+        $respuesta = array(
+                'respuesta' => $resultado
+            );
+        echo json_encode($respuesta);
+        break;
+    case 'nuevo_pais':
+        $pais = new modelo_pais();
+        $resultado = $pais->nuevo($datos);
+        if($resultado > 0) {
+            $respuesta = array(
+                'respuesta' => 'correcto'
+            );
+        }  else {
+            $respuesta = array(
+                'respuesta' => 'error'
+            );
+        }
+        echo json_encode($respuesta);
+        break;
+    case 'borrar':
+      break;
+    case 'consultar_pais':
+        $pais = new modelo_pais();
+        $pais->consultar($datos['codigo']);
 
-    break;//cierre
+        if($pais->getIdPais() == null) {
+            $respuesta = array(
+                'respuesta' => 'no existe'
+            );
+        }  else {
+            $respuesta = array(
+                'codigo' => $pais->getIdPais(),
+                'pais' => $pais->getNombrePais(),
+                'respuesta' =>'existe'
+            );
+        }
+        echo json_encode($respuesta);
+        break;
+
+    case 'listar_pais':
+        $pais = new modelo_pais();
+        $listado = $pais->lista();        
+        echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
+        break;
+
+
+        case 'editar_ciudad':
+            $ciudad = new modelo_ciudad();
+            $resultado = $ciudad->editar($datos);
+            $respuesta = array(
+                    'respuesta' => $resultado
+                );
+            echo json_encode($respuesta);
+            break;
+        case 'nuevo_ciudad':
+            $ciudad = new modelo_ciudad();
+            $resultado = $ciudad->nuevo($datos);
+            if($resultado > 0) {
+                $respuesta = array(
+                    'respuesta' => 'correcto'
+                );
+            }  else {
+                $respuesta = array(
+                    'respuesta' => 'error'
+                );
+            }
+            echo json_encode($respuesta);
+            break;
+        case 'borrar':
+          break;
+        case 'consultar_ciudad':
+            $ciudad = new modelo_ciudad();
+            $ciudad->consultar($datos['codigo']);
+    
+            if($ciudad->getIdCiudad() == null) {
+                $respuesta = array(
+                    'respuesta' => 'no existe'
+                );
+            }  else {
+                $respuesta = array(
+                    'codigo' => $ciudad->getIdCiudad(),
+                    'pais' => $ciudad->getIdPais(),
+                    'ciudad' => $ciudad->getNombreCiudad(),
+                    'respuesta' =>'existe'
+                );
+            }
+            echo json_encode($respuesta);
+            break;
+    
+        case 'listar_ciudad':
+            $ciudad = new modelo_ciudad();
+            $listado = $ciudad->lista();        
+            echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
+            break;
+
+
 }
+
 
 
 

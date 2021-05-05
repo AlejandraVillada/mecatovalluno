@@ -1,29 +1,57 @@
 <?php
 
-include_once __DIR__ . "/modeloAbstractoDB.php";
+include_once "modeloAbstractoDB.php";
 
-class ciudad extends ModeloAbstractoDB
+class modelo_ciudad extends ModeloAbstractoDB
 {
-    private $idCiudad;
-    private $idPais;
-    private $Nombre_Ciudad;
+    private $IdCiudad;
+    private $IdPais;
+    private $NombreCiudad;
 
     public function __construct()
     {
-
+       
     }
-    public function consultar()
+    public function consultar($id='')
     {
-
+        if($id != ''):
+            $this->query = "
+		    SELECT IdCiudad,IdPais,NombreCiudad
+		    FROM ciudad
+            WHERE IdCiudad = '$id'";
+            $this->obtener_resultados_query();
+        endif;
+        if(count($this->rows) == 1):
+            foreach ($this->rows[0] as $propiedad=>$valor):
+                $this->$propiedad = $valor;
+            endforeach;
+        endif;
     }
 
-    public function nuevo()
+    public function nuevo($datos=array())
     {
-
+        foreach ($datos as $campo=>$valor):
+            $$campo = $valor;
+        endforeach;
+        $this->query = "
+        INSERT INTO ciudad
+        (IdPais, NombreCiudad)
+        VALUES ('$IdPais','$NombreCiudad')";
+        $resultado = $this->ejecutar_query_simple();
+        return $resultado;
     }
-    public function editar()
+    public function editar($datos=array())
     {
-
+        foreach ($datos as $campo=>$valor):
+            $$campo = $valor;
+        endforeach;
+        $this->query = "
+        UPDATE ciudad
+        SET IdPais='$IdPais',
+        NombreCiudad='$NombreCiudad'
+        WHERE IdCiudad = '$IdCiudad'";
+        $resultado = $this->ejecutar_query_simple();
+        return $resultado;
     }
 
     public function borrar()
@@ -33,6 +61,12 @@ class ciudad extends ModeloAbstractoDB
 
     public function lista()
     {
+        $this->query = "
+		SELECT IdCiudad,NombreCiudad,p.NombrePais
+		FROM ciudad AS c INNER JOIN pais AS p
+        ON(c.IdPais = p.IdPais)";
+		$this->obtener_resultados_query();
+		return $this->rows;
 
     }
 
@@ -41,7 +75,7 @@ class ciudad extends ModeloAbstractoDB
      */
     public function getIdCiudad()
     {
-        return $this->idCiudad;
+        return $this->IdCiudad;
     }
 
     /**
@@ -49,9 +83,9 @@ class ciudad extends ModeloAbstractoDB
      *
      * @return  self
      */
-    public function setIdCiudad($idCiudad)
+    public function setIdCiudad($IdCiudad)
     {
-        $this->idCiudad = $idCiudad;
+        $this->IdCiudad = $IdCiudad;
 
         return $this;
     }
@@ -61,7 +95,7 @@ class ciudad extends ModeloAbstractoDB
      */
     public function getIdPais()
     {
-        return $this->idPais;
+        return $this->IdPais;
     }
 
     /**
@@ -69,9 +103,9 @@ class ciudad extends ModeloAbstractoDB
      *
      * @return  self
      */
-    public function setIdPais($idPais)
+    public function setIdPais($IdPais)
     {
-        $this->idPais = $idPais;
+        $this->IdPais = $IdPais;
 
         return $this;
     }
@@ -79,9 +113,9 @@ class ciudad extends ModeloAbstractoDB
     /**
      * Get the value of Nombre_Ciudad
      */
-    public function getNombre_Ciudad()
+    public function getNombreCiudad()
     {
-        return $this->Nombre_Ciudad;
+        return $this->NombreCiudad;
     }
 
     /**
@@ -89,9 +123,9 @@ class ciudad extends ModeloAbstractoDB
      *
      * @return  self
      */
-    public function setNombre_Ciudad($Nombre_Ciudad)
+    public function setNombre_Ciudad($NombreCiudad)
     {
-        $this->Nombre_Ciudad = $Nombre_Ciudad;
+        $this->NombreCiudad = $NombreCiudad;
 
         return $this;
     }
