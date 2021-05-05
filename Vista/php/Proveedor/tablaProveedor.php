@@ -1,3 +1,0 @@
-<table id="tablaProveedor">
-    
-</table>

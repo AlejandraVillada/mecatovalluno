@@ -40,16 +40,14 @@
 
         public function lista(){
             $this->query = "
-	    SELECT IdProveedor, NombreProveedor, e.Estado
-	    FROM proveedor AS p
-        INNER JOIN estados AS e
-        ON (p.IdEstado = e.IdEstado)
-        ORDER BY IdProveedor
-	    ";
-			
-	    $this->obtener_resultados_query();
-	    return $this->rows;
-
+            SELECT IdProveedor, NombreProveedor, e.Estado
+            FROM proveedor AS p
+            INNER JOIN estados AS e
+            ON (p.IdEstado = e.IdEstado)
+            ORDER BY IdProveedor
+            ";			
+            $this->obtener_resultados_query();
+            return $this->rows;
         }
 
         public function consultar($IdProveedor = ''){
@@ -68,8 +66,7 @@
             endif;
         }
 
-        public function nuevo($datos = array()){
-            
+        public function nuevo($datos = array()){            
             foreach ($datos as $campo => $valor):
                 $$campo = $valor;
             endforeach;
@@ -81,8 +78,7 @@
                 ('$NombreProveedor', '$IdEstado')
                 ";
             $resultado = $this->ejecutar_query_simple();
-            return $resultado;
-            
+            return $resultado;            
         }
 
         public function editar($datos = array()){

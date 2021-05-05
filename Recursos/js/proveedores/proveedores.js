@@ -12,13 +12,18 @@ function proveedor() {
                 "data": "IdProveedor",
                 render: function(data) {
                     return '<a href="#" data-codigo="' + data +
-                        '" class="btn btn-info btn-sm editar1"> <i class="fa fa-edit"></i></a>'
+                        '" class="btn btn-info btn-sm editar1 m-2"> <i class="fa fa-edit"></i></a>' +
+                        '<a href="#" data-codigo="' + data +
+                        '" class="btn btn-dark btn-sm agregar1"> <i class="fa fa-plus"> Asignar Producto</i></a>'
                 }
             }
         ]
     });
 
     $("#edicion1").hide();
+    $("#listado2").hide();
+    $("#nuevo2").hide();
+    $("#regresar").hide();
 
     $("#nuevo1").click(function() {
         $("#titulo").html("Registro de Proveedores");
@@ -42,9 +47,8 @@ function proveedor() {
     })
 
     $("#edicion1").on("click", "button#grabar1", function() {
-
         var datos = $("#datos1").serialize();
-        console.log(datos);
+        // console.log(datos);
         $.ajax({
             type: "get",
             url: "../../../Controlador/controlador_proveedor.php",
@@ -75,7 +79,6 @@ function proveedor() {
                     showConfirmButton: false,
                     timer: 3500
                 });
-
             }
         });
     });
@@ -130,7 +133,7 @@ function proveedor() {
 
     $("#edicion1").on("click", "button#actualizar1", function() {
         var datos = $("#datos1").serialize();
-        console.log(datos);
+        // console.log(datos);
         $.ajax({
             type: "get",
             url: "../../../Controlador/controlador_proveedor.php",
@@ -162,34 +165,58 @@ function proveedor() {
         });
     })
 
-    // Espacio para Detalle Proveedor
+    var dt2;
 
-    var dt2 = $("#tabla2").DataTable({
-        "ajax": "../../../Controlador/controlador_proveedor.php?accion=lista_det_proveedor",
-        "columns": [
-            { "data": "IdDetalleProveedor" },
-            { "data": "NombreProveedor" },
-            { "data": "NombreMateriaPrima" },
-            {
-                "data": "IdDetalleProveedor",
-                render: function(data) {
-                    return '<a href="#" data-codigo="' + data +
-                        '" class="btn btn-info btn-sm editar2"> <i class="fa fa-edit"></i></a>'
+    $(".contenedor1").on("click", "a.agregar1", function() {
+
+        var codigo = $(this).data("codigo");
+        // console.log(codigo);
+        $("#titulo").html("Asignación de Productos");
+        $(".titulo").html("Datos de Registro");
+        $("#listado1").hide();
+        $("#listado2").show();
+        $("#nuevo1").hide();
+        $("#nuevo2").show();
+        $("#regresar").show();
+
+        dt2 = $("#tabla2").DataTable({
+            ajax: {
+                type: "get",
+                url: "../../../Controlador/controlador_proveedor.php",
+                data: { codigo: codigo, accion: 'consultar_det_proveedor' },
+                dataType: "json"
+            },
+            "columns": [
+                { "data": "IdDetalleProveedor" },
+                { "data": "NombreProveedor" },
+                { "data": "NombreMateriaPrima" },
+                {
+                    "data": "IdDetalleProveedor",
+                    render: function(data) {
+                        return '<a href="#" data-codigo="' + data +
+                            '" class="btn btn-info btn-sm editar2"> <i class="fa fa-edit"></i></a>'
+                    }
+                }, {
+                    "data": "IdProveedor",
+                    render: function(data) {
+                        return '<a href="#" data-codigo="' + data +
+                            '" class="btn btn-info btn-sm proveedor hide"> <i class="fa fa-edit"></i></a>'
+                    }
                 }
-            }
-        ]
-    });
 
-    $("#edicion2").hide();
+            ]
+        });
+    })
+
+    // Procesos del Detalle Proveedor
 
     $("#nuevo2").click(function() {
         $("#titulo").html("Asignación de Productos a Proveedores");
         $(".titulo").html("Datos de Registro");
-        $("#edicion2").show();
+        $("#edicion1").show();
         $("#listado2").hide();
         $("#nuevo2").hide();
-        $(".tablaProveedor").hide();
-        $("#edicion2").load('../../../Vista/php/Proveedor/form_nuevo_det_proveedor.php', function() {
+        $("#edicion1").load('../../../Vista/php/Proveedor/form_nuevo_det_proveedor.php', function() {
             $.ajax({
                 type: "get",
                 url: "../../../Controlador/controlador_proveedor.php",
@@ -214,10 +241,10 @@ function proveedor() {
         });
     })
 
-    $("#edicion2").on("click", "button#grabar2", function() {
+    $("#edicion1").on("click", "button#grabar2", function() {
 
         var datos = $("#datos2").serialize();
-        console.log(datos);
+        // console.log(datos);
         $.ajax({
             type: "get",
             url: "../../../Controlador/controlador_proveedor.php",
@@ -233,8 +260,8 @@ function proveedor() {
                     timer: 3500
                 })
                 $("#titulo").html("Gestión de Proveedores");
-                $("#edicion2").html('');
-                $("#edicion2").hide();
+                $("#edicion1").html('');
+                $("#edicion1").hide();
                 $("#listado2").show();
                 $("#nuevo2").show();
                 $(".tablaProveedor").show();
@@ -244,31 +271,33 @@ function proveedor() {
                 swal({
                     position: 'center',
                     type: 'error',
-                    title: 'Error Al Registrar El Empleado',
+                    title: 'Error Al Asignar El Producto',
                     showConfirmButton: false,
                     timer: 3500
                 });
-
             }
         });
     });
 
-    $(".contenedor2").on("click", "a.editar2", function() {
+    $(".contenedor1").on("click", "a.editar2", function() {
         var codigo = $(this).data("codigo");
+        var codigo2 = $(".proveedor").data("codigo");
         var proveedor;
         var materiaprima;
-        console.log(codigo);
+        // console.log(codigo);
         $("#titulo").html("Modificación de Asignación de Productos");
         $(".titulo").html("Datos a Modificar");
-        $("#edicion2").show();
+        $("#edicion1").show();
         $("#listado2").hide();
         $("#nuevo2").hide();
-        $(".tablaProveedor").hide();
-        $("#edicion2").load('../../../Vista/php/Proveedor/form_editar_det_proveedor.php', function() {
+        $("#regresar").hide();
+        $(".tablaProveedor").show();
+        $("#edicion1").load('../../../Vista/php/Proveedor/form_editar_det_proveedor.php', function() {
+            // console.log(codigo2);
             $.ajax({
                 type: "get",
                 url: "../../../Controlador/controlador_proveedor.php",
-                data: { codigo: codigo, accion: 'consultar_det_proveedor' },
+                data: { codigo: codigo, codigo2: codigo2, accion: 'consultar_det_proveedor2' },
                 dataType: "json"
             }).done(function(det_proveedor) {
                 if (det_proveedor.respuesta === "No Existe El Proveedor") {
@@ -279,7 +308,7 @@ function proveedor() {
                     })
                 } else {
                     $("#IdDetalleProveedor").val(det_proveedor.codigo);
-                    proveedor = det_proveedor.nombre;
+                    proveedor = det_proveedor.proveedor;
                     materiaprima = det_proveedor.materia;
                 }
             });
@@ -317,7 +346,7 @@ function proveedor() {
         });
     })
 
-    $("#edicion2").on("click", "button#actualizar2", function() {
+    $("#edicion1").on("click", "button#actualizar2", function() {
         var datos = $("#datos2").serialize();
         console.log(datos);
         $.ajax({
@@ -336,7 +365,7 @@ function proveedor() {
                 })
                 $("#titulo").html("Gestión de Proveedores");
                 $(".titulo").html("Proveedores");
-                $("#edicion2").hide();
+                $("#edicion1").hide();
                 $("#listado2").show();
                 $("#nuevo2").show();
                 $(".tablaProveedor").show();

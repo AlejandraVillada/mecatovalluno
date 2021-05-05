@@ -28,7 +28,7 @@
                 <div class="form-group">
                     <button type="button" id="grabar1" class="btn btn-primary" data-toggle="tooltip">Registrar
                         Proveedor</button>
-                    <a href="../Proveedor/form_proveedores.php" id="cerrar1" class="btn btn-danger"
+                    <a href="../Proveedor/view_proveedores.php" id="cerrar1" class="btn btn-danger"
                         data-toggle="tooltip">Cancelar</a>
                 </div>
 

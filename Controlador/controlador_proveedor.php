@@ -58,8 +58,13 @@
 
         case "consultar_det_proveedor":        
             $det_proveedores = new modelo_detProveedor();
-            $det_proveedores->consultar($datos['codigo']);
-            echo 'codigo'. $det_proveedores->getIdDetalleProveedor();
+            $listado = $det_proveedores->consultar_proveedor($datos['codigo']);            
+            echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE); 
+        break;
+
+        case "consultar_det_proveedor2":        
+            $det_proveedores = new modelo_detProveedor();
+            $listado = $det_proveedores->consultar($datos['codigo'], $datos['codigo2']);
     
             if($det_proveedores->getIdDetalleProveedor() == null) {
                 $respuesta = array(
@@ -68,12 +73,12 @@
             }  else {
                 $respuesta = array(
                     'codigo' => $det_proveedores->getIdDetalleProveedor(),
-                    'nombre' => $det_proveedores->getIdProveedor(),
+                    'proveedor' => $det_proveedores->getIdProveedor(),
                     'materia' => $det_proveedores->getIdMateriaPrima(),
                     'respuesta' => 'existe'
                 );
             }
-            echo json_encode($respuesta);  
+            echo json_encode($respuesta); 
         break;
 
         case 'nuevo_proveedor':

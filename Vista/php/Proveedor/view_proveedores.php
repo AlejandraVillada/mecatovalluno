@@ -33,6 +33,10 @@
             <div class="pull-right box-tools">
                 <button class="btn btn-dark btn-sm" id="nuevo1" data-toggle="tooltip"
                     title="Registrar Nuevo Proveedor">Registrar Proveedor</button>
+                <button class="btn btn-dark btn-sm" id="nuevo2" data-toggle="tooltip"
+                    title="Registrar Nuevo Proveedor">Asignar Producto</button>
+                <a href="./view_proveedores.php" class="btn btn-danger btn-sm" id="regresar"
+                    data-toggle="tooltip" title="">Regresar</a>
             </div>
         </div>
 
@@ -50,12 +54,27 @@
                     </thead>
                 </table>
             </div>
+
+            <div id="listado2">
+                <table id="tabla2" class="table table-striped table-bordered text-center">
+                    <thead>
+                        <tr class="text-center">
+                            <th># Detalle Proveedor</th>
+                            <th>Proveedor</th>
+                            <th>Materia Prima</th>
+                            <th>&nbsp;</th>
+                            <th class="hide">&nbsp;</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
         </div>
-    </div>    
+    </div>
 
     <!-- Detalle Proveedores -->
 
-    <div class="card card-primary mt-5 tablaDetalle">
+    <!-- <div class="card card-primary mt-5 tablaDetalle">
         <div class="card-header bg-dark text-center text-white titulo">Detalle de Proveedores</div>
         <div class="card-body">
             <div class="pull-right box-tools">
@@ -79,7 +98,7 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
