@@ -7,6 +7,24 @@
     $accion=$_GET['accion'];
 
     switch($accion) {
+        case "lista_proveedores":
+            $proveedores = new modelo_detProveedor();
+            $listado = $proveedores->proveedores();
+            echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE);    
+        break;
+
+        case "lista_productos":
+            $productos = new modelo_detProveedor();
+            $listado = $productos->productos();
+            echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE);    
+        break;
+
+        case "lista_estados":
+            $estado = new modelo_proveedor();
+            $listado = $estado->estados();
+            echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE);    
+        break;
+
         case "lista_proveedor":        
             $proveedores = new modelo_proveedor();
             $listado = $proveedores->lista();
@@ -31,6 +49,7 @@
                 $respuesta = array(
                     'codigo' => $proveedores->getIdProveedor(),
                     'nombre' => $proveedores->getNombreProveedor(),
+                    'estado' => $proveedores->getIdEstado(),
                     'respuesta' => 'existe'
                 );
             }
@@ -40,6 +59,7 @@
         case "consultar_det_proveedor":        
             $det_proveedores = new modelo_detProveedor();
             $det_proveedores->consultar($datos['codigo']);
+            echo 'codigo'. $det_proveedores->getIdDetalleProveedor();
     
             if($det_proveedores->getIdDetalleProveedor() == null) {
                 $respuesta = array(

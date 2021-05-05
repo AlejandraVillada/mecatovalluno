@@ -211,6 +211,7 @@ function empleados() {
                     }
                 });
             });
+            
             $.ajax({
                 type: "get",
                 url: "../../../Controlador/controlador_empleados.php",

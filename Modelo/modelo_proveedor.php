@@ -6,6 +6,7 @@
 
         private $IdProveedor;
         private $NombreProveedor;
+        private $IdEstado;
 
         function __construct(){
             
@@ -21,12 +22,28 @@
                 return $this->NombreProveedor;
         }
 
+        public function getIdEstado()
+        {
+                return $this->IdEstado;
+        }
+
         //Metodos
+
+        public function estados(){
+            $this->query = "
+			SELECT IdEstado, Estado
+			FROM estados
+			";
+			$this->obtener_resultados_query();
+			return $this->rows;
+        }
 
         public function lista(){
             $this->query = "
-	    SELECT IdProveedor, NombreProveedor
-	    FROM proveedor
+	    SELECT IdProveedor, NombreProveedor, e.Estado
+	    FROM proveedor AS p
+        INNER JOIN estados AS e
+        ON (p.IdEstado = e.IdEstado)
         ORDER BY IdProveedor
 	    ";
 			
@@ -38,7 +55,7 @@
         public function consultar($IdProveedor = ''){
             if($IdProveedor != ''):
                 $this->query = "
-                SELECT IdProveedor, NombreProveedor
+                SELECT IdProveedor, NombreProveedor, IdEstado
                 FROM proveedor
                 WHERE IdProveedor = '$IdProveedor' ORDER BY IdProveedor
                 ";
@@ -52,20 +69,20 @@
         }
 
         public function nuevo($datos = array()){
-            if(array_key_exists('IdProveedor', $datos)):
-                foreach ($datos as $campo => $valor):
-                    $$campo = $valor;
-                endforeach;
-                $NombreProveedor = utf8_decode($NombreProveedor);
-                $this->query = "
-                    INSERT INTO proveedor
-                    (IdProveedor, NombreProveedor)
-                    VALUES
-                    ('$IdProveedor', '$NombreProveedor')
-                    ";
-                $resultado = $this->ejecutar_query_simple();
-                return $resultado;
-            endif;
+            
+            foreach ($datos as $campo => $valor):
+                $$campo = $valor;
+            endforeach;
+                
+            $this->query = "
+                INSERT INTO proveedor
+                (NombreProveedor, IdEstado)
+                VALUES
+                ('$NombreProveedor', '$IdEstado')
+                ";
+            $resultado = $this->ejecutar_query_simple();
+            return $resultado;
+            
         }
 
         public function editar($datos = array()){
@@ -74,7 +91,8 @@
             endforeach;
             $this->query = "
             UPDATE proveedor
-            SET NombreProveedor = '$NombreProveedor'
+            SET NombreProveedor = '$NombreProveedor',
+            IdEstado = '$IdEstado'
             WHERE IdProveedor = '$IdProveedor'
             ";
             $resultado = $this->ejecutar_query_simple();

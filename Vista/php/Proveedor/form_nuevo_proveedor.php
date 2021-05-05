@@ -1,54 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
-    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <title>Proveedores</title>
-<body>
-    <div class="container mt-4">
-        <div class="jumbotron">
-            <h1 align="center">Registro de Proveedores</h1>   
-        </div>
-    </div>
+<body class="container">
 
-    <div class="container">
+    <div id="seccion-proveedores">
 
-        <div class="card">
-            <div class="card-header bg-success text-center text-white">Datos de Ingreso</div>
-                <div class="card-body">
+        <div class="card-body">
 
-                    <form  name="formulario" action="" method="POST">  
-                        
-                        <div class="form-group"> 
-                            <label>ID Proveedor</label>
-                            <input type="text" class="form-control" name="id-proveedor" placeholder="Ingrese ID del Proveedor">                            
-                        </div>
+            <form id="datos1">
 
-                        <div class="form-group">
-                            <label>Nombre</label> 
-                            <input type="text" class="form-control" name="nombre" placeholder="Ingrese Nombre del Proveedor">                            
-                        </div>                       
-                                
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success">Registrar Proveedor</button>
-                            <a href="#" class="btn btn-dark">Regresar</a>
-                        </div>
+                <!-- <div class="form-group">
+                    <label>NIT</label>
+                    <input type="text" class="form-control" id="IdProveedor" name="IdProveedor"
+                        placeholder="Ingrese ID o NIT del Proveedor" value="">
+                </div> -->
 
-                    </form>
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control" id="NombreProveedor" name="NombreProveedor"
+                        placeholder="Ingrese Nombre del Proveedor" value="">
                 </div>
+
+                <div class="form-group">
+                    <label>Estado</label>
+                    <select class="form-control" id="IdEstado" name="IdEstado">
+                        <option value="default">Seleccione Estado</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" id="grabar1" class="btn btn-primary" data-toggle="tooltip">Registrar
+                        Proveedor</button>
+                    <a href="../Proveedor/form_proveedores.php" id="cerrar1" class="btn btn-danger"
+                        data-toggle="tooltip">Cancelar</a>
+                </div>
+
+                <input type="hidden" id="nuevo_proveedor" value="nuevo_proveedor" name="accion" />
+
+            </form>
         </div>
     </div>
-
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-			crossorigin="anonymous"
-	></script>
-    
-</body>
-</html>

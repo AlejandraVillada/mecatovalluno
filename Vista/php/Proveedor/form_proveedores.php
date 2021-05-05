@@ -27,11 +27,11 @@
 
     <!-- Proveedores -->
 
-    <div class="card card-primary">
+    <div class="card card-primary tablaProveedor">
         <div class="card-header bg-dark text-center text-white titulo">Proveedores</div>
         <div class="card-body">
             <div class="pull-right box-tools">
-                <button class="btn btn-dark btn-sm" id="nuevo" data-toggle="tooltip"
+                <button class="btn btn-dark btn-sm" id="nuevo1" data-toggle="tooltip"
                     title="Registrar Nuevo Proveedor">Registrar Proveedor</button>
             </div>
         </div>
@@ -42,8 +42,9 @@
                 <table id="tabla1" class="table table-striped table-bordered text-center">
                     <thead>
                         <tr class="text-center">
-                            <th>NIT</th>
+                            <th># Proveedor</th>
                             <th>Proveedor</th>
+                            <th>Estado</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
@@ -54,11 +55,11 @@
 
     <!-- Detalle Proveedores -->
 
-    <div class="card card-primary mt-5">
+    <div class="card card-primary mt-5 tablaDetalle">
         <div class="card-header bg-dark text-center text-white titulo">Detalle de Proveedores</div>
         <div class="card-body">
             <div class="pull-right box-tools">
-                <button class="btn btn-dark btn-sm" id="nuevo" data-toggle="tooltip"
+                <button class="btn btn-dark btn-sm" id="nuevo2" data-toggle="tooltip"
                     title="Asignar MP a Proveedor">Asignar Producto a Proveedor</button>
             </div>
         </div>
@@ -69,7 +70,7 @@
                 <table id="tabla2" class="table table-striped table-bordered text-center">
                     <thead>
                         <tr class="text-center">
-                            <th># Detalle Factura</th>
+                            <th># Detalle Proveedor</th>
                             <th>Proveedor</th>
                             <th>Materia Prima</th>
                             <th>&nbsp;</th>
@@ -103,10 +104,6 @@
 
     <script>
     $(document).ready(proveedor);
-    </script>
-
-    <script>
-    $(document).ready(det_proveedor);
     </script>
 
 </body>
