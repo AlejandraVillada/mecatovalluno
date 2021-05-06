@@ -54,7 +54,7 @@ function ciudad() {
                     swal({
                         type: 'error',
                         title: 'Oops...',
-                        text: 'Materia Prima no existe!'
+                        text: 'Ciudad no existe!'
                     })
                 } else {
                     $("#IdCiudad").val(ciudad.codigo);
@@ -94,7 +94,7 @@ function ciudad() {
                 swal({
                     position: 'center',
                     type: 'success',
-                    title: 'La materia prima fue grabada con éxito',
+                    title: 'La ciudad fue grabada con éxito',
                     showConfirmButton: false,
                     timer: 1200
                 })

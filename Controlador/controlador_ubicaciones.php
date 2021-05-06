@@ -106,6 +106,55 @@ switch($accion){
             echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
             break;
 
+            case 'editar_sede':
+                $sede = new modelo_sede();
+                $resultado = $sede->editar($datos);
+                $respuesta = array(
+                        'respuesta' => $resultado
+                    );
+                echo json_encode($respuesta);
+                break;
+            case 'nuevo_sede':
+                $sede = new modelo_sede();
+                $resultado = $sede->nuevo($datos);
+                if($resultado > 0) {
+                    $respuesta = array(
+                        'respuesta' => 'correcto'
+                    );
+                }  else {
+                    $respuesta = array(
+                        'respuesta' => 'error'
+                    );
+                }
+                echo json_encode($respuesta);
+                break;
+            case 'borrar':
+              break;
+            case 'consultar_sede':
+                $sede = new modelo_sede();
+                $sede->consultar($datos['codigo']);
+        
+                if($sede->getIdSede() == null) {
+                    $respuesta = array(
+                        'respuesta' => 'no existe'
+                    );
+                }  else {
+                    $respuesta = array(
+                        'codigo' => $sede->getIdSede(),
+                        'ciudad' => $sede->getIdCiudad(),
+                        'sede' => $sede->getNombreSede(),
+                        'respuesta' =>'existe'
+                    );
+                }
+                echo json_encode($respuesta);
+                break;
+        
+            case 'listar_sede':
+                $sede = new modelo_sede();
+                $listado = $sede->lista();        
+                echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
+                break;
+
 
 }
 

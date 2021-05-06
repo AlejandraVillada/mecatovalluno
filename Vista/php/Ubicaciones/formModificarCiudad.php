@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
         <form id="formModificarCiudad">
-            <input type="hidden" id="IdCiudad" name="IdCiudad">
+        <input type="hidden" id="IdCiudad" name="IdCiudad">
             <div class="form-group">
                 <label for="NombreCiudad">Nombre Ciudad</label>
                 <input type="text" class="form-control" name="NombreCiudad" id="NombreCiudad"

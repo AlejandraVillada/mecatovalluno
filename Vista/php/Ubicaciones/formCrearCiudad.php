@@ -13,7 +13,7 @@
             </div>
             <br>
             <button class="btn btn-info" id="grabar">Crear registro</button>
-            <a href="../Ubicaciones/view_paises.php" class="btn btn-danger">Regresar</a>
+            <a href="../Ubicaciones/view_ciudades.php" class="btn btn-danger">Regresar</a>
             <input type="hidden" id="nuevo_ciudad" value="nuevo_ciudad" name="accion" />
         </form>
     </div>

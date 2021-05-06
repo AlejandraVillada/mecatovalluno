@@ -28,15 +28,15 @@
     <div class="container">
         <div class="jumbotron jumbotron-fluid" style="text-align: center;">
             <div class="container">
-                <h1 id="titulo" class="display-4">Gestión Paises</h1>
+                <h1 id="titulo" class="display-4">Gestión de Sedes</h1>
             </div>
         </div>
         <div class="card card-primary">
-            <div class="card-header bg-dark text-center text-white titulo">Pais</div>
+            <div class="card-header bg-dark text-center text-white titulo">Sedes</div>
             <div class="card-body">
                 <div class="pull-right box-tools">
                     <button class="btn btn-dark btn-sm" id="crear" data-toggle="tooltip"
-                        title="Registrar Nuevo Empleado">Registrar Pais</button>
+                        title="Registrar Nuevo Empleado">Registrar Sede</button>
                 </div>
             </div>
 
@@ -47,8 +47,9 @@
                     <table id="tabla" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Id Pais</th>
-                                <th scope="col">Pais</th>
+                                <th scope="col">Id Sede</th>
+                                <th scope="col">Id Ciudad</th>
+                                <th scope="col">Sede</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
@@ -79,9 +80,9 @@
         <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.all.js"></script>
-        <script src="../../../Recursos/js/Ubicaciones/pais.js"></script>
+        <script src="../../../Recursos/js/Ubicaciones/sede.js"></script>
         <script>
-        $(document).ready(pais);
+        $(document).ready(sede);
         </script>
 
 </body>
