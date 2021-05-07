@@ -2,6 +2,7 @@
 <?php
     $cedula = $_GET['id'];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizacion datos personales</title>
+    <title>Actualización Datos Personales</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -24,20 +25,20 @@
     <link rel="stylesheet" href="../../layout/Style.css">
 </head>
 
-
-
 <body>
     <div class="container" id="editado">
+
         <div class="jumbotron jumbotron-fluid" style="text-align: center;">
             <div class="container">
-                <h1 id="titulo" class="display-4">Actualizacion datos Personales</h1>
+                <h1 id="titulo" class="display-4">Actualización de Datos Personales</h1>
             </div>
         </div>
+
         <div class="card card-primary">
-            <div class="card-header bg-dark text-center text-white titulo">Actualizacion datos Personales</div>
+            <div class="card-header bg-dark text-center text-white titulo">Datos Personales del Empleado</div>
             <div class="card">
                 <div class="card-body">
-                <!-- Cambio y eliminacion en el servidor, poner variable sesion para datos de cedula de consulta -->
+                    <!-- Cambio y eliminacion en el servidor, poner variable sesion para datos de cedula de consulta -->
                     <div id="ingreso">
                         <div class="form-group">
                             <label>Cedula</label>
@@ -48,13 +49,13 @@
                         <button id="enviar" name="enviar" class="btn btn-dark">Enviar Cedula</button>
 
                     </div>
-                    <div class="cuerpo">
 
+                    <div class="cuerpo">
                         <form id="formModificarEmpleado">
                             <div class="form-group">
                                 <label>Cedula</label>
                                 <input type="text" class="form-control" id="IdEmpleado" name="IdEmpleado"
-                                    placeholder="Modifique ID o CC del Empleado" value="" readonly>
+                                    placeholder="Ingrese ID o CC" value="" readonly>
                             </div>
 
                             <div class="form-group">
@@ -80,9 +81,9 @@
                             <input type="hidden" id="SueldoBase" name="SueldoBase">
                             <input type="hidden" id="IdEstado" name="IdEstado">
 
-
                             <input type="hidden" id="editar1" value="editar" name="accion" />
                         </form>
+
                         <div class="usuario">
                             <form id="formModificarUsuario">
                                 <div class="form-group">
@@ -90,24 +91,27 @@
                                     <input type="text" class="form-control" name="Usuario" id="Usuario"
                                         placeholder="Ingrese el nombre de usuario" readonly>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="Contrasena">Contraseña</label>
                                     <input type="password" class="form-control" name="Contrasena" id="Contrasena"
                                         placeholder="Ingrese la contraseña">
                                 </div>
+
                                 <input type="hidden" id="IdUsuario" name="IdUsuario">
                                 <input type="hidden" id="IdTipoUsuario" name="IdTipoUsuario">
                                 <input type="hidden" id="editar2" value="editar" name="accion" />
                             </form>
                         </div>
                         <br>
-                        <button class="btn btn-info" id="actualizar">Modificar registro</button>
+                        <button class="btn btn-info" id="actualizar">Actualizar Información</button>
                         <button class="btn btn-dark" id="apareceUsu">Cambiar Contraseña</button>
                     </div>
                 </div>
             </div>
         </div>
 </body>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
@@ -127,10 +131,9 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.all.js"></script>
 <script src="../../../Recursos/js/empleados/actualizacion_datos.js"></script>
+
 <script>
 $(document).ready(actDatos);
 </script>
-
-
 
 </html>
