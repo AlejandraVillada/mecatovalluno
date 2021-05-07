@@ -58,7 +58,7 @@ function usuarios() {
                     swal({
                         type: 'error',
                         title: 'Oops...',
-                        text: 'Materia Prima no existe!'
+                        text: 'Usuario no existe!'
                     })
                 } else {
                     $("#IdUsuario").val(usuario.codigo);
