@@ -71,7 +71,7 @@
             </section>
             <!-- /.content -->
         </div>
-        <div class="container jumbotron detalle">
+        <div class="container jumbotron detalle"> 
             <div style="card">
                <button class="btn btn-dark" > <i class="fa fa-plus"></i></button>
                 <div class="listado">
