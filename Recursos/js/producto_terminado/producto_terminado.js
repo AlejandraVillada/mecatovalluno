@@ -1,16 +1,25 @@
-function materiaprima() {
-    
-    var dt = $("#tabla").DataTable({
-        "ajax": "../../../Controlador/controlador_inventarioprodterminado.php.php?accion=listar",
+function productoterminado() {
+    var dt1;
+    var dt;
+    var d = "si";
+    $("#detalle").addClass('hide');
+    dt = $("#tabla").DataTable({
+        "ajax": "../../../Controlador/controlador_inventarioprodterminado.php?accion=listar",
         // "ajax": "Controlador/controlador_inventarioprodterminado.php?accion=listar",
 
         "columns": [
-            { "data": "IdMateriaPrima" },
-            { "data": "NombreMateriaPrima" },
-            { "data": "Stock" },
-            { "data": "NombreMedida" },
             {
-                "data": "IdMateriaPrima",
+                "data": "IdProducto",
+                render: function (data) {
+                    return '<a href="#" data-codigo="' + data +
+                        '" class="btn btn-info btn-sm ver"> <i class="fa fa-plus"></i></a>'
+                }
+            },
+            { "data": "IdProducto" },
+            { "data": "NombreProducto" },
+            { "data": "CantidadProducto" },
+            {
+                "data": "IdProducto",
                 render: function (data) {
                     return '<a href="#" data-codigo="' + data +
                         '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>'
@@ -26,75 +35,134 @@ function materiaprima() {
         $("#editar").removeClass('hide');
         $(".listado").addClass('hide');
         $(".listado").removeClass('show');
-        $("#editar").load('../../../Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
-            $.ajax({
-                type: "get",
-                url: "../../../Controlador/controlador_inventarioprodterminado.php",
-                data: { accion: 'listar' },
-                dataType: "json"
-            }).done(function (resultado) {
-                $("#editar #Productos").append("<option>Seleccione el Producto</option>")
-                    ;
-                $.each(resultado.data, function (index, value) {
-                    $("#editar #Productos").append("<option value='" + value.IdMateriaPrima + "'>" + value.NombreMateriaPrima + "</option>")
+        $("#editar").load('../../../Vista/php/ProductoTerminado/FormCrearPT.php', function () {
+            // $("#editar").load('../../../Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
+            $("#editar #formCrearPT").on("submit", function (e) {
+                console.log("h");
+                e.preventDefault();
+                var datos = $(this).serialize();
+                $.ajax({
+                    type: "post",
+                    url: "../../../Controlador/controlador_inventarioprodterminado.php",
+                    data: datos,
+                    dataType: "json"
+                }).done(function (resultado) {
+                    console.log(resultado);
+                    if (resultado.data == 1) {
+                        swal({
+                            position: 'center',
+                            type: 'success',
+                            title: 'Se actualizó el inventario',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        $("#editar").addClass('hide');
+                        $("#editar").removeClass('show');
+                        $(".listado").addClass('show');
+                        $(".listado").removeClass('hide');
+                    }
+                    dt.ajax.reload();
+
                 });
-                inventario(dt);
             });
         });
-
     });
 
 
+    $(".table").on("click", "a.ver", function () {
+        $("#detalle").addClass('show');
+        if (d == "no") {
+            dt1.destroy();
+        }
+        codigo = $(this).data("codigo");
 
-    // var c=document.getElementById(Productos);
-    // console.log($("select[id=Productos]"));
+        dt1 = $("#tabla1").DataTable({
 
+            "ajax": "../../../Controlador/controlador_inventarioprodterminado.php?accion=consultar&&id=" + codigo + "",
+            // "ajax": "Controlador/controlador_inventarioprodterminado.php?accion=listar",
 
-    //view_agregar_invmateriaPrima.php
-}
-function inventario(dt) {
-    $("select[id=Productos]").change(function () {
+            "columns": [
 
-        var prod = $('select[name=IdMateriaPrima]').val();
-        console.log(prod);
-        $.ajax({
-            type: "post",
-            url: "../../../Controlador/controlador_inventarioprodterminado.php",
-            data: { id: prod, accion: 'consultar' },
-            dataType: "json"
-        }).done(function (resultado) {
-            console.log(resultado.data[0].Stock);
-            $("#Cantidad_Actual1").val(resultado.data[0].Stock);
-            $("#Cantidad_Actual").val(resultado.data[0].Stock);
-            $("#Medida").val(resultado.data[0].NombreMedida);
-
+                { "data": "IdDetalleProducto" },
+                { "data": "NombreMateriaPrima" },
+                { "data": "Cantidad" },
+                { "data": "NombreMedida" },
+                { "data": "DescripcionProducto" },
+                {
+                    "data": "IdDetalleProducto",
+                    render: function (data) {
+                        return '<a href="#" data-codigo="' + data +
+                            '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>'
+                    }
+                }
+            ]
         });
+        d = "no";
+
+
+
     });
-    $("#finventariomp").on("submit", function (e) {
+
+
+    $(".table").on("click", "a.editar", function (e) {
         e.preventDefault();
-        var datos = $(this).serialize();
-        $.ajax({
-            type: "post",
-            url: "../../../Controlador/controlador_inventarioprodterminado.php",
-            data: datos,
-            dataType: "json"
-        }).done(function (resultado) {
-            console.log(resultado);
-            if (resultado.data == 1) {
-                swal({
-                    position: 'center',
-                    type: 'success',
-                    title: 'Se actualizó el inventario',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-                $("#editar").addClass('hide');
-                $("#editar").removeClass('show');
-                $(".listado").addClass('show');
-                $(".listado").removeClass('hide');
-            }
-            dt.ajax.reload();
+
+        var codigo = $(this).data("codigo");
+        console.log(codigo + "hola");
+        $(".card-title").html("Modificar Compra de Materia Prima");
+        $("#editar").addClass('show');
+        $("#editar").removeClass('hide');
+        $(".listado").addClass('hide');
+        $(".listado").removeClass('show');
+        $("#editar").load('../../../Vista/php/ProductoTerminado/FormModificarPT.php', function () {
+            // $("#editar").load('Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
+            $.ajax({
+                type: "post",
+                // url: "Controlador/controlador_inventarioprodterminado.php",
+                url: "../../../Controlador/controlador_inventarioprodterminado.php",
+                data: { id: codigo, accion: 'consultarprod' },
+                dataType: "json"
+            }).done(function (resultado) {
+                console.log(resultado.data[0]);
+                $("#IdProducto").val(resultado.data[0].IdProducto);
+                $("#IdProducto1").val(resultado.data[0].IdProducto);
+                $("#CantidadProducto").val(resultado.data[0].CantidadProducto);
+                $("#NombreProducto").val(resultado.data[0].NombreProducto);
+
+            });
+            $("#editar #formModPT").on("submit", function (e) {
+                e.preventDefault();
+console.log("hooo");
+                var datos = $(this).serialize();
+                $.ajax({
+                    type: "post",
+                    url: "../../../Controlador/controlador_inventarioprodterminado.php",
+                    data: datos,
+                    dataType: "json"
+                }).done(function (resultado) {
+                    console.log(resultado);
+                    if (resultado.data == 1) {
+                        swal({
+                            position: 'center',
+                            type: 'success',
+                            title: 'Se actualizó el inventario',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        $("#editar").addClass('hide');
+                        $("#editar").removeClass('show');
+                        $(".listado").addClass('show');
+                        $(".listado").removeClass('hide');
+                    }
+                    dt.ajax.reload();
+
+                });
+            });
+
+
 
         });
+
     });
+
 }

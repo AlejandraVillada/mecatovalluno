@@ -1,21 +1,27 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 <div class="card">
     <div class="card-header" style="text-align: center; ">
-        <h1>Modificar Producto Termiando</h1>
+        <h1>Modificar Producto Terminado</h1>
     </div>
     <div class="card-body">
-        <form action="" method="POST" id="formModificarPT">
+        <form action="" method="POST" id="formModPT">
             <div class="form-group">
-                <label for="idMP">Id Producto</label>
-                <input type="text" placeholder="Ingerese el id de Materia Prima" class="form-control">
+                <label for="nombreMP">Id Producto</label>
+                <input type="text" name="IdProducto" id="IdProducto1" disabled placeholder="Ingrese el nombre del Producto a la venta" class="form-control">
+                <input type="hidden" name="IdProducto" id="IdProducto" placeholder="Ingrese el nombre del Producto a la venta" class="form-control">
             </div>
+            
             <div class="form-group">
                 <label for="nombreMP">Nombre Producto</label>
-                <input type="text" placeholder="Ingerese el nombre de Materia Prima" class="form-control">
+                <input type="text" name="NombreProducto" id="NombreProducto" placeholder="Ingrese el nombre del Producto a la venta" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="idMP">Cantidad por Porción</label>
+                <input type="text" name="CantidadProducto" id="CantidadProducto" placeholder="Ingerese la cantidad de productos que hace referencia a una porción" class="form-control">
             </div>
             <br>
-            <button class="btn btn-dark">Modificar registro</button>
-            <a href="#" class="btn btn-dark">Regresar</a>
+            <input type="hidden" name="accion" value="actualizar">
+            <input type="submit" class="btn btn-dark nuevo" value="Actualizar">
+            <a href="view_ProductoTerminado.php" class="btn btn-dark">Regresar</a>
         </form>
     </div>
 </div>
