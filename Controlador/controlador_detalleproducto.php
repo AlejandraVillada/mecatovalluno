@@ -2,7 +2,9 @@
 include_once "../Modelo/modelo_detalle_producto.php";
 header('Content-Type: application/json');
 $datos = $_POST; //datos
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 if (!empty($_GET['accion'])) {
     $accion = $_GET['accion'];
     if (!empty($_GET['iddetalle'])) {
@@ -26,7 +28,7 @@ switch ($accion) {
     case "listar":
         $datos = $detalle_producto->lista();
         foreach ($value as $a => $value) {
-            $datos1[$a]=utf8_decode($value);
+            $datos1[$a] = utf8_decode($value);
         }
         echo json_encode(array('data' => $datos1), JSON_UNESCAPED_UNICODE);
         break; //cierre
@@ -36,10 +38,10 @@ switch ($accion) {
         $datos = $detalle_producto->consultar($iddetalle, $IdProducto);
         foreach ($datos as $key => $value) {
             foreach ($value as $a => $value) {
-                $datos1[$a]=utf8_decode($value);
+                $datos1[$a] = utf8_decode($value);
             }
         }
-       // var_dump($datos1);
+        // var_dump($datos1);
         echo json_encode(array('data' => $datos1), JSON_UNESCAPED_UNICODE);
         break; //cierre
     case "actualizar":
@@ -54,8 +56,17 @@ switch ($accion) {
         $datos = $detalle_producto->listamedida();
         echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
         break; //cierre
-        case "listarmp":
-            $datos = $detalle_producto->listamp();
-            echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
-            break; 
+    case "listarmp":
+        $datos = $detalle_producto->listamp();
+        echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
+        break;
+    case 'secuencia':
+        // var_dump($IdProducto);
+        $datos = $detalle_producto->consultarsec($IdProducto);
+        echo json_encode(array('data' => $detalle_producto->getSeq()), JSON_UNESCAPED_UNICODE);
+        break;
+    case "buscar":
+        $datos = $detalle_producto->buscar($IdProducto);
+        echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
+        break;
 }

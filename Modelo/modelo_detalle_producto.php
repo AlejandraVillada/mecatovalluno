@@ -26,7 +26,7 @@ class detalle_producto extends ModeloAbstractoDB
     public function listamp()
     {
         $this->query = "SELECT *
-		FROM MateriaPrima";
+		FROM materiaprima";
         $this->obtener_resultados_query();
         return $this->rows;
     }
@@ -35,12 +35,12 @@ class detalle_producto extends ModeloAbstractoDB
         $this->consultarsec($producto);
         if ($id != ''):
             $this->query = "SELECT dp.Cantidad,dp.IdProducto,dp.DescripcionProducto, dp.IdDetalleProducto,
-	            m.IdMedida,mp.NombreMateriaPrima,dp.IdMateriaPrima
-	            FROM detalle_producto dp
-	            INNER JOIN Medidas m ON(dp.IdMedida=m.idMedida)
-	            INNER JOIN materiaprima mp ON(dp.IdMateriaPrima=mp.IdMateriaPrima)
-	            INNER JOIN producto p ON(dp.IdProducto=p.IdProducto)
-	            WHERE dp.IdDetalleProducto='$id' AND dp.IdProducto='$producto'";
+		            m.IdMedida,mp.NombreMateriaPrima,dp.IdMateriaPrima
+		            FROM detalle_producto dp
+		            INNER JOIN Medidas m ON(dp.IdMedida=m.idMedida)
+		            INNER JOIN materiaprima mp ON(dp.IdMateriaPrima=mp.IdMateriaPrima)
+		            INNER JOIN producto p ON(dp.IdProducto=p.IdProducto)
+		            WHERE dp.IdDetalleProducto='$id' AND dp.IdProducto='$producto'";
             $this->obtener_resultados_query();
             //var_dump ($this->rows);
         endif;
@@ -52,28 +52,37 @@ class detalle_producto extends ModeloAbstractoDB
     }
     public function consultarsec($id)
     {
+
         $this->query = "SELECT Max(IdDetalleProducto) as seq FROM `detalle_producto` WHERE IdProducto=$id";
         $this->obtener_resultados_query();
         foreach ($this->rows[0] as $propiedad => $valor):
             $this->$propiedad = $valor;
         endforeach;
-    }
-    public function nuevo()
-    {
 
     }
-    public function editar($datos=array())
+    public function nuevo($datos = array())
     {
-        foreach ($datos as $campo=>$valor):
+        foreach ($datos as $campo => $valor):
             $$campo = $valor;
         endforeach;
-                
-        $this->query = "UPDATE detalle_producto SET 
+        $this->query = "INSERT INTO  detalle_producto
+        VALUES($IdDetalleProducto,$IdProducto,$IdMateriaPrima,$Cantidad,$IdMedida
+        ,'$DescripcionProducto')";
+        $resultado = $this->ejecutar_query_simple();
+        return $resultado;
+    }
+    public function editar($datos = array())
+    {
+        foreach ($datos as $campo => $valor):
+            $$campo = $valor;
+        endforeach;
+
+        $this->query = "UPDATE detalle_producto SET
         IdMateriaPrima = '$IdMateriaPrima',Cantidad='$Cantidad',
         IdMedida='$IdMedida',DescripcionProducto='$DescripcionProducto'
         WHERE IdProducto = '$IdProducto' AND 	IdDetalleProducto='$IdDetalleProducto'
         ";
-       // print_r($this->query);
+        // print_r($this->query);
         $resultado = $this->ejecutar_query_simple();
         return $resultado;
     }
@@ -85,7 +94,14 @@ class detalle_producto extends ModeloAbstractoDB
 
     public function lista()
     {
+        
 
+    }
+    public function buscar($IdProductos){
+        $this->query = "SELECT NombreProducto
+		FROM producto WHERE IdProducto='$IdProductos'";
+        $this->obtener_resultados_query();
+        return $this->rows;
     }
 
     /**
@@ -204,6 +220,26 @@ class detalle_producto extends ModeloAbstractoDB
     public function setDescripcionProducto($DescripcionProducto)
     {
         $this->DescripcionProducto = $DescripcionProducto;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of seq
+     */
+    public function getSeq()
+    {
+        return $this->seq;
+    }
+
+    /**
+     * Set the value of seq
+     *
+     * @return  self
+     */
+    public function setSeq($seq)
+    {
+        $this->seq = $seq;
 
         return $this;
     }
