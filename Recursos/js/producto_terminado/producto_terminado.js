@@ -1,4 +1,10 @@
 function productoterminado() {
+        $("#editar").addClass('hide');
+        $("#editar").removeClass('show');
+        $(".listado").addClass('show');
+        $(".listado").removeClass('hide');
+        $(".detalle").addClass('hide');
+        $(".detalle").removeClass('show');
     var dt1;
     var dt;
     var d = "si";
@@ -35,6 +41,8 @@ function productoterminado() {
         $("#editar").removeClass('hide');
         $(".listado").addClass('hide');
         $(".listado").removeClass('show');
+        $(".detalle").addClass('hide');
+        $(".detalle").removeClass('show');
         $("#editar").load('../../../Vista/php/ProductoTerminado/FormCrearPT.php', function () {
             // $("#editar").load('../../../Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
             $("#editar #formCrearPT").on("submit", function (e) {
@@ -60,6 +68,8 @@ function productoterminado() {
                         $("#editar").removeClass('show');
                         $(".listado").addClass('show');
                         $(".listado").removeClass('hide');
+                        $(".detalle").addClass('hide');
+                        $(".detalle").removeClass('show');
                     }
                     dt.ajax.reload();
 
@@ -70,7 +80,11 @@ function productoterminado() {
 
 
     $(".table").on("click", "a.ver", function () {
-        $("#detalle").addClass('show');
+        $("#editar").addClass('hide');
+        $("#editar").removeClass('show');
+        
+        $(".detalle").removeClass('hide');
+        $(".detalle").addClass('show');
         if (d == "no") {
             dt1.destroy();
         }
@@ -91,18 +105,114 @@ function productoterminado() {
                 {
                     "data": "IdDetalleProducto",
                     render: function (data) {
-                        return '<a href="#" data-codigo="' + data +
-                            '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>'
+                        return '<a href="#" data-producto="'+codigo+'" data-codigo="' + data +
+                            '" class="btn btn-info btn-sm modificar"> <i class="fa fa-edit"></i></a>'
                     }
                 }
             ]
         });
         d = "no";
-
-
-
     });
+    $(".table").on("click", " a.modificar", function (e) {
+        e.preventDefault();
+        $("#editar").addClass('show');
+        $("#editar").removeClass('hide');
+        $(".listado").removeClass('show');
+        $(".listado").addClass('hide');
+        $(".detalle").removeClass('show');
+        $(".detalle").addClass('hide');
+        var codigo = $(this).data("codigo");
+        var IdProducto = $(this).data("producto");
+        var IdMedida ;
+        // console.log("bjgnknj"+codigo);
+        // console.log("bjgnknj"+IdProducto);
+        $("#editar").load('../../../Vista/php/ProductoTerminado/view_ModificardetallePT.php', function () {
+            // $("#editar").load('Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
+            $.ajax({
+                type: "post",
+                // url: "Controlador/controlador_inventarioprodterminado.php",
+                url: "../../../Controlador/controlador_detalleproducto.php",
+                data: { iddetalle: codigo,IdProducto:IdProducto, accion: 'consultar' },
+                dataType: "json"    
+            }).done(function (resultado) {
+            //    console.log(resultado.data.seq);//secuencia
+                 $("#IdProducto").val(resultado.data.IdProducto);
+                 $("#IdDetalleProducto").val(resultado.data.IdDetalleProducto);
+                 $("#IdDetalleProducto1").val(resultado.data.IdDetalleProducto);
+                 IdMedida= resultado.data.IdMedida;
+                 $("#NombreMateriaPrima").val(resultado.data.NombreMateriaPrima);
+                 $("#IdMateriaPrima").val(resultado.data.IdMateriaPrima);
+                 $("#Cantidad").val(resultado.data.Cantidad);
+                 $("#DescripcionProducto").val(resultado.data.DescripcionProducto);
+                 $.ajax({
+                    type: "post",
+                    // url: "Controlador/controlador_inventarioMP.php",
+                    url: "../../../Controlador/controlador_detalleproducto.php",
+                    data: { accion: 'listarmedida' },
+                    dataType: "json"
+                }).done(function (resultado) {
+                    $("#editar #Medidas").append("<option>Seleccione la Medida</option>");
+                    $.each(resultado.data, function (index, value) {
+                        if(value.IdMedida==IdMedida){
+                            $("#editar #Medidas").append("<option selected value='" + value.IdMedida + "'>" + value.NombreMedida + "</option>")
+                        }else{
+                            $("#editar #Medidas").append("<option value='" + value.IdMedida + "'>" + value.NombreMedida + "</option>")
+    
+                        }
+                    });
+                    
+                });
+                $.ajax({
+                    type: "post",
+                    // url: "Controlador/controlador_inventarioMP.php",
+                    url: "../../../Controlador/controlador_detalleproducto.php",
+                    data: { accion: 'listarmp' },
+                    dataType: "json"
+                }).done(function (resultado) {
+                    $("#editar #Medidas").append("<option>Seleccione la Medida</option>");
+                    $.each(resultado.data, function (index, value) {
+                        if(value.IdMedida==IdMedida){
+                            $("#editar #Medidas").append("<option selected value='" + value.IdMedida + "'>" + value.NombreMedida + "</option>")
+                        }else{
+                            $("#editar #Medidas").append("<option value='" + value.IdMedida + "'>" + value.NombreMedida + "</option>")
+    
+                        }
+                    });
+                    
+                });
 
+            });
+            $("#editar #formModdetPT").on("submit", function (e) {
+                console.log("hvg");
+                e.preventDefault();
+                var datos = $(this).serialize();
+                $.ajax({
+                    type: "post",
+                    url: "../../../Controlador/controlador_detalleproducto.php",
+                    data: datos,
+                    dataType: "json"
+                }).done(function (resultado) {
+                    if (resultado.data == 1) {
+                        swal({
+                            position: 'center',
+                            type: 'success',
+                            title: 'Se actualizó el producto',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        $("#editar").addClass('hide');
+                        $("#editar").removeClass('show');
+                        $(".listado").addClass('show');
+                        $(".listado").removeClass('hide');
+                        $(".detalle").addClass('show');
+                        $(".detalle").removeClass('hide');
+                    }
+                    dt1.ajax.reload();
+                });
+            });
+        });
+        
+    });
 
     $(".table").on("click", "a.editar", function (e) {
         e.preventDefault();
@@ -114,6 +224,8 @@ function productoterminado() {
         $("#editar").removeClass('hide');
         $(".listado").addClass('hide');
         $(".listado").removeClass('show');
+        $(".detalle").addClass('hide');
+        $(".detalle").removeClass('show');
         $("#editar").load('../../../Vista/php/ProductoTerminado/FormModificarPT.php', function () {
             // $("#editar").load('Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
             $.ajax({
@@ -132,7 +244,7 @@ function productoterminado() {
             });
             $("#editar #formModPT").on("submit", function (e) {
                 e.preventDefault();
-console.log("hooo");
+                console.log("hooo");
                 var datos = $(this).serialize();
                 $.ajax({
                     type: "post",
@@ -145,7 +257,7 @@ console.log("hooo");
                         swal({
                             position: 'center',
                             type: 'success',
-                            title: 'Se actualizó el inventario',
+                            title: 'Se actualizó el producto',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -153,6 +265,8 @@ console.log("hooo");
                         $("#editar").removeClass('show');
                         $(".listado").addClass('show');
                         $(".listado").removeClass('hide');
+                        $(".detalle").addClass('hide');
+                        $(".detalle").removeClass('show');
                     }
                     dt.ajax.reload();
 

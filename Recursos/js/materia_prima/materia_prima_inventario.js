@@ -29,7 +29,7 @@ function materiaprima() {
         $("#editar").load('Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
             // $("#editar").load('../../../Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
             $.ajax({
-                type: "get",
+                type: "post",
                 url: "Controlador/controlador_inventarioMP.php",
                 // url: "../../../Controlador/controlador_inventarioMP.php",
                 data: { accion: 'listar' },
@@ -56,7 +56,7 @@ function materiaprima() {
         $("#editar").load('Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
             // $("#editar").load('../../../Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
             $.ajax({
-                type: "get",
+                type: "post",
                 url: "Controlador/controlador_inventarioMP.php",
                 // url: "../../../Controlador/controlador_inventarioMP.php",
                 data: { accion: 'listar' },
@@ -109,7 +109,7 @@ function inventario(dt) {
     $("select[id=Productos]").change(function () {
 
         var prod = $('select[name=IdMateriaPrima]').val();
-        console.log(prod);
+        // console.log(prod);
         $.ajax({
             type: "post",
             url: "Controlador/controlador_inventarioMP.php",

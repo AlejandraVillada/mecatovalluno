@@ -26,16 +26,14 @@
        $resultado= $usuario->consultar($datos);
     //     echo "id".$usuario->getIdUsuario();
     //    echo "contra".$usuario->getContrasena();
-        
+        // var_dump($resultado);
         if($usuario->getIdUsuario() == null) {
             $respuesta = array(
                 'respuesta' => 'no existe'
             );
         }  else {
-            echo "hola";
-            var_dump($datos);
-            echo $usuario->getContrasena();
-            if(password_verify($datos['password'],$usuario->getContrasena())){
+           
+            if(password_verify($datos['password'],$resultado['Contrasena'])){
                 session_start();
                 $_SESSION['Usuario'] = $usuario->getUsuario();
               

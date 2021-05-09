@@ -1,63 +1,64 @@
 <?php
 include_once "modeloAbstractoDB.php";
-    
-class modelo_usuario extends ModeloAbstractoDB{
+
+class modelo_usuario extends ModeloAbstractoDB
+{
     private $IdUsuario;
     private $Usuario;
     private $IdTipoUsuario;
     private $Contrasena;
 
-    function __construct(){
-        
-    }    
-    public function lista(){
+    public function __construct()
+    {
+
+    }
+    public function lista()
+    {
         $this->query = "
 		SELECT IdUsuario,Usuario,t.TipoUsuario,Contrasena
 		FROM usuarios AS u INNER JOIN tipo_usuario AS t
         ON(u.IdTipoUsuario = t.IdTipoUsuario)
         ORDER BY IdUsuario";
-		$this->obtener_resultados_query();
-		return $this->rows;
+        $this->obtener_resultados_query();
+        return $this->rows;
     }
 
-    
-    public function consultar($datos=array()){
-             $usuario = $datos['usuario'];
-		//	$password = $datos['password'];
-            $this->query = "
-            SELECT *
-			FROM usuarios 
-			WHERE Usuario = '$usuario'
-			";
+    public function consultar($datos = array())
+    {
+        $usuario = $datos['usuario'];
+        //    $password = $datos['password'];
+        $this->query = "SELECT * FROM usuarios 	WHERE Usuario = '$usuario'	";
 
-            $this->obtener_resultados_query();
-			// var_dump($this->rows);
-			if(count($this->rows) == 1):
-				foreach ($this->rows[0] as $propiedad=>$valor):
-					 $this->$propiedad = $valor;
-	            //  echo $propiedad;
-				endforeach;
-			endif;
-
+        $this->obtener_resultados_query();
+        // var_dump($this->rows);
+        if (count($this->rows) == 1):
+            foreach ($this->rows[0] as $propiedad => $valor):
+                $this->$propiedad = $valor;
+                //  echo $propiedad;
+            endforeach;
+        endif;
+    return $this->rows[0];
     }
 
-    public function consultarUsu($id=''){
-        if($id != ''):
+    public function consultarUsu($id = '')
+    {
+        if ($id != ''):
             $this->query = "
-		    SELECT IdUsuario,Usuario,IdTipoUsuario,Contrasena
-		    FROM usuarios 
-            WHERE IdUsuario = '$id'";
+			    SELECT IdUsuario,Usuario,IdTipoUsuario,Contrasena
+			    FROM usuarios
+	            WHERE IdUsuario = '$id'";
             $this->obtener_resultados_query();
         endif;
-        if(count($this->rows) == 1):
-            foreach ($this->rows[0] as $propiedad=>$valor):
+        if (count($this->rows) == 1):
+            foreach ($this->rows[0] as $propiedad => $valor):
                 $this->$propiedad = $valor;
             endforeach;
         endif;
     }
 
-    public function nuevo($datos=array()){
-        foreach ($datos as $campo=>$valor):
+    public function nuevo($datos = array())
+    {
+        foreach ($datos as $campo => $valor):
             $$campo = $valor;
         endforeach;
         $this->query = "
@@ -70,8 +71,9 @@ class modelo_usuario extends ModeloAbstractoDB{
         return $resultado;
     }
 
-    public function editar($datos=array()){
-        foreach ($datos as $campo=>$valor):
+    public function editar($datos = array())
+    {
+        foreach ($datos as $campo => $valor):
             $$campo = $valor;
         endforeach;
         $this->query = "
@@ -86,17 +88,14 @@ class modelo_usuario extends ModeloAbstractoDB{
         return $resultado;
     }
 
-    public function borrar(){
+    public function borrar()
+    {
 
     }
-    
-
-    
-    
 
     /**
      * Get the value of IdUsuario
-     */ 
+     */
     public function getIdUsuario()
     {
         return $this->IdUsuario;
@@ -106,7 +105,7 @@ class modelo_usuario extends ModeloAbstractoDB{
      * Set the value of IdUsuario
      *
      * @return  self
-     */ 
+     */
     public function setIdUsuario($IdUsuario)
     {
         $this->IdUsuario = $IdUsuario;
@@ -116,7 +115,7 @@ class modelo_usuario extends ModeloAbstractoDB{
 
     /**
      * Get the value of Usuario
-     */ 
+     */
     public function getUsuario()
     {
         return $this->Usuario;
@@ -126,7 +125,7 @@ class modelo_usuario extends ModeloAbstractoDB{
      * Set the value of Usuario
      *
      * @return  self
-     */ 
+     */
     public function setUsuario($Usuario)
     {
         $this->Usuario = $Usuario;
@@ -136,7 +135,7 @@ class modelo_usuario extends ModeloAbstractoDB{
 
     /**
      * Get the value of IdTipoUsuario
-     */ 
+     */
     public function getIdTipoUsuario()
     {
         return $this->IdTipoUsuario;
@@ -146,7 +145,7 @@ class modelo_usuario extends ModeloAbstractoDB{
      * Set the value of IdTipoUsuario
      *
      * @return  self
-     */ 
+     */
     public function setIdTipoUsuario($IdTipoUsuario)
     {
         $this->IdTipoUsuario = $IdTipoUsuario;
@@ -156,7 +155,7 @@ class modelo_usuario extends ModeloAbstractoDB{
 
     /**
      * Get the value of Contrasena
-     */ 
+     */
     public function getContrasena()
     {
         return $this->Contrasena;
@@ -166,7 +165,7 @@ class modelo_usuario extends ModeloAbstractoDB{
      * Set the value of Contrasena
      *
      * @return  self
-     */ 
+     */
     public function setContrasena($Contrasena)
     {
         $this->Contrasena = $Contrasena;
@@ -174,5 +173,3 @@ class modelo_usuario extends ModeloAbstractoDB{
         return $this;
     }
 }
-
-?>

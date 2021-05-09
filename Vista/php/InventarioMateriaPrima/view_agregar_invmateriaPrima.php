@@ -12,17 +12,11 @@
             <div class="card-body p-5">
                 <form class="form-horizontal p-5" role="form" id="finventariomp">
                     <div class="form-group">
-
                         <div class="form-group col-sm-10">
-
-                            <label class="form-group  mr-2"><i class="fas fa-building"><label
+                           <label class="form-group  mr-2"><i class="fas fa-building"><label
                                         class="form-label">Producto:</label></i></label>
-
-
                             <select class="form-control" name="IdMateriaPrima" id="Productos">
-
                             </select>
-
                         </div>
                     </div>
                     <div class="form-group">
