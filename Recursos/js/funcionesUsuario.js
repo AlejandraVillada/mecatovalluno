@@ -5,13 +5,13 @@ function usuario() {
         //console.log(datos)
         $.ajax({
             type: "post",
-            url: "./Controlador/controlador_usuario.php",
+            url: "Controlador/controlador_usuario.php",
+            // url: "../../../Controlador/controlador_usuario.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
             console.log(resultado);
             if (resultado.respuesta == "existe") {
-                // verificarUsuario();
                 location.href = "adminper.php";
             } else {
                 swal({

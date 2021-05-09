@@ -2,22 +2,39 @@
 
     require_once("../Modelo/modelo_usuario.php");
     require_once("../Modelo/modelo_tipo_usuario.php");
-   
-    $datos=$_GET;//datos
 
-    switch ($_GET['accion']){
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);     
+   
+    // $datos=$_GET;//datos
+
+    if(!empty($_GET["accion"])){
+        $accion=$_GET["accion"];
+        $datos=$_GET;
+    }
+    if(!empty($_POST["accion"])){
+        $accion=$_POST["accion"];
+        $datos=$_POST;
+    }
+   
+
+    switch ($accion){
     //Case/ contenido variable accion
     case 'login':
         $usuario = new modelo_usuario();
        $resultado= $usuario->consultar($datos);
-        //echo "id".$usuario->getIdUsuario();
-      //  echo "contra".$usuario->getContrasena();
+    //     echo "id".$usuario->getIdUsuario();
+    //    echo "contra".$usuario->getContrasena();
         
         if($usuario->getIdUsuario() == null) {
             $respuesta = array(
                 'respuesta' => 'no existe'
             );
         }  else {
+            echo "hola";
+            var_dump($datos);
+            echo $usuario->getContrasena();
             if(password_verify($datos['password'],$usuario->getContrasena())){
                 session_start();
                 $_SESSION['Usuario'] = $usuario->getUsuario();

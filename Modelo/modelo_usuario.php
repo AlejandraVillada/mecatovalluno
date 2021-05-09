@@ -31,14 +31,13 @@ class modelo_usuario extends ModeloAbstractoDB{
 			";
 
             $this->obtener_resultados_query();
-			
+			// var_dump($this->rows);
 			if(count($this->rows) == 1):
 				foreach ($this->rows[0] as $propiedad=>$valor):
 					 $this->$propiedad = $valor;
 	            //  echo $propiedad;
 				endforeach;
 			endif;
-	    return($this->rows);
 
     }
 
