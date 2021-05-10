@@ -95,7 +95,7 @@ function usuarios() {
         $.ajax({
             type: "get",
             url: "../../../Funciones/generarPassword.php",
-            data: contrasena,
+            data: { pass: contrasena },
             dataType: "json"
         }).done(function(resultado) {
             hash = resultado;
@@ -143,7 +143,7 @@ function usuarios() {
         $.ajax({
             type: "get",
             url: "../../../Funciones/generarPassword.php",
-            data: contrasena,
+            data: { pass: contrasena },
             dataType: "json"
         }).done(function(resultado) {
             hash = resultado;
