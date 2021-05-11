@@ -2,6 +2,8 @@
 
     require_once("../Modelo/modelo_detProveedor.php");
     require_once("../Modelo/modelo_proveedor.php");
+    header('Content-Type: application/json');
+
 
     $datos=$_GET;
     $accion=$_GET['accion'];

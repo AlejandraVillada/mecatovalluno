@@ -1,7 +1,7 @@
 <?php
 
-    require_once("../modelo/modelo_empleados.php");
-
+    require_once("../Modelo/modelo_empleados.php");
+    header('Content-Type: application/json');
     $datos = $_GET;
     $accion = $_GET['accion'];
 

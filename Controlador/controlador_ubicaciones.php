@@ -2,6 +2,8 @@
   require_once("../Modelo/modelo_sede.php");
   require_once("../Modelo/modelo_pais.php");
   require_once("../Modelo/modelo_ciudades.php");
+  header('Content-Type: application/json');
+
 
 $datos=$_GET;
 

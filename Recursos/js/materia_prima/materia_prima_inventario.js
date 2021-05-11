@@ -1,5 +1,5 @@
 function materiaprima() {
-    
+
     var dt = $("#tabla").DataTable({
         // "ajax": "../../../Controlador/controlador_inventarioMP.php?accion=listar",
         "ajax": "Controlador/controlador_inventarioMP.php?accion=listar",
@@ -11,7 +11,7 @@ function materiaprima() {
             { "data": "NombreMedida" },
             {
                 "data": "IdMateriaPrima",
-                render: function (data) {
+                render: function(data) {
                     return '<a href="#" data-codigo="' + data +
                         '" class="btn btn-info btn-sm agregar"> <i class="fa fa-edit"></i></a>'
                 }
@@ -19,14 +19,14 @@ function materiaprima() {
         ]
     });
 
-    $("#nuevo").on("click", function () {
+    $("#nuevo").on("click", function() {
         //$(this).hide();
         $(".card-title").html("Ingresar Compra de Materia Prima");
         $("#editar").addClass('show');
         $("#editar").removeClass('hide');
         $(".listado").addClass('hide');
         $(".listado").removeClass('show');
-        $("#editar").load('Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
+        $("#editar").load('Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function() {
             // $("#editar").load('../../../Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
             $.ajax({
                 type: "post",
@@ -34,10 +34,9 @@ function materiaprima() {
                 // url: "../../../Controlador/controlador_inventarioMP.php",
                 data: { accion: 'listar' },
                 dataType: "json"
-            }).done(function (resultado) {
-                $("#editar #Productos").append("<option>Seleccione el Producto</option>")
-                    ;
-                $.each(resultado.data, function (index, value) {
+            }).done(function(resultado) {
+                $("#editar #Productos").append("<option>Seleccione el Producto</option>");
+                $.each(resultado.data, function(index, value) {
                     $("#editar #Productos").append("<option value='" + value.IdMateriaPrima + "'>" + value.NombreMateriaPrima + "</option>")
                 });
                 inventario(dt);
@@ -45,15 +44,15 @@ function materiaprima() {
         });
 
     });
-    $(".table").on("click","a.agregar",function(){
+    $(".table").on("click", "a.agregar", function() {
         var codigo = $(this).data("codigo");
-      //  console.log(codigo);
+        //  console.log(codigo);
         $(".card-title").html("Ingresar Compra de Materia Prima");
         $("#editar").addClass('show');
         $("#editar").removeClass('hide');
         $(".listado").addClass('hide');
         $(".listado").removeClass('show');
-        $("#editar").load('Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
+        $("#editar").load('Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function() {
             // $("#editar").load('../../../Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
             $.ajax({
                 type: "post",
@@ -61,18 +60,17 @@ function materiaprima() {
                 // url: "../../../Controlador/controlador_inventarioMP.php",
                 data: { accion: 'listar' },
                 dataType: "json"
-            }).done(function (resultado) {
-                $("#editar #Productos").append("<option>Seleccione el Producto</option>")
-                    ;
-                $.each(resultado.data, function (index, value) {
-                    if(value.IdMateriaPrima==codigo){
+            }).done(function(resultado) {
+                $("#editar #Productos").append("<option>Seleccione el Producto</option>");
+                $.each(resultado.data, function(index, value) {
+                    if (value.IdMateriaPrima == codigo) {
                         $("#editar #Productos").append("<option selected disabled value='" + value.IdMateriaPrima + "'>" + value.NombreMateriaPrima + "</option>")
-                    }else{
+                    } else {
                         $("#editar #Productos").append("<option value='" + value.IdMateriaPrima + "'>" + value.NombreMateriaPrima + "</option>")
 
                     }
                 });
-                
+
             });
 
             $.ajax({
@@ -81,12 +79,12 @@ function materiaprima() {
                 // url: "../../../Controlador/controlador_inventarioMP.php",
                 data: { id: codigo, accion: 'consultar' },
                 dataType: "json"
-            }).done(function (resultado) {
+            }).done(function(resultado) {
                 console.log(resultado.data[0].Stock);
                 $("#Cantidad_Actual1").val(resultado.data[0].Stock);
                 $("#Cantidad_Actual").val(resultado.data[0].Stock);
                 $("#Medida").val(resultado.data[0].NombreMedida);
-    
+
             });
 
             inventario(dt);
@@ -95,18 +93,19 @@ function materiaprima() {
 
     });
 
-    $("#editar").on("click","button#cerrar",function(){
+    $("#editar").on("click", "button#cerrar", function() {
         $("#editar").addClass('hide');
-                $("#editar").removeClass('show');
-                $(".listado").addClass('show');
-                $(".listado").removeClass('hide');
+        $("#editar").removeClass('show');
+        $(".listado").addClass('show');
+        $(".listado").removeClass('hide');
     });
 
 
-   
+
 }
+
 function inventario(dt) {
-    $("select[id=Productos]").change(function () {
+    $("select[id=Productos]").change(function() {
 
         var prod = $('select[name=IdMateriaPrima]').val();
         // console.log(prod);
@@ -116,7 +115,7 @@ function inventario(dt) {
             // url: "../../../Controlador/controlador_inventarioMP.php",
             data: { id: prod, accion: 'consultar' },
             dataType: "json"
-        }).done(function (resultado) {
+        }).done(function(resultado) {
             console.log(resultado.data[0].Stock);
             $("#Cantidad_Actual1").val(resultado.data[0].Stock);
             $("#Cantidad_Actual").val(resultado.data[0].Stock);
@@ -124,16 +123,16 @@ function inventario(dt) {
 
         });
     });
-    $("#finventariomp").on("submit", function (e) {
+    $("#finventariomp").on("submit", function(e) {
         e.preventDefault();
         var datos = $(this).serialize();
         $.ajax({
             type: "post",
-           // url: "../../../Controlador/controlador_inventarioMP.php",
+            // url: "../../../Controlador/controlador_inventarioMP.php",
             url: "Controlador/controlador_inventarioMP.php",
             data: datos,
             dataType: "json"
-        }).done(function (resultado) {
+        }).done(function(resultado) {
             console.log(resultado);
             if (resultado.data == 1) {
                 swal({

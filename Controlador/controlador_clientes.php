@@ -1,7 +1,12 @@
 <?php
  require_once("../Modelo/modelo_clientes.php");
-   
+ header('Content-Type: application/json');
  $datos=$_GET;//datos
+
+
+ ini_set('display_errors', 1);
+ ini_set('display_startup_errors', 1);
+ error_reporting(E_ALL);     
 
  switch ($_GET['accion']){
 
@@ -11,6 +16,7 @@
          $respuesta = array(
                  'respuesta' => $resultado
              );
+             echo "hola";
          echo json_encode($respuesta);
          break;
          

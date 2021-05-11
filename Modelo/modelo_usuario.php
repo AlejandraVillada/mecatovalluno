@@ -1,5 +1,5 @@
 <?php
-include_once "modeloAbstractoDB.php";
+require_once "modeloAbstractoDB.php";
 
 class modelo_usuario extends ModeloAbstractoDB
 {

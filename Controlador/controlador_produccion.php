@@ -1,6 +1,6 @@
 <?php
- include_once __DIR__."../modelo/modelo_produccion";
-
+  require_once("../Modelo/modelo_produccion.php");
+ header('Content-Type: application/json');
 
 $datos=$_POST;//datos
 

@@ -1,6 +1,8 @@
 <?php
  include_once __DIR__."../modelo/modelo_factura.php";
  include_once __DIR__."../modelo/modelo_detallefact.php";
+ header('Content-Type: application/json');
+
 
 $datos=$_POST;//datos
 

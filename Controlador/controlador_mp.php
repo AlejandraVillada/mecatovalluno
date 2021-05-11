@@ -1,7 +1,7 @@
 <?php
 
     require_once("../Modelo/modelo_MP.php");
-   
+    header('Content-Type: application/json');
     $datos=$_GET;//datos
 
     switch ($_GET['accion']){

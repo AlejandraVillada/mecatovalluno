@@ -1,6 +1,6 @@
 <?php
 
-    require_once("modeloAbstractoDB.php");
+require_once "modeloAbstractoDB.php";
 
     class modelo_proveedor extends ModeloAbstractoDB{
 

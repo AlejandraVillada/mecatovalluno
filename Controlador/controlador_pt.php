@@ -2,6 +2,7 @@
 
     include_once __DIR__."../modelo/modelo_producto";
     include_once __DIR__."../modelo/modelo_detalle_producto";
+    header('Content-Type: application/json');
 
     $datos=$_POST;//datos
 

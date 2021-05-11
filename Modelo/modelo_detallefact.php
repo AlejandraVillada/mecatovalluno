@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . "/modeloAbstractoDB.php";
+require_once "modeloAbstractoDB.php";
 
 class detalle_factura extends ModeloAbstractoDB{
     private $IdDetalleFactura;

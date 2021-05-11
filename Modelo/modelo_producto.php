@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . "/modeloAbstractoDB.php";
+require_once "modeloAbstractoDB.php";
 
 class modelo_producto extends ModeloAbstractoDB
 {
