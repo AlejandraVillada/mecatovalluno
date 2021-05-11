@@ -1,14 +1,14 @@
 <?php
 	abstract class ModeloAbstractoDB {
-		private static $db_host ="localhost";
-		private static $db_user = "root";
-		private static $db_pass = "";
-		protected $db_name = "persona1";
+		private static $db_host ="151.106.97.204";//127.0.0.1
+		private static $db_user = "u310614642_admin";
+		private static $db_pass = "M3cat0Vallun0";
+		protected $db_name = "u310614642_mecatovalluno";
 		protected $query;
 		protected $rows = array();
 		private $conexion;
 		
-		# m�todos abstractos para Gesti�n de clases que hereden
+		# métodos abstractos para Gestión de clases que hereden
 		abstract protected function consultar();
 		abstract protected function nuevo();
 		abstract protected function editar();
@@ -16,7 +16,7 @@
 		abstract protected function lista();
 		
 		
-		# los siguientes m�todos pueden definirse con exactitud y no son abstractos
+		# los siguientes métodos pueden definirse con exactitud y no son abstractos
 		# Conectar a la base de datos
 		private function abrir_conexion() {
 			$this->conexion = 
