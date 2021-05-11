@@ -35,7 +35,7 @@
             </div>
             <br>
             <button class="btn btn-dark" id="grabar">Crear registro</button>
-            <a href="../Clientes/view_Clientes.php" class="btn btn-dark">Regresar</a>
+            <a href="view_Clientes.php" class="btn btn-dark">Regresar</a>
             <input type="hidden" id="nuevo" value="nuevo" name="accion" />
         </form>
     </div>

@@ -1,8 +1,8 @@
 function clientes() {
 
     var dt = $("#tabla").DataTable({
-        // "ajax": "../../../Controlador/controlador_clientes.php?accion=listar",
-        "ajax": "Controlador/controlador_clientes.php?accion=listar",
+        "ajax": "../../../Controlador/controlador_clientes.php?accion=listar",
+        // "ajax": "Controlador/controlador_clientes.php?accion=listar",
         "columns": [
             { "data": "IdCliente" },
             { "data": "NombreCliente" },
@@ -29,11 +29,11 @@ function clientes() {
         $("#titulo").html("Ingresar Nuevo Cliente");
         $("#editado").show();
         $(".listado").hide();
-        $("#editado").load('Vista/php/Clientes/FormCrearCliente.php', function() {
+        $("#editado").load('../../../Vista/php/Clientes/FormCrearCliente.php', function() {
             // $("#editado").load('../../../Vista/php/Clientes/FormCrearCliente.php')
             $.ajax({
                 type: "get",
-                url: "Controlador/controlador_clientes.php",
+                url: "../../../Controlador/controlador_clientes.php",
                 data: { accion: 'listar_estados' },
                 dataType: "json"
             }).done(function(resultado) {
@@ -63,10 +63,10 @@ function clientes() {
         $("#titulo").html("Modificar Datos de Cliente");
         $("#editado").show();
         $(".listado").hide();
-        $("#editado").load('Vista/php/Clientes/FormModificarCliente.php', function() {
+        $("#editado").load('../../../Vista/php/Clientes/FormModificarCliente.php', function() {
             $.ajax({
                 type: "get",
-                url: "Controlador/controlador_clientes.php",
+                url: "../../../Controlador/controlador_clientes.php",
                 data: { codigo: codigo, accion: 'consultar' },
                 dataType: "json"
             }).done(function(cliente) {
@@ -90,7 +90,7 @@ function clientes() {
 
             $.ajax({
                 type: "get",
-                url: "Controlador/controlador_clientes.php",
+                url: "../../../Controlador/controlador_clientes.php",
                 data: { accion: 'listar_estados' },
                 dataType: "json"
             }).done(function(resultado) {
@@ -104,7 +104,7 @@ function clientes() {
             });
             $.ajax({
                 type: "get",
-                url: "Controlador/controlador_clientes.php",
+                url: "../../../Controlador/controlador_clientes.php",
                 data: { accion: 'listar_ciudad' },
                 dataType: "json"
             }).done(function(resultado) {
@@ -120,11 +120,12 @@ function clientes() {
 
     });
 
-    $("#editado").on("click", "button#grabar", function() {
+    $("#editado").on("click", "button#grabar", function(e) {
+        e.preventdefault();
         var datos = $("#formCrearCliente").serialize();
         $.ajax({
             type: "get",
-            url: "Controlador/controlador_clientes.php",
+            url: "../../../Controlador/controlador_clientes.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
@@ -159,36 +160,38 @@ function clientes() {
     });
 
     $("#editado").on("click", "button#actualizar", function() {
+
         var datos = $("#formModificarCliente").serialize();
-        console.log(datos);
+        // console.log(datos);
         $.ajax({
             type: "get",
-            url: "Controlador/controlador_clientes.php",
+            url: "../../../Controlador/controlador_clientes.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
+            console.log(resultado);
             console.log("juliana");
-            if (resultado.respuesta) {
-                swal({
-                    position: 'center',
-                    type: 'success',
-                    title: 'Se actaulizaron los datos correctamente',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-                $("#titulo").html("Gestión Clientes");
-                $("#editado").html('');
-                $("#editado").hide();
-                $(".listado").show();
-                dt.ajax.reload();
+            // if (resultado.respuesta=1) {
+            //     swal({
+            //         position: 'center',
+            //         type: 'success',
+            //         title: 'Se actaulizaron los datos correctamente',
+            //         showConfirmButton: false,
+            //         timer: 1500
+            //     })
+            //     $("#titulo").html("Gestión Clientes");
+            //     $("#editado").html('');
+            //     $("#editado").hide();
+            //     $(".listado").show();
+            //     dt.ajax.reload();
 
-            } else {
-                swal({
-                    type: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong!'
-                })
-            }
+            // } else {
+            //     swal({
+            //         type: 'error',
+            //         title: 'Oops...',
+            //         text: 'Something went wrong!'
+            //     })
+            // }
         }).fail(function(jqXHR, textStatus, errorThrown) {
 
             if (jqXHR.status === 0) {

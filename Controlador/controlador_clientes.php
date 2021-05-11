@@ -16,8 +16,8 @@
          $respuesta = array(
                  'respuesta' => $resultado
              );
-             echo "hola";
-         echo json_encode($respuesta);
+        // var_dump($respuesta);
+        //  echo json_encode($respuesta);
          break;
          
      case 'nuevo':

@@ -1,4 +1,5 @@
 <!-- No funciona el alerta, pero graba y modifica normal -->
+<?php include_once "../../../Templates/header1.php";?>
 
 <body>
     
@@ -19,6 +20,7 @@
         <div class="card-body contenido">
             <div id="editado">
             </div>
+            <div class="container">
             <div class="listado">
                 <table id="tabla" class="table table-bordered table-striped">
                     <thead>
@@ -38,13 +40,16 @@
                     </tbody>
                 </table>
             </div>
+            </div>
+
         </div>
     </div>
 
 
+    <?php include_once "../../../Templates/footer1.php";?>
    
-    <script src="Recursos/js/clientes/clientes.js"></script>
-    <!-- <script src="../../../Recursos/js/clientes/clientes.js"></script> -->
+    <!-- <script src="Recursos/js/clientes/clientes.js"></script> -->
+    <script src="../../../Recursos/js/clientes/clientes.js"></script>
     <script>
     $(document).ready(clientes);
     </script>
