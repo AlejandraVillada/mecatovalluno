@@ -3,6 +3,8 @@ function actDatos() {
     $(".cuerpo").hide();
     $(".usuario").hide();
 
+    //prueba
+
     $("#ingreso").on("click", "button#enviar", function() {
         var codigo = $("#Cedula").val();
         $.ajax({
