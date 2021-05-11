@@ -1,5 +1,6 @@
 <?php
   require_once("../Modelo/modelo_produccion.php");
+  require_once("../Modelo/modelo_produccion.php");
  header('Content-Type: application/json');
 
 $datos=$_POST;//datos
