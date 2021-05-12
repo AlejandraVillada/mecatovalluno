@@ -1,8 +1,8 @@
 function clientes() {
 
     var dt = $("#tabla").DataTable({
-        "ajax": "../../../Controlador/controlador_clientes.php?accion=listar",
-        // "ajax": "Controlador/controlador_clientes.php?accion=listar",
+        // "ajax": "../../../Controlador/controlador_clientes.php?accion=listar",
+        "ajax": "Controlador/controlador_clientes.php?accion=listar",
         "columns": [
             { "data": "IdCliente" },
             { "data": "NombreCliente" },
@@ -29,11 +29,12 @@ function clientes() {
         $("#titulo").html("Ingresar Nuevo Cliente");
         $("#editado").show();
         $(".listado").hide();
-        $("#editado").load('../../../Vista/php/Clientes/FormCrearCliente.php', function() {
+        $("#editado").load('Vista/php/Clientes/FormCrearCliente.php', function() {
             // $("#editado").load('../../../Vista/php/Clientes/FormCrearCliente.php')
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_clientes.php",
+                url: "Controlador/controlador_clientes.php",
+                // url: "../../../Controlador/controlador_clientes.php",
                 data: { accion: 'listar_estados' },
                 dataType: "json"
             }).done(function(resultado) {
@@ -44,7 +45,8 @@ function clientes() {
 
             $.ajax({
                 type: "get",
-                url: "Controlador/controlador_clientes.php",
+                url: "Controlador/controlador_ubicaciones.php",
+                // url: "../../../Controlador/controlador_ubicaciones.php",
                 data: { accion: 'listar_ciudad' },
                 dataType: "json"
             }).done(function(resultado) {
@@ -63,10 +65,12 @@ function clientes() {
         $("#titulo").html("Modificar Datos de Cliente");
         $("#editado").show();
         $(".listado").hide();
-        $("#editado").load('../../../Vista/php/Clientes/FormModificarCliente.php', function() {
+        $("#editado").load('Vista/php/Clientes/FormModificarCliente.php', function() {
+            // $("#editado").load('../../../Vista/php/Clientes/FormModificarCliente.php', function() {
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_clientes.php",
+                url: "Controlador/controlador_clientes.php",
+                // url: "../../../Controlador/controlador_clientes.php",
                 data: { codigo: codigo, accion: 'consultar' },
                 dataType: "json"
             }).done(function(cliente) {
@@ -90,29 +94,31 @@ function clientes() {
 
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_clientes.php",
+                url: "Controlador/controlador_clientes.php",
+                // url: "../../../Controlador/controlador_clientes.php",
                 data: { accion: 'listar_estados' },
                 dataType: "json"
             }).done(function(resultado) {
                 $.each(resultado.data, function(index, value) {
                     if (estado === value.IdEstado) {
-                        $("#IdEstado").append("<option selected value='" + value.IdEstado + "'>" + value.Estado + "</option>")
+                        $("#editado #IdEstado").append("<option selected value='" + value.IdEstado + "'>" + value.Estado + "</option>")
                     } else {
-                        $("#IdEstado").append("<option value='" + value.IdEstado + "'>" + value.Estado + "</option>")
+                        $("#editado #IdEstado").append("<option value='" + value.IdEstado + "'>" + value.Estado + "</option>")
                     }
                 });
             });
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_clientes.php",
+                url: "Controlador/controlador_ubicaciones.php",
+                // url: "../../../Controlador/controlador_ubicaciones.php",
                 data: { accion: 'listar_ciudad' },
                 dataType: "json"
             }).done(function(resultado) {
                 $.each(resultado.data, function(index, value) {
                     if (ciudad === value.IdCiudad) {
-                        $("#IdCiudad").append("<option selected value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
+                        $("#editado #IdCiudad").append("<option selected value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
                     } else {
-                        $("#IdCiudad").append("<option value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
+                        $("#editado #IdCiudad").append("<option value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
                     }
                 });
             });
@@ -120,12 +126,13 @@ function clientes() {
 
     });
 
-    $("#editado").on("click", "button#grabar", function(e) {
-        e.preventdefault();
+    $("#editado").on("click", "button#grabar", function() {
+
         var datos = $("#formCrearCliente").serialize();
         $.ajax({
             type: "get",
-            url: "../../../Controlador/controlador_clientes.php",
+            url: "Controlador/controlador_clientes.php",
+            // url: "../../../Controlador/controlador_clientes.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
@@ -165,33 +172,34 @@ function clientes() {
         // console.log(datos);
         $.ajax({
             type: "get",
-            url: "../../../Controlador/controlador_clientes.php",
+            url: "Controlador/controlador_clientes.php",
+            // url: "../../../Controlador/controlador_clientes.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
             console.log(resultado);
             console.log("juliana");
-            // if (resultado.respuesta=1) {
-            //     swal({
-            //         position: 'center',
-            //         type: 'success',
-            //         title: 'Se actaulizaron los datos correctamente',
-            //         showConfirmButton: false,
-            //         timer: 1500
-            //     })
-            //     $("#titulo").html("Gestión Clientes");
-            //     $("#editado").html('');
-            //     $("#editado").hide();
-            //     $(".listado").show();
-            //     dt.ajax.reload();
+            if (resultado.respuesta = 1) {
+                swal({
+                    position: 'center',
+                    type: 'success',
+                    title: 'Se actaulizaron los datos correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                $("#titulo").html("Gestión Clientes");
+                $("#editado").html('');
+                $("#editado").hide();
+                $(".listado").show();
+                dt.ajax.reload();
 
-            // } else {
-            //     swal({
-            //         type: 'error',
-            //         title: 'Oops...',
-            //         text: 'Something went wrong!'
-            //     })
-            // }
+            } else {
+                swal({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!'
+                })
+            }
         }).fail(function(jqXHR, textStatus, errorThrown) {
 
             if (jqXHR.status === 0) {

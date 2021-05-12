@@ -12,9 +12,14 @@
                 </select>
             </div>
             <br>
-            <button class="btn btn-info" id="grabar">Crear registro</button>
-            <a href="../Ubicaciones/view_sedes.php" class="btn btn-danger">Regresar</a>
-            <input type="hidden" id="nuevo_sede" value="nuevo_sede" name="accion" />
+            <div class="form-group">
+                    <button type="button" id="grabar" class="btn btn-primary" data-toggle="tooltip">Registrar
+                        Pais</button>
+                    <a href="./adminper.php" id="cerrar" class="btn btn-danger"
+                        data-toggle="tooltip">Regresar</a>
+                </div>
+
+                <input type="hidden" id="nuevo_sede" value="nuevo_sede" name="accion" />
         </form>
     </div>
 </div>

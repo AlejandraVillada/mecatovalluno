@@ -60,9 +60,9 @@
                 <div class="form-group">
                     <button type="button" id="actualizar" data-toggle="tooltip"
                         class="btn btn-primary">Actualizar</button>
-                    <a href="../Empleados/form_empleados.php" id="cancelar" data-toggle="tooltip"
-                        class="btn btn-danger btncerrar3">
-                        Cancelar </a>
+                        <a href="./adminper.php" id="cerrar" class="btn btn-danger"
+                        data-toggle="tooltip">Regresar</a>
+                        
                 </div>
 
                 <input type="hidden" id="editar" value="editar" name="accion" />

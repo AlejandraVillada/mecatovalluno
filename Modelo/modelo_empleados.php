@@ -91,16 +91,6 @@ class modelo_empleados extends ModeloAbstractoDB
         return $this->rows;
     }
 
-    public function sedes()
-    {
-        $this->query = "
-			SELECT IdSede, IdCiudad, NombreSede
-			FROM sede
-			";
-
-        $this->obtener_resultados_query();
-        return $this->rows;
-    }
 
     public function estado()
     {
@@ -112,17 +102,7 @@ class modelo_empleados extends ModeloAbstractoDB
         return $this->rows;
     }
 
-    public function lista2()
-    {
-        $this->query = "
-			SELECT IdTipoUsuario, TipoUsuario
-			FROM tipo_usuario
-            ORDER BY IdTipoUsuario
-			";
-
-        $this->obtener_resultados_query();
-        return $this->rows;
-    }
+    
 
     public function consultar($IdEmpleado = '')
     {

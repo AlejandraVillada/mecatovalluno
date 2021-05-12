@@ -114,6 +114,25 @@
                             Proveedores</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fas fa-coins"></i>
+                    <span> Producto Terminado</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="#"><i class="fas fa-comment-dots"></i> Gestion Producto terminado</a></li>
+                    <li><a href="#"><i class="fab fa-creative-commons-remix"></i> Programacion de Produccion</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fas fa-bullhorn"></i>
+                    <span> Nomina</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="#"><i class="fas fa-envelope-open-text"></i> Gestion de Nomina</a></li>
+                </ul>
+            </li>
             <?php }?>
 
 

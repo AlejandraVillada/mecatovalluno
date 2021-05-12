@@ -12,17 +12,7 @@ switch ($accion) {
         echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE);
         break;
 
-    case 'listar_usuarios':
-        $usuarios = new modelo_empleados();
-        $listado = $usuarios->usuarios();
-        echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE);
-        break;
-
-    case 'listar_sedes':
-        $sedes = new modelo_empleados();
-        $listado = $sedes->sedes();
-        echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE);
-        break;
+    
 
     case 'listar_estados':
         $estado = new modelo_empleados();

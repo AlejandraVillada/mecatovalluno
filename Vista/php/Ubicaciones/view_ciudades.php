@@ -1,5 +1,5 @@
-<!-- No funciona el alerta, pero graba y modifica normal -->
-<!DOCTYPE html>
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -21,7 +21,7 @@
 
     <link rel="stylesheet" href="../../layout/Style.css">
 </head>
-
+ -->
 
 <body>
 
@@ -62,7 +62,7 @@
         </div>
 
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
@@ -79,8 +79,9 @@
         <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.all.js"></script>
-        <script src="../../../Recursos/js/Ubicaciones/ciudad.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.all.js"></script> -->
+        <script src="Recursos/js/Ubicaciones/ciudad.js"></script>
+        <!-- <script src="../../../Recursos/js/Ubicaciones/ciudad.js"></script> -->
         <script>
         $(document).ready(ciudad);
         </script>

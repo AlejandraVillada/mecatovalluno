@@ -36,35 +36,43 @@ class clientes extends ModeloAbstractoDB
 
     public function nuevo($datos = array())
     {
-        foreach ($datos as $campo => $valor):
-            $$campo = $valor;
-        endforeach;
-        $this->query = "
-        INSERT INTO clientes
-        (IdCliente,NombreCliente,Email,Direccion,Telefono,IdEstado,IdCiudad)
-        VALUES
-        ('$IdCliente', '$NombreCliente','$Email','$Direccion','$Telefono','$IdEstado','$IdCiudad')
-        ";
-        $resultado = $this->ejecutar_query_simple();
-        return $resultado;
+        if (array_key_exists('IdCliente', $datos)):
+            foreach ($datos as $campo => $valor):
+                $$campo = $valor;
+            endforeach;
+            $NombreCliente = utf8_decode($NombreCliente);
+            $Direccion = utf8_decode($Direccion);
+            $Email = utf8_decode($Email);
+            $Telefono = utf8_decode($Telefono);
+            $this->query = "
+						INSERT INTO clientes
+						(IdCliente,NombreCliente,Email,Direccion,Telefono,IdEstado,IdCiudad)
+						VALUES
+						('$IdCliente', '$NombreCliente', '$Email', '$Direccion', '$Telefono', '$IdEstado', '$IdCiudad')
+						";
+            $resultado = $this->ejecutar_query_simple();
+            return $resultado;
+        endif;
     }
     public function editar($datos = array())
     {
         foreach ($datos as $campo => $valor):
             $$campo = $valor;
         endforeach;
+      
         $this->query = "
-        UPDATE clientes
-        SET NombreCliente='$NombreCliente',
-        Email='$Email',
-        Direccion='$Direccion',
-        Telefono='$Telefono',
-        IdEstado='$IdEstado',
-        IdCiudad='$IdCiudad'
-        WHERE IdCliente = '$IdCliente'
-        ";
+			UPDATE clientes
+			SET NombreCliente = '$NombreCliente',
+			Email = '$Email',
+			Direccion = '$Direccion',
+			Telefono = '$Telefono',
+			IdEstado = '$IdEstado',
+			IdCiudad = '$IdCiudad'
+			WHERE IdCliente = '$IdCliente'
+			";
         $resultado = $this->ejecutar_query_simple();
         return $resultado;
+
     }
 
     public function borrar()

@@ -8,9 +8,15 @@
                     placeholder="Ingrese el nombre del pais">
             </div>
             <br>
-            <button class="btn btn-info" id="actualizar">Modificar registro</button>
-            <a href="../Ubicaciones/view_paises.php" class="btn btn-danger">Regresar</a>
-            <input type="hidden" id="editar_pais" value="editar_pais" name="accion" />
+            <div class="form-group">
+                    <button type="button" id="actualizar" data-toggle="tooltip"
+                        class="btn btn-primary">Actualizar</button>
+                    <a href="./adminper.php" id="cancelar" data-toggle="tooltip"
+                        class="btn btn-danger btncerrar3">
+                        Regresar </a>
+                </div>
+
+                <input type="hidden" id="editar_pais" value="editar_pais" name="accion" />
         </form>
     </div>
 </div>

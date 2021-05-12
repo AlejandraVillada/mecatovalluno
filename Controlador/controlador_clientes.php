@@ -1,7 +1,7 @@
 <?php
 require_once "../Modelo/modelo_clientes.php";
 header('Content-Type: application/json');
-$datos = $_GET; //datos pruebaaaa
+$datos = $_GET; //datos 
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -13,10 +13,9 @@ switch ($_GET['accion']) {
         $cliente = new clientes();
         $resultado = $cliente->editar($datos);
         $respuesta = array(
-            'respuesta' => $resultado,
+            'respuesta' => $resultado
         );
-        // var_dump($respuesta);
-        //  echo json_encode($respuesta);
+        echo json_encode($respuesta);
         break;
 
     case 'nuevo':
@@ -70,10 +69,5 @@ switch ($_GET['accion']) {
         echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE);
         break;
 
-    case 'listar_ciudad':
-        $estado = new clientes();
-        $listado = $estado->lista_ciudad();
-        echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE);
-        break;
 
 }
