@@ -57,6 +57,7 @@ switch ($accion) {
 
     case "actualizar":
         $datos = $produccion->actualizar($datos);
+       
         echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
         break;
     case "nuevo":

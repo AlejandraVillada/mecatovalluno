@@ -21,7 +21,7 @@ function Produccion() {
                         '" class="btn btn-dark btn-sm ver"> <i class="fa fa-plus"></i></a>'
                 }
             },
-            { "data": "IdSede" },
+            { "data": "NombreSede" },
             { "data": "DiaProduccion" },
             { "data": "HorarioInicioProduccion" },
             { "data": "HorarioFinProduccion" },
@@ -122,18 +122,7 @@ function Produccion() {
         }
         codigo = $(this).data("codigo");
         var boton = document.getElementById("nuevodetalle");
-        boton.dataset.idproduccionIdProduccion = codigo;
-        $.ajax({
-            type: "post",
-            // url: "Controlador/controlador_inventarioMP.php",
-            url: "../../../Controlador/controlador_detalleproduccion.php",
-            data: { accion: 'buscar', IdProduccion: codigo },
-            dataType: "json"
-        }).done(function (resultado) {
-            var ingre = resultado.data[0].NombreProducto;
-            $(".card-title").html("Ingredientes para la porción de " + ingre);
-
-        });
+        boton.dataset.IdProduccion = codigo;
 
         dt1 = $("#tabla1").DataTable({
 
@@ -143,14 +132,13 @@ function Produccion() {
             "columns": [
 
                 { "data": "IdDetalleProduccion" },
-                { "data": "NombreMateriaPrima" },
-                { "data": "Cantidad" },
-                { "data": "NombreMedida" },
-                { "data": "DescripcionProducto" },
+                { "data": "NombreProducto" },
+                { "data": "CantidadProduccion" },
+                { "data": "CantidadProductoTerminado" },
                 {
                     "data": "IdDetalleProduccion",
                     render: function (data) {
-                        return '<a href="#" data-producto="' + codigo + '" data-codigo="' + data +
+                        return '<a href="#" data-produccion="' + codigo + '" data-codigo="' + data +
                             '" class="btn btn-info btn-sm modificar"> <i class="fa fa-edit"></i></a>'
                     }
                 }
@@ -169,14 +157,14 @@ function Produccion() {
         var secuencia = 0;
         var secuencia1 = 1;
         var secuencia2 = 0;
-        var idproduccionIdProduccion = $(this).data("idproduccionIdProduccion");
+        var IdProduccion = $(this).data("IdProduccion");
         $("#editar").load('../../../Vista/php/Produccion/view_CrearDetalleProd.php', function () {
-            console.log(idproduccionIdProduccion);
+            console.log(IdProduccion);
             $.ajax({
                 type: "post",
                 // url: "Controlador/controlador_inventarioMP.php",
                 url: "../../../Controlador/controlador_detalleproduccion.php",
-                data: { accion: 'secuencia', IdProduccion: idproduccionIdProduccion },
+                data: { accion: 'secuencia', IdProduccion: IdProduccion },
                 dataType: "json"
             }).done(function (resultado) {
                 if (!resultado.data == "") {
@@ -188,7 +176,7 @@ function Produccion() {
                     // console.log(secuencia2);
 
                 }
-                $("#IdProduccion").val(idproduccionIdProduccion);
+                $("#IdProduccion").val(IdProduccion);
                 $("#IdDetalleProduccion").val(secuencia2);
                 $("#IdDetalleProduccion1").val(secuencia2);
 
@@ -338,7 +326,7 @@ function Produccion() {
                         swal({
                             position: 'center',
                             type: 'success',
-                            title: 'Se actualizó el producto',
+                            title: 'Se actualizó la Producción',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -384,8 +372,8 @@ function Produccion() {
         $(".detalle").removeClass('show');
         $("#editar").load('../../../Vista/php/Produccion/FormModificarProduccion.php', function () {
             // $("#editar").load('Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
-                var sede;
-                var Estado;
+            var sede;
+            var Estado;
             $.ajax({
                 type: "post",
                 // url: "Controlador/controlador_produccion.php",
@@ -395,7 +383,9 @@ function Produccion() {
             }).done(function (resultado) {
                 console.log(resultado.data[0]);
                 $("#IdProduccion").val(resultado.data[0].IdProduccion);
-                $("#DiaProduccion").val(resultado.data[0].DiaProduccion);
+               
+                $('#DiaProduccion').val(resultado.data[0].DiaProduccion);
+                              
                 $("#HorarioInicioProduccion").val(resultado.data[0].HorarioInicioProduccion);
                 $("#HorarioFinProduccion").val(resultado.data[0].HorarioFinProduccion);
                 sede = resultado.data[0].IdSede;
@@ -441,7 +431,7 @@ function Produccion() {
                 });
 
             });
-
+            
             $("#editar #formModP").on("submit", function (e) {
                 e.preventDefault();
                 console.log("hooo");
@@ -457,7 +447,21 @@ function Produccion() {
                         swal({
                             position: 'center',
                             type: 'success',
-                            title: 'Se actualizó el producto',
+                            title: 'Se actualizó la Producción',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        $("#editar").addClass('hide');
+                        $("#editar").removeClass('show');
+                        $(".listado").addClass('show');
+                        $(".listado").removeClass('hide');
+                        $(".detalle").addClass('hide');
+                        $(".detalle").removeClass('show');
+                    }else{
+                        swal({
+                            position: 'center',
+                            type: 'error',
+                            title: 'No se Realizó ningún cambio',
                             showConfirmButton: false,
                             timer: 1500
                         })

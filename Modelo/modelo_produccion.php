@@ -15,7 +15,8 @@ require_once "modeloAbstractoDB.php";
         } 
         public function lista()
     {
-        $this->query = "SELECT p.* FROM produccion p ORDER BY DiaProduccion";
+        $this->query = "SELECT p.*,s.NombreSede FROM produccion p 
+        INNER JOIN sede s ON(p.IdSede=s.IdSede) ORDER BY DiaProduccion";
         $this->obtener_resultados_query();
         return $this->rows;
     }
@@ -31,15 +32,12 @@ require_once "modeloAbstractoDB.php";
     public function consultar($id = '')
     {
         if ($id != ''):
-            // $this->query = "SELECT dp.Cantidad,dp.Descripcionproduccion,
-	        //     dp.IdDetalleproduccion,m.NombreMedida,mp.NombreMateriaPrima
-	        //     FROM detalle_produccion dp
-	        //     INNER JOIN Medidas m ON(dp.IdMedida=m.idMedida)
-	        //     INNER JOIN materiaprima mp ON(dp.IdMateriaPrima=mp.IdMateriaPrima)
-	        //     INNER JOIN produccion p ON(dp.Idproduccion=p.Idproduccion)
-	        //     WHERE dp.Idproduccion='$id'";
-            // $this->obtener_resultados_query();
-            //var_dump ($this->rows);
+            $this->query = "SELECT dp.*,m.NombreProducto
+	            FROM detalle_produccion dp
+	            INNER JOIN producto m ON(dp.IdProducto=m.IdProducto)
+	            WHERE dp.Idproduccion='$id'";
+            $this->obtener_resultados_query();
+            // var_dump ($this->rows);
         endif;
 
         return $this->rows;
@@ -48,15 +46,18 @@ require_once "modeloAbstractoDB.php";
 
     public function actualizar($datos = array())
     {
+
         foreach ($datos as $campo => $valor):
             $$campo = $valor;
         endforeach;
-        $this->query = "UPDATE produccion SET DiaProduccion='$DiaProduccion', 
+        $this->query = "UPDATE produccion SET  DiaProduccion='$DiaProduccion', 
         HorarioInicioProduccion='$HorarioInicioProduccion',
         HorarioFinProduccion='$HorarioFinProduccion',
-        Estado='$Estado',
-                WHERE Idproduccion = '$Idproduccion'
+        Estado='$Estado',IdSede='$IdSede'
+                WHERE IdProduccion = $IdProduccion
                 ";
+     
+
         $resultado = $this->ejecutar_query_simple();
         return $resultado;
 

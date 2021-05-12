@@ -7,16 +7,16 @@
 
             <div class="form-group">
                 <label for="nombreMP">Fecha</label>
-                <input required type="date" name="DiaProduccion" placeholder="" class="form-control">
-                <input  type="hidden" name="IdProduccion" placeholder="" class="form-control">
+                <input required type="date" name="DiaProduccion"   id="DiaProduccion" placeholder="" class="form-control">
+                <input  type="hidden" name="IdProduccion" id="IdProduccion" placeholder="" class="form-control">
             </div>
             <div class="form-group">
                 <label for="idMP">Hora de Inicio</label>
-                <input required type="time" name="HorarioInicioProduccion" class="form-control">
+                <input required type="time" name="HorarioInicioProduccion" id="HorarioInicioProduccion" class="form-control">
             </div>
             <div class="form-group">
                 <label for="idMP">Hora de Inicio</label>
-                <input required type="time" name="HorarioFinProduccion" class="form-control">
+                <input required type="time" name="HorarioFinProduccion" id="HorarioFinProduccion" class="form-control">
             </div>
             <div class="form-group">
                 <select required class="form-control" name="Estado" id="Estado">
