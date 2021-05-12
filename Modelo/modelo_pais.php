@@ -1,23 +1,21 @@
 <?php
 require_once "modeloAbstractoDB.php";
 
-class modelo_pais extends ModeloAbstractoDB{
+class modelo_pais extends ModeloAbstractoDB
+{
     private $IdPais;
     private $NombrePais;
-    
-  
 
-    function __construct(){
-        
-    } 
+    public function __construct()
+    {
 
-      
+    }
+
     public function getIdPais()
     {
         return $this->IdPais;
     }
 
-   
     public function setIdPais($IdPais)
     {
         $this->IdPais = $IdPais;
@@ -25,46 +23,46 @@ class modelo_pais extends ModeloAbstractoDB{
         return $this;
     }
 
-  
     public function getNombrePais()
     {
         return $this->NombrePais;
     }
 
-  
     public function setNombrePais($NombrePais)
     {
         $this->NombrePais = $NombrePais;
 
         return $this;
     }
-   
-   
-    public function lista(){
+
+    public function lista()
+    {
         $this->query = "
 		SELECT IdPais,NombrePais
 		FROM pais";
-		$this->obtener_resultados_query();
-		return $this->rows;
+        $this->obtener_resultados_query();
+        return $this->rows;
     }
 
-    public function consultar($id=''){
-        if($id != ''):
+    public function consultar($id = '')
+    {
+        if ($id != ''):
             $this->query = "
-		    SELECT IdPais,NombrePais
-		    FROM pais
-            WHERE IdPais = '$id'";
+			    SELECT IdPais,NombrePais
+			    FROM pais
+	            WHERE IdPais = '$id'";
             $this->obtener_resultados_query();
         endif;
-        if(count($this->rows) == 1):
-            foreach ($this->rows[0] as $propiedad=>$valor):
+        if (count($this->rows) == 1):
+            foreach ($this->rows[0] as $propiedad => $valor):
                 $this->$propiedad = $valor;
             endforeach;
         endif;
     }
 
-    public function nuevo($datos=array()){
-        foreach ($datos as $campo=>$valor):
+    public function nuevo($datos = array())
+    {
+        foreach ($datos as $campo => $valor):
             $$campo = $valor;
         endforeach;
         $this->query = "
@@ -75,8 +73,9 @@ class modelo_pais extends ModeloAbstractoDB{
         return $resultado;
     }
 
-    public function editar($datos=array()){
-        foreach ($datos as $campo=>$valor):
+    public function editar($datos = array())
+    {
+        foreach ($datos as $campo => $valor):
             $$campo = $valor;
         endforeach;
         $this->query = "
@@ -87,13 +86,9 @@ class modelo_pais extends ModeloAbstractoDB{
         return $resultado;
     }
 
-    public function borrar(){
+    public function borrar()
+    {
 
     }
-    
 
-   
- 
 }
-
-?>

@@ -35,12 +35,12 @@ class detalle_producto extends ModeloAbstractoDB
         $this->consultarsec($producto);
         if ($id != ''):
             $this->query = "SELECT dp.Cantidad,dp.IdProducto,dp.DescripcionProducto, dp.IdDetalleProducto,
-		            m.IdMedida,mp.NombreMateriaPrima,dp.IdMateriaPrima
-		            FROM detalle_producto dp
-		            INNER JOIN Medidas m ON(dp.IdMedida=m.idMedida)
-		            INNER JOIN materiaprima mp ON(dp.IdMateriaPrima=mp.IdMateriaPrima)
-		            INNER JOIN producto p ON(dp.IdProducto=p.IdProducto)
-		            WHERE dp.IdDetalleProducto='$id' AND dp.IdProducto='$producto'";
+			            m.IdMedida,mp.NombreMateriaPrima,dp.IdMateriaPrima
+			            FROM detalle_producto dp
+			            INNER JOIN Medidas m ON(dp.IdMedida=m.idMedida)
+			            INNER JOIN materiaprima mp ON(dp.IdMateriaPrima=mp.IdMateriaPrima)
+			            INNER JOIN producto p ON(dp.IdProducto=p.IdProducto)
+			            WHERE dp.IdDetalleProducto='$id' AND dp.IdProducto='$producto'";
             $this->obtener_resultados_query();
             //var_dump ($this->rows);
         endif;
@@ -94,10 +94,10 @@ class detalle_producto extends ModeloAbstractoDB
 
     public function lista()
     {
-        
 
     }
-    public function buscar($IdProductos){
+    public function buscar($IdProductos)
+    {
         $this->query = "SELECT NombreProducto
 		FROM producto WHERE IdProducto='$IdProductos'";
         $this->obtener_resultados_query();

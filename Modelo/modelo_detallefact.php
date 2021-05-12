@@ -2,13 +2,15 @@
 
 require_once "modeloAbstractoDB.php";
 
-class detalle_factura extends ModeloAbstractoDB{
+class detalle_factura extends ModeloAbstractoDB
+{
     private $IdDetalleFactura;
     private $IdFactura;
     private $IdProducto;
     private $Descuento;
 
-    function __construct(){
+    public function __construct()
+    {
 
     }
     public function consultar()
@@ -35,11 +37,9 @@ class detalle_factura extends ModeloAbstractoDB{
 
     }
 
-
-
     /**
      * Get the value of IdDetalleFactura
-     */ 
+     */
     public function getIdDetalleFactura()
     {
         return $this->IdDetalleFactura;
@@ -49,7 +49,7 @@ class detalle_factura extends ModeloAbstractoDB{
      * Set the value of IdDetalleFactura
      *
      * @return  self
-     */ 
+     */
     public function setIdDetalleFactura($IdDetalleFactura)
     {
         $this->IdDetalleFactura = $IdDetalleFactura;
@@ -59,7 +59,7 @@ class detalle_factura extends ModeloAbstractoDB{
 
     /**
      * Get the value of IdFactura
-     */ 
+     */
     public function getIdFactura()
     {
         return $this->IdFactura;
@@ -69,7 +69,7 @@ class detalle_factura extends ModeloAbstractoDB{
      * Set the value of IdFactura
      *
      * @return  self
-     */ 
+     */
     public function setIdFactura($IdFactura)
     {
         $this->IdFactura = $IdFactura;
@@ -79,7 +79,7 @@ class detalle_factura extends ModeloAbstractoDB{
 
     /**
      * Get the value of IdProducto
-     */ 
+     */
     public function getIdProducto()
     {
         return $this->IdProducto;
@@ -89,7 +89,7 @@ class detalle_factura extends ModeloAbstractoDB{
      * Set the value of IdProducto
      *
      * @return  self
-     */ 
+     */
     public function setIdProducto($IdProducto)
     {
         $this->IdProducto = $IdProducto;
@@ -99,7 +99,7 @@ class detalle_factura extends ModeloAbstractoDB{
 
     /**
      * Get the value of Descuento
-     */ 
+     */
     public function getDescuento()
     {
         return $this->Descuento;
@@ -109,7 +109,7 @@ class detalle_factura extends ModeloAbstractoDB{
      * Set the value of Descuento
      *
      * @return  self
-     */ 
+     */
     public function setDescuento($Descuento)
     {
         $this->Descuento = $Descuento;
@@ -117,5 +117,3 @@ class detalle_factura extends ModeloAbstractoDB{
         return $this;
     }
 }
-
-?>

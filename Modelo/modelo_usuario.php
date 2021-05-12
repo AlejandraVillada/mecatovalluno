@@ -37,16 +37,16 @@ class modelo_usuario extends ModeloAbstractoDB
                 //  echo $propiedad;
             endforeach;
         endif;
-    return $this->rows[0];
+        return $this->rows[0];
     }
 
     public function consultarUsu($id = '')
     {
         if ($id != ''):
             $this->query = "
-			    SELECT IdUsuario,Usuario,IdTipoUsuario,Contrasena
-			    FROM usuarios
-	            WHERE IdUsuario = '$id'";
+				    SELECT IdUsuario,Usuario,IdTipoUsuario,Contrasena
+				    FROM usuarios
+		            WHERE IdUsuario = '$id'";
             $this->obtener_resultados_query();
         endif;
         if (count($this->rows) == 1):

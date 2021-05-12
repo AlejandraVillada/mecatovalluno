@@ -31,12 +31,12 @@ class modelo_producto extends ModeloAbstractoDB
     {
         if ($id != ''):
             $this->query = "SELECT dp.Cantidad,dp.DescripcionProducto,
-	            dp.IdDetalleProducto,m.NombreMedida,mp.NombreMateriaPrima
-	            FROM detalle_producto dp
-	            INNER JOIN Medidas m ON(dp.IdMedida=m.idMedida)
-	            INNER JOIN materiaprima mp ON(dp.IdMateriaPrima=mp.IdMateriaPrima)
-	            INNER JOIN producto p ON(dp.IdProducto=p.IdProducto)
-	            WHERE dp.IdProducto='$id'";
+		            dp.IdDetalleProducto,m.NombreMedida,mp.NombreMateriaPrima
+		            FROM detalle_producto dp
+		            INNER JOIN Medidas m ON(dp.IdMedida=m.idMedida)
+		            INNER JOIN materiaprima mp ON(dp.IdMateriaPrima=mp.IdMateriaPrima)
+		            INNER JOIN producto p ON(dp.IdProducto=p.IdProducto)
+		            WHERE dp.IdProducto='$id'";
             $this->obtener_resultados_query();
             //var_dump ($this->rows);
         endif;

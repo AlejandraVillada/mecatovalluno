@@ -8,11 +8,86 @@ require_once "modeloAbstractoDB.php";
         private $HorarioInicioProduccion;
         private $HorarioFinProduccion;
         private $Estado;
+        private $IdSede;
 
         function __construct(){
             
         } 
+        public function lista()
+    {
+        $this->query = "SELECT p.* FROM produccion p ORDER BY DiaProduccion";
+        $this->obtener_resultados_query();
+        return $this->rows;
+    }
+    public function consultarprod($id = '')
+    {
+        if ($id != ''):
+            $this->query = "SELECT p.* FROM produccion p WHERE p.Idproduccion='$id'";
+            $this->obtener_resultados_query();
+        endif;
+        return $this->rows;
+    }
 
+    public function consultar($id = '')
+    {
+        if ($id != ''):
+            // $this->query = "SELECT dp.Cantidad,dp.Descripcionproduccion,
+	        //     dp.IdDetalleproduccion,m.NombreMedida,mp.NombreMateriaPrima
+	        //     FROM detalle_produccion dp
+	        //     INNER JOIN Medidas m ON(dp.IdMedida=m.idMedida)
+	        //     INNER JOIN materiaprima mp ON(dp.IdMateriaPrima=mp.IdMateriaPrima)
+	        //     INNER JOIN produccion p ON(dp.Idproduccion=p.Idproduccion)
+	        //     WHERE dp.Idproduccion='$id'";
+            // $this->obtener_resultados_query();
+            //var_dump ($this->rows);
+        endif;
+
+        return $this->rows;
+
+    }
+
+    public function actualizar($datos = array())
+    {
+        foreach ($datos as $campo => $valor):
+            $$campo = $valor;
+        endforeach;
+        $this->query = "UPDATE produccion SET DiaProduccion='$DiaProduccion', 
+        HorarioInicioProduccion='$HorarioInicioProduccion',
+        HorarioFinProduccion='$HorarioFinProduccion',
+        Estado='$Estado',
+                WHERE Idproduccion = '$Idproduccion'
+                ";
+        $resultado = $this->ejecutar_query_simple();
+        return $resultado;
+
+    }
+
+    public function nuevo($datos = array())
+    {
+        foreach ($datos as $campo => $valor):
+            $$campo = $valor;
+        endforeach;
+        $this->query = "INSERT INTO produccion SET
+        DiaProduccion='$DiaProduccion', 
+        HorarioInicioProduccion='$HorarioInicioProduccion',
+        HorarioFinProduccion='$HorarioFinProduccion',
+        Estado='$Estado',IdSede='$IdSede'
+
+                ";
+        $resultado = $this->ejecutar_query_simple();
+        return $resultado;
+
+    }
+
+    public function editar()
+    {
+
+    }
+
+    public function borrar()
+    {
+
+    }
         public function getIdProduccion()
         {
             return $this->IdProduccion;
@@ -73,26 +148,27 @@ require_once "modeloAbstractoDB.php";
             $this->Estado = $Estado;
         }
 
-        public function lista(){
-
-        }
-
-        public function consultar(){
-
-        }
-
-        public function nuevo(){
-
-        }
-
-        public function editar(){
-
-        }
-
-        public function borrar(){
-
-        }
         
+
+        /**
+         * Get the value of IdSede
+         */ 
+        public function getIdSede()
+        {
+                return $this->IdSede;
+        }
+
+        /**
+         * Set the value of IdSede
+         *
+         * @return  self
+         */ 
+        public function setIdSede($IdSede)
+        {
+                $this->IdSede = $IdSede;
+
+                return $this;
+        }
     }
 
 ?>

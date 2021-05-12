@@ -10,27 +10,27 @@ class modelo_ciudad extends ModeloAbstractoDB
 
     public function __construct()
     {
-       
+
     }
-    public function consultar($id='')
+    public function consultar($id = '')
     {
-        if($id != ''):
+        if ($id != ''):
             $this->query = "
-		    SELECT IdCiudad,IdPais,NombreCiudad
-		    FROM ciudad
-            WHERE IdCiudad = '$id'";
+			    SELECT IdCiudad,IdPais,NombreCiudad
+			    FROM ciudad
+	            WHERE IdCiudad = '$id'";
             $this->obtener_resultados_query();
         endif;
-        if(count($this->rows) == 1):
-            foreach ($this->rows[0] as $propiedad=>$valor):
+        if (count($this->rows) == 1):
+            foreach ($this->rows[0] as $propiedad => $valor):
                 $this->$propiedad = $valor;
             endforeach;
         endif;
     }
 
-    public function nuevo($datos=array())
+    public function nuevo($datos = array())
     {
-        foreach ($datos as $campo=>$valor):
+        foreach ($datos as $campo => $valor):
             $$campo = $valor;
         endforeach;
         $this->query = "
@@ -40,9 +40,9 @@ class modelo_ciudad extends ModeloAbstractoDB
         $resultado = $this->ejecutar_query_simple();
         return $resultado;
     }
-    public function editar($datos=array())
+    public function editar($datos = array())
     {
-        foreach ($datos as $campo=>$valor):
+        foreach ($datos as $campo => $valor):
             $$campo = $valor;
         endforeach;
         $this->query = "
@@ -65,8 +65,8 @@ class modelo_ciudad extends ModeloAbstractoDB
 		SELECT IdCiudad,NombreCiudad,p.NombrePais
 		FROM ciudad AS c INNER JOIN pais AS p
         ON(c.IdPais = p.IdPais)";
-		$this->obtener_resultados_query();
-		return $this->rows;
+        $this->obtener_resultados_query();
+        return $this->rows;
 
     }
 

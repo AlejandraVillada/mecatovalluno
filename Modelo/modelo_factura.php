@@ -1,17 +1,17 @@
 <?php
 require_once "modeloAbstractoDB.php";
 
-class modelo_factura extends ModeloAbstractoDB{
+class modelo_factura extends ModeloAbstractoDB
+{
     private $IdFactura;
     private $Subtotal;
     private $TotalFactura;
     private $Id_Cliente;
-    
-  
 
-    function __construct(){
-        
-    } 
+    public function __construct()
+    {
+
+    }
 
     public function getIdFactura()
     {
@@ -53,28 +53,29 @@ class modelo_factura extends ModeloAbstractoDB{
         $this->Id_Cliente = $Id_Cliente;
     }
 
-   
-   
-    public function lista(){
+    public function lista()
+    {
 
     }
 
-    public function consultar(){
+    public function consultar()
+    {
 
     }
 
-    public function nuevo(){
+    public function nuevo()
+    {
 
     }
 
-    public function editar(){
+    public function editar()
+    {
 
     }
 
-    public function borrar(){
+    public function borrar()
+    {
 
     }
-    
+
 }
-
-?>

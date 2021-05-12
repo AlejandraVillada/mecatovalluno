@@ -1,33 +1,36 @@
 <?php
 require_once "modeloAbstractoDB.php";
 
-class modelo_materiaPrima extends ModeloAbstractoDB {
+class modelo_materiaPrima extends ModeloAbstractoDB
+{
     private $IdMateriaPrima;
     private $NombreMateriaPrima;
     private $Stock;
     private $IdMedida;
     private $NombreMedida;
-  
 
-    function __construct(){
-        
-    } 
+    public function __construct()
+    {
+
+    }
     // abstract protected function consultar();
     // abstract protected function nuevo();
     // abstract protected function editar();
     // abstract protected function borrar();
     // abstract protected function lista();
-    public function lista(){
-        $this->query="SELECT mp.*,m.NombreMedida FROM materiaprima mp 
+    public function lista()
+    {
+        $this->query = "SELECT mp.*,m.NombreMedida FROM materiaprima mp
         INNER JOIN Medidas m ON(mp.IdMedida=m.idMedida)ORDER BY NombreMateriaPrima";
-		$this->obtener_resultados_query();
-		return $this->rows;
+        $this->obtener_resultados_query();
+        return $this->rows;
     }
 
-    public function consultar($id=''){
-        if($id != ''):
-            $this->query = "SELECT mp.*,m.NombreMedida FROM materiaprima mp 
-            INNER JOIN Medidas m ON(mp.IdMedida=m.idMedida) WHERE mp.IdMateriaPrima='$id'";
+    public function consultar($id = '')
+    {
+        if ($id != ''):
+            $this->query = "SELECT mp.*,m.NombreMedida FROM materiaprima mp
+	            INNER JOIN Medidas m ON(mp.IdMedida=m.idMedida) WHERE mp.IdMateriaPrima='$id'";
             $this->obtener_resultados_query();
             //var_dump ($this->rows);
         endif;
@@ -36,16 +39,17 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
         //         $this->$propiedad = $valor;
         //     endforeach;
         // endif;
-		return $this->rows;
+        return $this->rows;
 
     }
 
-    public function actualizar($datos=array()){
-        foreach ($datos as $campo=>$valor):
+    public function actualizar($datos = array())
+    {
+        foreach ($datos as $campo => $valor):
             $$campo = $valor;
         endforeach;
-        $Stock1=$Stock+$datos['Cantidad_Actual'];
-        
+        $Stock1 = $Stock + $datos['Cantidad_Actual'];
+
         $this->query = "UPDATE materiaprima SET Stock='$Stock1'
         WHERE IdMateriaPrima = '$IdMateriaPrima'
         ";
@@ -53,23 +57,19 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
         return $resultado;
 
     }
-    public function borrar(){
+    public function borrar()
+    {
 
     }
 
-   
-    public function editar(){
-        
+    public function editar()
+    {
+
     }
-    public function nuevo(){
-        
+    public function nuevo()
+    {
+
     }
-
-
-
-
-
-
 
     public function getIdMateriaPrima()
     {
@@ -101,13 +101,9 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
         $this->Stock = $Stock;
     }
 
-
-   
-    
-
     /**
      * Get the value of IdMedida
-     */ 
+     */
     public function getIdMedida()
     {
         return $this->IdMedida;
@@ -117,7 +113,7 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
      * Set the value of IdMedida
      *
      * @return  self
-     */ 
+     */
     public function setIdMedida($IdMedida)
     {
         $this->IdMedida = $IdMedida;
@@ -127,7 +123,7 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
 
     /**
      * Get the value of NombreMedida
-     */ 
+     */
     public function getNombreMedida()
     {
         return $this->NombreMedida;
@@ -137,7 +133,7 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
      * Set the value of NombreMedida
      *
      * @return  self
-     */ 
+     */
     public function setNombreMedida($NombreMedida)
     {
         $this->NombreMedida = $NombreMedida;
@@ -145,5 +141,3 @@ class modelo_materiaPrima extends ModeloAbstractoDB {
         return $this;
     }
 }
-
-?>
