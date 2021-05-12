@@ -1,5 +1,6 @@
 <?php
-require_once "modeloAbstractoDB.php";
+
+    require_once "modeloAbstractoDB.php";
 
 class modelo_nomina extends ModeloAbstractoDB
 {
@@ -17,35 +18,14 @@ class modelo_nomina extends ModeloAbstractoDB
         return $this->IdNomina;
     }
 
-    public function setIdNomina($IdNomina)
-    {
-        $this->IdNomina = $IdNomina;
-
-        return $this;
-    }
-
     public function getFechaNomina()
     {
         return $this->FechaNomina;
     }
 
-    public function setFechaNomina($FechaNomina)
-    {
-        $this->FechaNomina = $FechaNomina;
-
-        return $this;
-    }
-
     public function getTotalNomina()
     {
         return $this->TotalNomina;
-    }
-
-    public function setTotalNomina($TotalNomina)
-    {
-        $this->TotalNomina = $TotalNomina;
-
-        return $this;
     }
 
     public function lista()
