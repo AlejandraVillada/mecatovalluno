@@ -1,7 +1,7 @@
 <?php
 require_once "../Modelo/modelo_clientes.php";
 header('Content-Type: application/json');
-$datos = $_GET; //datos
+$datos = $_GET; //datos pruebaaaa
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
