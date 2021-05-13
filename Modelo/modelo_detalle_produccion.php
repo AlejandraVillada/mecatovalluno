@@ -2,29 +2,31 @@
 
 require_once "modeloAbstractoDB.php";
 
-class detalle_produccion extends ModeloAbstractoDB{
+class detalle_produccion extends ModeloAbstractoDB
+{
     private $IdDetalleProduccion;
     private $IdProduccion;
-    private $IdProduccion;
+    private $IdProducto;
     private $CantidadProduccion;
     private $CantidadProductoTerminado;
+    private $seq;
 
-    function __construct(){
+    public function __construct()
+    {
 
     }
-    
 
     public function consultar($id = '', $producto = '')
     {
-       
+
         if ($id != ''):
             $this->query = "SELECT dp.CantidadProduccion,dp.IdProduccion,dp.DescripcionProducto, dp.IdDetalleProduccion,
-		            m.IdMedida,mp.NombreMateriaPrima,dp.IdProducto
-		            FROM detalle_produccion dp
-		            INNER JOIN Medidas m ON(dp.IdMedida=m.idMedida)
-		            INNER JOIN materiaprima mp ON(dp.IdProducto=mp.IdProducto)
-		            INNER JOIN producto p ON(dp.IdProducto=p.IdProducto)
-		            WHERE dp.IdDetalleProduccion='$id' AND dp.IdProducto='$producto'";
+										            m.IdMedida,mp.NombreMateriaPrima,dp.IdProducto
+										            FROM detalle_produccion dp
+										            INNER JOIN Medidas m ON(dp.IdMedida=m.idMedida)
+										            INNER JOIN materiaprima mp ON(dp.IdProducto=mp.IdProducto)
+										            INNER JOIN producto p ON(dp.IdProducto=p.IdProducto)
+										            WHERE dp.IdDetalleProduccion='$id' AND dp.IdProducto='$producto'";
             $this->obtener_resultados_query();
             //var_dump ($this->rows);
         endif;
@@ -78,20 +80,179 @@ class detalle_produccion extends ModeloAbstractoDB{
 
     public function lista()
     {
-        
 
     }
-    public function buscar($IdProducto){
-        $this->query = "SELECT NombreProducto
-		FROM producto WHERE IdProducto='$IdProducto'";
+
+    public function buscar($IdProducto)
+    {
+        //echo $IdProducto;
+        $this->query = "SELECT dp.IdMateriaPrima,dp.Cantidad,dp.IdMedida,m.NombreMedida
+		FROM detalle_producto dp
+        INNER JOIN Medidas m ON(dp.IdMedida=m.idMedida)
+         WHERE dp.IdProducto='$IdProducto'";
         $this->obtener_resultados_query();
         return $this->rows;
     }
+    public function cantidadmaxima($id)
+    {
 
+        $producto = $this->buscar($id);
+        $this->rows = null;
+        $this->query = "SELECT mp.IdMateriaPrima,mp.Stock,m.NombreMedida
+		FROM materiaprima mp
+        INNER JOIN Medidas m ON(mp.IdMedida=m.IdMedida)";
+        $this->obtener_resultados_query();
+        $materiaprima = $this->rows;
 
+        // var_dump($materiaprima);
+
+        foreach ($producto as $key => $value) {
+            $stock;
+            $idmp;
+            $cantidad;
+            $idmp = 0;
+            foreach ($value as $key1 => $value1) {
+                $x = 0;
+
+                if ($key1 == "IdMateriaPrima") {
+                    $idmp = $value1;
+                    for ($i = 0; $i < count($materiaprima); $i++) {
+                        $x = 0;
+                        foreach ($materiaprima[$i] as $key2 => $value2) {
+                            if ($key2 == "IdMateriaPrima") {
+                                if ($value1 == $value2) {
+                                    $x = 1;
+                                }
+
+                            } else {
+                                if ($x == 1 && $key2 == "Stock") {
+                                    $stock = $value2;
+                                }
+                                if ($x == 1 && $key2 == "NombreMedida") {
+                                    $medida = $value2;
+                                }
+                            }
+                        }
+                    }
+                } else {
+
+                    if ($key1 == "Cantidad") {
+                        $cantidad = $value1;
+
+                    }if ($key1 == "NombreMedida") {
+                        if ($medida == $value1) {
+                            $restante = $stock - $cantidad;
+
+                            $x = $this->validar($stock, $cantidad);
+                            if ($restante > 0) {
+                                $valor[] = array("Id" => $idmp, "val" => "ok", "veces" => $x);
+                            } else {
+                                $valor[] = array("Id" => $idmp, "val" => "No ok", "veces" => $x);
+
+                            }
+                        } else {
+                            $a = 0;
+                            $b = 0;
+                            $x = 0;
+                            // var_dump("fffff" . $cantidad);
+                            // var_dump($idmp);
+
+                            $hola = $this->validarmedida($value1, $medida, $cantidad);
+                            $restante = $stock - $hola;
+                            // var_dump("Medida" . $value1 . "Medida" . $medida . "Cantidad" . $cantidad);
+                            // echo ("stock" . $stock . "restar" . $hola . "resultado:" . $this->validarmedida($value1, $medida, $cantidad));
+                            $x = $this->validar($stock, $hola);
+
+                            //var_dump($restante);
+                            if ($restante > 0) {
+                                $valor[] = array("Id" => $idmp, "val" => "ok", "veces" => $x);
+                            } else {
+                                $valor[] = array("Id" => $idmp, "val" => "No ok", "veces" => $x);
+
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+        // var_dump($valor);
+        $c = 0;
+        $d = 0;
+        $a = array();
+        foreach ($valor as $key => $value) {
+            foreach ($value as $key1 => $value1) {
+                if ($key1 == "veces") {
+                    $a[] = $value1;
+                } else if ($value1 == "No ok") {
+                    $c++;
+                }
+            }
+        }
+        $d = min($a);
+        // echo $d;
+        if ($c > 0) {
+            return array("Habilitado" => "No", "max" => $d);
+        } else {
+            return array("Habilitado" => "Si", "max" => $d);
+        }
+    }
+    private function validar($stock, $valor)
+    {
+        $c = 0;
+        // echo $stock . "-" . $valor;
+        $c = $stock / $valor;
+
+        return round($c, 0, PHP_ROUND_HALF_DOWN);
+
+    }
+
+    private function validarmedida($medidainicial, $medidafinal, $valor)
+    {
+        switch ($medidainicial) {
+            case 'Libras':
+                if ($medidafinal == "Kilos") {
+                    return $valor / 2;
+                } else if ($medidafinal == "Gramos") {
+                    return $valor * 500;
+                }
+
+                break;
+            case 'Kilos':
+                if ($medidafinal == "Libras") {
+                    return $valor * 2;
+                } else if ($medidafinal == "Gramos") {
+                    return $valor * 1000;
+                }
+
+                break;
+            case 'Panales':
+                if ($medidafinal == "Unidades") {
+                    return $valor * 30;
+                }
+
+                break;
+            case 'Cucharada':
+                if ($medidafinal == "Gramos") {
+                    return $valor * 30;
+                }
+
+                break;
+            case 'Gramos':
+                if ($medidafinal == "Kilos") {
+                    return $valor * 0.001;
+                } else if ($medidafinal == "Libras") {
+                    return $valor * 0.00220462;
+                }
+
+                break;
+
+        }
+
+    }
     /**
      * Get the value of IdDetalleProduccion
-     */ 
+     */
     public function getIdDetalleProduccion()
     {
         return $this->IdDetalleProduccion;
@@ -101,7 +262,7 @@ class detalle_produccion extends ModeloAbstractoDB{
      * Set the value of IdDetalleProduccion
      *
      * @return  self
-     */ 
+     */
     public function setIdDetalleProduccion($IdDetalleProduccion)
     {
         $this->IdDetalleProduccion = $IdDetalleProduccion;
@@ -111,7 +272,7 @@ class detalle_produccion extends ModeloAbstractoDB{
 
     /**
      * Get the value of IdProduccion
-     */ 
+     */
     public function getIdProduccion()
     {
         return $this->IdProduccion;
@@ -121,7 +282,7 @@ class detalle_produccion extends ModeloAbstractoDB{
      * Set the value of IdProduccion
      *
      * @return  self
-     */ 
+     */
     public function setIdProduccion($IdProduccion)
     {
         $this->IdProduccion = $IdProduccion;
@@ -130,28 +291,28 @@ class detalle_produccion extends ModeloAbstractoDB{
     }
 
     /**
-     * Get the value of IdProduccion
-     */ 
-    public function getIdProduccion()
+     * Get the value of IdProducto
+     */
+    public function getIdProducto()
     {
-        return $this->IdProduccion;
+        return $this->IdProducto;
     }
 
     /**
-     * Set the value of IdProduccion
+     * Set the value of IdProducto
      *
      * @return  self
-     */ 
-    public function setIdProduccion($IdProduccion)
+     */
+    public function setIdProducto($IdProducto)
     {
-        $this->IdProduccion = $IdProduccion;
+        $this->IdProducto = $IdProducto;
 
         return $this;
     }
 
     /**
      * Get the value of CantidadProduccion
-     */ 
+     */
     public function getCantidadProduccion()
     {
         return $this->CantidadProduccion;
@@ -161,7 +322,7 @@ class detalle_produccion extends ModeloAbstractoDB{
      * Set the value of CantidadProduccion
      *
      * @return  self
-     */ 
+     */
     public function setCantidadProduccion($CantidadProduccion)
     {
         $this->CantidadProduccion = $CantidadProduccion;
@@ -171,7 +332,7 @@ class detalle_produccion extends ModeloAbstractoDB{
 
     /**
      * Get the value of CantidadProductoTerminado
-     */ 
+     */
     public function getCantidadProductoTerminado()
     {
         return $this->CantidadProductoTerminado;
@@ -181,13 +342,31 @@ class detalle_produccion extends ModeloAbstractoDB{
      * Set the value of CantidadProductoTerminado
      *
      * @return  self
-     */ 
+     */
     public function setCantidadProductoTerminado($CantidadProductoTerminado)
     {
         $this->CantidadProductoTerminado = $CantidadProductoTerminado;
 
         return $this;
     }
-}
 
-?>
+    /**
+     * Get the value of seq
+     */
+    public function getSeq()
+    {
+        return $this->seq;
+    }
+
+    /**
+     * Set the value of seq
+     *
+     * @return  self
+     */
+    public function setSeq($seq)
+    {
+        $this->seq = $seq;
+
+        return $this;
+    }
+}

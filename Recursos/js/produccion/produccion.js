@@ -170,10 +170,10 @@ function Produccion() {
                 if (!resultado.data == "") {
                     secuencia = parseFloat(resultado.data);
                     secuencia2 = secuencia + secuencia1;
-                    // console.log(secuencia2);
+                     console.log("secuencia"+secuencia2);
                 } else {
                     secuencia2 = 1;
-                    // console.log(secuencia2);
+                     console.log("secuencia"+secuencia2);
 
                 }
                 $("#IdProduccion").val(IdProduccion);
@@ -186,29 +186,46 @@ function Produccion() {
             $.ajax({
                 type: "get",
                 // url: "Controlador/controlador_inventarioMP.php",
-                url: "../../../Controlador/controlador_mp.php",
+                url: "../../../Controlador/controlador_inventarioprodterminado.php",
                 data: { accion: 'listar' },
                 dataType: "json"
             }).done(function (resultado) {
-                $("#editar #MP").append("<option>Seleccione el producto</option>");
+                $("#editar #IdProductoTerminado").append("<option>Seleccione el producto</option>");
                 $.each(resultado.data, function (index, value) {
 
-                    $("#editar #MP").append("<option value='" + value.IdMateriaPrima + "'>" + value.NombreMateriaPrima + "</option>")
+                    $("#editar #IdProductoTerminado").append("<option data-cantidad='"+value.CantidadProducto+"' value='" + value.IdProducto + "'>" + value.NombreProducto + "</option>")
 
                 });
 
             });
-            $.ajax({
-                type: "post",
-                // url: "Controlador/controlador_inventarioMP.php",
-                url: "../../../Controlador/controlador_detalleproduccion.php",
-                data: { accion: 'listarmedida' },
-                dataType: "json"
-            }).done(function (resultado) {
-                $("#editar #Medidas").append("<option>Seleccione la Medida</option>");
-                $.each(resultado.data, function (index, value) {
-                    $("#editar #Medidas").append("<option value='" + value.IdMedida + "'>" + value.NombreMedida + "</option>")
+            $("select[id=IdProductoTerminado]").change(function() {
+                
+                var cantidad=$(this).children('option:selected').data('cantidad');
+
+                $("#Cantidadunidades").val(cantidad);
+                var prod = $('select[name=IdProductoTerminado]').val();
+                console.log(prod);
+                $.ajax({
+                    type: "post",
+                    // url: "Controlador/controlador_inventarioMP.php",
+                    url: "../../../Controlador/controlador_detalleproduccion.php",
+                    data: { accion: 'cantidadmaxima',IdProduccion:prod },
+                    dataType: "json"
+                }).done(function (resultado) {
+                    
+                    if (resultado.data.Habilitado=="Si") {
+                        
+                    }else  {
+                        swal({
+                            position: 'center',
+                            type: 'error',
+                            title: 'No puede agregar al inventario el producto porque no hay materia prima suficiente para su producción',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
                 });
+
             });
 
             $("#editar #formcreardetPT").on("submit", function (e) {
