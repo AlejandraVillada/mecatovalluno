@@ -15,8 +15,8 @@ if (!empty($_GET['accion'])) {
     if (!empty($_POST['iddetalle'])) {
         $iddetalle = $_POST['iddetalle'];
     }
-    if (!empty($_POST['IdProducto'])) {
-        $IdProducto = $_POST['IdProducto'];
+    if (!empty($_POST['IdProduccion'])) {
+        $IdProduccion = $_POST['IdProduccion'];
     }
     //  $id = $_POST['id'];
     $accion = $_POST['accion'];
@@ -62,11 +62,17 @@ switch ($accion) {
         break;
     case 'secuencia':
         // var_dump($IdProducto);
-        $datos = $detalle_produccion->consultarsec($IdProducto);
+        $datos = $detalle_produccion->consultarsec($IdProduccion);
         echo json_encode(array('data' => $detalle_produccion->getSeq()), JSON_UNESCAPED_UNICODE);
         break;
     case "buscar":
-        $datos = $detalle_produccion->buscar($IdProducto);
+        $datos = $detalle_produccion->buscar($IdProduccion);
         echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
         break;
+
+    case "cantidadmaxima":
+        $datos = $detalle_produccion->cantidadmaxima($IdProduccion);
+        echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
+        break;
+    break;
 }
