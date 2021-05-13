@@ -1,8 +1,5 @@
-<!-- No funciona el alerta, pero graba y modifica normal -->
-<?php
-    $cedula = $_GET['id'];
-?>
-
+<?php session_start(); ?>
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +20,7 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
     <link rel="stylesheet" href="../../layout/Style.css">
-</head>
+</head> -->
 
 <body>
     <div class="container" id="editado">
@@ -38,18 +35,9 @@
             <div class="card-header bg-dark text-center text-white titulo">Datos Personales del Empleado</div>
             <div class="card">
                 <div class="card-body">
-                    <!-- Cambio y eliminacion en el servidor, poner variable sesion para datos de cedula de consulta -->
-                    <div id="ingreso">
-                        <div class="form-group">
-                            <label>Cedula</label>
-                            <input type="text" class="form-control" id="Cedula" name="Cedula"
-                                placeholder="Modifique ID o CC del Empleado" value="">
-                        </div>
 
-                        <button id="enviar" name="enviar" class="btn btn-dark">Enviar Cedula</button>
-
-                    </div>
-
+                    <input type="hidden" class="form-control" id="Cedula" name="Cedula"
+                        value="<?php echo $_SESSION['IdEmpleado']; ?>">
                     <div class="cuerpo">
                         <form id="formModificarEmpleado">
                             <div class="form-group">
@@ -104,15 +92,17 @@
                             </form>
                         </div>
                         <br>
-                        <button class="btn btn-info" id="actualizar">Actualizar Información</button>
-                        <button class="btn btn-dark" id="apareceUsu">Cambiar Contraseña</button>
+                        <div class="form-group">
+                            <button class="btn btn-info" id="actualizar">Actualizar Información</button>
+                            <button class="btn btn-dark" id="apareceUsu">Cambiar Contraseña</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
@@ -130,7 +120,10 @@
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.all.js"></script>
-<script src="../../../Recursos/js/empleados/actualizacion_datos.js"></script>
+<script src="../../../Recursos/js/empleados/actualizacion_datos.js"></script> -->
+
+<script src="Recursos/js/empleados/actualizacion_datos.js"></script>
+<?php $id= $_SESSION['IdEmpleado']; ?>
 
 <script>
 $(document).ready(actDatos);

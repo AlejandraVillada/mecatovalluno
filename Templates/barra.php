@@ -14,7 +14,8 @@
                 </span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
-            <nav class="navbar navbar-static-top  " style="justify-content:normal;background-color: rgb(0,0,0,0.2); display:block;">
+            <nav class="navbar navbar-static-top  "
+                style="justify-content:normal;background-color: rgb(0,0,0,0.2); display:block;">
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle " data-toggle="push-menu" role="button"></a>
 
@@ -29,20 +30,24 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
-                                <li class="user-header">
+                                <li class="user-header" style="background-color: lightgray;">
                                     <!-- <img src="./Recursos/img/<?php //echo $_SESSION['foto'] ?>" class="img-circle" alt="User Image"> -->
 
-                                    <p>
-                                        <?php //echo $_SESSION["nombre"] . "- Docente"; ?>
+                                    <p style="color: black;">
+                                        <?php echo $_SESSION["NombreEmpleado"] . " - ".$_SESSION['TipoUsuario']; ?>
                                         <small>Informacion Breve del Empleado</small>
+                                        <br>
+                                        <small><?php echo "Usuario: ".$_SESSION["Usuario"] ?></small>
+                                        <small><?php echo "Sede: ".$_SESSION["Sede"] ?></small>
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
 
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="./Vista/php/Empleados/Actualizacion_datos.php" class="btn btn-default btn-flat">Perfil</a>
+                                    <div class="pull-left actualizarDatos">
+                                        <a href="./Vista/php/Empleados/Actualizacion_datos.php"
+                                            class="btn btn-default btn-flat">Actualizar datos personales</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="login.php?cerrar_session=true"

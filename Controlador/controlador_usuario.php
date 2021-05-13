@@ -2,6 +2,8 @@
 
 require_once "../Modelo/modelo_usuario.php";
 require_once "../Modelo/modelo_tipo_usuario.php";
+require_once "../Modelo/modelo_empleados.php";
+require_once "../Modelo/modelo_sede.php";
 header('Content-Type: application/json');
 
 ini_set('display_errors', 1);
@@ -24,10 +26,21 @@ switch ($accion) {
     case 'login':
         $usuario = new modelo_usuario();
         $resultado = $usuario->consultar($datos);
+        // Empleado
+        $empleado = new modelo_empleados();
+        $empleado->consultar($usuario->getIdUsuario());
+        // tipo usuario
+        $tipoUsu = new modelo_tipo_usuario();
+        $tipoUsu->consultar($usuario->getIdTipoUsuario());
+        //Sede
+        $sede = new modelo_sede();
+        $sede->consultar($empleado->getIdSede());
+        // echo $empleado->getNombreEmpleado();
         //     echo "id".$usuario->getIdUsuario();
         //    echo "contra".$usuario->getContrasena();
         // var_dump($resultado);
-        if ($usuario->getIdUsuario() == null) {
+        
+        if ($usuario->getIdUsuario() == null && $empleado->getIdEstado()==1) {
             $respuesta = array(
                 'respuesta' => 'no existe',
             );
@@ -36,7 +49,14 @@ switch ($accion) {
             if (password_verify($datos['password'], $resultado['Contrasena'])) {
                 session_start();
                 $_SESSION['Usuario'] = $usuario->getUsuario();
-
+                $_SESSION['IdEmpleado']= $empleado->getIdEmpleado();
+                $_SESSION['NombreEmpleado']= $empleado->getNombreEmpleado();
+                $_SESSION['IdTipoUsuario']= $usuario->getIdTipoUsuario();
+                $_SESSION['TipoUsuario']= $tipoUsu->getTipoUsuario();
+                $_SESSION['IdSede']= $empleado->getIdSede();
+                $_SESSION['Sede']= $sede->getNombreSede();
+                $_SESSION['IdEstado']= $empleado->getIdEstado();
+                
                 $respuesta = array(
                     'respuesta' => 'existe',
                 );
@@ -49,7 +69,7 @@ switch ($accion) {
         }
         echo json_encode($respuesta);
         break;
-        break;
+
 
     case 'editar':
         $usuario = new modelo_usuario();

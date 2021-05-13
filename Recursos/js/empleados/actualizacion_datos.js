@@ -1,42 +1,38 @@
 function actDatos() {
 
-    $(".cuerpo").hide();
     $(".usuario").hide();
 
-    //prueba
+    var codigo = $("#Cedula").val();
+    $.ajax({
+        type: "get",
+        url: "Controlador/controlador_empleados.php",
+        // url: "../../../Controlador/controlador_empleados.php",
+        data: { codigo: codigo, accion: 'consultar' },
+        dataType: "json"
+    }).done(function(empleado) {
+        if (empleado.respuesta === "No Existe El Empleado") {
+            swal({
+                type: 'error',
+                title: '¡Error!',
+                text: '¡El Empleado No Existe!'
+            })
+        } else {
+            $(".cuerpo").show();
+            $("#ingreso").hide();
+            $("#IdEmpleado").val(empleado.codigo);
+            $("#NombreEmpleado").val(empleado.nombre);
+            $("#Email").val(empleado.email);
+            $("#SueldoBase").val(empleado.sueldo);
+            $("#Telefono").val(empleado.telefono);
+            $("#Cargo").val(empleado.cargo);
+            $("#IdSede").val(empleado.sede);
+            $("#IdEstado").val(empleado.estado);
+        }
 
-    $("#ingreso").on("click", "button#enviar", function() {
-        var codigo = $("#Cedula").val();
         $.ajax({
             type: "get",
-            url: "../../../Controlador/controlador_empleados.php",
-            data: { codigo: codigo, accion: 'consultar' },
-            dataType: "json"
-        }).done(function(empleado) {
-            if (empleado.respuesta === "No Existe El Empleado") {
-                swal({
-                    type: 'error',
-                    title: '¡Error!',
-                    text: '¡El Empleado No Existe!'
-                })
-            } else {
-                $(".cuerpo").show();
-                $("#ingreso").hide();
-                $("#IdEmpleado").val(empleado.codigo);
-                $("#NombreEmpleado").val(empleado.nombre);
-                $("#Email").val(empleado.email);
-                $("#SueldoBase").val(empleado.sueldo);
-                $("#Telefono").val(empleado.telefono);
-                $("#Cargo").val(empleado.cargo);
-                $("#IdSede").val(empleado.sede);
-                $("#IdEstado").val(empleado.estado);
-            }
-        });
-        // var codigo2 = $("#IdEmpleado").val();
-        // console.log(codigo2);
-        $.ajax({
-            type: "get",
-            url: "../../../Controlador/controlador_usuario.php",
+            url: "Controlador/controlador_usuario.php",
+            // url: "../../../Controlador/controlador_usuario.php",
             data: { codigo: codigo, accion: 'consultar' },
             dataType: "json"
         }).done(function(usuario) {
@@ -60,30 +56,6 @@ function actDatos() {
         $(".usuario").show();
         $("#apareceUsu").hide();
         $("#Contrasena").val('');
-        // var codigo2 = $("#IdEmpleado").val();
-        // console.log(codigo2);
-        // $(".usuario").show();
-        // $.ajax({
-        //     type: "get",
-        //     url: "../../../Controlador/controlador_usuario.php",
-        //     data: { codigo: codigo2, accion: 'consultar' },
-        //     dataType: "json"
-        // }).done(function(usuario) {
-        //     console.log(usuario);
-        //     if (usuario.respuesta === "no existe") {
-        //         swal({
-        //             type: 'error',
-        //             title: 'Oops...',
-        //             text: 'Usuario no existe!'
-        //         })
-        //     } else {
-        //         $("#apareceUsu").hide();
-        //         $("#IdUsuario").val(usuario.codigo);
-        //         $("#Usuario").val(usuario.usuario);
-        //         $("#IdTipoUsuario").val(usuario.tipoUsuario);
-        //         $("#Contrasena").val(usuario.contrasena);
-        //     }
-        // });
     });
 
     $(".cuerpo").on("click", "button#actualizar", function() {
@@ -91,7 +63,8 @@ function actDatos() {
         console.log(datos);
         $.ajax({
             type: "get",
-            url: "../../../Controlador/controlador_empleados.php",
+            url: "Controlador/controlador_empleados.php",
+            // url: "../../../Controlador/controlador_empleados.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
@@ -101,7 +74,8 @@ function actDatos() {
                 var hash;
                 $.ajax({
                     type: "get",
-                    url: "../../../Funciones/generarPassword.php",
+                    url: "Funciones/generarPassword.php",
+                    // url: "../../../Funciones/generarPassword.php",
                     data: { pass: contrasena },
                     dataType: "json"
                 }).done(function(resultado) {
@@ -109,11 +83,13 @@ function actDatos() {
                     var data = datos2 + '&Contrasena=' + hash;
                     $.ajax({
                         type: "get",
-                        url: "../../../Controlador/controlador_usuario.php",
+                        url: "Controlador/controlador_usuario.php",
+                        // url: "../../../Controlador/controlador_usuario.php",
                         data: data,
                         dataType: "json"
                     }).done(function(resultado) {
                         if (resultado.respuesta) {
+                            location.href = 'adminper.php';
                             swal({
                                 position: 'center',
                                 type: 'success',
@@ -121,6 +97,7 @@ function actDatos() {
                                 showConfirmButton: false,
                                 timer: 1500
                             })
+
                         } else {
                             swal({
                                 type: 'error',

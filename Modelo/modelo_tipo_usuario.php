@@ -42,9 +42,21 @@ class modelo_tipo_usuario extends ModeloAbstractoDB
 
     }
 
-    public function consultar()
+    public function consultar($id='')
     {
-
+        if ($id != ''):
+            $this->query = "
+                    SELECT IdTipoUsuario,TipoUsuario
+                    FROM tipo_usuario
+	                WHERE IdTipoUsuario = '$id'
+	                ";
+            $this->obtener_resultados_query();
+        endif;
+        if (count($this->rows) == 1):
+            foreach ($this->rows[0] as $propiedad => $valor):
+                $this->$propiedad = $valor;
+            endforeach;
+        endif;
     }
 
     public function nuevo()

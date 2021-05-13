@@ -106,14 +106,16 @@ class modelo_empleados extends ModeloAbstractoDB
 
     public function consultar($IdEmpleado = '')
     {
+        // echo $IdEmpleado;
         if ($IdEmpleado != ''):
             $this->query = "
 					SELECT IdEmpleado, NombreEmpleado, Email, SueldoBase, Telefono, Cargo, IdSede, IdEstado
 					FROM empleados
-					WHERE IdEmpleado = '$IdEmpleado' ORDER BY IdEmpleado
+					WHERE IdEmpleado = '$IdEmpleado'
 					";
             $this->obtener_resultados_query();
         endif;
+        // var_dump($this->rows);
         if (count($this->rows) == 1):
             foreach ($this->rows[0] as $propiedad => $valor):
                 $this->$propiedad = $valor;

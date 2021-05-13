@@ -255,3 +255,10 @@ div .descripcion_prod {
     float: right;
     margin: 10px;
 }
+
+
+/* barra */
+
+.user-header {
+    background-color: lightgray;
+}
