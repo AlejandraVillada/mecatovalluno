@@ -10,9 +10,12 @@ function usuario() {
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
-            console.log(resultado);
             if (resultado.respuesta == "existe") {
-                location.href = "adminper.php";
+                if (resultado.tipoUsuario != 5) {
+                    location.href = "adminper.php";
+                } else if (resultado.tipoUsuario == 5) {
+                    location.href = "Vista/home/index.php";
+                }
             } else {
                 swal({
                         position: 'center',

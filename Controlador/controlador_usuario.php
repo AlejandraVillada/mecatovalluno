@@ -4,6 +4,7 @@ require_once "../Modelo/modelo_usuario.php";
 require_once "../Modelo/modelo_tipo_usuario.php";
 require_once "../Modelo/modelo_empleados.php";
 require_once "../Modelo/modelo_sede.php";
+require_once "../Modelo/modelo_clientes.php";
 header('Content-Type: application/json');
 
 ini_set('display_errors', 1);
@@ -26,31 +27,42 @@ switch ($accion) {
     case 'login':
         $usuario = new modelo_usuario();
         $resultado = $usuario->consultar($datos);
-        // Empleado
+        // Empleado y cliente
+        $cliente = new clientes();
         $empleado = new modelo_empleados();
-        $empleado->consultarEmp($usuario->getIdUsuario());
+        $tipo='';
+        if($usuario->getIdTipoUsuario()!=5){
+            $empleado = new modelo_empleados();
+            $empleado->consultarEmp($usuario->getIdUsuario());
+            $tipo=$empleado->getIdEmpleado();
+        }else if($usuario->getIdTipoUsuario()==5){
+           
+            $cliente->consultar($usuario->getIdUsuario());
+            $tipo=$cliente->getIdCliente();
+        }
         // tipo usuario
         $tipoUsu = new modelo_tipo_usuario();
         $tipoUsu->consultar($usuario->getIdTipoUsuario());
         //Sede
         $sede = new modelo_sede();
         $sede->consultar($empleado->getIdSede());
+        // var_dump($tipo);
+       
         // echo $empleado->getNombreEmpleado();
         //     echo "id".$usuario->getIdUsuario();
         //    echo "contra".$usuario->getContrasena();
         // var_dump($resultado);
         // var_dump($empleado->getIdEmpleado().'usuario'.$usuario->getIdUsuario());
         
-        if($usuario->getIdUsuario()!=null && $empleado->getIdEmpleado() == null){
+        if($usuario->getIdUsuario()!=null &&  $tipo == null){
             $respuesta = array(
                 'respuesta' => 'no existe',
                 
             );
-        }else if ($usuario->getIdUsuario() == null && $empleado->getIdEmpleado() == null ) {
+        }else if ($usuario->getIdUsuario() == null && $tipo == null) {
             
             $respuesta = array(
                 'respuesta' => 'no existe',
-                'entro 2'=>'2'
             );
         } else {
 // var_dump(password_verify($datos['password'], $resultado['Contrasena']));
@@ -65,14 +77,18 @@ switch ($accion) {
                 $_SESSION['IdSede']= $empleado->getIdSede();
                 $_SESSION['Sede']= $sede->getNombreSede();
                 $_SESSION['IdEstado']= $empleado->getIdEstado();
+                $_SESSION['IdCliente']=$cliente->getIdCliente();
+                $_SESSION['NombreCliente']=$cliente->getNombreCliente();
                 
                 $respuesta = array(
                     'respuesta' => 'existe',
+                    'tipoUsuario'=> $usuario->getIdTipoUsuario(),
+
                 );
             } else {
                 $respuesta = array(
                     'respuesta' => 'no existe',
-                    'echo 1'=>'1'
+                   
                 );
             }
 
