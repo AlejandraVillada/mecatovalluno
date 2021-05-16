@@ -30,20 +30,19 @@
     <div class="card card-primary tablaProveedor">
         <div class="card-header bg-dark text-center text-white titulo">Pagos de Nómina</div>
         <div class="card-body">
-            <div class="pull-right box-tools">
-                <button class="btn btn-dark btn-sm" id="nuevo1" data-toggle="tooltip"
-                    title="Registrar Nuevo Proveedor">Registrar Proveedor</button>
-                <button class="btn btn-dark btn-sm" id="nuevo2" data-toggle="tooltip"
-                    title="Registrar Nuevo Proveedor">Asignar Producto</button>
-                <a href="./view_proveedores.php" class="btn btn-danger btn-sm" id="regresar"
-                    data-toggle="tooltip" title="">Regresar</a>
+            <div class="pull-center box-tools">
+                <button class="btn btn-dark" id="generar" data-toggle="tooltip" title="">Generar Nómina del Mes</button>
+                <button class="btn btn-dark" id="consultar" data-toggle="tooltip" title="">Consultar Nómina por
+                    Fecha</button>
+                <!-- <a href="./view_proveedores.php" class="btn btn-danger btn-sm" id="regresar"
+                    data-toggle="tooltip" title="">Regresar</a> -->
             </div>
         </div>
 
         <div class="card-body contenedor1">
             <div id="edicion1"></div>
             <div id="listado1">
-                <table id="tabla1" class="table table-striped table-bordered text-center">
+                <!-- <table id="tabla1" class="table table-striped table-bordered text-center">
                     <thead>
                         <tr class="text-center">
                             <th># Nómina</th>
@@ -52,7 +51,7 @@
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
-                </table>
+                </table> -->
             </div>
 
             <!-- <div id="listado2">
@@ -110,6 +109,9 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
     </script>
@@ -119,11 +121,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.all.js"></script>
 
-    <script src="../../../Recursos/js/proveedores/proveedores.js"></script>
+    <script src="../../../Recursos/js/nomina/nomina.js"></script>
 
-    <!-- <script>
-    $(document).ready(proveedor);
-    </script> -->
+    <script>
+    $(document).ready(nomina);
+    </script>
 
 </body>
 
