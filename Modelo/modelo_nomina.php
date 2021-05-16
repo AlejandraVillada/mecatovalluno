@@ -28,13 +28,14 @@ class modelo_nomina extends ModeloAbstractoDB
         return $this->TotalNomina;
     }
 
-    public function lista()
+    public function lista($FechaNomina = '')
     {
         $this->query = "
-        SELECT IdNomina, FechaNomina, TotalNomina
-		FROM nomina
-        ORDER BY IdNomina
-        ";
+            SELECT IdNomina, FechaNomina, TotalNomina
+            FROM nomina
+            WHERE FechaNomina = '$FechaNomina'
+            ORDER BY IdNomina
+            ";
 
         $this->obtener_resultados_query();
         return $this->rows;
@@ -61,19 +62,32 @@ class modelo_nomina extends ModeloAbstractoDB
         endforeach;
 
         $this->query = "
-						INSERT INTO nomina
-						(FechaNomina)
-						VALUES
-						('$FechaNomina')
-						";
+			INSERT INTO nomina
+			(FechaNomina)
+			VALUES
+			('$FechaNomina')
+			";
+
         $resultado = $this->ejecutar_query_simple();
         return $resultado;
         
     }
 
-    public function editar()
+    public function fechas($fecha = '')
     {
+        $this->query = "
+            SELECT FechaNomina
+            FROM nomina
+            WHERE FechaNomina = '$fecha'
+            ";        
 
+        $this->obtener_resultados_query();
+
+        if (count($this->rows) == 1):
+            foreach ($this->rows[0] as $propiedad => $valor):
+                $this->$propiedad = $valor;
+            endforeach;
+        endif;
     }
 
     public function actualizar_nomina($datos = array())
@@ -90,11 +104,15 @@ class modelo_nomina extends ModeloAbstractoDB
 			";
 
         $resultado = $this->ejecutar_query_simple();
-        var_dump($resultado);
         return $resultado;
     }
 
     public function borrar()
+    {
+
+    }
+
+    public function editar()
     {
 
     }

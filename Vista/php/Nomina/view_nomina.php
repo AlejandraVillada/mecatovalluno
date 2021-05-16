@@ -16,6 +16,7 @@
         integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
 </head>
 
 <body class="container">
@@ -27,22 +28,30 @@
 
     <!-- Nómina -->
 
-    <div class="card card-primary tablaProveedor">
+    <div class="card card-primary tablaNomina">
         <div class="card-header bg-dark text-center text-white titulo">Pagos de Nómina</div>
         <div class="card-body">
             <div class="pull-center box-tools">
                 <button class="btn btn-dark" id="generar" data-toggle="tooltip" title="">Generar Nómina del Mes</button>
                 <button class="btn btn-dark" id="consultar" data-toggle="tooltip" title="">Consultar Nómina por
                     Fecha</button>
+                <a href="./view_nomina.php" class="btn btn-danger" id="regresar" data-toggle="tooltip" title="">Regresar</a>
                 <!-- <a href="./view_proveedores.php" class="btn btn-danger btn-sm" id="regresar"
                     data-toggle="tooltip" title="">Regresar</a> -->
             </div>
         </div>
 
         <div class="card-body contenedor1">
-            <div id="edicion1"></div>
+            <div id="edicion1">
+                <div class="form-group">
+                    <label>Consultar Fecha Nómina</label>
+                    <input type="text" name="FechaNomina" id="FechaNomina">
+                </div>
+                <button class="btn btn-info" id="buscar" data-toggle="tooltip" name="buscar">Buscar Nómina</button>
+            </div>
+
             <div id="listado1">
-                <!-- <table id="tabla1" class="table table-striped table-bordered text-center">
+                <table id="tabla1" class="table table-striped table-bordered text-center">
                     <thead>
                         <tr class="text-center">
                             <th># Nómina</th>
@@ -51,53 +60,30 @@
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
-                </table> -->
-            </div>
-
-            <!-- <div id="listado2">
-                <table id="tabla2" class="table table-striped table-bordered text-center">
-                    <thead>
-                        <tr class="text-center">
-                            <th># Detalle Proveedor</th>
-                            <th>Proveedor</th>
-                            <th>Materia Prima</th>
-                            <th>&nbsp;</th>
-                            <th class="hide">&nbsp;</th>
-                        </tr>
-                    </thead>
                 </table>
-            </div> -->
-
-        </div>
-    </div>
-
-    <!-- Detalle Proveedores -->
-
-    <!-- <div class="card card-primary mt-5 tablaDetalle">
-        <div class="card-header bg-dark text-center text-white titulo">Detalle de Proveedores</div>
-        <div class="card-body">
-            <div class="pull-right box-tools">
-                <button class="btn btn-dark btn-sm" id="nuevo2" data-toggle="tooltip"
-                    title="Asignar MP a Proveedor">Asignar Producto a Proveedor</button>
             </div>
-        </div>
 
-        <div class="card-body contenedor2">
-            <div id="edicion2"></div>
             <div id="listado2">
                 <table id="tabla2" class="table table-striped table-bordered text-center">
                     <thead>
                         <tr class="text-center">
-                            <th># Detalle Proveedor</th>
-                            <th>Proveedor</th>
-                            <th>Materia Prima</th>
-                            <th>&nbsp;</th>
+                            <th># Detalle Nómina</th>
+                            <th># Nómina</th>
+                            <th>CC Empleado</th>
+                            <th>Empleado</th>
+                            <th>Sede</th>
+                            <th>Comisiones</th>
+                            <th>Sueldo Base</th>
+                            <th>Total Sueldo</th>
                         </tr>
                     </thead>
                 </table>
             </div>
+
         </div>
-    </div> -->
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -121,10 +107,20 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.all.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
     <script src="../../../Recursos/js/nomina/nomina.js"></script>
 
     <script>
     $(document).ready(nomina);
+    </script>
+
+    <script>
+    $(function() {
+        $("#FechaNomina").datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+    });
     </script>
 
 </body>

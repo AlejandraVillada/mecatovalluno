@@ -64,6 +64,7 @@ class modelo_proveedor extends ModeloAbstractoDB
 	                ";
             $this->obtener_resultados_query();
         endif;
+        
         if (count($this->rows) == 1):
             foreach ($this->rows[0] as $propiedad => $valor):
                 $this->$propiedad = $valor;

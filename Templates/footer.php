@@ -18,6 +18,8 @@
     integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="./Recursos/js/bootstrap.min.js"></script>

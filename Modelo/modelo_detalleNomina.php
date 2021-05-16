@@ -16,27 +16,47 @@ class detalle_nomina extends ModeloAbstractoDB
 
     }
 
-    public function consultar()
+    public function consultar($IdNomina = '')
     {
-
+        if ($IdNomina != ''):
+            $this->query = "
+					SELECT d.IdDetalleNomina, d.IdNomina, d.IdEmpleado, e.NombreEmpleado, e.IdSede, s.NombreSede, d.Comisiones, e.SueldoBase,
+                    d.TotalSueldo
+					FROM detalle_nomina AS d
+	                INNER JOIN empleados AS e
+					ON (d.IdEmpleado = e.IdEmpleado)
+                    INNER JOIN sede AS s
+					ON (e.IdSede = s.IdSede)
+					WHERE d.IdNomina = '$IdNomina' ORDER BY d.IdDetalleNomina
+					";
+            $this->obtener_resultados_query();
+            return $this->rows;
+        endif;
     }
 
     public function nuevo($datos = array())
     {
-        if (array_key_exists('IdDetalleNomina', $datos)):
-            foreach ($datos as $campo => $valor):
-                $$campo = $valor;
-            endforeach;
+        foreach ($datos as $key => $detalle) {
+            // var_dump($detalle['IdDetalleNomina']);
             
-            $this->query = "
-						INSERT INTO detalle_nomina
-						(IdDetalleNomina, IdNomina, IdEmpleado, Comisiones, SueldoBase, TotalSueldo)
-						VALUES
-						('$IdDetalleNomina', '$IdNomina', '$IdEmpleado', 'NULL', '$SueldoBase', '$TotalSueldo')
-						";
-            $resultado = $this->ejecutar_query_simple();
-            return $resultado;
-        endif;
+
+                $IdDetalleNomina = $detalle['IdDetalleNomina'];
+                $IdNomina = $detalle['IdNomina'];
+                $IdEmpleado = $detalle['IdEmpleado'];
+                $SueldoBase = $detalle['SueldoBase'];
+                $TotalSueldo = $detalle['TotalSueldo'];
+
+                $this->query = "
+                            INSERT INTO detalle_nomina
+                            (IdDetalleNomina, IdNomina, IdEmpleado, Comisiones, SueldoBase, TotalSueldo)
+                            VALUES
+                            ('$IdDetalleNomina', '$IdNomina', '$IdEmpleado', 'NULL', '$SueldoBase', '$TotalSueldo')
+                            ";
+                $resultado = $this->ejecutar_query_simple();
+                // return $resultado;
+                
+            
+        }        
     }
 
     public function editar()
