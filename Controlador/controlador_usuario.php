@@ -28,7 +28,7 @@ switch ($accion) {
         $resultado = $usuario->consultar($datos);
         // Empleado
         $empleado = new modelo_empleados();
-        $empleado->consultar($usuario->getIdUsuario());
+        $empleado->consultarEmp($usuario->getIdUsuario());
         // tipo usuario
         $tipoUsu = new modelo_tipo_usuario();
         $tipoUsu->consultar($usuario->getIdTipoUsuario());
@@ -39,20 +39,29 @@ switch ($accion) {
         //     echo "id".$usuario->getIdUsuario();
         //    echo "contra".$usuario->getContrasena();
         // var_dump($resultado);
+        // var_dump($empleado->getIdEmpleado().'usuario'.$usuario->getIdUsuario());
         
-        if ($usuario->getIdUsuario() == null && $empleado->getIdEstado()==1) {
+        if($usuario->getIdUsuario()!=null && $empleado->getIdEmpleado() == null){
             $respuesta = array(
                 'respuesta' => 'no existe',
+                
+            );
+        }else if ($usuario->getIdUsuario() == null && $empleado->getIdEmpleado() == null ) {
+            
+            $respuesta = array(
+                'respuesta' => 'no existe',
+                'entro 2'=>'2'
             );
         } else {
-
+// var_dump(password_verify($datos['password'], $resultado['Contrasena']));
+// var_dump($resultado);
             if (password_verify($datos['password'], $resultado['Contrasena'])) {
                 session_start();
                 $_SESSION['Usuario'] = $usuario->getUsuario();
                 $_SESSION['IdEmpleado']= $empleado->getIdEmpleado();
                 $_SESSION['NombreEmpleado']= $empleado->getNombreEmpleado();
                 $_SESSION['IdTipoUsuario']= $usuario->getIdTipoUsuario();
-                $_SESSION['TipoUsuario']= $tipoUsu->getTipoUsuario();
+                $_SESSION['TipoUsuario']= utf8_decode($tipoUsu->getTipoUsuario());
                 $_SESSION['IdSede']= $empleado->getIdSede();
                 $_SESSION['Sede']= $sede->getNombreSede();
                 $_SESSION['IdEstado']= $empleado->getIdEstado();
@@ -63,6 +72,7 @@ switch ($accion) {
             } else {
                 $respuesta = array(
                     'respuesta' => 'no existe',
+                    'echo 1'=>'1'
                 );
             }
 

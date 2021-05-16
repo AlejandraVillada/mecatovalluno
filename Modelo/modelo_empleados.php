@@ -123,6 +123,25 @@ class modelo_empleados extends ModeloAbstractoDB
         endif;
     }
 
+    public function consultarEmp($IdEmpleado = '')
+    {
+        // echo $IdEmpleado;
+        if ($IdEmpleado != ''):
+            $this->query = "
+					SELECT IdEmpleado, NombreEmpleado, Email, SueldoBase, Telefono, Cargo, IdSede, IdEstado
+					FROM empleados
+					WHERE IdEmpleado = '$IdEmpleado' AND IdEstado = 1
+					";
+            $this->obtener_resultados_query();
+        endif;
+        // var_dump($this->rows);
+        if (count($this->rows) == 1):
+            foreach ($this->rows[0] as $propiedad => $valor):
+                $this->$propiedad = $valor;
+            endforeach;
+        endif;
+    }
+
     public function nuevo($datos = array())
     {
         if (array_key_exists('IdEmpleado', $datos)):

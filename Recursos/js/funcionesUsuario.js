@@ -17,7 +17,7 @@ function usuario() {
                 swal({
                         position: 'center',
                         type: 'error',
-                        title: 'Usuario y/o Password incorrecto',
+                        title: 'Usuario y/o Password incorrecto o usuario INACTIVO',
                         showConfirmButton: false,
                         timer: 1500
                     }),

@@ -126,7 +126,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="#"><i class="fas fa-comment-dots"></i> Gestion Producto terminado</a></li>
-                    <li><a href="#"><i class="fab fa-creative-commons-remix"></i> Programacion de Produccion</a></li>
+                    <li><a href="#"><i class="fab fa-creative-commons-remix"></i> Gestion de Produccion</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -270,8 +270,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="#"><i class="fas fa-comment-dots"></i> Gestion Producto terminado</a></li>
-                                <li><a href="#"><i class="fab fa-creative-commons-remix"></i> Programacion de
-                                        Produccion</a></li>
+                                <li><a href="#"><i class="fab fa-creative-commons-remix"></i> Gestion de Produccion</a></li>
                             </ul>
                         </li>
                         <?php }?>
