@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,7 +17,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
-</head>
+</head> -->
 
 <body class="container">
     <div class="mt-4">
@@ -35,7 +35,7 @@
                 <button class="btn btn-dark" id="generar" data-toggle="tooltip" title="">Generar Nómina del Mes</button>
                 <button class="btn btn-dark" id="consultar" data-toggle="tooltip" title="">Consultar Nómina por
                     Fecha</button>
-                <a href="./view_nomina.php" class="btn btn-danger" id="regresar" data-toggle="tooltip" title="">Regresar</a>
+                <a href="./adminper.php" class="btn btn-danger" id="regresar" data-toggle="tooltip" title="">Regresar</a>
                 <!-- <a href="./view_proveedores.php" class="btn btn-danger btn-sm" id="regresar"
                     data-toggle="tooltip" title="">Regresar</a> -->
             </div>
@@ -45,9 +45,10 @@
             <div id="edicion1">
                 <div class="form-group">
                     <label>Consultar Fecha Nómina</label>
-                    <input type="text" name="FechaNomina" id="FechaNomina">
+                    <input type="text" name="FechaNomina" id="FechaNomina" class="form-control">
                 </div>
-                <button class="btn btn-info" id="buscar" data-toggle="tooltip" name="buscar">Buscar Nómina</button>
+                <button class="btn btn-info" id="buscar" data-toggle="tooltip" name="buscar" style="margin-bottom: 10px;">Buscar Nómina</button>
+                
             </div>
 
             <div id="listado1">
@@ -83,7 +84,7 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -107,9 +108,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.all.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
 
-    <script src="../../../Recursos/js/nomina/nomina.js"></script>
+    <!-- <script src="../../../Recursos/js/nomina/nomina.js"></script> -->
+    <script src="Recursos/js/nomina/nomina.js"></script>
 
     <script>
     $(document).ready(nomina);

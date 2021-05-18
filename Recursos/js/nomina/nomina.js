@@ -8,8 +8,7 @@ function nomina() {
     $("#generar").click(function() {
         $.ajax({
             type: "get",
-            // url: "Controlador/controlador_proveedor.php",
-            url: "../../../Controlador/controlador_nomina.php",
+            url: "Controlador/controlador_nomina.php",
             data: { accion: 'generar_nomina' },
             dataType: "json"
         }).done(function(resultado) {
@@ -47,12 +46,10 @@ function nomina() {
         $("#generar").hide();
 
         fecha = $("#FechaNomina").val();
-
         var dt1 = $("#tabla1").DataTable({
-
             ajax: {
                 type: "get",
-                url: "../../../Controlador/controlador_nomina.php",
+                url: "Controlador/controlador_nomina.php",
                 data: { fecha: fecha, accion: 'lista' },
                 dataType: "json"
             },
@@ -76,13 +73,11 @@ function nomina() {
         $("#listado1").hide();
         $("#listado2").show();
         $("#regresar").show();
-
         var codigo = $(this).data("codigo");
         var dt2 = $("#tabla2").DataTable({
-
             ajax: {
                 type: "get",
-                url: "../../../Controlador/controlador_nomina.php",
+                url: "Controlador/controlador_nomina.php",
                 data: { codigo: codigo, accion: 'consultar_detalle' },
                 dataType: "json"
             },

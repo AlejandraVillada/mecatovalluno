@@ -262,3 +262,11 @@ div .descripcion_prod {
 .user-header {
     background-color: lightgray;
 }
+
+
+/* jumbotrones */
+
+.jumbotron {
+    background-color: rgb(149, 16, 9);
+    color: rgb(255, 255, 255);
+}

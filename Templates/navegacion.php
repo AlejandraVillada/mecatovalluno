@@ -135,7 +135,7 @@
                     <span> Nomina</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fas fa-envelope-open-text"></i> Gestion de Nomina</a></li>
+                    <li><a href="./Vista/php/Nomina/view_nomina.php"><i class="fas fa-envelope-open-text"></i> Gestion de Nomina</a></li>
                 </ul>
             </li>
             <?php }else?>

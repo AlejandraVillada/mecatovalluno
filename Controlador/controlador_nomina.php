@@ -24,12 +24,18 @@ switch ($accion) {
 
         date_default_timezone_set('America/Bogota');
         $fecha1 = date("Y-m-d");
-        // $fechaEntera = strtotime($fecha1);
+        $fechaEntera = strtotime($fecha1);
+        $mesConsulta = date("m", $fechaEntera);
 
         $fechaNomina = new modelo_nomina();      
         $fechaNomina->fechas($fecha1); 
 
-    if($fecha1 != $fechaNomina->getFechaNomina()){
+        $fechaEntera1 = strtotime($fechaNomina->getFechaNomina());
+        $mesBase = date("m", $fechaEntera1);
+
+        // var_dump($fechaConsulta."".$fechaBase);
+
+    if($mesConsulta != $mesBase || $fecha1 != $fechaNomina->getFechaNomina()){
 
     //Nómina
 
@@ -116,7 +122,7 @@ switch ($accion) {
         $nomina = new modelo_nomina();
         $nomina->consultar($datos['codigo']);
 
-        if ($nomina->getIdEmpleado() == null) {
+        if ($nomina->getIdNomina() == null) {
             $respuesta = array(
                 'respuesta' => 'no existe',
             );
