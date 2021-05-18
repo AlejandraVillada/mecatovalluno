@@ -36,16 +36,25 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <a href="#"><b>Mecato</b>Valluno</a>
+<style>
+    .fondon {
+        background-image: url("vista/home/assets/img/fondoprueba.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+    }
+</style>
+<body class="hold-transition login-page fondon" style="background-color:rgb(0,0,0,1); ">
+<div class=" container m-5">
+  <div  style="margin-top:50px;margin-bottom:50px;">
+   <img src="vista/home/assets/img/text.png" class="center-block img-responsive" alt="" style="height: auto; width: auto;">
   </div>
   <!-- /.login-logo -->
-  <div class="login-box-body">
-    <p class="login-box-msg">Autenticarse para inciar sesión</p>
+  <div class="login-box-body jumbotron "  style=" background-color:rgb(99, 96, 96,0.5); height: 300px; width: 450px; float:right">
+    <p class="login-box-msg" style="color: rgb(255,255,255);">Autenticarse para inciar sesión</p>
 
-    <form id="login-form" action="" method="post">
+    <form id="login-form" action="" method="post" >
       <div class="form-group has-feedback">
         <input type="type" id="usuario" name="usuario" class="form-control" placeholder="Usuario">
         <span class="form-control-feedback"><i class="fas fa-user-tie"></i></span>
@@ -55,12 +64,10 @@
         <span class="form-control-feedback"> <i class="fas fa-key"></i></span>
       </div>
       <div class="row">
-        <div class="col-xs-8">
-          
-        </div>
+       
         <!-- /.col -->
-        <div class="col-xs-4">
-          <button href="submit" id="ingresar" class="btn btn-primary btn-block btn-flat">Ingresar</button>
+        <div class="center-block" style="padding-top:30px">
+          <button href="submit" id="ingresar" class="btn btn-block btn-flat" style="background-color:#F3D70F; color: #0C0B0B; border-radius:10px; "><strong>Ingresar</strong></button>
         </div>
         <!-- /.col -->
         <input type="hidden" value="login" name="accion">

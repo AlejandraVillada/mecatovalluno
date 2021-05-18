@@ -343,7 +343,7 @@ function productoterminado() {
         e.preventDefault();
 
         var codigo = $(this).data("codigo");
-        console.log(codigo + "hola");
+        // console.log(codigo + "hola");
         $(".card-title").html("Modificar Compra de Materia Prima");
         $("#editar").addClass('show');
         $("#editar").removeClass('hide');

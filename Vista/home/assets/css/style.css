@@ -5,7 +5,12 @@
 * License: https://bootstrapmade.com/license/
 */
 
-
+@font-face
+{
+font-family: "Zulia";
+src: url("fonts/ZuliaPro.svg");
+src: url("fonts/ZuliaPro.svg") format("embedded-opentype")
+}
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/

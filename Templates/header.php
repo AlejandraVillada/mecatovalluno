@@ -87,5 +87,10 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-        <link rel="stylesheet" href="../Vista/layout/Style.css">
+        <link rel="stylesheet" href="Vista/layout/Style.css">
+
+
+        <!-- Icono -->
+        <link rel="shortcut icon" href="Vista/img/logo.ico">
+
 </head>
