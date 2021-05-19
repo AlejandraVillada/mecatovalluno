@@ -12,14 +12,22 @@
             
             <div class="form-group">
                 <label for="nombreMP">Nombre Producto</label>
-                <input type="text" name="NombreProducto" id="NombreProducto" placeholder="Ingrese el nombre del Producto a la venta" class="form-control">
+                <input type="text" required name="NombreProducto" id="NombreProducto" placeholder="Ingrese el nombre del Producto a la venta" class="form-control">
             </div>
             <div class="form-group">
                 <label for="idMP">Cantidad por Porción</label>
-                <input type="text" name="CantidadProducto" id="CantidadProducto" placeholder="Ingerese la cantidad de productos que hace referencia a una porción" class="form-control">
+                <input type="text" required name="CantidadProducto" id="CantidadProducto" placeholder="Ingerese la cantidad de productos que hace referencia a una porción" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="idMP">Valor por Unidad</label>
+                <input type="text" required name="ValorUnitario" id="ValorUnitario" placeholder="Ingerese el valor por unidad del producto" class="form-control">
+            </div>
+            <div class="form-group">
+            <label for=""> Foto del Producto</label>
+             <input type="file"  class="form-control" name="Foto" id="Foto">
             </div>
             <br>
-            <input type="hidden" name="accion" value="actualizar">
+            <input type="hidden" name="accion" id="accion" value="actualizar">
             <input type="submit" class="btn btn-dark nuevo" value="Actualizar">
             <a href="view_ProductoTerminado.php" class="btn btn-dark">Regresar</a>
         </form>
