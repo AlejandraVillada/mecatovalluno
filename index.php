@@ -1,5 +1,5 @@
 <?php
 
-header("location: vista/home");
+header("location: Vista/home");
 
 ?>
