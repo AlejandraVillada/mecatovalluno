@@ -25,7 +25,7 @@ class modelo_producto extends ModeloAbstractoDB
                 if ($key1 == "Foto") {
                     //  header("Content-type: image/png"); 
                    
-                    $contenido[$key1] = " <img src='data:image/png; base64,".($value1)."' >";
+                    $contenido[$key1] = " <img src='data:image/png; base64,".($value1)."' class='menu-img'>";
                     
                 } else {
                     $contenido[$key1] = $value1;

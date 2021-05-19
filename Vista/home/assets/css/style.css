@@ -5,12 +5,13 @@
 * License: https://bootstrapmade.com/license/
 */
 
-@font-face
-{
-font-family: "Zulia";
-src: url("fonts/ZuliaPro.svg");
-src: url("fonts/ZuliaPro.svg") format("embedded-opentype")
+@font-face {
+    font-family: "Zulia";
+    src: url("fonts/ZuliaPro.svg");
+    src: url("fonts/ZuliaPro.svg") format("embedded-opentype")
 }
+
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -1008,6 +1009,7 @@ section {
 
 .menu .menu-img {
     width: 70px;
+    height: 70px;
     border-radius: 50%;
     float: left;
     border: 5px solid rgba(255, 255, 255, 0.2);
@@ -1019,6 +1021,7 @@ section {
     display: flex;
     justify-content: space-between;
     position: relative;
+    height: auto !important;
 }
 
 .menu .menu-content::after {
