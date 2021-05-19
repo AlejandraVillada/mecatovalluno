@@ -1,8 +1,9 @@
 <?php
 
-include_once __DIR__ . "/modeloAbstractoDB.php";
+    require_once "modeloAbstractoDB.php";
 
-class detalle_nomina extends ModeloAbstractoDB{
+class detalle_nomina extends ModeloAbstractoDB
+{
     private $IdDetalleNomina;
     private $IdNomina;
     private $IdEmpleado;
@@ -10,18 +11,54 @@ class detalle_nomina extends ModeloAbstractoDB{
     private $SueldoBase;
     private $TotalSueldo;
 
-    function __construct(){
-
-    }
-    public function consultar()
+    public function __construct()
     {
 
     }
 
-    public function nuevo()
+    public function consultar($IdNomina = '')
     {
-
+        if ($IdNomina != ''):
+            $this->query = "
+					SELECT d.IdDetalleNomina, d.IdNomina, d.IdEmpleado, e.NombreEmpleado, e.IdSede, s.NombreSede, d.Comisiones, e.SueldoBase,
+                    d.TotalSueldo
+					FROM detalle_nomina AS d
+	                INNER JOIN empleados AS e
+					ON (d.IdEmpleado = e.IdEmpleado)
+                    INNER JOIN sede AS s
+					ON (e.IdSede = s.IdSede)
+					WHERE d.IdNomina = '$IdNomina' ORDER BY d.IdDetalleNomina
+					";
+            $this->obtener_resultados_query();
+            return $this->rows;
+        endif;
     }
+
+    public function nuevo($datos = array())
+    {
+        foreach ($datos as $key => $detalle) {
+            // var_dump($detalle['IdDetalleNomina']);
+            
+
+                $IdDetalleNomina = $detalle['IdDetalleNomina'];
+                $IdNomina = $detalle['IdNomina'];
+                $IdEmpleado = $detalle['IdEmpleado'];
+                $SueldoBase = $detalle['SueldoBase'];
+                $TotalSueldo = $detalle['TotalSueldo'];
+
+                $this->query = "
+                            INSERT INTO detalle_nomina
+                            (IdDetalleNomina, IdNomina, IdEmpleado, Comisiones, SueldoBase, TotalSueldo)
+                            VALUES
+                            ('$IdDetalleNomina', '$IdNomina', '$IdEmpleado', 'NULL', '$SueldoBase', '$TotalSueldo')
+                            ";
+                $resultado = $this->ejecutar_query_simple();
+                // return $resultado;
+                
+            
+        }        
+    }
+
     public function editar()
     {
 
@@ -37,126 +74,75 @@ class detalle_nomina extends ModeloAbstractoDB{
 
     }
 
+    public function listaEmpleados()
+    {
+        $this->query = "
+			SELECT IdEmpleado, NombreEmpleado, SueldoBase, s.NombreSede
+			FROM empleados AS e
+            INNER JOIN sede AS s
+			ON (e.IdSede = s.IdSede)
+            ORDER BY IdEmpleado
+			";
 
-    /**
-     * Get the value of IdDetalleNomina
-     */ 
+        $this->obtener_resultados_query();
+
+        // if (count($this->rows) == 1):
+        //     foreach ($this->rows[0] as $propiedad => $valor):
+        //         $this->$propiedad = $valor;
+        //     endforeach;
+        // endif;
+
+        return $this->rows;
+    }
+
+    public function consultarIdNomina($fecha)
+    {
+        if ($fecha != ''):
+            $this->query = "
+				SELECT IdNomina
+				FROM nomina
+				WHERE FechaNomina = '$fecha'
+				";
+            $this->obtener_resultados_query();
+        endif;
+
+        // var_dump($this->rows[0]);
+
+        if (count($this->rows) == 1):
+            foreach ($this->rows[0] as $propiedad => $valor):
+                $this->$propiedad = $valor;
+            endforeach;
+        endif;
+    }
+
     public function getIdDetalleNomina()
     {
         return $this->IdDetalleNomina;
     }
 
-    /**
-     * Set the value of IdDetalleNomina
-     *
-     * @return  self
-     */ 
-    public function setIdDetalleNomina($IdDetalleNomina)
-    {
-        $this->IdDetalleNomina = $IdDetalleNomina;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of IdNomina
-     */ 
     public function getIdNomina()
     {
         return $this->IdNomina;
     }
 
-    /**
-     * Set the value of IdNomina
-     *
-     * @return  self
-     */ 
-    public function setIdNomina($IdNomina)
-    {
-        $this->IdNomina = $IdNomina;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of IdEmpleado
-     */ 
     public function getIdEmpleado()
     {
         return $this->IdEmpleado;
     }
 
-    /**
-     * Set the value of IdEmpleado
-     *
-     * @return  self
-     */ 
-    public function setIdEmpleado($IdEmpleado)
-    {
-        $this->IdEmpleado = $IdEmpleado;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of Comisiones
-     */ 
     public function getComisiones()
     {
         return $this->Comisiones;
     }
 
-    /**
-     * Set the value of Comisiones
-     *
-     * @return  self
-     */ 
-    public function setComisiones($Comisiones)
-    {
-        $this->Comisiones = $Comisiones;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of SueldoBase
-     */ 
     public function getSueldoBase()
     {
         return $this->SueldoBase;
     }
 
-    /**
-     * Set the value of SueldoBase
-     *
-     * @return  self
-     */ 
-    public function setSueldoBase($SueldoBase)
-    {
-        $this->SueldoBase = $SueldoBase;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of TotalSueldo
-     */ 
     public function getTotalSueldo()
     {
         return $this->TotalSueldo;
     }
 
-    /**
-     * Set the value of TotalSueldo
-     *
-     * @return  self
-     */ 
-    public function setTotalSueldo($TotalSueldo)
-    {
-        $this->TotalSueldo = $TotalSueldo;
-
-        return $this;
-    }
 }
-
-?>

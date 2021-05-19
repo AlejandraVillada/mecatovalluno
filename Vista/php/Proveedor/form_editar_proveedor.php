@@ -5,7 +5,7 @@
         <div class="card-body">
 
             <form id="datos1">
-            
+
                 <!-- <div class="form-group">
                     <label>NIT</label>
                     <input type="text" class="form-control" id="IdProveedor" name="IdProveedor"
@@ -30,8 +30,7 @@
                 <div class="form-group">
                     <button type="button" id="actualizar1" class="btn btn-primary" data-toggle="tooltip">Actualizar
                         Proveedor</button>
-                    <a href="../Proveedor/view_proveedores.php" id="cerrar1" class="btn btn-danger"
-                        data-toggle="tooltip">Cancelar</a>
+                    <a href="./adminper.php" id="cerrar" class="btn btn-danger" data-toggle="tooltip">Regresar</a>
                 </div>
 
                 <input type="hidden" id="editar_proveedor" value="editar_proveedor" name="accion" />

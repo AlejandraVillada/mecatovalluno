@@ -18,12 +18,13 @@
                   </select>
               </div>
               <br>
-              <button class="btn btn-dark" id="grabar">Crear registro</button>
-              <a href="../MateriaPrima/view_MateriaPrima.php" class="btn btn-dark regresar">Regresar</a>
+              <div class="form-group">
+                  <button type="button" id="grabar" class="btn btn-primary" data-toggle="tooltip">Registrar</button>
+                  <a href="./adminper.php" id="cerrar" class="btn btn-danger" data-toggle="tooltip">Regresar</a>
+              </div>
 
-              <input type="hidden" id="nuevo" value="nuevo" name="accion"/>
+              <input type="hidden" id="nuevo" value="nuevo" name="accion" />
           </form>
       </div>
   </div>
-  <div style="margin: 20px;"></div>
   </div>

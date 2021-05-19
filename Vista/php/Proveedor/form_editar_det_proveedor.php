@@ -29,8 +29,7 @@
                 <div class="form-group">
                     <button type="button" id="actualizar2" class="btn btn-primary" data-toggle="tooltip">Cambiar
                         Producto</button>
-                    <a href="../Proveedor/view_proveedores.php" id="cerrar1" class="btn btn-danger"
-                        data-toggle="tooltip">Cancelar</a>
+                    <a href="./adminper.php" id="cerrar" class="btn btn-danger" data-toggle="tooltip">Regresar</a>
                 </div>
 
                 <input type="hidden" id="editar_det_proveedor" value="editar_det_proveedor" name="accion" />

@@ -6,19 +6,18 @@
         <form action="" method="POST" id="formcreardetPT">
             <div class="form-group">
                 <label for="nombreMP">Id Detalle</label>
-                    <input type="text" name="IdDetalleProducto" id="IdDetalleProducto" disabled
-                    placeholder="" class="form-control">
-                    <input type="hidden" name="IdProducto" id="IdProducto"
-                    placeholder="" class="form-control">
-                    <input type="hidden" name="IdDetalleProducto" id="IdDetalleProducto1"
-                    placeholder="" class="form-control">
+                <input type="text" name="IdDetalleProducto" id="IdDetalleProducto" disabled placeholder=""
+                    class="form-control">
+                <input type="hidden" name="IdProducto" id="IdProducto" placeholder="" class="form-control">
+                <input type="hidden" name="IdDetalleProducto" id="IdDetalleProducto1" placeholder=""
+                    class="form-control">
             </div>
 
             <div class="form-group">
                 <label for="nombreMP">Nombre Producto</label>
                 <select class="form-control" name="IdMateriaPrima" id="MP">
-                   </select>
-                   
+                </select>
+
             </div>
 
             <div class="form-group row">
@@ -33,7 +32,8 @@
 
 
             </div>
-            <div>
+            <div class="form-group">
+                <label for="" class="form-group">Descripción</label>
                 <input type="textbox" class="form-control" name="DescripcionProducto" id="DescripcionProducto">
             </div>
             <br>

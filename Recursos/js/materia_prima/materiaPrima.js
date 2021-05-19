@@ -1,7 +1,8 @@
 function materiaPrima() {
 
     var dt = $("#tabla").DataTable({
-        "ajax": "../../../Controlador/controlador_mp.php?accion=listar",
+        // "ajax": "../../../Controlador/controlador_mp.php?accion=listar",
+        "ajax": "Controlador/controlador_mp.php?accion=listar",
         "columns": [
             { "data": "IdMateriaPrima" },
             { "data": "NombreMateriaPrima" },
@@ -31,10 +32,12 @@ function materiaPrima() {
         $("#titulo").html("Ingresar Nueva Materia Prima");
         $("#editado").show();
         $(".listado").hide();
-        $("#editado").load('../../../Vista/php/MateriaPrima/FormCrearMP.php', function() {
+        $("#editado").load('Vista/php/MateriaPrima/FormCrearMP.php', function() {
+            // $("#editado").load('../../../Vista/php/MateriaPrima/FormCrearMP.php', function() {
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_mp.php",
+                url: "Controlador/controlador_mp.php",
+                // url: "../../../Controlador/controlador_mp.php",
                 data: { accion: 'listar_medidas' },
                 dataType: "json"
             }).done(function(resultado) {
@@ -53,10 +56,12 @@ function materiaPrima() {
         $("#titulo").html("Modificar Campo Materia Prima");
         $("#editado").show();
         $(".listado").hide();
-        $("#editado").load('../../../Vista/php/MateriaPrima/FormModificarMP.php', function() {
+        $("#editado").load('Vista/php/MateriaPrima/FormModificarMP.php', function() {
+            // $("#editado").load('../../../Vista/php/MateriaPrima/FormModificarMP.php', function() {
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_mp.php",
+                url: "Controlador/controlador_mp.php",
+                // url: "../../../Controlador/controlador_mp.php",
                 data: { codigo: codigo, accion: 'consultar' },
                 dataType: "json"
             }).done(function(mp) {
@@ -77,7 +82,8 @@ function materiaPrima() {
 
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_mp.php",
+                url: "Controlador/controlador_mp.php",
+                // url: "../../../Controlador/controlador_mp.php",
                 data: { accion: 'listar_medidas' },
                 dataType: "json"
             }).done(function(resultado) {
@@ -99,7 +105,8 @@ function materiaPrima() {
         //console.log(datos);
         $.ajax({
             type: "get",
-            url: "../../../Controlador/controlador_mp.php",
+            url: "Controlador/controlador_mp.php",
+            // url: "../../../Controlador/controlador_mp.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
@@ -135,7 +142,8 @@ function materiaPrima() {
         console.log(datos);
         $.ajax({
             type: "get",
-            url: "../../../Controlador/controlador_mp.php",
+            url: "Controlador/controlador_mp.php",
+            // url: "../../../Controlador/controlador_mp.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {

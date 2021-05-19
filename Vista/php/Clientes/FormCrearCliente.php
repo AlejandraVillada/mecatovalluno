@@ -34,9 +34,16 @@
                 </select>
             </div>
             <br>
-            <button class="btn btn-dark" id="grabar">Crear registro</button>
-            <a href="../Clientes/view_Clientes.php" class="btn btn-dark">Regresar</a>
-            <input type="hidden" id="nuevo" value="nuevo" name="accion" />
+            <div class="form-group">
+                    <button type="button" id="grabar" class="btn btn-primary" data-toggle="tooltip">Registrar
+                        Cliente</button>
+                    <a href="./adminper.php" id="cerrar" class="btn btn-danger"
+                        data-toggle="tooltip">Regresar</a>
+                        <!-- <a href="../Clientes/view_Clientes.php" id="cerrar" class="btn btn-danger"
+                        data-toggle="tooltip">Regresar</a> -->
+                </div>
+
+                <input type="hidden" id="nuevo" value="nuevo" name="accion" />
         </form>
     </div>
 </div>

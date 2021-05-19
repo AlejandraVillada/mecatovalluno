@@ -60,8 +60,8 @@
                 <div class="form-group">
                     <button type="button" id="grabar" class="btn btn-primary" data-toggle="tooltip">Registrar
                         Empleado</button>
-                    <a href="../Empleados/form_empleados.php" id="cerrar" class="btn btn-danger"
-                        data-toggle="tooltip">Cancelar</a>
+                        <a href="./adminper.php" id="cerrar" class="btn btn-danger"
+                        data-toggle="tooltip">Regresar</a>
                 </div>
 
                 <input type="hidden" id="nuevo" value="nuevo" name="accion" />

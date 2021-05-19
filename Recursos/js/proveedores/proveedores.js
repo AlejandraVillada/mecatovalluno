@@ -1,9 +1,10 @@
 function proveedor() {
 
     // Espacio para Proveedor
-
+    // "ajax": "../../../Controlador/controlador_proveedor.php?accion=lista_proveedor",
     var dt1 = $("#tabla1").DataTable({
-        "ajax": "../../../Controlador/controlador_proveedor.php?accion=lista_proveedor",
+
+        "ajax": "Controlador/controlador_proveedor.php?accion=lista_proveedor",
         "columns": [
             { "data": "IdProveedor" },
             { "data": "NombreProveedor" },
@@ -32,10 +33,12 @@ function proveedor() {
         $("#listado1").hide();
         $("#nuevo1").hide();
         $(".tablaDetalle").hide();
-        $("#edicion1").load('../../../Vista/php/Proveedor/form_nuevo_proveedor.php', function() {
+        $("#edicion1").load('Vista/php/Proveedor/form_nuevo_proveedor.php', function() {
+            // $("#edicion1").load('../../../Vista/php/Proveedor/form_nuevo_proveedor.php', function() {
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_proveedor.php",
+                url: "Controlador/controlador_proveedor.php",
+                // url: "../../../Controlador/controlador_proveedor.php",
                 data: { accion: 'lista_estados' },
                 dataType: "json"
             }).done(function(resultado) {;
@@ -51,7 +54,8 @@ function proveedor() {
         // console.log(datos);
         $.ajax({
             type: "get",
-            url: "../../../Controlador/controlador_proveedor.php",
+            url: "Controlador/controlador_proveedor.php",
+            // url: "../../../Controlador/controlador_proveedor.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
@@ -93,10 +97,12 @@ function proveedor() {
         $("#listado1").hide();
         $("#nuevo1").hide();
         $(".tablaDetalle").hide();
-        $("#edicion1").load('../../../Vista/php/Proveedor/form_editar_proveedor.php', function() {
+        $("#edicion1").load('Vista/php/Proveedor/form_editar_proveedor.php', function() {
+            // $("#edicion1").load('../../../Vista/php/Proveedor/form_editar_proveedor.php', function()
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_proveedor.php",
+                url: "Controlador/controlador_proveedor.php",
+                // url: "../../../Controlador/controlador_proveedor.php",
                 data: { codigo: codigo, accion: 'consultar_proveedor' },
                 dataType: "json"
             }).done(function(proveedor) {
@@ -115,7 +121,8 @@ function proveedor() {
 
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_proveedor.php",
+                url: "Controlador/controlador_proveedor.php",
+                // url: "../../../Controlador/controlador_proveedor.php",
                 data: { accion: 'lista_estados' },
                 dataType: "json"
             }).done(function(resultado) {
@@ -136,7 +143,8 @@ function proveedor() {
         // console.log(datos);
         $.ajax({
             type: "get",
-            url: "../../../Controlador/controlador_proveedor.php",
+            url: "Controlador/controlador_proveedor.php",
+            // url: "../../../Controlador/controlador_proveedor.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
@@ -182,7 +190,8 @@ function proveedor() {
         dt2 = $("#tabla2").DataTable({
             ajax: {
                 type: "get",
-                url: "../../../Controlador/controlador_proveedor.php",
+                url: "Controlador/controlador_proveedor.php",
+                // url: "../../../Controlador/controlador_proveedor.php",
                 data: { codigo: codigo, accion: 'consultar_det_proveedor' },
                 dataType: "json"
             },
@@ -216,10 +225,12 @@ function proveedor() {
         $("#edicion1").show();
         $("#listado2").hide();
         $("#nuevo2").hide();
-        $("#edicion1").load('../../../Vista/php/Proveedor/form_nuevo_det_proveedor.php', function() {
+        $("#edicion1").load('Vista/php/Proveedor/form_nuevo_det_proveedor.php', function() {
+            // $("#edicion1").load('../../../Vista/php/Proveedor/form_nuevo_det_proveedor.php', function() {
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_proveedor.php",
+                url: "Controlador/controlador_proveedor.php",
+                // url: "../../../Controlador/controlador_proveedor.php",
                 data: { accion: 'lista_proveedores' },
                 dataType: "json"
             }).done(function(resultado) {;
@@ -230,7 +241,8 @@ function proveedor() {
 
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_proveedor.php",
+                url: "Controlador/controlador_proveedor.php",
+                // url: "../../../Controlador/controlador_proveedor.php",
                 data: { accion: 'lista_productos' },
                 dataType: "json"
             }).done(function(resultado) {;
@@ -247,7 +259,8 @@ function proveedor() {
         // console.log(datos);
         $.ajax({
             type: "get",
-            url: "../../../Controlador/controlador_proveedor.php",
+            url: "Controlador/controlador_proveedor.php",
+            // url: "../../../Controlador/controlador_proveedor.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
@@ -292,11 +305,13 @@ function proveedor() {
         $("#nuevo2").hide();
         $("#regresar").hide();
         $(".tablaProveedor").show();
-        $("#edicion1").load('../../../Vista/php/Proveedor/form_editar_det_proveedor.php', function() {
+        $("#edicion1").load('Vista/php/Proveedor/form_editar_det_proveedor.php', function() {
+            // $("#edicion1").load('../../../Vista/php/Proveedor/form_editar_det_proveedor.php', function() {
             // console.log(codigo2);
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_proveedor.php",
+                url: "Controlador/controlador_proveedor.php",
+                // url: "../../../Controlador/controlador_proveedor.php",
                 data: { codigo: codigo, codigo2: codigo2, accion: 'consultar_det_proveedor2' },
                 dataType: "json"
             }).done(function(det_proveedor) {
@@ -315,7 +330,8 @@ function proveedor() {
 
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_proveedor.php",
+                url: "Controlador/controlador_proveedor.php",
+                // url: "../../../Controlador/controlador_proveedor.php",
                 data: { accion: 'lista_proveedores' },
                 dataType: "json"
             }).done(function(resultado) {
@@ -330,7 +346,8 @@ function proveedor() {
 
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_proveedor.php",
+                url: "Controlador/controlador_proveedor.php",
+                // url: "../../../Controlador/controlador_proveedor.php",
                 data: { accion: 'lista_productos' },
                 dataType: "json"
             }).done(function(resultado) {
@@ -351,7 +368,8 @@ function proveedor() {
         console.log(datos);
         $.ajax({
             type: "get",
-            url: "../../../Controlador/controlador_proveedor.php",
+            url: "Controlador/controlador_proveedor.php",
+            // url: "../../../Controlador/controlador_proveedor.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {

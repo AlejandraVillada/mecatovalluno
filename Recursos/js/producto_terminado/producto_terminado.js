@@ -24,6 +24,8 @@ function productoterminado() {
             { "data": "IdProducto" },
             { "data": "NombreProducto" },
             { "data": "CantidadProducto" },
+            { "data": "ValorUnitario" },
+            { "data": "Foto"},
             {
                 "data": "IdProducto",
                 render: function (data) {
@@ -46,14 +48,25 @@ function productoterminado() {
         $("#editar").load('../../../Vista/php/ProductoTerminado/FormCrearPT.php', function () {
             // $("#editar").load('../../../Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
             $("#editar #formCrearPT").on("submit", function (e) {
-                console.log("h");
+
                 e.preventDefault();
                 var datos = $(this).serialize();
+                //  var datos = document.getElementById("formCrearPT");
+                var datos1 = new FormData();
+                var file = document.getElementById('Foto').files[0];
+                // console.log(file);
+                datos1.append("NombreProducto", $("#NombreProducto").val());
+                datos1.append("CantidadProducto", $("#CantidadProducto").val());
+                datos1.append("ValorUnitario", $("#ValorUnitario").val());
+                datos1.append("accion", $("#accion").val());
+                datos1.append("Foto", $("#Foto")[0].files[0]);
+
                 $.ajax({
                     type: "post",
                     url: "../../../Controlador/controlador_inventarioprodterminado.php",
-                    data: datos,
-                    dataType: "json"
+                    data: datos1,
+                    processData: false,
+                    cache: false, contentType: false
                 }).done(function (resultado) {
                     console.log(resultado);
                     if (resultado.data == 1) {
@@ -70,6 +83,7 @@ function productoterminado() {
                         $(".listado").removeClass('hide');
                         $(".detalle").addClass('hide');
                         $(".detalle").removeClass('show');
+                        $(this).show();
                     }
                     dt.ajax.reload();
 
@@ -98,8 +112,8 @@ function productoterminado() {
             data: { accion: 'buscar', IdProducto: codigo },
             dataType: "json"
         }).done(function (resultado) {
-            var ingre=resultado.data[0].NombreProducto;
-        $(".card-title").html("Ingredientes para la porción de "+ingre);
+            var ingre = resultado.data[0].NombreProducto;
+            $(".card-title").html("Ingredientes para la porción de " + ingre);
 
         });
 
@@ -290,13 +304,14 @@ function productoterminado() {
                     });
 
                 });
-                
+
 
             });
             $("#editar #formModdetPT").on("submit", function (e) {
                 console.log("hvg");
                 e.preventDefault();
                 var datos = $(this).serialize();
+                
                 $.ajax({
                     type: "post",
                     url: "../../../Controlador/controlador_detalleproducto.php",
@@ -343,7 +358,7 @@ function productoterminado() {
         e.preventDefault();
 
         var codigo = $(this).data("codigo");
-        console.log(codigo + "hola");
+        // console.log(codigo + "hola");
         $(".card-title").html("Modificar Compra de Materia Prima");
         $("#editar").addClass('show');
         $("#editar").removeClass('hide');
@@ -365,17 +380,29 @@ function productoterminado() {
                 $("#IdProducto1").val(resultado.data[0].IdProducto);
                 $("#CantidadProducto").val(resultado.data[0].CantidadProducto);
                 $("#NombreProducto").val(resultado.data[0].NombreProducto);
+                $("#ValorUnitario").val(resultado.data[0].ValorUnitario);
 
             });
             $("#editar #formModPT").on("submit", function (e) {
                 e.preventDefault();
                 console.log("hooo");
                 var datos = $(this).serialize();
+                var datos1 = new FormData();
+                var file = document.getElementById('Foto').files[0];
+                // console.log(file);
+                datos1.append("IdProducto", $("#IdProducto").val());
+                datos1.append("NombreProducto", $("#NombreProducto").val());
+                datos1.append("CantidadProducto", $("#CantidadProducto").val());
+                datos1.append("ValorUnitario", $("#ValorUnitario").val());
+                datos1.append("accion", $("#accion").val());
+                datos1.append("Foto", $("#Foto")[0].files[0]);
+// KBNG
                 $.ajax({
                     type: "post",
                     url: "../../../Controlador/controlador_inventarioprodterminado.php",
-                    data: datos,
-                    dataType: "json"
+                    data: datos1,
+                    processData: false,
+                    cache: false, contentType: false
                 }).done(function (resultado) {
                     console.log(resultado);
                     if (resultado.data == 1) {

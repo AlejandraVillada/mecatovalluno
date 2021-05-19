@@ -1,6 +1,7 @@
 function empleados() {
     var dt = $("#tabla").DataTable({
-        "ajax": "../../../Controlador/controlador_empleados.php?accion=listar",
+        // "ajax": "../../../Controlador/controlador_empleados.php?accion=listar",
+        "ajax": "Controlador/controlador_empleados.php?accion=listar",
         "columns": [
             { "data": "IdEmpleado" },
             { "data": "NombreEmpleado" },
@@ -37,11 +38,13 @@ function empleados() {
         $("#edicion").show();
         $("#listado").hide();
         $("#nuevo").hide();
-        $("#edicion").load('../../../Vista/php/Empleados/form_nuevo_empleado.php', function() {
+        $("#edicion").load('Vista/php/Empleados/form_nuevo_empleado.php', function() {
+            // $("#edicion").load('../../../Vista/php/Empleados/form_nuevo_empleado.php', function() {
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_empleados.php",
-                data: { accion: 'listar_sedes' },
+                url: "Controlador/controlador_ubicaciones.php",
+                // url: "../../../Controlador/controlador_ubicaciones.php",
+                data: { accion: 'listar_sede' },
                 dataType: "json"
             }).done(function(resultado) {;
                 $.each(resultado.data, function(index, value) {
@@ -51,8 +54,9 @@ function empleados() {
 
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_empleados.php",
-                data: { accion: 'listar_usuarios' },
+                url: "Controlador/controlador_usuario.php",
+                // url: "../../../Controlador/controlador_usuarios.php",
+                data: { accion: 'listar_tipo_usu' },
                 dataType: "json"
             }).done(function(resultado) {;
                 $.each(resultado.data, function(index, value) {
@@ -62,7 +66,8 @@ function empleados() {
 
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_empleados.php",
+                url: "Controlador/controlador_empleados.php",
+                // url: "../../../Controlador/controlador_empleados.php",
                 data: { accion: 'listar_estados' },
                 dataType: "json"
             }).done(function(resultado) {;
@@ -81,7 +86,8 @@ function empleados() {
         console.log(datos);
         $.ajax({
             type: "get",
-            url: "../../../Controlador/controlador_empleados.php",
+            url: "Controlador/controlador_empleados.php",
+            // url: "../../../Controlador/controlador_empleados.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
@@ -118,7 +124,8 @@ function empleados() {
         console.log(datos);
         $.ajax({
             type: "get",
-            url: "../../../Controlador/controlador_empleados.php",
+            url: "Controlador/controlador_empleados.php",
+            // url: "../../../Controlador/controlador_empleados.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
@@ -157,10 +164,12 @@ function empleados() {
         $("#edicion").show();
         $("#listado").hide();
         $("#nuevo").hide();
-        $("#edicion").load('../../../Vista/php/Empleados/form_editar_empleado.php', function() {
+        $("#edicion").load('Vista/php/Empleados/form_editar_empleado.php', function() {
+            // $("#edicion").load('../../../Vista/php/Empleados/form_editar_empleado.php', function() {
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_empleados.php",
+                url: "Controlador/controlador_empleados.php",
+                // url: "../../../Controlador/controlador_empleados.php",
                 data: { codigo: codigo, accion: 'consultar' },
                 dataType: "json"
             }).done(function(empleado) {
@@ -184,8 +193,9 @@ function empleados() {
 
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_empleados.php",
-                data: { accion: 'listar_sedes' },
+                url: "Controlador/controlador_ubicaciones.php",
+                // url: "../../../Controlador/controlador_ubicaciones.php",
+                data: { accion: 'listar_sede' },
                 dataType: "json"
             }).done(function(resultado) {
                 $.each(resultado.data, function(index, value) {
@@ -199,8 +209,9 @@ function empleados() {
 
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_empleados.php",
-                data: { accion: 'listar_usuarios' },
+                url: "Controlador/controlador_usuario.php",
+                // url: "../../../Controlador/controlador_usuarios.php",
+                data: { accion: 'listar_tipo_usu' },
                 dataType: "json"
             }).done(function(resultado) {
                 $.each(resultado.data, function(index, value) {
@@ -211,10 +222,11 @@ function empleados() {
                     }
                 });
             });
-            
+
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_empleados.php",
+                url: "Controlador/controlador_empleados.php",
+                // url: "../../../Controlador/controlador_empleados.php",
                 data: { accion: 'listar_estados' },
                 dataType: "json"
             }).done(function(resultado) {

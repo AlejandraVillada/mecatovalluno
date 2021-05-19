@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
         <form id="formModificarMP">
-        <input type="hidden" id="IdMateriaPrima" name="IdMateriaPrima">
+            <input type="hidden" id="IdMateriaPrima" name="IdMateriaPrima">
 
             <div class="form-group">
                 <label for="NombreMateriaPrima">Nombre Materia Prima</label>
@@ -18,9 +18,15 @@
                 </select>
             </div>
             <br>
-            <button class="btn btn-dark" id="actualizar">Modificar registro</button>
-            <a href="../MateriaPrima/view_MateriaPrima.php" class="btn btn-dark">Regresar</a>
-            <input type="hidden" id="editar" value="editar" name="accion"/>
+            <div class="form-group">
+                    <button type="button" id="actualizar" data-toggle="tooltip"
+                        class="btn btn-primary">Actualizar</button>
+                        <a href="./adminper.php" id="cerrar" class="btn btn-danger"
+                        data-toggle="tooltip">Regresar</a>
+                        
+                </div>
+
+                <input type="hidden" id="editar" value="editar" name="accion" />
         </form>
     </div>
 </div>

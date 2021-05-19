@@ -45,6 +45,8 @@
                                                     <th>Codigo</th>
                                                     <th>Nombre</th>
                                                     <th>Porción</th>
+                                                    <th>Valor Unitario</th>
+                                                    <th>Foto</th>
                                                     <th>-</th>
 
                                                 </tr>
@@ -52,16 +54,7 @@
                                             <tbody>
 
                                             </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>-</th>
-                                                    <th>Codigo</th>
-                                                    <th>Nombre</th>
-                                                    <th>Porción</th>
-                                                    <th>-</th>
-
-                                                </tr>
-                                            </tfoot>
+                                            
                                         </table>
                                     </div>
                                 </div>

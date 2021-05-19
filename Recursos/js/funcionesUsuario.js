@@ -10,14 +10,17 @@ function usuario() {
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
-            console.log(resultado);
             if (resultado.respuesta == "existe") {
-                location.href = "adminper.php";
+                if (resultado.tipoUsuario != 5) {
+                    location.href = "adminper.php";
+                } else if (resultado.tipoUsuario == 5) {
+                    location.href = "Vista/home/index.php";
+                }
             } else {
                 swal({
                         position: 'center',
                         type: 'error',
-                        title: 'Usuario y/o Password incorrecto',
+                        title: 'Usuario y/o Password incorrecto o usuario INACTIVO',
                         showConfirmButton: false,
                         timer: 1500
                     }),

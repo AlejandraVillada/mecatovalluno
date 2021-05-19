@@ -1,6 +1,7 @@
 function ciudad() {
     var dt = $("#tabla").DataTable({
-        "ajax": "../../../Controlador/controlador_ubicaciones.php?accion=listar_ciudad",
+        // "ajax": "../../../Controlador/controlador_ubicaciones.php?accion=listar_ciudad",
+        "ajax": "Controlador/controlador_ubicaciones.php?accion=listar_ciudad",
         "columns": [
             { "data": "IdCiudad" },
             { "data": "NombrePais" },
@@ -22,10 +23,12 @@ function ciudad() {
         $("#titulo").html("Ingresar Ciudad");
         $("#editado").show();
         $(".listado").hide();
-        $("#editado").load('../../../Vista/php/Ubicaciones/formCrearCiudad.php', function() {
+        $("#editado").load('Vista/php/Ubicaciones/formCrearCiudad.php', function() {
+            // $("#editado").load('../../../Vista/php/Ubicaciones/formCrearCiudad.php', function() {
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_ubicaciones.php",
+                url: "Controlador/controlador_ubicaciones.php",
+                // url: "../../../Controlador/controlador_ubicaciones.php",
                 data: { accion: 'listar_pais' },
                 dataType: "json"
             }).done(function(resultado) {
@@ -43,10 +46,12 @@ function ciudad() {
         $("#titulo").html("Modificar Ciudad");
         $("#editado").show();
         $(".listado").hide();
-        $("#editado").load('../../../Vista/php/Ubicaciones/formModificarCiudad.php', function() {
+        $("#editado").load('Vista/php/Ubicaciones/formModificarCiudad.php', function() {
+            // $("#editado").load('../../../Vista/php/Ubicaciones/formModificarCiudad.php', function() {
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_ubicaciones.php",
+                url: "Controlador/controlador_ubicaciones.php",
+                // url: "../../../Controlador/controlador_ubicaciones.php",
                 data: { codigo: codigo, accion: 'consultar_ciudad' },
                 dataType: "json"
             }).done(function(ciudad) {
@@ -65,7 +70,8 @@ function ciudad() {
 
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_ubicaciones.php",
+                url: "Controlador/controlador_ubicaciones.php",
+                // url: "../../../Controlador/controlador_ubicaciones.php",
                 data: { accion: 'listar_pais' },
                 dataType: "json"
             }).done(function(resultado) {
@@ -86,7 +92,8 @@ function ciudad() {
         console.log(datos);
         $.ajax({
             type: "get",
-            url: "../../../Controlador/controlador_ubicaciones.php",
+            url: "Controlador/controlador_ubicaciones.php",
+            // url: "../../../Controlador/controlador_ubicaciones.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
@@ -122,7 +129,8 @@ function ciudad() {
         console.log(datos);
         $.ajax({
             type: "get",
-            url: "../../../Controlador/controlador_ubicaciones.php",
+            url: "Controlador/controlador_ubicaciones.php",
+            // url: "../../../Controlador/controlador_ubicaciones.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {

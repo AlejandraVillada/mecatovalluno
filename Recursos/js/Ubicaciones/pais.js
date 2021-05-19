@@ -1,6 +1,8 @@
 function pais() {
     var dt = $("#tabla").DataTable({
-        "ajax": "../../../Controlador/controlador_ubicaciones.php?accion=listar_pais",
+
+        // "ajax": "../../../Controlador/controlador_ubicaciones.php?accion=listar_pais",
+        "ajax": "Controlador/controlador_ubicaciones.php?accion=listar_pais",
         "columns": [
             { "data": "IdPais" },
             { "data": "NombrePais" },
@@ -21,7 +23,8 @@ function pais() {
         $("#titulo").html("Ingresar Pais");
         $("#editado").show();
         $(".listado").hide();
-        $("#editado").load('../../../Vista/php/Ubicaciones/formCrearPais.php')
+        $("#editado").load('Vista/php/Ubicaciones/formCrearPais.php')
+            // $("#editado").load('../../../Vista/php/Ubicaciones/formCrearPais.php')
 
     });
 
@@ -30,10 +33,12 @@ function pais() {
         $("#titulo").html("Modificar Datos de Pais");
         $("#editado").show();
         $(".listado").hide();
-        $("#editado").load('../../../Vista/php/Ubicaciones/formModificarPais.php', function() {
+        $("#editado").load('Vista/php/Ubicaciones/formModificarPais.php', function() {
+            // $("#editado").load('../../../Vista/php/Ubicaciones/formModificarPais.php', function() {
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_ubicaciones.php",
+                url: "Controlador/controlador_ubicaciones.php",
+                // url: "../../../Controlador/controlador_ubicaciones.php",
                 data: { codigo: codigo, accion: 'consultar_pais' },
                 dataType: "json"
             }).done(function(pais) {
@@ -41,7 +46,7 @@ function pais() {
                     swal({
                         type: 'error',
                         title: 'Oops...',
-                        text: 'Materia Prima no existe!'
+                        text: 'El Pais no existe!'
                     })
                 } else {
                     $("#IdPais").val(pais.codigo);
@@ -58,7 +63,8 @@ function pais() {
         var datos = $("#formCrearPais").serialize();
         $.ajax({
             type: "get",
-            url: "../../../Controlador/controlador_ubicaciones.php",
+            url: "Controlador/controlador_ubicaciones.php",
+            // url: "../../../Controlador/controlador_ubicaciones.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
@@ -66,7 +72,7 @@ function pais() {
                 swal({
                     position: 'center',
                     type: 'success',
-                    title: 'La materia prima fue grabada con éxito',
+                    title: 'El Pais fue grabada con éxito',
                     showConfirmButton: false,
                     timer: 1200
                 })
@@ -94,7 +100,8 @@ function pais() {
         console.log(datos);
         $.ajax({
             type: "get",
-            url: "../../../Controlador/controlador_ubicaciones.php",
+            url: "Controlador/controlador_ubicaciones.php",
+            // url: "../../../Controlador/controlador_ubicaciones.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {

@@ -1,15 +1,20 @@
 <div class="card">
     <div class="card-body">
-        <form id="formCrearCiudad">
+        <form id="formCrearPais">
             <div class="form-group">
                 <label for="NombrePais">Nombre Pais</label>
                 <input type="text" class="form-control" name="NombrePais" id="NombrePais"
                     placeholder="Ingrese el nombre del pais">
             </div>
             <br>
-            <button class="btn btn-info" id="grabar">Crear registro</button>
-            <a href="../Ubicaciones/view_paises.php" class="btn btn-danger">Regresar</a>
-            <input type="hidden" id="nuevo_pais" value="nuevo_pais" name="accion" />
+            <div class="form-group">
+                    <button type="button" id="grabar" class="btn btn-primary" data-toggle="tooltip">Registrar
+                        Pais</button>
+                    <a href="./adminper.php" id="cerrar" class="btn btn-danger"
+                        data-toggle="tooltip">Regresar</a>
+                </div>
+
+                <input type="hidden" id="nuevo_pais" value="nuevo_pais" name="accion" />
         </form>
     </div>
 </div>

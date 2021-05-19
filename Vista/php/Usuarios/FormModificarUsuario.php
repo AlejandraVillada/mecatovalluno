@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
         <form id="formModificarUsuario">
-        <div class="form-group">
+            <div class="form-group">
                 <label for="IdUsuario">Id Usuario</label>
                 <input type="text" class="form-control" name="IdUsuario" id="IdUsuario">
             </div>
@@ -16,15 +16,16 @@
                 </select>
             </div>
             <input type="hidden" id="editar" value="editar" name="accion" />
-            </form>
-            <div class="form-group">
-                <label for="Contrasena">Contraseña</label>
-                <input type="password" class="form-control" name="Contrasena" id="Contrasena" placeholder="Escribir la contraseña por la cual se modificara">
-            </div>
-            <br>
-            <button class="btn btn-info" id="actualizar">Modificar registro</button>
-            <a href="../Usuarios/view_usuarios.php" class="btn btn-danger">Regresar</a>
-            
-        
+        </form>
+        <div class="form-group">
+            <label for="Contrasena">Contraseña</label>
+            <input type="password" class="form-control" name="Contrasena" id="Contrasena"
+                placeholder="Escribir la contraseña por la cual se modificara">
+        </div>
+        <br>
+        <button class="btn btn-info" id="actualizar">Modificar registro</button>
+        <a href="./adminper.php" id="cerrar" class="btn btn-danger" data-toggle="tooltip">Regresar</a>
+
+
     </div>
 </div>

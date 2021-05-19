@@ -6,7 +6,7 @@
             <h4>Inventario de Materia Prima </h4>
 
         </div>
-        <div class="jumbotron pt-1 pr-1" style="">
+        <div class="jumbotron pt-1 pr-1" >
             <!-- Main content -->
             <section class="content">
                 <div class="row">
@@ -72,7 +72,7 @@
         </div>
     </div>
     <!-- /.content-wrapper -->
-    <?php// include_once "../../../Templates/footer1.php";?>
+    <?php // include_once "../../../Templates/footer1.php";?>
 
     </script>
     <!-- <script src="../../../Recursos/js/materia_prima/materia_prima_inventario.js"></script> -->

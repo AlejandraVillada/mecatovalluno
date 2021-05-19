@@ -1,7 +1,8 @@
 function usuarios() {
-
+    // "ajax": "../../../Controlador/controlador_usuario.php?accion=listar",
     var dt = $("#tabla").DataTable({
-        "ajax": "../../../Controlador/controlador_usuario.php?accion=listar",
+
+        "ajax": "Controlador/controlador_usuario.php?accion=listar",
         "columns": [
             { "data": "IdUsuario" },
             { "data": "Usuario" },
@@ -24,10 +25,12 @@ function usuarios() {
         $("#titulo").html("Ingresar Nuevo Usuario");
         $("#editado").show();
         $(".listado").hide();
-        $("#editado").load('../../../Vista/php/Usuarios/FormCrearUsuario.php', function() {
+        $("#editado").load('Vista/php/Usuarios/FormCrearUsuario.php', function() {
+            //  $("#editado").load('../../../Vista/php/Usuarios/FormCrearUsuario.php', function() {
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_usuario.php",
+                url: "Controlador/controlador_usuario.php",
+                // url: "../../../Controlador/controlador_usuario.php",
                 data: { accion: 'listar_tipo_usu' },
                 dataType: "json"
             }).done(function(resultado) {
@@ -46,10 +49,12 @@ function usuarios() {
         $("#titulo").html("Modificar Datos de Usuario");
         $("#editado").show();
         $(".listado").hide();
-        $("#editado").load('../../../Vista/php/Usuarios/FormModificarUsuario.php', function() {
+        $("#editado").load('Vista/php/Usuarios/FormModificarUsuario.php', function() {
+            // $("#editado").load('../../../Vista/php/Usuarios/FormModificarUsuario.php', function() {
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_usuario.php",
+                url: "Controlador/controlador_usuario.php",
+                // url: "../../../Controlador/controlador_usuario.php",
                 data: { codigo: codigo, accion: 'consultar' },
                 dataType: "json"
             }).done(function(usuario) {
@@ -69,7 +74,8 @@ function usuarios() {
 
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_usuario.php",
+                url: "Controlador/controlador_usuario.php",
+                // url: "../../../Controlador/controlador_usuario.php",
                 data: { accion: 'listar_tipo_usu' },
                 dataType: "json"
             }).done(function(resultado) {
@@ -94,7 +100,8 @@ function usuarios() {
 
         $.ajax({
             type: "get",
-            url: "../../../Funciones/generarPassword.php",
+            url: "Funciones/generarPassword.php",
+            // url: "../../../Funciones/generarPassword.php",
             data: { pass: contrasena },
             dataType: "json"
         }).done(function(resultado) {
@@ -102,7 +109,8 @@ function usuarios() {
             data = datos + '&Contrasena=' + hash;
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_usuario.php",
+                url: "Controlador/controlador_usuario.php",
+                // url: "../../../Controlador/controlador_usuario.php",
                 data: data,
                 dataType: "json"
             }).done(function(resultado) {
@@ -110,11 +118,11 @@ function usuarios() {
                     swal({
                         position: 'center',
                         type: 'success',
-                        title: 'El cliente fue grabado con éxito',
+                        title: 'El usuario fue grabado con éxito',
                         showConfirmButton: false,
                         timer: 1200
                     })
-                    $("#titulo").html("Gestión Clientes");
+                    $("#titulo").html("Gestión Usuarios");
                     $("#editado").html('');
                     $("#editado").hide();
                     $(".listado").show();
@@ -142,7 +150,8 @@ function usuarios() {
         var hash;
         $.ajax({
             type: "get",
-            url: "../../../Funciones/generarPassword.php",
+            url: "Funciones/generarPassword.php",
+            // url: "../../../Funciones/generarPassword.php",
             data: { pass: contrasena },
             dataType: "json"
         }).done(function(resultado) {
@@ -150,7 +159,8 @@ function usuarios() {
             data = datos + '&Contrasena=' + hash;
             $.ajax({
                 type: "get",
-                url: "../../../Controlador/controlador_usuario.php",
+                url: "Controlador/controlador_usuario.php",
+                // url: "../../../Controlador/controlador_usuario.php",
                 data: data,
                 dataType: "json"
             }).done(function(resultado) {
@@ -162,7 +172,7 @@ function usuarios() {
                         showConfirmButton: false,
                         timer: 1500
                     })
-                    $("#titulo").html("Gestión Clientes");
+                    $("#titulo").html("Gestión Usuarios");
                     $("#editado").html('');
                     $("#editado").hide();
                     $(".listado").show();

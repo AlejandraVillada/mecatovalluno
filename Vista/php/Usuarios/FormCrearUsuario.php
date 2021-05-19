@@ -16,15 +16,15 @@
                 </select>
             </div>
             <input type="hidden" id="nuevo" value="nuevo" name="accion" />
-            </form>
-            <div class="form-group">
-                <label for="Contrasena">Contraseña</label>
-                <input type="password" class="form-control" name="Contrasena" id="Contrasena">
-            </div>
-            <br>
-            <button class="btn btn-info" id="grabar">Crear registro</button>
-            <a href="../Usuarios/view_usuarios.php" class="btn btn-danger">Regresar</a>
-            
-        
+        </form>
+        <div class="form-group">
+            <label for="Contrasena">Contraseña</label>
+            <input type="password" class="form-control" name="Contrasena" id="Contrasena">
+        </div>
+        <br>
+        <button class="btn btn-info" id="grabar">Crear registro</button>
+        <a href="./adminper.php" id="cerrar" class="btn btn-danger" data-toggle="tooltip">Regresar</a>
+
+
     </div>
 </div>
