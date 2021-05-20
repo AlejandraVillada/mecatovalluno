@@ -86,7 +86,7 @@ session_start();
             <div class="row">
                 <div class="col-lg-8">
                     <?php if(isset($_SESSION['NombreCliente'])){ ?>
-                    <h1>Bienveni@ <span style="color: white;"><?php echo $_SESSION['NombreCliente']; ?></span></h1>
+                    <h1>Bienvenid@ <span style="color: white;"><?php echo $_SESSION['NombreCliente']; ?></span></h1>
                     <h2>Nos gusta tenerte aqui, es un placer tenerte de nuevo con nosotros</h2>
                     <?php }else{ ?>
                     <h1>MecatoValluno</h1>
