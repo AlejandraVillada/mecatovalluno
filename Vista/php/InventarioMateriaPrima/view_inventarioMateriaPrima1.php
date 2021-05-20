@@ -2,7 +2,7 @@
 
 <body>
     <div class="container">
-        <div class="jumbotron" style="height: 100px;background-color:rgb(0,0,0,0.8);color:rgb(255,255,255);">
+        <div class="jumbotron" >
             <h4>Inventario de Materia Prima </h4>
 
         </div>
