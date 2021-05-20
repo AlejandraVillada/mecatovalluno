@@ -6,7 +6,7 @@
             <h4>Inventario de Materia Prima </h4>
 
         </div>
-        <div class="jumbotron pt-1 pr-1" >
+        <div class="card pt-1 pr-1" >
             <!-- Main content -->
             <section class="content">
                 <div class="row">
