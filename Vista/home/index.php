@@ -8,6 +8,7 @@ session_start();
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -32,6 +33,9 @@ session_start();
     <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+        integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
@@ -77,7 +81,7 @@ session_start();
     <!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex align-items-center">
+    <section id="hero" class="d-flex align-items-center" style="height: 500px;">
         <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
             <div class="row">
                 <div class="col-lg-8">
@@ -174,7 +178,7 @@ session_start();
 
         <!-- ======= Menu Section ======= -->
         <section id="menu" class="menu section-bg">
-            <div class="container" data-aos="fade-up">
+            <div class="container" data-aos="fade-up" style="height: 600px;">
 
                 <div class="section-title">
                     <h2>Productos</h2>
@@ -192,7 +196,7 @@ session_start();
                     </div>
                 </div> -->
 
-                <div class="row menu-container" data-aos="fade-up" data-aos-delay="200" style="height: auto !important;">
+                <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
 
                     <!-- <div class="col-lg-6 menu-item filter-starters">
                         <img src="assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
@@ -203,8 +207,8 @@ session_start();
                             Lorem, deren, trataro, filede, nerada
                         </div>
                     </div> -->
-                  
-                    
+
+
 
                 </div>
 
@@ -850,7 +854,15 @@ session_start();
 
     <div id="preloader"></div>
     <a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <!-- Vendor JS Files -->
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -860,6 +872,8 @@ session_start();
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="assets/vendor/venobox/venobox.min.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
@@ -867,6 +881,7 @@ session_start();
 
     <script>
     $(document).ready(productos);
+    
     </script>
 </body>
 
