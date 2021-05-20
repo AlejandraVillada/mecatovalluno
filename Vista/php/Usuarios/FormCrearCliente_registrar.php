@@ -35,34 +35,34 @@
                     <form id="formCrearCliente">
                         <div class="form-group">
                             <label for="IdCliente">Cédula del cliente</label>
-                            <input type="text" class="form-control" name="IdCliente" id="IdCliente"
-                                placeholder="Ingresa su Cedula">
+                            <input type="number" class="form-control" name="IdCliente" id="IdCliente"
+                                placeholder="Ingresa su Cedula" required>
                         </div>
                         <div class="form-group">
                             <label for="NombreCliente">Nombre Cliente</label>
                             <input type="text" class="form-control" name="NombreCliente" id="NombreCliente"
-                                placeholder="Ingresa su Nombre">
+                                placeholder="Ingresa su Nombre" required>
                         </div>
                         <div class="form-group">
                             <label for="Email">Correo Electronico</label>
-                            <input type="text" class="form-control" name="Email" id="Email"
-                                placeholder="Ingrese su correo electronico">
+                            <input type="email" class="form-control" name="Email" id="Email"
+                                placeholder="Ingrese su correo electronico" required>
                         </div>
                         <div class="form-group">
                             <label for="Direccion">Direccion</label>
                             <input type="text" class="form-control" name="Direccion" id="Direccion"
-                                placeholder="Ingrese Su direccion">
+                                placeholder="Ingrese Su direccion" required>
                         </div>
                         <div class="form-group">
                             <label for="Telefono">Telefono</label>
-                            <input type="text" class="form-control" name="Telefono" id="Telefono"
-                                placeholder="Ingrese su telefono celular">
+                            <input type="number" class="form-control" name="Telefono" id="Telefono"
+                                placeholder="Ingrese su telefono celular" required>
                         </div>
 
                         <div class="form-group">
                             <label for="IdCuidad">Ciudad</label>
-                            <select name="IdCiudad" id="IdCiudad" class="form-control">
-                                <option value="default">Seleccione su ciudad Ciudad..</option>
+                            <select name="IdCiudad" id="IdCiudad" class="form-control" required>
+                                <option value="">Seleccione su ciudad Ciudad..</option>
                             </select>
                         </div>
                         <input type="hidden" id="nuevo1" value="nuevo" name="accion" />
@@ -71,18 +71,18 @@
                         <div class="form-group">
                             <label for="Usuario">Usuario</label>
                             <input type="text" class="form-control" name="Usuario" id="Usuario"
-                                placeholder="Ingrese el nombre de usuario">
+                                placeholder="Ingrese el nombre de usuario" required>
                         </div>
                         <div class="form-group">
                             <label for="Contrasena">Contraseña</label>
                             <input type="password" class="form-control" name="Contrasena" id="Contrasena"
-                                placeholder="Ingrese la contraseña">
+                                placeholder="Ingrese la contraseña" required>
                         </div>
                         <input type="hidden" id="IdUsuario" name="IdUsuario">
                         <input type="hidden" id="nuevo2" value="nuevo" name="accion" />
                     </form>
                     <br>
-                    <button class="btn btn-dark" id="grabar">Crear registro</button>
+                    <button type="submit" class="btn btn-dark" id="grabar">Ingresar Usuario</button>
                     <a href="../Clientes/view_Clientes.php" class="btn btn-dark">Regresar</a>
 
 

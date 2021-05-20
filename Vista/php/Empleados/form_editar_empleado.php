@@ -8,57 +8,57 @@
 
                 <div class="form-group">
                     <label>Cedula</label>
-                    <input type="text" class="form-control" id="IdEmpleado" name="IdEmpleado"
-                        placeholder="Modifique ID o CC del Empleado" value="" readonly>
+                    <input type="number" class="form-control" id="IdEmpleado" name="IdEmpleado"
+                        placeholder="Modifique ID o CC del Empleado" value="" readonly required>
                 </div>
 
                 <div class="form-group">
                     <label>Nombre</label>
                     <input type="text" class="form-control" id="NombreEmpleado" name="NombreEmpleado"
-                        placeholder="Modifique Nombre del Empleado" value="">
+                        placeholder="Modifique Nombre del Empleado" value="" required>
                 </div>
 
                 <div class="form-group">
                     <label>E-mail</label>
-                    <input type="text" class="form-control" id="Email" name="Email"
-                        placeholder="Modifique Correo del Empleado" value="">
+                    <input type="email" class="form-control" id="Email" name="Email"
+                        placeholder="Modifique Correo del Empleado" value="" required>
                 </div>
 
                 <div class="form-group">
                     <label>Sueldo Base</label>
-                    <input type="text" class="form-control" id="SueldoBase" name="SueldoBase"
-                        placeholder="Modifique Sueldo del Empleado" value="">
+                    <input type="number" class="form-control" id="SueldoBase" name="SueldoBase"
+                        placeholder="Modifique Sueldo del Empleado" value="" required>
                 </div>
 
                 <div class="form-group">
                     <label>Telefono</label>
-                    <input type="text" class="form-control" id="Telefono" name="Telefono"
-                        placeholder="Modifique Telefono del Empleado" value="">
+                    <input type="number" class="form-control" id="Telefono" name="Telefono"
+                        placeholder="Modifique Telefono del Empleado" value="" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="muni_codi">Cargo</label>
-                    <select class="form-control" id="Cargo" name="Cargo">
-                        <option value="default">Seleccione un cargo</option>
+                    <label for="Cargo">Cargo</label>
+                    <select class="form-control" id="Cargo" name="Cargo" required>
+                        <option value="">Seleccione un cargo</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="muni_codi">Sede</label>
-                    <select class="form-control" id="IdSede" name="IdSede">
-                        <option value="default">Seleccione una sede</option>
+                    <label for="IdSede">Sede</label>
+                    <select class="form-control" id="IdSede" name="IdSede" required>
+                        <option value="">Seleccione una sede</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>Estado</label>
-                    <select class="form-control" id="IdEstado" name="IdEstado">
-                        <option value="default">Seleccione Estado</option>
+                    <select class="form-control" id="IdEstado" name="IdEstado" required>
+                        <option value="">Seleccione Estado</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <button type="button" id="actualizar" data-toggle="tooltip"
+                    <button type="submit" id="actualizar" data-toggle="tooltip"
                         class="btn btn-primary">Actualizar</button>
                         <a href="./adminper.php" id="cerrar" class="btn btn-danger"
                         data-toggle="tooltip">Regresar</a>
