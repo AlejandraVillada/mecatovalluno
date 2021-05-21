@@ -68,6 +68,7 @@ session_start();
                     <li><a href="#chefs">Proveedores</a></li>
                     <?php if(!isset($_SESSION['NombreCliente'])){ ?>
                     <li><a href="../../login.php">Login</a></li>
+                    <li><a href="../../Vista/php/Usuarios/FormCrearCliente_registrar.php">Registrarse</a></li>
                     <?php }else{ ?>
                     <li><a id="act" href="#actualizacion">Actualizar Datos personales</a></li>
                     <li><a href="index.php"><?php session_destroy(); ?>Cerrar Sesion</a></li>
@@ -103,21 +104,22 @@ session_start();
     <main id="main">
         <section id="actualizacion">
             <div class="container">
-                <div class="jumbotron jumbotron-fluid" style="text-align: center;">
+                <div class="jumbotron jumbotron-fluid"
+                    style="text-align: center; background-color: #0c0b09; color: white;">
                     <div class="container">
-                        <h1 id="titulo" class="display-4" style="color: maroon;">Actualizacion datos Personales</h1>
+                        <h1 id="titulo" class="display-4" style="text-align: center;">Actualizacion datos Personales
+                        </h1>
                     </div>
                 </div>
-                <div class="card card-primary">
-                    <div class="card-header bg-dark text-center text-white titulo">Actualizacion datos Personales</div>
-                    <div class="card">
+                <div class="card card-primary" style="background-color: #0c0b09;">
+                    <div class="card" style="background-color: rgb(255,255,255,0.3);">
                         <div class="card-body">
                             <!-- Cambio y eliminacion en el servidor, poner variable sesion para datos de cedula de consulta -->
                             <input type="hidden" class="form-control" id="Cedula" name="Cedula"
                                 value="<?php echo $_SESSION['IdCliente']; ?>">
-                            <div class="cuerpo">
+                            <div class="cuerpo  book-a-table">
 
-                                <form id="formModificarCliente">
+                                <form id="formModificarCliente" class="php-email-form">
                                     <div class="form-group">
                                         <label for="IdCliente">Cédula del cliente</label>
                                         <input type="number" class="form-control" name="IdCliente" id="IdCliente"
@@ -169,7 +171,8 @@ session_start();
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-info" id="actualizar">Actualizar
                                         Información</button>
-                                    <button class="btn btn-dark" id="apareceUsu">Cambiar Contraseña</button>
+                                    <button class="btn btn-dark" id="apareceUsu"
+                                        style="background-color: #625b4b;">Cambiar Contraseña</button>
                                     <button class="btn btn-danger" id="cerrar">Cancelar</button>
                                 </div>
                             </div>

@@ -69,6 +69,7 @@
         <!-- /.col -->
         <div class="center-block" style="padding-top:30px">
           <button href="submit" id="ingresar" class="btn btn-block btn-flat" style="background-color:#F3D70F; color: #0C0B0B; border-radius:10px; "><strong>Ingresar</strong></button>
+          <a href="./Vista/home/index.php" class="btn btn-block btn-flat btn-danger" style="border-radius:10px;">Regresar al home</a>
         </div>
         <!-- /.col -->
         <input type="hidden" value="login" name="accion">

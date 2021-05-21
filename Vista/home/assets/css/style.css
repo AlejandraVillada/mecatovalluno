@@ -1298,14 +1298,19 @@ section {
     animation: animate-loading 1s linear infinite;
 }
 
+.book-a-table .php-email-form label {
+    color: white;
+    font-weight: 600;
+}
+
 .book-a-table .php-email-form input,
 .book-a-table .php-email-form textarea {
-    border-radius: 0;
+    border-radius: 15px;
     box-shadow: none;
     font-size: 14px;
-    background: #0c0b09;
+    background: white;
     border-color: #625b4b;
-    color: white;
+    color: black;
 }
 
 .book-a-table .php-email-form input::-webkit-input-placeholder,

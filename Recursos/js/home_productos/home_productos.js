@@ -1,5 +1,5 @@
 function productos() {
-    $("#actualizacion").hide();
+    $("#actualizacion").show();
     $("#apareceUsu").show();
 
     $.ajax({
