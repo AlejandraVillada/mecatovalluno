@@ -99,17 +99,32 @@ switch ($accion) {
 
     case 'nuevo_det_proveedor':
         $det_proveedores = new modelo_detProveedor();
+        $det_proveedores->consultar_mp($datos['IdMateriaPrima'],$datos['IdProveedor']);
+        // var_dump($det_proveedores->getIdMateriaPrima());
+        // var_dump($datos['IdMateriaPrima']);
+        // var_dump($datos['IdProveedor']);
+        if($det_proveedores->getIdMateriaPrima() != $datos['IdMateriaPrima']){
+            // var_dump("entro1");
         $resultado = $det_proveedores->nuevo($datos);
-        if ($resultado > 0) {
-            $respuesta = array(
-                'respuesta' => 'correcto',
-            );
-        } else {
+            if ($resultado > 0) {
+                $respuesta = array(
+                    'respuesta' => 'correcto',
+                );
+            } else {
+                $respuesta = array(
+                    'respuesta' => 'error',
+                );
+            }
+            // echo json_encode($respuesta);
+        }else if($det_proveedores->getIdMateriaPrima() == $datos['IdMateriaPrima']){
+            // var_dump("entro2");
             $respuesta = array(
                 'respuesta' => 'error',
             );
+            // echo json_encode($respuesta);
         }
         echo json_encode($respuesta);
+        
         break;
 
     case 'editar_proveedor':

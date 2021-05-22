@@ -264,7 +264,8 @@ function proveedor() {
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
-            if (resultado.respuesta) {
+            console.log(resultado);
+            if (resultado.respuesta == 'correcto') {
                 swal({
                     position: 'center',
                     type: 'success',
@@ -280,7 +281,7 @@ function proveedor() {
                 $(".tablaProveedor").show();
                 dt2.page('last').draw('page');
                 dt2.ajax.reload(null, false);
-            } else {
+            } else if (resultado.respuesta == 'error') {
                 swal({
                     position: 'center',
                     type: 'error',
