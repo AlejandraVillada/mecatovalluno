@@ -16,10 +16,9 @@
 
             <div class="form-group">
                 <label for="nombreMP">Nombre Producto</label>
-                <input type="text" name="NombreMateriaPrima" id="NombreMateriaPrima"
-                    placeholder="Ingrese el nombre del Producto a la venta" class="form-control">
-                    <input type="hidden" name="IdMateriaPrima" id="IdMateriaPrima"
-                    placeholder="Ingrese el nombre del Producto a la venta" class="form-control">
+                <select class="form-control" name="IdMateriaPrima" id="MP">
+                </select>
+
             </div>
 
             <div class="form-group row">
