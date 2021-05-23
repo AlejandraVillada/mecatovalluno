@@ -293,6 +293,29 @@ function productoterminado() {
                 $("#IdMateriaPrima").val(resultado.data.IdMateriaPrima);
                 $("#Cantidad").val(resultado.data.Cantidad);
                 $("#DescripcionProducto").val(resultado.data.DescripcionProducto);
+                var IdMateriaPrima = resultado.data.IdMateriaPrima;
+                // productos
+                $.ajax({
+                    type: "get",
+                    // url: "Controlador/controlador_inventarioMP.php",
+                    url: "../../../Controlador/controlador_mp.php",
+                    data: { accion: 'listar' },
+                    dataType: "json"
+                }).done(function (resultado) {
+                    $("#editar #MP").append("<option>Seleccione el producto</option>");
+                    $.each(resultado.data, function (index, value) {
+                        if (value.IdMateriaPrima == IdMateriaPrima) {
+                            $("#editar #MP").append("<option selected value='" + value.IdMateriaPrima + "'>" + value.NombreMateriaPrima + "</option>")
+
+                        } else {
+                            $("#editar #MP").append("<option value='" + value.IdMateriaPrima + "'>" + value.NombreMateriaPrima + "</option>")
+
+                        }
+
+                    });
+                    
+
+                });
                 $.ajax({
                     type: "post",
                     //  url: "../../../Controlador/controlador_detalleproducto.php",
@@ -309,6 +332,50 @@ function productoterminado() {
 
                         }
                     });
+
+                });
+                $("select[id=MP]").change(function () {
+
+                    var codigo1 = $(this).children('option:selected').val();
+                    console.log(codigo1);
+                    // console.log(IdProducto);
+                    $.ajax({
+                        type: "get",
+                        url: "../../../Controlador/controlador_inventarioprodterminado.php?accion=consultar&&id=" + IdProducto + "",
+                        dataType: "json"
+                    }).done(function (resultado) {
+                        console.log(resultado.data);
+                        var a = 0;
+                        var b=0;
+                        $.each(resultado.data, function (index, value) {
+                            // console.log("1-----"+value.IdMateriaPrima+"-"+IdMateriaPrima);
+                            // console.log("2---" + value.IdMateriaPrima + "-" + codigo1);
+                            if (value.IdMateriaPrima == codigo1) {
+                                a = 1; 
+                            
+                            }
+                            if (a == 1) {
+                                if (value.IdMateriaPrima == IdMateriaPrima) {
+                                    // console.log("mismo");
+                                    $("#editar .guardarmod").attr('disabled',false);
+
+                                }else{
+                                    alert("ya se encuentra la materia prima registrada en este producto");
+                                    $("#editar .guardarmod").attr('disabled',true);
+                                b=1;
+
+                                }
+                                a=0;
+                            }else if(b==1) {
+                                $("#editar .guardarmod").attr('disabled',true);
+
+                            }else{
+                                $("#editar .guardarmod").attr('disabled',false);
+
+                            }
+                        })
+                    });
+
 
                 });
 
