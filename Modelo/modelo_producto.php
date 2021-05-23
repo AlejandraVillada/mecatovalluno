@@ -49,7 +49,7 @@ class modelo_producto extends ModeloAbstractoDB
     {
         if ($id != ''):
             $this->query = "SELECT dp.Cantidad,dp.DescripcionProducto,
-			            dp.IdDetalleProducto,m.NombreMedida,mp.NombreMateriaPrima
+			            dp.IdDetalleProducto,m.NombreMedida,mp.NombreMateriaPrima,mp.IdMateriaPrima,
 			            FROM detalle_producto dp
 			            INNER JOIN Medidas m ON(dp.IdMedida=m.idMedida)
 			            INNER JOIN materiaprima mp ON(dp.IdMateriaPrima=mp.IdMateriaPrima)
