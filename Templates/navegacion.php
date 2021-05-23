@@ -125,7 +125,8 @@
                     <span> Producto Terminado</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fas fa-comment-dots"></i> Gestion Producto terminado</a></li>
+                    <li><a href="./Vista/php/ProductoTerminado/view_ProductoTerminado.php"><i class="fas fa-comment-dots"></i> Gestion
+                            Producto terminado</a></li>
                     <li><a href="#"><i class="fab fa-creative-commons-remix"></i> Gestion de Produccion</a></li>
                 </ul>
             </li>
@@ -135,7 +136,18 @@
                     <span> Nomina</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="./Vista/php/Nomina/view_nomina.php"><i class="fas fa-envelope-open-text"></i> Gestion de Nomina</a></li>
+                    <li><a href="./Vista/php/Nomina/view_nomina.php"><i class="fas fa-envelope-open-text"></i> Gestion
+                            de Nomina</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <span> Ventas</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="#"><i class="fas fa-money-bill-alt"></i>
+                            Gestion de Ventas</a></li>
                 </ul>
             </li>
             <?php }else?>
@@ -216,7 +228,17 @@
                                     Clientes</a></li>
                         </ul>
                     </li>
-                    
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fas fa-hand-holding-usd"></i>
+                            <span> Ventas</span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fas fa-money-bill-alt"></i>
+                                    Gestion de Ventas</a></li>
+                        </ul>
+                    </li>
+
                     <?php }else?>
                     <!-- Asesor -->
                     <?php if($_SESSION['IdTipoUsuario']==3){?>
@@ -227,7 +249,7 @@
                                     class="fa fa-circle-o"></i><span>Inicio</span></a>
                         </li>
                         </li>
-                        
+
                         <li class="treeview">
                             <a href="#">
                                 <i class="fas fa-hand-holding-water"></i>
@@ -247,11 +269,12 @@
                             <ul class="treeview-menu">
                                 <li><a href="./Vista/php/InventarioMateriaPrima/view_inventarioMateriaPrima1.php"><i
                                             class="fas fa-clipboard-list"></i> Inventario Materia Prima</a></li>
-                                <li><a href="#"><i class="fas fa-clipboard-check"></i> Inventario Producto Terminado</a>
+                                <li><a href="./Vista/php/ProductoTerminado/view_ProductoTerminado.php"><i
+                                            class="fas fa-clipboard-check"></i> Inventario Producto Terminado</a>
                                 </li>
                             </ul>
                         </li>
-                        
+
                         <li class="treeview">
                             <a href="#">
                                 <i class="fas fa-box-open"></i>
@@ -269,8 +292,10 @@
                                 <span> Producto Terminado</span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#"><i class="fas fa-comment-dots"></i> Gestion Producto terminado</a></li>
-                                <li><a href="#"><i class="fab fa-creative-commons-remix"></i> Gestion de Produccion</a></li>
+                                <li><a href="./Vista/php/Proveedor/view_proveedores.php"><i
+                                            class="fas fa-comment-dots"></i> Gestion Producto terminado</a></li>
+                                <li><a href="#"><i class="fab fa-creative-commons-remix"></i> Gestion de Produccion</a>
+                                </li>
                             </ul>
                         </li>
                         <?php }?>

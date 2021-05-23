@@ -15,18 +15,18 @@
                 <div class="form-group">
                     <label>Nombre</label>
                     <input type="text" class="form-control" id="NombreProveedor" name="NombreProveedor"
-                        placeholder="Ingrese Nombre del Proveedor" value="">
+                        placeholder="Ingrese Nombre del Proveedor" value="" required>
                 </div>
 
                 <div class="form-group">
                     <label>Estado</label>
-                    <select class="form-control" id="IdEstado" name="IdEstado">
-                        <option value="default">Seleccione Estado</option>
+                    <select class="form-control" id="IdEstado" name="IdEstado" required>
+                        <option value="">Seleccione Estado</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <button type="button" id="grabar1" class="btn btn-primary" data-toggle="tooltip">Registrar
+                    <button type="submit" id="grabar1" class="btn btn-primary" data-toggle="tooltip">Registrar
                         Proveedor</button>
                     <a href="./adminper.php" id="cerrar" class="btn btn-danger" data-toggle="tooltip">Regresar</a>
                 </div>

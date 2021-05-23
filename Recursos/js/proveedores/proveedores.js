@@ -220,6 +220,7 @@ function proveedor() {
     // Procesos del Detalle Proveedor
 
     $("#nuevo2").click(function() {
+        var codigo = $(".proveedor").data("codigo");
         $("#titulo").html("Asignación de Productos a Proveedores");
         $(".titulo").html("Datos de Registro");
         $("#edicion1").show();
@@ -227,18 +228,24 @@ function proveedor() {
         $("#nuevo2").hide();
         $("#edicion1").load('Vista/php/Proveedor/form_nuevo_det_proveedor.php', function() {
             // $("#edicion1").load('../../../Vista/php/Proveedor/form_nuevo_det_proveedor.php', function() {
+
             $.ajax({
                 type: "get",
                 url: "Controlador/controlador_proveedor.php",
                 // url: "../../../Controlador/controlador_proveedor.php",
-                data: { accion: 'lista_proveedores' },
+                data: { codigo: codigo, accion: 'consultar_proveedor' },
                 dataType: "json"
-            }).done(function(resultado) {;
-                $.each(resultado.data, function(index, value) {
-                    $("#IdProveedor").append("<option value='" + value.IdProveedor + "'>" + value.NombreProveedor + "</option>")
-                });
+            }).done(function(proveedor) {
+                if (proveedor.respuesta === "No Existe El Proveedor") {
+                    swal({
+                        type: 'error',
+                        title: '¡Error!',
+                        text: '¡El Proveedor No Existe!'
+                    })
+                } else {
+                    $("#IdProveedor").val(proveedor.nombre);
+                }
             });
-
             $.ajax({
                 type: "get",
                 url: "Controlador/controlador_proveedor.php",
@@ -333,16 +340,18 @@ function proveedor() {
                 type: "get",
                 url: "Controlador/controlador_proveedor.php",
                 // url: "../../../Controlador/controlador_proveedor.php",
-                data: { accion: 'lista_proveedores' },
+                data: { codigo: codigo2, accion: 'consultar_proveedor' },
                 dataType: "json"
-            }).done(function(resultado) {
-                $.each(resultado.data, function(index, value) {
-                    if (proveedor === value.IdProveedor) {
-                        $("#IdProveedor").append("<option selected value='" + value.IdProveedor + "'>" + value.NombreProveedor + "</option>")
-                    } else {
-                        $("#IdProveedor").append("<option value='" + value.IdProveedor + "'>" + value.NombreProveedor + "</option>")
-                    }
-                });
+            }).done(function(proveedor) {
+                if (proveedor.respuesta === "No Existe El Proveedor") {
+                    swal({
+                        type: 'error',
+                        title: '¡Error!',
+                        text: '¡El Proveedor No Existe!'
+                    })
+                } else {
+                    $("#IdProveedor").val(proveedor.nombre);
+                }
             });
 
             $.ajax({
