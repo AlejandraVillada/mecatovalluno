@@ -14,9 +14,10 @@
 
                 <div class="form-group">
                     <label>Proveedor</label>
-                    <input class="form-control" id="IdProveedor" name="IdProveedor" required readonly>
+                    <input class="form-control" id="Proveedor" name="Proveedor" required readonly type="text">
                         
                 </div>
+                <input class="form-control" id="IdProveedor" name="IdProveedor" type="hidden">
 
                 <div class="form-group">
                     <label>Materia Prima</label>

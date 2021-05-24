@@ -4,6 +4,7 @@ require_once "../Modelo/modelo_empleados.php";
 header('Content-Type: application/json');
 $datos = $_GET;
 $accion = $_GET['accion'];
+utf8_encode($listado);
 
 switch ($accion) {
     case 'listar':
@@ -11,8 +12,6 @@ switch ($accion) {
         $listado = $empleados->lista();
         echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE);
         break;
-
-    
 
     case 'listar_estados':
         $estado = new modelo_empleados();
@@ -35,7 +34,7 @@ switch ($accion) {
                 'email' => $empleados->getEmail(),
                 'sueldo' => $empleados->getSueldoBase(),
                 'telefono' => $empleados->getTelefono(),
-                'cargo' => $empleados->getCargo(),
+                'cargo' => utf8_decode($empleados->getCargo()),
                 'sede' => $empleados->getIdSede(),
                 'estado' => $empleados->getIdEstado(),
                 'respuesta' => 'existe',

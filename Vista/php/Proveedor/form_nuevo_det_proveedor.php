@@ -14,8 +14,9 @@
 
                 <div class="form-group">
                     <label>Proveedor</label>
-                    <input class="form-control" id="IdProveedor" name="IdProveedor" required readonly>
+                    <input type="text" class="form-control" id="Proveedor" name="Proveedor" required readonly>
                 </div>
+                <input class="form-control" id="IdProveedor" name="IdProveedor" type="hidden">
 
                 <div class="form-group">
                     <label>Materia Prima</label>
@@ -25,7 +26,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" id="grabar2" class="btn btn-primary" data-toggle="tooltip">Asignar
+                    <button id="grabar2" class="btn btn-primary" data-toggle="tooltip" type="submit">Asignar
                         Producto</button>
                     <a href="./adminper.php" id="cerrar" class="btn btn-danger" data-toggle="tooltip">Regresar</a>
                 </div>

@@ -133,15 +133,35 @@ switch ($accion) {
         $respuesta = array(
             'respuesta' => $resultado,
         );
+        // var_dump($resultado);
         echo json_encode($respuesta);
         break;
 
     case 'editar_det_proveedor':
         $det_proveedores = new modelo_detProveedor();
+        $det_proveedores->consultar_mp($datos['IdMateriaPrima'],$datos['IdProveedor']);
+        // var_dump($det_proveedores->getIdMateriaPrima());
+        // var_dump($datos['IdMateriaPrima']);
+        // var_dump($datos['IdProveedor']);
+        if($det_proveedores->getIdMateriaPrima() != $datos['IdMateriaPrima']){
         $resultado = $det_proveedores->editar($datos);
-        $respuesta = array(
-            'respuesta' => $resultado,
-        );
+        if ($resultado > 0) {
+            $respuesta = array(
+                'respuesta' => 'correcto',
+                );
+            } else {
+                $respuesta = array(
+                    'respuesta' => 'error',
+                );
+            }
+            // echo json_encode($respuesta);
+        }else if($det_proveedores->getIdMateriaPrima() == $datos['IdMateriaPrima']){
+            // var_dump("entro2");
+            $respuesta = array(
+                'respuesta' => 'error',
+            );
+            // echo json_encode($respuesta);
+        }
         echo json_encode($respuesta);
         break;
 }

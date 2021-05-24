@@ -8,21 +8,21 @@ function empleados() {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
         },
         "buttons": [{
-            extend: 'excelHtml5',
-            text: '<i class="fas fa-file-excel "></i> ',
-            titleAttr: 'Exportar a Excel',
-            className: 'btn btn-success',
-            title: 'Empleados'
-        },
-        {
-            extend: 'pdfHtml5',
-            text: '<i class="fas fa-file-pdf "></i> ',
-            titleAttr: 'Exportar a PDF',
-            className: 'btn btn-danger',
-            title: 'Empleados'
+                extend: 'excelHtml5',
+                text: '<i class="fas fa-file-excel "></i> ',
+                titleAttr: 'Exportar a Excel',
+                className: 'btn btn-success',
+                title: 'Empleados'
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="fas fa-file-pdf "></i> ',
+                titleAttr: 'Exportar a PDF',
+                className: 'btn btn-danger',
+                title: 'Empleados'
 
 
-        }
+            }
         ],
 
         "columns": [
@@ -36,7 +36,7 @@ function empleados() {
             { "data": "Estado" },
             {
                 "data": "IdEmpleado",
-                render: function (data) {
+                render: function(data) {
                     return '<a href="#" data-codigo="' + data +
                         '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>'
                 }
@@ -55,13 +55,13 @@ function empleados() {
 
     $("#edicion").hide();
 
-    $("#nuevo").click(function () {
+    $("#nuevo").click(function() {
         $("#titulo").html("Registro de Empleados");
         $(".titulo").html("Datos de Registro");
         $("#edicion").show();
         $("#listado").hide();
         $("#nuevo").hide();
-        $("#edicion").load('Vista/php/Empleados/form_nuevo_empleado.php', function () {
+        $("#edicion").load('Vista/php/Empleados/form_nuevo_empleado.php', function() {
             // $("#edicion").load('../../../Vista/php/Empleados/form_nuevo_empleado.php', function() {
             $.ajax({
                 type: "get",
@@ -69,9 +69,8 @@ function empleados() {
                 // url: "../../../Controlador/controlador_ubicaciones.php",
                 data: { accion: 'listar_sede' },
                 dataType: "json"
-            }).done(function (resultado) {
-                ;
-                $.each(resultado.data, function (index, value) {
+            }).done(function(resultado) {;
+                $.each(resultado.data, function(index, value) {
                     $("#IdSede").append("<option value='" + value.IdSede + "'>" + value.NombreSede + "</option>")
                 });
             });
@@ -82,9 +81,8 @@ function empleados() {
                 // url: "../../../Controlador/controlador_usuarios.php",
                 data: { accion: 'listar_tipo_usu' },
                 dataType: "json"
-            }).done(function (resultado) {
-                ;
-                $.each(resultado.data, function (index, value) {
+            }).done(function(resultado) {;
+                $.each(resultado.data, function(index, value) {
                     $("#Cargo").append("<option value='" + value.IdTipoUsuario + "'>" + value.TipoUsuario + "</option>")
                 });
             });
@@ -95,9 +93,8 @@ function empleados() {
                 // url: "../../../Controlador/controlador_empleados.php",
                 data: { accion: 'listar_estados' },
                 dataType: "json"
-            }).done(function (resultado) {
-                ;
-                $.each(resultado.data, function (index, value) {
+            }).done(function(resultado) {;
+                $.each(resultado.data, function(index, value) {
                     $("#IdEstado").append("<option value='" + value.IdEstado + "'>" + value.Estado + "</option>")
                 });
             });
@@ -106,8 +103,8 @@ function empleados() {
 
     })
 
-    $("#edicion").on("click", "button#grabar", function () {
-
+    $("#edicion").on("click", "button#grabar", function(e) {
+        e.preventDefault();
         var datos = $("#datos").serialize();
         console.log(datos);
         $.ajax({
@@ -116,7 +113,7 @@ function empleados() {
             // url: "../../../Controlador/controlador_empleados.php",
             data: datos,
             dataType: "json"
-        }).done(function (resultado) {
+        }).done(function(resultado) {
             if (resultado.respuesta) {
                 swal({
                     position: 'center',
@@ -145,7 +142,8 @@ function empleados() {
         });
     });
 
-    $("#edicion").on("click", "button#actualizar", function () {
+    $("#edicion").on("click", "button#actualizar", function(e) {
+        e.preventDefault();
         var datos = $("#datos").serialize();
         console.log(datos);
         $.ajax({
@@ -154,7 +152,7 @@ function empleados() {
             // url: "../../../Controlador/controlador_empleados.php",
             data: datos,
             dataType: "json"
-        }).done(function (resultado) {
+        }).done(function(resultado) {
             if (resultado.respuesta) {
                 swal({
                     position: 'center',
@@ -179,7 +177,7 @@ function empleados() {
         });
     })
 
-    $(".contenedor").on("click", "a.editar", function () {
+    $(".contenedor").on("click", "a.editar", function() {
         var codigo = $(this).data("codigo");
         var sede;
         var cargo;
@@ -190,7 +188,7 @@ function empleados() {
         $("#edicion").show();
         $("#listado").hide();
         $("#nuevo").hide();
-        $("#edicion").load('Vista/php/Empleados/form_editar_empleado.php', function () {
+        $("#edicion").load('Vista/php/Empleados/form_editar_empleado.php', function() {
             // $("#edicion").load('../../../Vista/php/Empleados/form_editar_empleado.php', function() {
             $.ajax({
                 type: "get",
@@ -198,7 +196,7 @@ function empleados() {
                 // url: "../../../Controlador/controlador_empleados.php",
                 data: { codigo: codigo, accion: 'consultar' },
                 dataType: "json"
-            }).done(function (empleado) {
+            }).done(function(empleado) {
                 if (empleado.respuesta === "No Existe El Empleado") {
                     swal({
                         type: 'error',
@@ -223,8 +221,8 @@ function empleados() {
                 // url: "../../../Controlador/controlador_ubicaciones.php",
                 data: { accion: 'listar_sede' },
                 dataType: "json"
-            }).done(function (resultado) {
-                $.each(resultado.data, function (index, value) {
+            }).done(function(resultado) {
+                $.each(resultado.data, function(index, value) {
                     if (sede === value.IdSede) {
                         $("#IdSede").append("<option selected value='" + value.IdSede + "'>" + value.NombreSede + "</option>")
                     } else {
@@ -239,8 +237,8 @@ function empleados() {
                 // url: "../../../Controlador/controlador_usuarios.php",
                 data: { accion: 'listar_tipo_usu' },
                 dataType: "json"
-            }).done(function (resultado) {
-                $.each(resultado.data, function (index, value) {
+            }).done(function(resultado) {
+                $.each(resultado.data, function(index, value) {
                     if (cargo === value.IdTipoUsuario) {
                         $("#Cargo").append("<option selected value='" + value.IdTipoUsuario + "'>" + value.TipoUsuario + "</option>")
                     } else {
@@ -255,8 +253,8 @@ function empleados() {
                 // url: "../../../Controlador/controlador_empleados.php",
                 data: { accion: 'listar_estados' },
                 dataType: "json"
-            }).done(function (resultado) {
-                $.each(resultado.data, function (index, value) {
+            }).done(function(resultado) {
+                $.each(resultado.data, function(index, value) {
                     if (estado === value.IdEstado) {
                         $("#IdEstado").append("<option selected value='" + value.IdEstado + "'>" + value.Estado + "</option>")
                     } else {

@@ -28,8 +28,8 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" id="actualizar1" class="btn btn-primary" data-toggle="tooltip">Actualizar
-                        Proveedor</button>
+                    <button id="actualizar1" class="btn btn-primary" data-toggle="tooltip" type="submit">Asignar
+                        Producto</button>
                     <a href="./adminper.php" id="cerrar" class="btn btn-danger" data-toggle="tooltip">Regresar</a>
                 </div>
 
