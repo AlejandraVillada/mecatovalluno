@@ -25,7 +25,7 @@ class modelo_producto extends ModeloAbstractoDB
                 if ($key1 == "Foto") {
                     //  header("Content-type: image/png"); 
                    
-                    $contenido[$key1] = " <img src='data:image/png; base64,".($value1)."' >";
+                    $contenido[$key1] = " <img src='data:image/png; base64,".($value1)."' class='menu-img'>";
                     
                 } else {
                     $contenido[$key1] = $value1;
@@ -49,7 +49,7 @@ class modelo_producto extends ModeloAbstractoDB
     {
         if ($id != ''):
             $this->query = "SELECT dp.Cantidad,dp.DescripcionProducto,
-			            dp.IdDetalleProducto,m.NombreMedida,mp.NombreMateriaPrima
+			            dp.IdDetalleProducto,m.NombreMedida,mp.NombreMateriaPrima,mp.IdMateriaPrima
 			            FROM detalle_producto dp
 			            INNER JOIN Medidas m ON(dp.IdMedida=m.idMedida)
 			            INNER JOIN materiaprima mp ON(dp.IdMateriaPrima=mp.IdMateriaPrima)

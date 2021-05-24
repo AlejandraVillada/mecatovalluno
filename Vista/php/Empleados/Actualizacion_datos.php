@@ -27,7 +27,7 @@
 
         <div class="jumbotron jumbotron-fluid" style="text-align: center;">
             <div class="container">
-                <h1 id="titulo" class="display-4">Actualización de Datos Personales</h1>
+                <h1 id="titulo" class="display-4" style="color: maroon;">Actualización de Datos Personales</h1>
             </div>
         </div>
 
@@ -42,26 +42,26 @@
                         <form id="formModificarEmpleado">
                             <div class="form-group">
                                 <label>Cedula</label>
-                                <input type="text" class="form-control" id="IdEmpleado" name="IdEmpleado"
-                                    placeholder="Ingrese ID o CC" value="" readonly>
+                                <input type="number" class="form-control" id="IdEmpleado" name="IdEmpleado"
+                                    placeholder="Ingrese ID o CC" value="" readonly required>
                             </div>
 
                             <div class="form-group">
                                 <label>Nombre</label>
                                 <input type="text" class="form-control" id="NombreEmpleado" name="NombreEmpleado"
-                                    placeholder="Modifique Nombre del Empleado" value="">
+                                    placeholder="Modifique Nombre del Empleado" value="" required>
                             </div>
 
                             <div class="form-group">
                                 <label>E-mail</label>
-                                <input type="text" class="form-control" id="Email" name="Email"
-                                    placeholder="Modifique Correo del Empleado" value="">
+                                <input type="email" class="form-control" id="Email" name="Email"
+                                    placeholder="Modifique Correo del Empleado" value="" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Telefono</label>
-                                <input type="text" class="form-control" id="Telefono" name="Telefono"
-                                    placeholder="Modifique Telefono del Empleado" value="">
+                                <input type="number" class="form-control" id="Telefono" name="Telefono"
+                                    placeholder="Modifique Telefono del Empleado" value="" required>
                             </div>
 
                             <input type="hidden" id="Cargo" name="Cargo">
@@ -93,7 +93,7 @@
                         </div>
                         <br>
                         <div class="form-group">
-                            <button class="btn btn-info" id="actualizar">Actualizar Información</button>
+                            <button type="submit" class="btn btn-info" id="actualizar">Actualizar Información</button>
                             <button class="btn btn-dark" id="apareceUsu">Cambiar Contraseña</button>
                         </div>
                     </div>

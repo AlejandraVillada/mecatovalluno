@@ -126,6 +126,21 @@ class modelo_detProveedor extends ModeloAbstractoDB
         // var_dump($this->rows);
     }
 
+    public function consultar_mp($IdMateriaPrima='',$IdProveedor=''){
+            $this->query = "
+					SELECT IdMateriaPrima
+					FROM detalle_proveedor
+	                WHERE IdMateriaPrima = '$IdMateriaPrima' AND IdProveedor = '$IdProveedor'
+					";
+            $this->obtener_resultados_query();
+
+            if (count($this->rows) == 1):
+                foreach ($this->rows[0] as $propiedad => $valor):
+                    $this->$propiedad = $valor;
+                endforeach;
+            endif;
+    }
+
     public function nuevo($datos = array())
     {
         if (array_key_exists('IdDetalleProveedor', $datos)):

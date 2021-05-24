@@ -8,6 +8,7 @@ session_start();
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -15,8 +16,8 @@ session_start();
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-        <!-- Icono -->
-        <link rel="shortcut icon" href="../img/logo.ico">
+    <!-- Icono -->
+    <link rel="shortcut icon" href="../img/logo.ico">
     <!-- <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
 
     <!-- Google Fonts -->
@@ -32,6 +33,9 @@ session_start();
     <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+        integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
@@ -50,23 +54,26 @@ session_start();
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center">
 
-            <h1 class="logo mr-auto" style="font-family:Zulia;"><a href="#"> <img src="assets/img/text.png" alt=""></a></h1>
+            <h1 class="logo mr-auto" style="font-family:Zulia;"><a href="#"> <img src="assets/img/text.png" alt=""></a>
+            </h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
             <!-- <span class="logo mr-auto"><img src="../img/logo.png" ></span> -->
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li class="active"><a href="index.html">Home</a></li>
+                    <li class="active"><a href="index.php">Home</a></li>
                     <li><a href="#about">Sobre Nosotros</a></li>
                     <li><a href="#menu">Productos</a></li>
                     <li><a href="#gallery">Fotos</a></li>
                     <li><a href="#chefs">Proveedores</a></li>
                     <?php if(!isset($_SESSION['NombreCliente'])){ ?>
                     <li><a href="../../login.php">Login</a></li>
+                    <li><a href="../../Vista/php/Usuarios/FormCrearCliente_registrar.php">Registrarse</a></li>
                     <?php }else{ ?>
-                        <li><a href="index.php"><?php session_destroy(); ?>Cerrar Sesion</a></li>
+                    <li><a id="act" href="#actualizacion">Actualizar Datos personales</a></li>
+                    <li><a href="index.php"><?php session_destroy(); ?>Cerrar Sesion</a></li>
                     <?php } ?>
-                    
+
                 </ul>
             </nav>
             <!-- .nav-menu -->
@@ -76,12 +83,12 @@ session_start();
     <!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex align-items-center">
+    <section id="hero" class="d-flex align-items-center" style="height: 500px;">
         <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
             <div class="row">
                 <div class="col-lg-8">
                     <?php if(isset($_SESSION['NombreCliente'])){ ?>
-                    <h1>Bienveni@ <span style="color: white;"><?php echo $_SESSION['NombreCliente']; ?></span></h1>
+                    <h1>Bienvenid@ <span style="color: white;"><?php echo $_SESSION['NombreCliente']; ?></span></h1>
                     <h2>Nos gusta tenerte aqui, es un placer tenerte de nuevo con nosotros</h2>
                     <?php }else{ ?>
                     <h1>MecatoValluno</h1>
@@ -95,40 +102,120 @@ session_start();
     <!-- End Hero -->
 
     <main id="main">
-
-        <!-- ======= About Section ======= -->
-        <section id="about" class="about">
-            <div class="container" data-aos="fade-up">
-
-                <div class="row">
-                    <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="about-img">
-                            <img src="assets/img/nosotros.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-                        <h3>MecatoValluno N°1 En el mercado en alimentos</h3>
-                        <p class="font-italic">
-                            Nuestros Productos estan caracterizados por manejar la menor cantidad de coresterol y
-                            excesos en sodio, liberados de aceite tradicional con un empaquetado profesional y completo
-                            tanto para nuestros clientes como para el usuario final.
-                        </p>
-                        <ul>
-                            <li><i class="icofont-check-circled"></i> Lideres en elegancia y calidad</li>
-                            <li><i class="icofont-check-circled"></i> Exportaciones internacionales</li>
-                            <li><i class="icofont-check-circled"></i> Exclusividad e envio de productos al por mayor y
-                                al detal</li>
-                        </ul>
-
+        <section id="actualizacion">
+            <div class="container">
+                <div class="jumbotron jumbotron-fluid"
+                    style="text-align: center; background-color: #0c0b09; color: white;">
+                    <div class="container">
+                        <h1 id="titulo" class="display-4" style="text-align: center;">Actualizacion datos Personales
+                        </h1>
                     </div>
                 </div>
+                <div class="card card-primary" style="background-color: #0c0b09;">
+                    <div class="card" style="background-color: rgb(255,255,255,0.3);">
+                        <div class="card-body">
+                            <!-- Cambio y eliminacion en el servidor, poner variable sesion para datos de cedula de consulta -->
+                            <input type="hidden" class="form-control" id="Cedula" name="Cedula"
+                                value="<?php echo $_SESSION['IdCliente']; ?>">
+                            <div class="cuerpo  book-a-table">
 
-            </div>
+                                <form id="formModificarCliente" class="php-email-form">
+                                    <div class="form-group">
+                                        <label for="IdCliente">Cédula del cliente</label>
+                                        <input type="number" class="form-control" name="IdCliente" id="IdCliente"
+                                            readonly required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="NombreCliente">Nombre Cliente</label>
+                                        <input type="text" class="form-control" name="NombreCliente" id="NombreCliente"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Email">Correo Electronico</label>
+                                        <input type="email" class="form-control" name="Email" id="Email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Direccion">Direccion</label>
+                                        <input type="text" class="form-control" name="Direccion" id="Direccion"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Telefono">Telefono</label>
+                                        <input type="number" class="form-control" name="Telefono" id="Telefono"
+                                            required>
+                                    </div>
+                                    <input type="hidden" name="IdEstado" id="IdEstado">
+                                    <input type="hidden" name="IdCiudad" id="IdCiudad">
+
+
+                                    <input type="hidden" id="editar1" value="editar" name="accion" />
+                                </form>
+                                <div class="usuario">
+                                    <form id="formModificarUsuario">
+                                        <div class="form-group">
+                                            <label for="Usuario">Usuario</label>
+                                            <input type="text" class="form-control" name="Usuario" id="Usuario"
+                                                placeholder="Ingrese el nombre de usuario" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Contrasena">Contraseña</label>
+                                            <input type="password" class="form-control" name="Contrasena"
+                                                id="Contrasena" placeholder="Ingrese la contraseña">
+                                        </div>
+                                        <input type="hidden" id="IdUsuario" name="IdUsuario">
+                                        <input type="hidden" id="IdTipoUsuario" name="IdTipoUsuario">
+                                        <input type="hidden" id="editar2" value="editar" name="accion" />
+                                    </form>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info" id="actualizar">Actualizar
+                                        Información</button>
+                                    <button class="btn btn-dark" id="apareceUsu"
+                                        style="background-color: #625b4b;">Cambiar Contraseña</button>
+                                    <button class="btn btn-danger" id="cerrar">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </section>
-        <!-- End About Section -->
+        <div id="pagina">
+            <!-- ======= About Section ======= -->
+            <section id="about" class="about">
+                <div class="container" data-aos="fade-up">
 
-        <!-- ======= Why Us Section ======= -->
-        <!-- <section id="why-us" class="why-us">
+                    <div class="row">
+                        <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="about-img">
+                                <img src="assets/img/nosotros.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+                            <h3>MecatoValluno N°1 En el mercado en alimentos</h3>
+                            <p class="font-italic">
+                                Nuestros Productos estan caracterizados por manejar la menor cantidad de coresterol y
+                                excesos en sodio, liberados de aceite tradicional con un empaquetado profesional y
+                                completo
+                                tanto para nuestros clientes como para el usuario final.
+                            </p>
+                            <ul>
+                                <li><i class="icofont-check-circled"></i> Lideres en elegancia y calidad</li>
+                                <li><i class="icofont-check-circled"></i> Exportaciones internacionales</li>
+                                <li><i class="icofont-check-circled"></i> Exclusividad e envio de productos al por mayor
+                                    y
+                                    al detal</li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!-- End About Section -->
+
+            <!-- ======= Why Us Section ======= -->
+            <!-- <section id="why-us" class="why-us">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
@@ -169,18 +256,18 @@ session_start();
 
             </div>
         </section> -->
-        <!-- End Why Us Section -->
+            <!-- End Why Us Section -->
 
-        <!-- ======= Menu Section ======= -->
-        <section id="menu" class="menu section-bg">
-            <div class="container" data-aos="fade-up">
+            <!-- ======= Menu Section ======= -->
+            <section id="menu" class="menu section-bg">
+                <div class="container" data-aos="fade-up" style="height: 600px;">
 
-                <div class="section-title">
-                    <h2>Productos</h2>
-                    <p>Nuestros productos a la venta</p>
-                </div>
+                    <div class="section-title">
+                        <h2>Productos</h2>
+                        <p>Nuestros productos a la venta</p>
+                    </div>
 
-                <div class="row" data-aos="fade-up" data-aos-delay="100">
+                    <!-- <div class="row" data-aos="fade-up" data-aos-delay="100">
                     <div class="col-lg-12 d-flex justify-content-center">
                         <ul id="menu-flters">
                             <li data-filter="*" class="filter-active">All</li>
@@ -189,11 +276,11 @@ session_start();
                             <li data-filter=".filter-specialty">Specialty</li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+                    <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
 
-                    <div class="col-lg-6 menu-item filter-starters">
+                        <!-- <div class="col-lg-6 menu-item filter-starters">
                         <img src="assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
                         <div class="menu-content">
                             <a href="#">Lobster Bisque</a><span>$5.95</span>
@@ -201,96 +288,18 @@ session_start();
                         <div class="menu-ingredients">
                             Lorem, deren, trataro, filede, nerada
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="col-lg-6 menu-item filter-specialty">
-                        <img src="assets/img/menu/bread-barrel.jpg" class="menu-img" alt="">
-                        <div class="menu-content">
-                            <a href="#">Bread Barrel</a><span>$6.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </div>
-                    </div>
 
-                    <div class="col-lg-6 menu-item filter-starters">
-                        <img src="assets/img/menu/cake.jpg" class="menu-img" alt="">
-                        <div class="menu-content">
-                            <a href="#">Crab Cake</a><span>$7.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            A delicate crab cake served on a toasted roll with lettuce and tartar sauce
-                        </div>
-                    </div>
 
-                    <div class="col-lg-6 menu-item filter-salads">
-                        <img src="assets/img/menu/caesar.jpg" class="menu-img" alt="">
-                        <div class="menu-content">
-                            <a href="#">Caesar Selections</a><span>$8.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 menu-item filter-specialty">
-                        <img src="assets/img/menu/tuscan-grilled.jpg" class="menu-img" alt="">
-                        <div class="menu-content">
-                            <a href="#">Tuscan Grilled</a><span>$9.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Grilled chicken with provolone, artichoke hearts, and roasted red pesto
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 menu-item filter-starters">
-                        <img src="assets/img/menu/mozzarella.jpg" class="menu-img" alt="">
-                        <div class="menu-content">
-                            <a href="#">Mozzarella Stick</a><span>$4.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 menu-item filter-salads">
-                        <img src="assets/img/menu/greek-salad.jpg" class="menu-img" alt="">
-                        <div class="menu-content">
-                            <a href="#">Greek Salad</a><span>$9.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Fresh spinach, crisp romaine, tomatoes, and Greek olives
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 menu-item filter-salads">
-                        <img src="assets/img/menu/spinach-salad.jpg" class="menu-img" alt="">
-                        <div class="menu-content">
-                            <a href="#">Spinach Salad</a><span>$9.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 menu-item filter-specialty">
-                        <img src="assets/img/menu/lobster-roll.jpg" class="menu-img" alt="">
-                        <div class="menu-content">
-                            <a href="#">Lobster Roll</a><span>$12.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
-                        </div>
                     </div>
 
                 </div>
+            </section>
+            <!-- End Menu Section -->
 
-            </div>
-        </section>
-        <!-- End Menu Section -->
-
-        <!-- ======= Specials Section ======= -->
-        <!-- <section id="specials" class="specials">
+            <!-- ======= Specials Section ======= -->
+            <!-- <section id="specials" class="specials">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
@@ -390,10 +399,10 @@ session_start();
 
             </div>
         </section> -->
-        <!-- End Specials Section -->
+            <!-- End Specials Section -->
 
-        <!-- ======= Events Section ======= -->
-        <!-- <section id="events" class="events">
+            <!-- ======= Events Section ======= -->
+            <!-- <section id="events" class="events">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
@@ -491,10 +500,10 @@ session_start();
 
             </div>
         </section> -->
-        <!-- End Events Section -->
+            <!-- End Events Section -->
 
-        <!-- ======= Book A Table Section ======= -->
-        <!-- <section id="book-a-table" class="book-a-table">
+            <!-- ======= Book A Table Section ======= -->
+            <!-- <section id="book-a-table" class="book-a-table">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
@@ -551,10 +560,10 @@ session_start();
 
             </div>
         </section> -->
-        <!-- End Book A Table Section -->
+            <!-- End Book A Table Section -->
 
-        <!-- ======= Testimonials Section ======= -->
-        <!-- <section id="testimonials" class="testimonials section-bg">
+            <!-- ======= Testimonials Section ======= -->
+            <!-- <section id="testimonials" class="testimonials section-bg">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
@@ -632,158 +641,161 @@ session_start();
 
             </div>
         </section> -->
-        <!-- End Testimonials Section -->
+            <!-- End Testimonials Section -->
 
-        <!-- ======= Gallery Section ======= -->
-        <section id="gallery" class="gallery">
+            <!-- ======= Gallery Section ======= -->
+            <section id="gallery" class="gallery">
 
-            <div class="container" data-aos="fade-up">
-                <div class="section-title">
-                    <h2>Gallery</h2>
-                    <p>Some photos from Our Restaurant</p>
-                </div>
-            </div>
-
-            <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="row no-gutters">
-
-                    <div class="col-lg-3 col-md-4">
-                        <div class="gallery-item">
-                            <a href="assets/img/gallery/galeria1.png" class="venobox" data-gall="gallery-item">
-                                <img src="assets/img/gallery/galeria1.png" alt="" class="img-fluid"
-                                    style="height: 200px;">
-                            </a>
-                        </div>
+                <div class="container" data-aos="fade-up">
+                    <div class="section-title">
+                        <h2>Galeria de fotos</h2>
+                        <p>Algunas fotos de nuestros maravillosos productos</p>
                     </div>
-
-                    <div class="col-lg-3 col-md-4">
-                        <div class="gallery-item">
-                            <a href="assets/img/gallery/galeria2.jpg" class="venobox" data-gall="gallery-item">
-                                <img src="assets/img/gallery/galeria2.jpg" alt="" class="img-fluid"
-                                    style="height: 200px;">
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4">
-                        <div class="gallery-item">
-                            <a href="assets/img/gallery/galeria3.webp" class="venobox" data-gall="gallery-item">
-                                <img src="assets/img/gallery/galeria3.webp" alt="" class="img-fluid"
-                                    style="height: 200px;">
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4">
-                        <div class="gallery-item">
-                            <a href="assets/img/gallery/galeria4.jpg" class="venobox" data-gall="gallery-item">
-                                <img src="assets/img/gallery/galeria4.jpg" alt="" class="img-fluid"
-                                    style="height: 200px;">
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4">
-                        <div class="gallery-item">
-                            <a href="assets/img/gallery/galeria5.jpg" class="venobox" data-gall="gallery-item">
-                                <img src="assets/img/gallery/galeria5.jpg" alt="" class="img-fluid"
-                                    style="height: 200px;">
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4">
-                        <div class="gallery-item">
-                            <a href="assets/img/gallery/galeria6.jpg" class="venobox" data-gall="gallery-item">
-                                <img src="assets/img/gallery/galeria6.jpg" alt="" class="img-fluid"
-                                    style="height: 200px;">
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4">
-                        <div class="gallery-item">
-                            <a href="assets/img/gallery/galeria7.jpg" class="venobox" data-gall="gallery-item">
-                                <img src="assets/img/gallery/galeria7.jpg" alt="" class="img-fluid"
-                                    style="height: 200px;">
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4">
-                        <div class="gallery-item">
-                            <a href="assets/img/gallery/galeria8.gif" class="venobox" data-gall="gallery-item">
-                                <img src="assets/img/gallery/galeria8.gif" alt="" class="img-fluid"
-                                    style="height: 200px;">
-                            </a>
-                        </div>
-                    </div>
-
                 </div>
 
-            </div>
-        </section>
-        <!-- End Gallery Section -->
+                <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
 
-        <!-- ======= Chefs Section ======= -->
-        <section id="chefs" class="chefs">
-            <div class="container" data-aos="fade-up">
+                    <div class="row no-gutters">
 
-                <div class="section-title">
-                    <h2>Proveeores</h2>
-                    <p>Nuestros mas poderosos proveedores</p>
+                        <div class="col-lg-3 col-md-4">
+                            <div class="gallery-item">
+                                <a href="assets/img/gallery/galeria1.png" class="venobox" data-gall="gallery-item">
+                                    <img src="assets/img/gallery/galeria1.png" alt="" class="img-fluid"
+                                        style="height: 200px;">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="gallery-item">
+                                <a href="assets/img/gallery/galeria2.jpg" class="venobox" data-gall="gallery-item">
+                                    <img src="assets/img/gallery/galeria2.jpg" alt="" class="img-fluid"
+                                        style="height: 200px;">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="gallery-item">
+                                <a href="assets/img/gallery/galeria3.webp" class="venobox" data-gall="gallery-item">
+                                    <img src="assets/img/gallery/galeria3.webp" alt="" class="img-fluid"
+                                        style="height: 200px;">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="gallery-item">
+                                <a href="assets/img/gallery/galeria4.jpg" class="venobox" data-gall="gallery-item">
+                                    <img src="assets/img/gallery/galeria4.jpg" alt="" class="img-fluid"
+                                        style="height: 200px;">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="gallery-item">
+                                <a href="assets/img/gallery/galeria5.jpg" class="venobox" data-gall="gallery-item">
+                                    <img src="assets/img/gallery/galeria5.jpg" alt="" class="img-fluid"
+                                        style="height: 200px;">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="gallery-item">
+                                <a href="assets/img/gallery/galeria6.jpg" class="venobox" data-gall="gallery-item">
+                                    <img src="assets/img/gallery/galeria6.jpg" alt="" class="img-fluid"
+                                        style="height: 200px;">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="gallery-item">
+                                <a href="assets/img/gallery/galeria7.jpg" class="venobox" data-gall="gallery-item">
+                                    <img src="assets/img/gallery/galeria7.jpg" alt="" class="img-fluid"
+                                        style="height: 200px;">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="gallery-item">
+                                <a href="assets/img/gallery/galeria8.gif" class="venobox" data-gall="gallery-item">
+                                    <img src="assets/img/gallery/galeria8.gif" alt="" class="img-fluid"
+                                        style="height: 200px;">
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
+            </section>
+            <!-- End Gallery Section -->
 
-                <div class="row">
+            <!-- ======= Chefs Section ======= -->
+            <section id="chefs" class="chefs">
+                <div class="container" data-aos="fade-up">
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="member" data-aos="zoom-in" data-aos-delay="100">
-                            <img src="assets/img/chefs/refisal.jpg" class="img-fluid" alt="" style="height: 350px;">
-                            <div class="member-info">
-                                <div class="member-info-content">
-                                    <h4>Resisal</h4>
-                                    <span>Proveedor lider en darle sabor a nuestros productos de la mejor calidad</span>
+                    <div class="section-title">
+                        <h2>Proveeores</h2>
+                        <p>Nuestros mas poderosos proveedores</p>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="member" data-aos="zoom-in" data-aos-delay="100">
+                                <img src="assets/img/chefs/refisal.jpg" class="img-fluid" alt="" style="height: 350px;">
+                                <div class="member-info">
+                                    <div class="member-info-content">
+                                        <h4>Resisal</h4>
+                                        <span>Proveedor lider en darle sabor a nuestros productos de la mejor
+                                            calidad</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="member" data-aos="zoom-in" data-aos-delay="200">
-                            <img src="assets/img/chefs/bucanero.jpeg" class="img-fluid" alt="" style="height: 350px;">
-                            <div class="member-info">
-                                <div class="member-info-content">
-                                    <h4>Bucanero</h4>
-                                    <span>Proveedor con el mejor pollo campesino alimentado con amor para que tu
-                                        producto final tenga el mismo concepto en calidad</span>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="member" data-aos="zoom-in" data-aos-delay="200">
+                                <img src="assets/img/chefs/bucanero.jpeg" class="img-fluid" alt=""
+                                    style="height: 350px;">
+                                <div class="member-info">
+                                    <div class="member-info-content">
+                                        <h4>Bucanero</h4>
+                                        <span>Proveedor con el mejor pollo campesino alimentado con amor para que tu
+                                            producto final tenga el mismo concepto en calidad</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="member" data-aos="zoom-in" data-aos-delay="300">
-                            <img src="assets/img/chefs/cervalle.jpeg" class="img-fluid" alt="" style="height: 350px;">
-                            <div class="member-info">
-                                <div class="member-info-content">
-                                    <h4>Cervalle</h4>
-                                    <span>Proveedor especializado del distriubuidor de carnes mas especializado en
-                                        sasonar de la mejor manera la mejor carne del pais</span>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="member" data-aos="zoom-in" data-aos-delay="300">
+                                <img src="assets/img/chefs/cervalle.jpeg" class="img-fluid" alt=""
+                                    style="height: 350px;">
+                                <div class="member-info">
+                                    <div class="member-info-content">
+                                        <h4>Cervalle</h4>
+                                        <span>Proveedor especializado del distriubuidor de carnes mas especializado en
+                                            sasonar de la mejor manera la mejor carne del pais</span>
+                                    </div>
+
                                 </div>
-
                             </div>
                         </div>
+
                     </div>
 
                 </div>
+            </section>
+            <!-- End Chefs Section -->
 
-            </div>
-        </section>
-        <!-- End Chefs Section -->
-
-        <!-- ======= Contact Section ======= -->
-        <!-- <section id="contact" class="contact">
+            <!-- ======= Contact Section ======= -->
+            <!-- <section id="contact" class="contact">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
@@ -868,8 +880,8 @@ session_start();
 
             </div>
         </section> -->
-        <!-- End Contact Section -->
-
+            <!-- End Contact Section -->
+        </div>
     </main>
     <!-- End #main -->
 
@@ -927,7 +939,16 @@ session_start();
 
     <div id="preloader"></div>
     <a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.all.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <!-- Vendor JS Files -->
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -937,10 +958,16 @@ session_start();
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="assets/vendor/venobox/venobox.min.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script src="../../Recursos/js/home_productos/home_productos.js"></script>
 
+    <script>
+    $(document).ready(productos);
+    </script>
 </body>
 
 </html>

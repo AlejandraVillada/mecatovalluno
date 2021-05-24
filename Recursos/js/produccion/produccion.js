@@ -12,6 +12,28 @@ function Produccion() {
     dt = $("#tabla").DataTable({
         "ajax": "../../../Controlador/controlador_produccion.php?accion=listar",
         // "ajax": "Controlador/controlador_produccion.php?accion=listar",
+        "dataSrc": "",
+        "dom": 'Bfrtip',
+
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        },
+        "buttons": [{
+            extend: 'excelHtml5',
+            text: '<i class="fas fa-file-excel "></i> ',
+            titleAttr: 'Exportar a Excel',
+            className: 'btn btn-success',
+            title: 'Producción General'
+        },
+        {
+            extend: 'pdfHtml5',
+            text: '<i class="fas fa-file-pdf "></i> ',
+            titleAttr: 'Exportar a PDF',
+            className: 'btn btn-danger',
+            title: 'Producción General'
+
+        }
+        ],
 
         "columns": [
             {
@@ -50,7 +72,7 @@ function Produccion() {
             $.ajax({
                 type: "get",
                 // url: "Controlador/controlador_inventarioMP.php",
-                url: "../../../Controlador/controlador_empleados.php",
+                url: "../../../Controlador/controlador_produccion.php",
                 data: { accion: 'listar_estados' },
                 dataType: "json"
             }).done(function (resultado) {
@@ -128,13 +150,34 @@ function Produccion() {
 
             "ajax": "../../../Controlador/controlador_produccion.php?accion=consultar&&id=" + codigo + "",
             // "ajax": "Controlador/controlador_produccion.php?accion=listar",
+            "dom": 'Bfrtip',
 
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            },
+            "buttons": [{
+                extend: 'excelHtml5',
+                text: '<i class="fas fa-file-excel "></i> ',
+                titleAttr: 'Exportar a Excel',
+                className: 'btn btn-success',
+                title: 'Detalle Produccion'
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="fas fa-file-pdf "></i> ',
+                titleAttr: 'Exportar a PDF',
+                className: 'btn btn-danger',
+                title: 'Detalle Produccion',
+
+            }
+            ],
             "columns": [
 
                 { "data": "IdDetalleProduccion" },
                 { "data": "NombreProducto" },
                 { "data": "CantidadProduccion" },
                 { "data": "CantidadProductoTerminado" },
+                { "data": "Estado" },
                 {
                     "data": "IdDetalleProduccion",
                     render: function (data) {
@@ -170,10 +213,10 @@ function Produccion() {
                 if (!resultado.data == "") {
                     secuencia = parseFloat(resultado.data);
                     secuencia2 = secuencia + secuencia1;
-                     console.log("secuencia"+secuencia2);
+                    console.log("secuencia" + secuencia2);
                 } else {
                     secuencia2 = 1;
-                     console.log("secuencia"+secuencia2);
+                    console.log("secuencia" + secuencia2);
 
                 }
                 $("#IdProduccion").val(IdProduccion);
@@ -193,14 +236,14 @@ function Produccion() {
                 $("#editar #IdProductoTerminado").append("<option>Seleccione el producto</option>");
                 $.each(resultado.data, function (index, value) {
 
-                    $("#editar #IdProductoTerminado").append("<option data-cantidad='"+value.CantidadProducto+"' value='" + value.IdProducto + "'>" + value.NombreProducto + "</option>")
+                    $("#editar #IdProductoTerminado").append("<option data-cantidad='" + value.CantidadProducto + "' value='" + value.IdProducto + "'>" + value.NombreProducto + "</option>")
 
                 });
 
             });
-            $("select[id=IdProductoTerminado]").change(function() {
-                
-                var cantidad=$(this).children('option:selected').data('cantidad');
+            $("select[id=IdProductoTerminado]").change(function () {
+
+                var cantidad = $(this).children('option:selected').data('cantidad');
 
                 $("#Cantidadunidades").val(cantidad);
                 var prod = $('select[name=IdProductoTerminado]').val();
@@ -209,13 +252,23 @@ function Produccion() {
                     type: "post",
                     // url: "Controlador/controlador_inventarioMP.php",
                     url: "../../../Controlador/controlador_detalleproduccion.php",
-                    data: { accion: 'cantidadmaxima',IdProduccion:prod },
+                    data: { accion: 'cantidadmaxima', IdProduccion: prod },
                     dataType: "json"
                 }).done(function (resultado) {
-                    
-                    if (resultado.data.Habilitado=="Si") {
-                        
-                    }else  {
+
+                    if (resultado.data.Habilitado == "Si") {
+                        //validación si ya existe en el detalle
+
+
+
+
+
+                        $("#Cantidad").attr('disabled', false);
+                        $("#Cantidad").attr("max", resultado.data.max);
+                        $("input[id=guardarmodificar]").attr('disabled', false);
+
+
+                    } else {
                         swal({
                             position: 'center',
                             type: 'error',
@@ -223,6 +276,8 @@ function Produccion() {
                             showConfirmButton: false,
                             timer: 1500
                         })
+                        $("input[id=guardarmodificar]").attr('disabled', true);
+                        $("#Cantidad").attr('disabled', true);
                     }
                 });
 
@@ -290,7 +345,7 @@ function Produccion() {
         var IdProduccion = $(this).data("produccion");
         var IdMedida;
 
-        $("#editar").load('../../../Vista/php/Produccion/view_ModificardetallePT.php', function () {
+        $("#editar").load('../../../Vista/php/Produccion/view_ModificardetalleProd.php', function () {
             // $("#editar").load('Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
             $.ajax({
                 type: "post",
@@ -299,29 +354,69 @@ function Produccion() {
                 data: { iddetalle: codigo, IdProduccion: IdProduccion, accion: 'consultar' },
                 dataType: "json"
             }).done(function (resultado) {
-                //    console.log(resultado.data.seq);//secuencia
+                console.log(resultado.data);
                 $("#IdProduccion").val(resultado.data.IdProduccion);
                 $("#IdDetalleProduccion").val(resultado.data.IdDetalleProduccion);
                 $("#IdDetalleProduccion1").val(resultado.data.IdDetalleProduccion);
-                IdMedida = resultado.data.IdMedida;
-                $("#NombreMateriaPrima").val(resultado.data.NombreMateriaPrima);
-                $("#IdMateriaPrima").val(resultado.data.IdMateriaPrima);
-                $("#Cantidad").val(resultado.data.Cantidad);
-                $("#DescripcionProducto").val(resultado.data.DescripcionProducto);
+                $("#Cantidadunidades").val(resultado.data.CantidadProductoTerminado);
+                $("#Cantidad").val(resultado.data.CantidadProduccion);
+
+                var productoterminado = resultado.data.IdProducto;
+                // productos
                 $.ajax({
-                    type: "post",
+                    type: "get",
                     // url: "Controlador/controlador_inventarioMP.php",
-                    url: "../../../Controlador/controlador_detalleproduccion.php",
-                    data: { accion: 'listarmedida' },
+                    url: "../../../Controlador/controlador_inventarioprodterminado.php",
+                    data: { accion: 'listar' },
                     dataType: "json"
                 }).done(function (resultado) {
-                    $("#editar #Medidas").append("<option>Seleccione la Medida</option>");
+                    $("#editar #IdProductoTerminado").append("<option>Seleccione el producto</option>");
                     $.each(resultado.data, function (index, value) {
-                        if (value.IdMedida == IdMedida) {
-                            $("#editar #Medidas").append("<option selected value='" + value.IdMedida + "'>" + value.NombreMedida + "</option>")
-                        } else {
-                            $("#editar #Medidas").append("<option value='" + value.IdMedida + "'>" + value.NombreMedida + "</option>")
 
+                        if (value.IdProducto == productoterminado) {
+                            $("#editar #IdProductoTerminado").append("<option selected data-cantidad='" + value.CantidadProducto + "' value='" + value.IdProducto + "'>" + value.NombreProducto + "</option>")
+
+                        } else {
+                            $("#editar #IdProductoTerminado").append("<option data-cantidad='" + value.CantidadProducto + "' value='" + value.IdProducto + "'>" + value.NombreProducto + "</option>")
+
+                        }
+
+
+                    });
+
+                });
+                $("select[id=IdProductoTerminado]").change(function () {
+
+                    var cantidad = $(this).children('option:selected').data('cantidad');
+
+                    var prod = $('select[name=IdProductoTerminado]').val();
+                    console.log(prod);
+                    $.ajax({
+                        type: "post",
+                        // url: "Controlador/controlador_inventarioMP.php",
+                        url: "../../../Controlador/controlador_detalleproduccion.php",
+                        data: { accion: 'cantidadmaxima', IdProduccion: prod },
+                        dataType: "json"
+                    }).done(function (resultado) {
+                        console.log(resultado.data.Habilitado);
+                        if (resultado.data.Habilitado == "Si") {
+                            //validación si ya existe en el detalle
+
+                            $("#Cantidad").attr('disabled', false);
+                            $("#Cantidad").attr("max", resultado.data.max);
+                            $("input[id=guardarmodificar]").attr('disabled', false);
+
+
+                        } else {
+                            swal({
+                                position: 'center',
+                                type: 'error',
+                                title: 'No puede agregar al inventario el producto porque no hay materia prima suficiente para su producción',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $("input[id=guardarmodificar]").attr('disabled', true);
+                            $("#Cantidad").attr('disabled', true);
                         }
                     });
 
@@ -400,9 +495,9 @@ function Produccion() {
             }).done(function (resultado) {
                 console.log(resultado.data[0]);
                 $("#IdProduccion").val(resultado.data[0].IdProduccion);
-               
+
                 $('#DiaProduccion').val(resultado.data[0].DiaProduccion);
-                              
+
                 $("#HorarioInicioProduccion").val(resultado.data[0].HorarioInicioProduccion);
                 $("#HorarioFinProduccion").val(resultado.data[0].HorarioFinProduccion);
                 sede = resultado.data[0].IdSede;
@@ -411,7 +506,7 @@ function Produccion() {
             $.ajax({
                 type: "get",
                 // url: "Controlador/controlador_inventarioMP.php",
-                url: "../../../Controlador/controlador_empleados.php",
+                url: "../../../Controlador/controlador_produccion.php",
                 data: { accion: 'listar_estados' },
                 dataType: "json"
             }).done(function (resultado) {
@@ -448,7 +543,7 @@ function Produccion() {
                 });
 
             });
-            
+
             $("#editar #formModP").on("submit", function (e) {
                 e.preventDefault();
                 console.log("hooo");
@@ -474,7 +569,7 @@ function Produccion() {
                         $(".listado").removeClass('hide');
                         $(".detalle").addClass('hide');
                         $(".detalle").removeClass('show');
-                    }else{
+                    } else {
                         swal({
                             position: 'center',
                             type: 'error',

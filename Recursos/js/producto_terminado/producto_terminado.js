@@ -1,4 +1,6 @@
 function productoterminado() {
+
+
     $("#editar").addClass('hide');
     $("#editar").removeClass('show');
     $(".listado").addClass('show');
@@ -10,29 +12,54 @@ function productoterminado() {
     var sec;
     var d = "si";
     dt = $("#tabla").DataTable({
-        "ajax": "../../../Controlador/controlador_inventarioprodterminado.php?accion=listar",
-        // "ajax": "Controlador/controlador_inventarioprodterminado.php?accion=listar",
 
-        "columns": [
-            {
-                "data": "IdProducto",
-                render: function (data) {
-                    return '<a href="#" data-codigo="' + data +
-                        '" class="btn btn-dark btn-sm ver"> <i class="fa fa-plus"></i></a>'
-                }
-            },
-            { "data": "IdProducto" },
-            { "data": "NombreProducto" },
-            { "data": "CantidadProducto" },
-            { "data": "ValorUnitario" },
-            { "data": "Foto"},
-            {
-                "data": "IdProducto",
-                render: function (data) {
-                    return '<a href="#" data-codigo="' + data +
-                        '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>'
-                }
+        "ajax": "Controlador/controlador_inventarioprodterminado.php?accion=listar",
+        "dataSrc": "",
+        "dom": 'Bfrtip',
+
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        },
+        "buttons": [{
+            extend: 'excelHtml5',
+            text: '<i class="fas fa-file-excel "></i> ',
+            titleAttr: 'Exportar a Excel',
+            className: 'btn btn-success',
+            title: 'Producto Terminado'
+        },
+        {
+            extend: 'pdfHtml5',
+            text: '<i class="fas fa-file-pdf "></i> ',
+            titleAttr: 'Exportar a PDF',
+            className: 'btn btn-danger',
+            title: 'Producto Terminado'
+
+
+        }
+        ],
+
+        "paging": true,
+        "pageLength": 3,
+
+        "columns": [{
+            "data": "IdProducto",
+            render: function (data) {
+                return '<a href="#" data-codigo="' + data +
+                    '" class="btn btn-dark btn-sm ver"> <i class="fa fa-plus"></i></a>'
             }
+        },
+        { "data": "IdProducto" },
+        { "data": "NombreProducto" },
+        { "data": "CantidadProducto" },
+        { "data": "ValorUnitario" },
+        { "data": "Foto" },
+        {
+            "data": "IdProducto",
+            render: function (data) {
+                return '<a href="#" data-codigo="' + data +
+                    '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>'
+            }
+        }
         ]
     });
 
@@ -45,8 +72,18 @@ function productoterminado() {
         $(".listado").removeClass('show');
         $(".detalle").addClass('hide');
         $(".detalle").removeClass('show');
-        $("#editar").load('../../../Vista/php/ProductoTerminado/FormCrearPT.php', function () {
-            // $("#editar").load('../../../Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
+        $("#editar").load('Vista/php/ProductoTerminado/FormCrearPT.php', function () {
+            // $("#editar").load('Vista/php/ProductoTerminado/FormCrearPT.php', function () {
+            $("#editar #nuevoprod").on("click", function (e) {
+                console.log("hola");
+                $("#editar").addClass('hide');
+                $("#editar").removeClass('show');
+                $(".listado").addClass('show');
+                $(".listado").removeClass('hide');
+                $(".detalle").addClass('hide');
+                $(".detalle").removeClass('show');
+                $(this).show();
+            });
             $("#editar #formCrearPT").on("submit", function (e) {
 
                 e.preventDefault();
@@ -63,10 +100,13 @@ function productoterminado() {
 
                 $.ajax({
                     type: "post",
-                    url: "../../../Controlador/controlador_inventarioprodterminado.php",
+
+                    // url: "../../../Controlador/controlador_inventarioprodterminado.php",
+                    url: "Controlador/controlador_inventarioprodterminado.php",
                     data: datos1,
                     processData: false,
-                    cache: false, contentType: false
+                    cache: false,
+                    contentType: false
                 }).done(function (resultado) {
                     console.log(resultado);
                     if (resultado.data == 1) {
@@ -107,8 +147,8 @@ function productoterminado() {
         boton.dataset.idproducto = codigo;
         $.ajax({
             type: "post",
-            // url: "Controlador/controlador_inventarioMP.php",
-            url: "../../../Controlador/controlador_detalleproducto.php",
+            url: "Controlador/controlador_detalleproducto.php",
+            //url: "../../../Controlador/controlador_detalleproducto.php",
             data: { accion: 'buscar', IdProducto: codigo },
             dataType: "json"
         }).done(function (resultado) {
@@ -118,9 +158,32 @@ function productoterminado() {
         });
 
         dt1 = $("#tabla1").DataTable({
+            //"ajax": "../../../Controlador/controlador_inventarioprodterminado.php?accion=consultar&&id=" + codigo + "",
 
-            "ajax": "../../../Controlador/controlador_inventarioprodterminado.php?accion=consultar&&id=" + codigo + "",
-            // "ajax": "Controlador/controlador_inventarioprodterminado.php?accion=listar",
+            "ajax": "Controlador/controlador_inventarioprodterminado.php?accion=consultar&&id=" + codigo + "",
+            "dom": 'Bfrtip',
+
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            },
+            "buttons": [{
+                extend: 'excelHtml5',
+                text: '<i class="fas fa-file-excel "></i> ',
+                titleAttr: 'Exportar a Excel',
+                className: 'btn btn-success',
+                title: 'Detalle Producto Terminado'
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="fas fa-file-pdf "></i> ',
+                titleAttr: 'Exportar a PDF',
+                className: 'btn btn-danger',
+                title: 'Detalle Producto Terminado'
+
+
+            }
+            ],
+
 
             "columns": [
 
@@ -152,12 +215,13 @@ function productoterminado() {
         var secuencia1 = 1;
         var secuencia2 = 0;
         var idproducto = $(this).data("idproducto");
-        $("#editar").load('../../../Vista/php/ProductoTerminado/view_CrearDetalle.php', function () {
+        $("#editar").load('Vista/php/ProductoTerminado/view_CrearDetalle.php', function () {
+            //$("#editar").load('../../../Vista/php/ProductoTerminado/view_CrearDetalle.php', function() {
             console.log(idproducto);
             $.ajax({
                 type: "post",
-                // url: "Controlador/controlador_inventarioMP.php",
-                url: "../../../Controlador/controlador_detalleproducto.php",
+                //url: "../../../Controlador/controlador_detalleproducto.php",
+                url: "Controlador/controlador_detalleproducto.php",
                 data: { accion: 'secuencia', IdProducto: idproducto },
                 dataType: "json"
             }).done(function (resultado) {
@@ -179,8 +243,8 @@ function productoterminado() {
             // productos
             $.ajax({
                 type: "get",
-                // url: "Controlador/controlador_inventarioMP.php",
-                url: "../../../Controlador/controlador_mp.php",
+                // url: "../../../Controlador/controlador_mp.php",
+                url: "Controlador/controlador_mp.php",
                 data: { accion: 'listar' },
                 dataType: "json"
             }).done(function (resultado) {
@@ -194,8 +258,8 @@ function productoterminado() {
             });
             $.ajax({
                 type: "post",
-                // url: "Controlador/controlador_inventarioMP.php",
-                url: "../../../Controlador/controlador_detalleproducto.php",
+                //  url: "../../../Controlador/controlador_detalleproducto.php",
+                url: "Controlador/controlador_detalleproducto.php",
                 data: { accion: 'listarmedida' },
                 dataType: "json"
             }).done(function (resultado) {
@@ -204,14 +268,22 @@ function productoterminado() {
                     $("#editar #Medidas").append("<option value='" + value.IdMedida + "'>" + value.NombreMedida + "</option>")
                 });
             });
-
+            $("#editar #nuevodprod").on("click", function (e) {
+                $("#editar").addClass('hide');
+                $("#editar").removeClass('show');
+                $(".listado").addClass('show');
+                $(".listado").removeClass('hide');
+                $(".detalle").addClass('show');
+                $(".detalle").removeClass('hide');
+            })
             $("#editar #formcreardetPT").on("submit", function (e) {
                 console.log("hvg");
                 e.preventDefault();
                 var datos = $(this).serialize();
                 $.ajax({
                     type: "post",
-                    url: "../../../Controlador/controlador_detalleproducto.php",
+                    //url: "../../../Controlador/controlador_detalleproducto.php",
+                    url: "Controlador/controlador_detalleproducto.php",
                     data: datos,
                     dataType: "json"
                 }).done(function (resultado) {
@@ -268,12 +340,12 @@ function productoterminado() {
         var IdMedida;
         // console.log("bjgnknj"+codigo);
         // console.log("bjgnknj"+IdProducto);
-        $("#editar").load('../../../Vista/php/ProductoTerminado/view_ModificardetallePT.php', function () {
-            // $("#editar").load('Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
+        $("#editar").load('Vista/php/ProductoTerminado/view_ModificardetallePT.php', function () {
+            //$("#editar").load('../../../Vista/php/ProductoTerminado/view_ModificardetallePT.php', function() {
             $.ajax({
                 type: "post",
-                // url: "Controlador/controlador_inventarioprodterminado.php",
-                url: "../../../Controlador/controlador_detalleproducto.php",
+                // url: "../../../Controlador/controlador_detalleproducto.php",
+                url: "Controlador/controlador_detalleproducto.php",
                 data: { iddetalle: codigo, IdProducto: IdProducto, accion: 'consultar' },
                 dataType: "json"
             }).done(function (resultado) {
@@ -286,10 +358,33 @@ function productoterminado() {
                 $("#IdMateriaPrima").val(resultado.data.IdMateriaPrima);
                 $("#Cantidad").val(resultado.data.Cantidad);
                 $("#DescripcionProducto").val(resultado.data.DescripcionProducto);
+                var IdMateriaPrima = resultado.data.IdMateriaPrima;
+                // productos
+                $.ajax({
+                    type: "get",
+                    url: "Controlador/controlador_mp.php",
+                    // url: "../../../Controlador/controlador_mp.php",
+                    data: { accion: 'listar' },
+                    dataType: "json"
+                }).done(function (resultado) {
+                    $("#editar #MP").append("<option>Seleccione el producto</option>");
+                    $.each(resultado.data, function (index, value) {
+                        if (value.IdMateriaPrima == IdMateriaPrima) {
+                            $("#editar #MP").append("<option selected value='" + value.IdMateriaPrima + "'>" + value.NombreMateriaPrima + "</option>")
+
+                        } else {
+                            $("#editar #MP").append("<option value='" + value.IdMateriaPrima + "'>" + value.NombreMateriaPrima + "</option>")
+
+                        }
+
+                    });
+
+
+                });
                 $.ajax({
                     type: "post",
-                    // url: "Controlador/controlador_inventarioMP.php",
-                    url: "../../../Controlador/controlador_detalleproducto.php",
+                    //  url: "../../../Controlador/controlador_detalleproducto.php",
+                    url: "Controlador/controlador_detalleproducto.php",
                     data: { accion: 'listarmedida' },
                     dataType: "json"
                 }).done(function (resultado) {
@@ -304,17 +399,78 @@ function productoterminado() {
                     });
 
                 });
+                $("select[id=MP]").change(function () {
+
+                    var codigo1 = $(this).children('option:selected').val();
+                    console.log(codigo1);
+                    // console.log(IdProducto);
+                    $.ajax({
+                        type: "get",
+                        url: "Controlador/controlador_inventarioprodterminado.php?accion=consultar&&id=" + IdProducto + "",
+                        // url: "../../../Controlador/controlador_inventarioprodterminado.php?accion=consultar&&id=" + IdProducto + "",
+                        dataType: "json"
+                    }).done(function (resultado) {
+                        console.log(resultado.data);
+                        var a = 0;
+                        var b = 0;
+                        $.each(resultado.data, function (index, value) {
+                            // console.log("1-----"+value.IdMateriaPrima+"-"+IdMateriaPrima);
+                            // console.log("2---" + value.IdMateriaPrima + "-" + codigo1);
+                            if (value.IdMateriaPrima == codigo1) {
+                                a = 1;
+
+                            }
+                            if (a == 1) {
+                                if (value.IdMateriaPrima == IdMateriaPrima) {
+                                    // console.log("mismo");
+                                    $("#editar .guardarmod").attr('disabled', false);
+
+                                } else {
+                                    swal({
+                                        position: 'center',
+                                        type: 'error',
+                                        title: 'ya se encuentra la materia prima registrada en este producto',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+
+                                    $("#editar .guardarmod").attr('disabled', true);
+                                    b = 1;
+
+                                }
+                                a = 0;
+                            } else if (b == 1) {
+                                $("#editar .guardarmod").attr('disabled', true);
+
+                            } else {
+                                $("#editar .guardarmod").attr('disabled', false);
+
+                            }
+                        })
+                    });
+
+
+                });
 
 
             });
+            $("#editar #moddprod").on("click", function (e) {
+                $("#editar").addClass('hide');
+                $("#editar").removeClass('show');
+                $(".listado").addClass('show');
+                $(".listado").removeClass('hide');
+                $(".detalle").addClass('show');
+                $(".detalle").removeClass('hide');
+            })
             $("#editar #formModdetPT").on("submit", function (e) {
                 console.log("hvg");
                 e.preventDefault();
                 var datos = $(this).serialize();
-                
+
                 $.ajax({
                     type: "post",
-                    url: "../../../Controlador/controlador_detalleproducto.php",
+                    //url: "../../../Controlador/controlador_detalleproducto.php",
+                    url: "Controlador/controlador_detalleproducto.php",
                     data: datos,
                     dataType: "json"
                 }).done(function (resultado) {
@@ -366,12 +522,12 @@ function productoterminado() {
         $(".listado").removeClass('show');
         $(".detalle").addClass('hide');
         $(".detalle").removeClass('show');
-        $("#editar").load('../../../Vista/php/ProductoTerminado/FormModificarPT.php', function () {
-            // $("#editar").load('Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
+        $("#editar").load('Vista/php/ProductoTerminado/FormModificarPT.php', function () {
+            // $("#editar").load('../../../Vista/php/ProductoTerminado/FormModificarPT.php', function() {
             $.ajax({
                 type: "post",
-                // url: "Controlador/controlador_inventarioprodterminado.php",
-                url: "../../../Controlador/controlador_inventarioprodterminado.php",
+                // url: "../../../Controlador/controlador_inventarioprodterminado.php",
+                url: "Controlador/controlador_inventarioprodterminado.php",
                 data: { id: codigo, accion: 'consultarprod' },
                 dataType: "json"
             }).done(function (resultado) {
@@ -382,6 +538,14 @@ function productoterminado() {
                 $("#NombreProducto").val(resultado.data[0].NombreProducto);
                 $("#ValorUnitario").val(resultado.data[0].ValorUnitario);
 
+            });
+            $("#editar #modprodter").on("click", function (e) {
+                $("#editar").addClass('hide');
+                $("#editar").removeClass('show');
+                $(".listado").addClass('show');
+                $(".listado").removeClass('hide');
+                $(".detalle").addClass('hide');
+                $(".detalle").removeClass('show');
             });
             $("#editar #formModPT").on("submit", function (e) {
                 e.preventDefault();
@@ -396,13 +560,15 @@ function productoterminado() {
                 datos1.append("ValorUnitario", $("#ValorUnitario").val());
                 datos1.append("accion", $("#accion").val());
                 datos1.append("Foto", $("#Foto")[0].files[0]);
-// KBNG
+                // KBNG
                 $.ajax({
                     type: "post",
-                    url: "../../../Controlador/controlador_inventarioprodterminado.php",
+                    //url: "../../../Controlador/controlador_inventarioprodterminado.php",
+                    url: "Controlador/controlador_inventarioprodterminado.php",
                     data: datos1,
                     processData: false,
-                    cache: false, contentType: false
+                    cache: false,
+                    contentType: false
                 }).done(function (resultado) {
                     console.log(resultado);
                     if (resultado.data == 1) {

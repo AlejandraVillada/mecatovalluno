@@ -1,4 +1,4 @@
-<?php include_once "../../../Templates/header1.php";?>
+<!-- <?php //include_once "../../../Templates/header1.php";?> -->
 
 <body>
     <div class="container card mb-3 mt-3 ">
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-body pt-1 pr-1" style="">
+        <div class="card-body pt-1 pr-1">
             <!-- Main content -->
             <section class="content">
                 <div class="row">
@@ -100,11 +100,12 @@
     </div>
     </div>
     <!-- /.content-wrapper -->
-    <?php include_once "../../../Templates/footer1.php";?>
+    <?php //include_once "../../../Templates/footer1.php";?>
 
     </script>
-    <script src="../../../Recursos/js/producto_terminado/producto_terminado.js"></script>
-    <!-- <script src="Recursos/js/producto_terminado/producto_terminado.js"></script> -->
+    <!-- <script src="../../../Recursos/js/producto_terminado/producto_terminado.js"></script> -->
+
+    <script src="Recursos/js/producto_terminado/producto_terminado.js"></script>
     <script>
     $(document).ready(productoterminado);
     </script>

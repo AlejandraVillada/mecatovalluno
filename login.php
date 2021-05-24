@@ -12,6 +12,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>MecatoValluno | Log in</title>
+  <link rel="shortcut icon" href="./Vista/img/logo.ico">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -68,6 +69,7 @@
         <!-- /.col -->
         <div class="center-block" style="padding-top:30px">
           <button href="submit" id="ingresar" class="btn btn-block btn-flat" style="background-color:#F3D70F; color: #0C0B0B; border-radius:10px; "><strong>Ingresar</strong></button>
+          <a href="./Vista/home/index.php" class="btn btn-block btn-flat btn-danger" style="border-radius:10px;">Regresar al home</a>
         </div>
         <!-- /.col -->
         <input type="hidden" value="login" name="accion">

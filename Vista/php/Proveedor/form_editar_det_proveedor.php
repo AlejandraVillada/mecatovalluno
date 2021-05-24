@@ -9,25 +9,24 @@
                 <div class="form-group">
                     <label># Detalle</label>
                     <input type="text" class="form-control" id="IdDetalleProveedor" name="IdDetalleProveedor"
-                        placeholder="Ingrese # de Detalle Proveedor" value="" readonly>
+                        placeholder="Ingrese # de Detalle Proveedor" value="" readonly required>
                 </div>
 
                 <div class="form-group">
                     <label>Proveedor</label>
-                    <select class="form-control" id="IdProveedor" name="IdProveedor">
-                        <option value="default">Seleccione El Proveedor</option>
-                    </select>
+                    <input class="form-control" id="IdProveedor" name="IdProveedor" required readonly>
+                        
                 </div>
 
                 <div class="form-group">
                     <label>Materia Prima</label>
-                    <select class="form-control" id="IdMateriaPrima" name="IdMateriaPrima">
-                        <option value="default">Seleccione El Producto</option>
+                    <select class="form-control" id="IdMateriaPrima" name="IdMateriaPrima" required>
+                        <option value="">Seleccione El Producto</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <button type="button" id="actualizar2" class="btn btn-primary" data-toggle="tooltip">Cambiar
+                    <button type="submit" id="actualizar2" class="btn btn-primary" data-toggle="tooltip">Cambiar
                         Producto</button>
                     <a href="./adminper.php" id="cerrar" class="btn btn-danger" data-toggle="tooltip">Regresar</a>
                 </div>

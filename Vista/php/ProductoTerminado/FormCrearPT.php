@@ -23,7 +23,7 @@
             </div>
             <input type="hidden" name="accion" id="accion" value="nuevo">
             <input type="submit" class="btn btn-dark nuevo" value="Crear Registro">
-            <a href="view_ProductoTerminado.php" class="btn btn-dark">Regresar</a>
+            <a id="nuevoprod" class="btn btn-dark">Regresar</a>
         </form>
     </div>
 </div>

@@ -39,7 +39,7 @@
             <br>
             <input type="hidden" name="accion" value="nuevo">
             <input type="submit" class="btn btn-dark guardarnuevo" value="Agregar">
-            <a href="view_ProductoTerminado.php" class="btn btn-dark">Regresar</a>
+            <a id="nuevodprod" class="btn btn-dark">Regresar</a>
         </form>
     </div>
 </div>

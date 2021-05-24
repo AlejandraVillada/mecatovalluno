@@ -2,9 +2,9 @@
 include_once "../Modelo/modelo_detalle_produccion.php";
 header('Content-Type: application/json');
 $datos = $_POST; //datos
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 if (!empty($_GET['accion'])) {
     $accion = $_GET['accion'];
     if (!empty($_GET['iddetalle'])) {
@@ -35,7 +35,7 @@ switch ($accion) {
     case "consultar":
 
         //  $datos = $detalle_produccion->consultarsec($IdProducto);
-        $datos = $detalle_produccion->consultar($iddetalle, $IdProducto);
+        $datos = $detalle_produccion->consultar($iddetalle, $IdProduccion);
         foreach ($datos as $key => $value) {
             foreach ($value as $a => $value) {
                 $datos1[$a] = utf8_decode($value);

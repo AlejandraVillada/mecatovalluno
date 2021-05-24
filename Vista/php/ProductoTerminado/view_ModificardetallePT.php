@@ -16,10 +16,9 @@
 
             <div class="form-group">
                 <label for="nombreMP">Nombre Producto</label>
-                <input type="text" name="NombreMateriaPrima" id="NombreMateriaPrima"
-                    placeholder="Ingrese el nombre del Producto a la venta" class="form-control">
-                    <input type="hidden" name="IdMateriaPrima" id="IdMateriaPrima"
-                    placeholder="Ingrese el nombre del Producto a la venta" class="form-control">
+                <select class="form-control" name="IdMateriaPrima" id="MP">
+                </select>
+
             </div>
 
             <div class="form-group row">
@@ -40,7 +39,7 @@
             <br>
             <input type="hidden" name="accion" value="actualizar">
             <input type="submit" class="btn btn-dark guardarmod" value="Actualizar">
-            <a href="view_ProductoTerminado.php" class="btn btn-dark">Regresar</a>
+            <a id="moddprod" class="btn btn-dark">Regresar</a>
         </form>
     </div>
 </div>
