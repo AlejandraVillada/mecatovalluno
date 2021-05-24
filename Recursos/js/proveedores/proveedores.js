@@ -277,6 +277,7 @@ function proveedor() {
         $("#edicion1").show();
         $("#listado2").hide();
         $("#nuevo2").hide();
+        $("#regresar").hide();
         $("#edicion1").load('Vista/php/Proveedor/form_nuevo_det_proveedor.php', function() {
             // $("#edicion1").load('../../../Vista/php/Proveedor/form_nuevo_det_proveedor.php', function() {
 

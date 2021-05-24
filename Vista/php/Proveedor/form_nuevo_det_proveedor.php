@@ -21,7 +21,7 @@
                 <div class="form-group">
                     <label>Materia Prima</label>
                     <select class="form-control" id="IdMateriaPrima" name="IdMateriaPrima" required>
-                        <option value="">Seleccione El Producto</option>
+                        <option value="">Seleccione el Producto</option>
                     </select>
                 </div>
 

@@ -4,7 +4,7 @@ require_once "../Modelo/modelo_empleados.php";
 header('Content-Type: application/json');
 $datos = $_GET;
 $accion = $_GET['accion'];
-utf8_encode($listado);
+
 
 switch ($accion) {
     case 'listar':

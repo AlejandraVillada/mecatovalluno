@@ -49,9 +49,10 @@ function clientes() {
     $("#editado").hide();
 
     $("#crear").on("click", function() {
-        $("#titulo").html("Ingresar Nuevo Cliente");
+        $("#titulo").html("Registrar Nuevo Cliente");
         $("#editado").show();
         $(".listado").hide();
+        $("#crear").hide();
         $("#editado").load('Vista/php/Clientes/FormCrearCliente.php', function() {
             // $("#editado").load('../../../Vista/php/Clientes/FormCrearCliente.php')
             $.ajax({
@@ -88,6 +89,7 @@ function clientes() {
         $("#titulo").html("Modificar Datos de Cliente");
         $("#editado").show();
         $(".listado").hide();
+        $("#crear").hide();
         $("#editado").load('Vista/php/Clientes/FormModificarCliente.php', function() {
             // $("#editado").load('../../../Vista/php/Clientes/FormModificarCliente.php', function() {
             $.ajax({
@@ -102,7 +104,7 @@ function clientes() {
                     swal({
                         type: 'error',
                         title: 'Oops...',
-                        text: 'Materia Prima no existe!'
+                        text: 'El cliente no existe'
                     })
                 } else {
                     $("#IdCliente").val(cliente.codigo);
@@ -206,7 +208,7 @@ function clientes() {
                 swal({
                     position: 'center',
                     type: 'success',
-                    title: 'Se actaulizaron los datos correctamente',
+                    title: 'Se actualizaron los datos correctamente',
                     showConfirmButton: false,
                     timer: 1500
                 })

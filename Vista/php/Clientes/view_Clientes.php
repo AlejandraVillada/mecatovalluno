@@ -1,4 +1,3 @@
-
 <!-- <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +16,9 @@
         integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-</head> --> 
+</head> -->
+
+<body>
 
     <div class="">
         <div class="jumbotron jumbotron-fluid" style="text-align: center;">
@@ -27,20 +28,17 @@
         </div>
         <div class="card card-primary">
             <div class="card-header bg-dark text-center text-white titulo">Clientes</div>
-            <div class="card-body">
-                <div class="pull-right box-tools">
-                    <button class="btn btn-dark btn-sm" id="crear" data-toggle="tooltip"
-                        title="Registrar Nuevo Empleado">Registrar Cliente</button>
-                </div>
+            <div class="pull-right box-tools">
+                <button class="btn btn-dark btn-sm" id="crear" data-toggle="tooltip" title="">Registrar Cliente</button>
             </div>
             <div class="card-body contenido">
                 <div id="editado">
                 </div>
-                <div class="container">
+                <div class="">
                     <div class="listado">
-                        <table id="tabla" class="table table-bordered table-striped">
+                        <table id="tabla" class="table table-bordered table-striped text-center">
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th scope="col">Cédula</th>
                                     <th scope="col">Nombre Cliente</th>
                                     <th scope="col">Email</th>
@@ -86,3 +84,5 @@
         <script>
         $(document).ready(clientes);
         </script>
+
+</body>

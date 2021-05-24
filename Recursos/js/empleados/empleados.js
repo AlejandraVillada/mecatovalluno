@@ -1,6 +1,6 @@
 function empleados() {
     var dt = $("#tabla").DataTable({
-        // "ajax": "../../../Controlador/controlador_empleados.php?accion=listar",
+
         "ajax": "Controlador/controlador_empleados.php?accion=listar",
         "dom": 'Bfrtip',
 

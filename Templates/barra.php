@@ -35,7 +35,7 @@
 
                                     <p style="color: black;">
                                         <?php echo $_SESSION["NombreEmpleado"] . " - ".$_SESSION['TipoUsuario']; ?>
-                                        <small>Informacion Breve del Empleado</small>
+                                        <small>Información del Empleado</small>
                                         <br>
                                         <small><?php echo "Usuario: ".$_SESSION["Usuario"] ?></small>
                                         <small><?php echo "Sede: ".$_SESSION["Sede"] ?></small>
@@ -47,7 +47,7 @@
                                 <li class="user-footer">
                                     <div class="pull-left actualizarDatos">
                                         <a href="./Vista/php/Empleados/Actualizacion_datos.php"
-                                            class="btn btn-default btn-flat">Actualizar datos personales</a>
+                                            class="btn btn-default btn-flat">Actualizar Datos Personales</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="login.php?cerrar_session=true"
