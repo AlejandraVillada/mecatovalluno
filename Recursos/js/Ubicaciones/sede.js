@@ -8,21 +8,21 @@ function sede() {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
         },
         "buttons": [{
-            extend: 'excelHtml5',
-            text: '<i class="fas fa-file-excel "></i> ',
-            titleAttr: 'Exportar a Excel',
-            className: 'btn btn-success',
-            title: 'Sedes'
-        },
-        {
-            extend: 'pdfHtml5',
-            text: '<i class="fas fa-file-pdf "></i> ',
-            titleAttr: 'Exportar a PDF',
-            className: 'btn btn-danger',
-            title: 'Sedes'
+                extend: 'excelHtml5',
+                text: '<i class="fas fa-file-excel "></i> ',
+                titleAttr: 'Exportar a Excel',
+                className: 'btn btn-success',
+                title: 'Sedes'
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="fas fa-file-pdf "></i> ',
+                titleAttr: 'Exportar a PDF',
+                className: 'btn btn-danger',
+                title: 'Sedes'
 
 
-        }
+            }
         ],
 
         "columns": [
@@ -31,7 +31,7 @@ function sede() {
             { "data": "NombreSede" },
             {
                 "data": "IdSede",
-                render: function (data) {
+                render: function(data) {
                     return '<a href="#" data-codigo="' + data +
                         '" class="btn btn-info btn-sm editar"><i class="fa fa-edit"></i></a>'
                 }
@@ -42,11 +42,12 @@ function sede() {
 
     $("#editado").hide();
 
-    $("#crear").on("click", function () {
-        $("#titulo").html("Ingresar Sede");
+    $("#crear").on("click", function() {
+        $("#titulo").html("Registrar Sede");
         $("#editado").show();
         $(".listado").hide();
-        $("#editado").load('Vista/php/Ubicaciones/formCrearSede.php', function () {
+        $("#crear").hide();
+        $("#editado").load('Vista/php/Ubicaciones/formCrearSede.php', function() {
             // $("#editado").load('../../../Vista/php/Ubicaciones/formCrearSede.php', function() {
             $.ajax({
                 type: "get",
@@ -54,8 +55,8 @@ function sede() {
                 // url: "../../../Controlador/controlador_ubicaciones.php",
                 data: { accion: 'listar_ciudad' },
                 dataType: "json"
-            }).done(function (resultado) {
-                $.each(resultado.data, function (index, value) {
+            }).done(function(resultado) {
+                $.each(resultado.data, function(index, value) {
                     $("#editado #IdCiudad").append("<option value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
                 });
             });
@@ -63,13 +64,14 @@ function sede() {
 
     });
 
-    $(".contenido").on("click", "a.editar", function () {
+    $(".contenido").on("click", "a.editar", function() {
         var codigo = $(this).data("codigo");
         var ciudad;
         $("#titulo").html("Modificar Sede");
         $("#editado").show();
+        $("#crear").hide();
         $(".listado").hide();
-        $("#editado").load('Vista/php/Ubicaciones/formModificarSede.php', function () {
+        $("#editado").load('Vista/php/Ubicaciones/formModificarSede.php', function() {
             // $("#editado").load('../../../Vista/php/Ubicaciones/formModificarSede.php', function() {
             $.ajax({
                 type: "get",
@@ -77,12 +79,12 @@ function sede() {
                 // url: "../../../Controlador/controlador_ubicaciones.php",
                 data: { codigo: codigo, accion: 'consultar_sede' },
                 dataType: "json"
-            }).done(function (sede) {
+            }).done(function(sede) {
                 if (sede.respuesta === "no existe") {
                     swal({
                         type: 'error',
                         title: 'Oops...',
-                        text: 'Sede no existe!'
+                        text: 'La sede no existe'
                     })
                 } else {
                     $("#IdSede").val(sede.codigo);
@@ -97,8 +99,8 @@ function sede() {
                 // url: "../../../Controlador/controlador_ubicaciones.php",
                 data: { accion: 'listar_ciudad' },
                 dataType: "json"
-            }).done(function (resultado) {
-                $.each(resultado.data, function (index, value) {
+            }).done(function(resultado) {
+                $.each(resultado.data, function(index, value) {
                     if (ciudad === value.IdCiudad) {
                         $("#IdCiudad").append("<option selected value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
                     } else {
@@ -109,7 +111,7 @@ function sede() {
         });
 
     });
-    $("#editado").on("click", "button#grabar", function () {
+    $("#editado").on("click", "button#grabar", function() {
         var datos = $("#formCrearSede").serialize();
         console.log(datos);
         $.ajax({
@@ -118,7 +120,7 @@ function sede() {
             // url: "../../../Controlador/controlador_ubicaciones.php",
             data: datos,
             dataType: "json"
-        }).done(function (resultado) {
+        }).done(function(resultado) {
             if (resultado.respuesta) {
                 swal({
                     position: 'center',
@@ -137,7 +139,7 @@ function sede() {
                 swal({
                     position: 'center',
                     type: 'error',
-                    title: 'Ocurrió un erro al grabar',
+                    title: 'Ocurrió un error al grabar',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -146,7 +148,7 @@ function sede() {
         });
     });
 
-    $("#editado").on("click", "button#actualizar", function () {
+    $("#editado").on("click", "button#actualizar", function() {
         var datos = $("#formModificarSede").serialize();
         console.log(datos);
         $.ajax({
@@ -155,7 +157,7 @@ function sede() {
             // url: "../../../Controlador/controlador_ubicaciones.php",
             data: datos,
             dataType: "json"
-        }).done(function (resultado) {
+        }).done(function(resultado) {
 
             if (resultado.respuesta) {
                 swal({

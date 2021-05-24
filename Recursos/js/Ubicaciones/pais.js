@@ -57,6 +57,7 @@ function pais() {
         $("#titulo").html("Modificar Datos de País");
         $("#editado").show();
         $(".listado").hide();
+        $("#crear").hide();
         $("#editado").load('Vista/php/Ubicaciones/formModificarPais.php', function() {
             // $("#editado").load('../../../Vista/php/Ubicaciones/formModificarPais.php', function() {
             $.ajax({
@@ -70,7 +71,7 @@ function pais() {
                     swal({
                         type: 'error',
                         title: 'Oops...',
-                        text: 'El Pais no existe'
+                        text: 'El país no existe'
                     })
                 } else {
                     $("#IdPais").val(pais.codigo);
@@ -96,7 +97,7 @@ function pais() {
                 swal({
                     position: 'center',
                     type: 'success',
-                    title: 'El Pais fue grabado con éxito',
+                    title: 'El pais fue grabado con éxito',
                     showConfirmButton: false,
                     timer: 1200
                 })
