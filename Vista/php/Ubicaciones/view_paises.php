@@ -32,23 +32,20 @@
             </div>
         </div>
         <div class="card card-primary">
-            <div class="card-header bg-dark text-center text-white titulo">Pais</div>
-            <div class="card-body">
-                <div class="pull-right box-tools">
-                    <button class="btn btn-dark btn-sm" id="crear" data-toggle="tooltip"
-                        title="Registrar Nuevo Empleado">Registrar Pais</button>
-                </div>
+            <div class="card-header bg-dark text-center text-white titulo">País</div>
+            <div class="pull-right box-tools">
+                <button class="btn btn-dark btn-sm" id="crear" data-toggle="tooltip" title="">Registrar País</button>
             </div>
 
             <div class="card-body contenido">
                 <div id="editado">
                 </div>
                 <div class="listado">
-                    <table id="tabla" class="table table-bordered table-striped">
+                    <table id="tabla" class="table table-bordered table-striped text-center">
                         <thead>
-                            <tr>
-                                <th scope="col">Id Pais</th>
-                                <th scope="col">Pais</th>
+                            <tr class="text-center">
+                                <th scope="col">Id País</th>
+                                <th scope="col">País</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
@@ -60,7 +57,7 @@
             </div>
         </div>
 
-<!-- 
+        <!-- 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"

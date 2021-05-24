@@ -8,21 +8,21 @@ function ciudad() {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
         },
         "buttons": [{
-            extend: 'excelHtml5',
-            text: '<i class="fas fa-file-excel "></i> ',
-            titleAttr: 'Exportar a Excel',
-            className: 'btn btn-success',
-            title: 'Ciudades'
-        },
-        {
-            extend: 'pdfHtml5',
-            text: '<i class="fas fa-file-pdf "></i> ',
-            titleAttr: 'Exportar a PDF',
-            className: 'btn btn-danger',
-            title: 'Ciudades'
+                extend: 'excelHtml5',
+                text: '<i class="fas fa-file-excel "></i> ',
+                titleAttr: 'Exportar a Excel',
+                className: 'btn btn-success',
+                title: 'Ciudades'
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="fas fa-file-pdf "></i> ',
+                titleAttr: 'Exportar a PDF',
+                className: 'btn btn-danger',
+                title: 'Ciudades'
 
 
-        }
+            }
         ],
 
         "columns": [
@@ -31,7 +31,7 @@ function ciudad() {
             { "data": "NombreCiudad" },
             {
                 "data": "IdCiudad",
-                render: function (data) {
+                render: function(data) {
                     return '<a href="#" data-codigo="' + data +
                         '" class="btn btn-info btn-sm editar"><i class="fa fa-edit"></i></a>'
                 }
@@ -42,11 +42,12 @@ function ciudad() {
 
     $("#editado").hide();
 
-    $("#crear").on("click", function () {
-        $("#titulo").html("Ingresar Ciudad");
+    $("#crear").on("click", function() {
+        $("#titulo").html("Registrar Ciudad");
         $("#editado").show();
         $(".listado").hide();
-        $("#editado").load('Vista/php/Ubicaciones/formCrearCiudad.php', function () {
+        $("#crear").hide();
+        $("#editado").load('Vista/php/Ubicaciones/formCrearCiudad.php', function() {
             // $("#editado").load('../../../Vista/php/Ubicaciones/formCrearCiudad.php', function() {
             $.ajax({
                 type: "get",
@@ -54,8 +55,8 @@ function ciudad() {
                 // url: "../../../Controlador/controlador_ubicaciones.php",
                 data: { accion: 'listar_pais' },
                 dataType: "json"
-            }).done(function (resultado) {
-                $.each(resultado.data, function (index, value) {
+            }).done(function(resultado) {
+                $.each(resultado.data, function(index, value) {
                     $("#editado #IdPais").append("<option value='" + value.IdPais + "'>" + value.NombrePais + "</option>")
                 });
             });
@@ -63,13 +64,14 @@ function ciudad() {
 
     });
 
-    $(".contenido").on("click", "a.editar", function () {
+    $(".contenido").on("click", "a.editar", function() {
         var codigo = $(this).data("codigo");
         var pais;
         $("#titulo").html("Modificar Ciudad");
         $("#editado").show();
         $(".listado").hide();
-        $("#editado").load('Vista/php/Ubicaciones/formModificarCiudad.php', function () {
+        $("#crear").hide();
+        $("#editado").load('Vista/php/Ubicaciones/formModificarCiudad.php', function() {
             // $("#editado").load('../../../Vista/php/Ubicaciones/formModificarCiudad.php', function() {
             $.ajax({
                 type: "get",
@@ -77,12 +79,12 @@ function ciudad() {
                 // url: "../../../Controlador/controlador_ubicaciones.php",
                 data: { codigo: codigo, accion: 'consultar_ciudad' },
                 dataType: "json"
-            }).done(function (ciudad) {
+            }).done(function(ciudad) {
                 if (ciudad.respuesta === "no existe") {
                     swal({
                         type: 'error',
                         title: 'Oops...',
-                        text: 'Ciudad no existe!'
+                        text: 'La ciudad no existe'
                     })
                 } else {
                     $("#IdCiudad").val(ciudad.codigo);
@@ -97,8 +99,8 @@ function ciudad() {
                 // url: "../../../Controlador/controlador_ubicaciones.php",
                 data: { accion: 'listar_pais' },
                 dataType: "json"
-            }).done(function (resultado) {
-                $.each(resultado.data, function (index, value) {
+            }).done(function(resultado) {
+                $.each(resultado.data, function(index, value) {
                     if (pais === value.IdPais) {
                         $("#IdPais").append("<option selected value='" + value.IdPais + "'>" + value.NombrePais + "</option>")
                     } else {
@@ -110,7 +112,7 @@ function ciudad() {
 
     });
 
-    $("#editado").on("click", "button#grabar", function () {
+    $("#editado").on("click", "button#grabar", function() {
         var datos = $("#formCrearCiudad").serialize();
         console.log(datos);
         $.ajax({
@@ -119,7 +121,7 @@ function ciudad() {
             // url: "../../../Controlador/controlador_ubicaciones.php",
             data: datos,
             dataType: "json"
-        }).done(function (resultado) {
+        }).done(function(resultado) {
             if (resultado.respuesta) {
                 swal({
                     position: 'center',
@@ -138,7 +140,7 @@ function ciudad() {
                 swal({
                     position: 'center',
                     type: 'error',
-                    title: 'Ocurrió un erro al grabar',
+                    title: 'Ocurrió un error al grabar',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -147,7 +149,7 @@ function ciudad() {
         });
     });
 
-    $("#editado").on("click", "button#actualizar", function () {
+    $("#editado").on("click", "button#actualizar", function() {
         var datos = $("#formModificarCiudad").serialize();
         console.log(datos);
         $.ajax({
@@ -156,7 +158,7 @@ function ciudad() {
             // url: "../../../Controlador/controlador_ubicaciones.php",
             data: datos,
             dataType: "json"
-        }).done(function (resultado) {
+        }).done(function(resultado) {
 
             if (resultado.respuesta) {
                 swal({

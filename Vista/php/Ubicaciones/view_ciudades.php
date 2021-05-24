@@ -1,4 +1,3 @@
-
 <!-- <!DOCTYPE html>
 <html lang="en">
 
@@ -33,20 +32,17 @@
         </div>
         <div class="card card-primary">
             <div class="card-header bg-dark text-center text-white titulo">Ciudades</div>
-            <div class="card-body">
-                <div class="pull-right box-tools">
-                    <button class="btn btn-dark btn-sm" id="crear" data-toggle="tooltip"
-                        title="Registrar Nuevo Empleado">Registrar Ciudad</button>
-                </div>
+            <div class="pull-right box-tools">
+                <button class="btn btn-dark btn-sm" id="crear" data-toggle="tooltip" title="">Registrar Ciudad</button>
             </div>
 
             <div class="card-body contenido">
                 <div id="editado">
                 </div>
                 <div class="listado">
-                    <table id="tabla" class="table table-bordered table-striped">
+                    <table id="tabla" class="table table-bordered table-striped text-center">
                         <thead>
-                            <tr>
+                            <tr class="text-center">
                                 <th scope="col">Id Ciudad</th>
                                 <th scope="col">Pais</th>
                                 <th scope="col">Ciudad</th>
