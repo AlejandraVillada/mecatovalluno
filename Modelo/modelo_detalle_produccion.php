@@ -20,13 +20,11 @@ class detalle_produccion extends ModeloAbstractoDB
     {
 
         if ($id != ''):
-            $this->query = "SELECT dp.CantidadProduccion,dp.IdProduccion,dp.DescripcionProducto, dp.IdDetalleProduccion,
-										            m.IdMedida,mp.NombreMateriaPrima,dp.IdProducto
-										            FROM detalle_produccion dp
-										            INNER JOIN Medidas m ON(dp.IdMedida=m.idMedida)
-										            INNER JOIN materiaprima mp ON(dp.IdProducto=mp.IdProducto)
-										            INNER JOIN producto p ON(dp.IdProducto=p.IdProducto)
-										            WHERE dp.IdDetalleProduccion='$id' AND dp.IdProducto='$producto'";
+            $this->query = "SELECT dp.*,s.Estado
+	            FROM detalle_produccion dp
+	            INNER JOIN producto p ON(dp.IdProducto=p.IdProducto)
+	            INNER JOIN estadosproduccion s ON(dp.Estado=s.IdEstado)
+	            WHERE dp.IdDetalleProduccion='$id' AND dp.IdProduccion='$producto'";
             $this->obtener_resultados_query();
             //var_dump ($this->rows);
         endif;
@@ -116,12 +114,14 @@ class detalle_produccion extends ModeloAbstractoDB
 
                 if ($key1 == "IdMateriaPrima") {
                     $idmp = $value1;
+                    // echo "hola".$value1."+++";
                     for ($i = 0; $i < count($materiaprima); $i++) {
                         $x = 0;
                         foreach ($materiaprima[$i] as $key2 => $value2) {
                             if ($key2 == "IdMateriaPrima") {
                                 if ($value1 == $value2) {
                                     $x = 1;
+
                                 }
 
                             } else {
@@ -138,10 +138,12 @@ class detalle_produccion extends ModeloAbstractoDB
 
                     if ($key1 == "Cantidad") {
                         $cantidad = $value1;
-
+                        // echo $stock;
                     }if ($key1 == "NombreMedida") {
+
                         if ($medida == $value1) {
                             $restante = $stock - $cantidad;
+                            // echo $idmp;
 
                             $x = $this->validar($stock, $cantidad);
                             if ($restante > 0) {
@@ -200,8 +202,11 @@ class detalle_produccion extends ModeloAbstractoDB
     private function validar($stock, $valor)
     {
         $c = 0;
-        // echo $stock . "-" . $valor;
-        $c = $stock / $valor;
+        try {
+            $c = $stock / $valor;
+        } catch (\Throwable $th) {
+            $c = 0;
+        }
 
         return round($c, 0, PHP_ROUND_HALF_DOWN);
 
@@ -232,6 +237,13 @@ class detalle_produccion extends ModeloAbstractoDB
                 }
 
                 break;
+            case 'Unidades':
+                if ($medidafinal == "Panales") {
+                    return $valor / 30;
+                }
+
+                break;
+
             case 'Cucharada':
                 if ($medidafinal == "Gramos") {
                     return $valor * 30;

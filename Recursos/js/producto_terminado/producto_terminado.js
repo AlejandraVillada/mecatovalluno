@@ -14,7 +14,33 @@ function productoterminado() {
     dt = $("#tabla").DataTable({
 
         "ajax": "Controlador/controlador_inventarioprodterminado.php?accion=listar",
+        "dataSrc": "",
+        "dom": 'Bfrtip',
+
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        },
+        "buttons": [{
+            extend: 'excelHtml5',
+            text: '<i class="fas fa-file-excel "></i> ',
+            titleAttr: 'Exportar a Excel',
+            className: 'btn btn-success',
+            title: 'Producto Terminado'
+        },
+        {
+            extend: 'pdfHtml5',
+            text: '<i class="fas fa-file-pdf "></i> ',
+            titleAttr: 'Exportar a PDF',
+            className: 'btn btn-danger',
+            title: 'Producto Terminado'
+
+
+        }
+        ],
+
+        "paging": true,
         "pageLength": 3,
+
         "columns": [{
             "data": "IdProducto",
             render: function (data) {
@@ -48,16 +74,16 @@ function productoterminado() {
         $(".detalle").removeClass('show');
         $("#editar").load('Vista/php/ProductoTerminado/FormCrearPT.php', function () {
             // $("#editar").load('Vista/php/ProductoTerminado/FormCrearPT.php', function () {
-                $("#editar #nuevoprod").on("click", function (e) {
-                    console.log("hola");
-                        $("#editar").addClass('hide');
-                        $("#editar").removeClass('show');
-                        $(".listado").addClass('show');
-                        $(".listado").removeClass('hide');
-                        $(".detalle").addClass('hide');
-                        $(".detalle").removeClass('show');
-                        $(this).show();
-                });
+            $("#editar #nuevoprod").on("click", function (e) {
+                console.log("hola");
+                $("#editar").addClass('hide');
+                $("#editar").removeClass('show');
+                $(".listado").addClass('show');
+                $(".listado").removeClass('hide');
+                $(".detalle").addClass('hide');
+                $(".detalle").removeClass('show');
+                $(this).show();
+            });
             $("#editar #formCrearPT").on("submit", function (e) {
 
                 e.preventDefault();
@@ -135,6 +161,28 @@ function productoterminado() {
             //"ajax": "../../../Controlador/controlador_inventarioprodterminado.php?accion=consultar&&id=" + codigo + "",
 
             "ajax": "Controlador/controlador_inventarioprodterminado.php?accion=consultar&&id=" + codigo + "",
+            "dom": 'Bfrtip',
+
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            },
+            "buttons": [{
+                extend: 'excelHtml5',
+                text: '<i class="fas fa-file-excel "></i> ',
+                titleAttr: 'Exportar a Excel',
+                className: 'btn btn-success',
+                title: 'Detalle Producto Terminado'
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="fas fa-file-pdf "></i> ',
+                titleAttr: 'Exportar a PDF',
+                className: 'btn btn-danger',
+                title: 'Detalle Producto Terminado'
+
+
+            }
+            ],
 
 
             "columns": [
@@ -493,11 +541,11 @@ function productoterminado() {
             });
             $("#editar #modprodter").on("click", function (e) {
                 $("#editar").addClass('hide');
-                        $("#editar").removeClass('show');
-                        $(".listado").addClass('show');
-                        $(".listado").removeClass('hide');
-                        $(".detalle").addClass('hide');
-                        $(".detalle").removeClass('show');
+                $("#editar").removeClass('show');
+                $(".listado").addClass('show');
+                $(".listado").removeClass('hide');
+                $(".detalle").addClass('hide');
+                $(".detalle").removeClass('show');
             });
             $("#editar #formModPT").on("submit", function (e) {
                 e.preventDefault();

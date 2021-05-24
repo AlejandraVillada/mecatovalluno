@@ -24,29 +24,33 @@ switch ($accion) {
         $datos = $produccion->lista();
         echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
         break; //cierre
+    case "listar_estados":
+        $datos = $produccion->estado();
+        echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
+        break; //cierrecase "consultar":
     case "consultar":
 
         $datos = $produccion->consultar($id);
         //$datos1=$datos;
-        if(!empty($datos)){
+        if (!empty($datos)) {
             foreach ($datos as $key => $value) {
-        
+
                 foreach ($value as $key => $val) {
                     //var_dump($key."---".$val);
-                  $datos2[$key]= utf8_decode($val);
+                    $datos2[$key] = utf8_decode($val);
                     # code...
                 }
-            $datos1[]=$datos2;
+                $datos1[] = $datos2;
 
             }
-        echo json_encode(array('data' => $datos1), JSON_UNESCAPED_UNICODE);
+            echo json_encode(array('data' => $datos1), JSON_UNESCAPED_UNICODE);
 
-        }else{
-        echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
 
         }
-        
-       // var_dump($datos1);
+
+        // var_dump($datos1);
         break; //cierr
     case "consultarprod":
 
@@ -57,7 +61,7 @@ switch ($accion) {
 
     case "actualizar":
         $datos = $produccion->actualizar($datos);
-       
+
         echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
         break;
     case "nuevo":

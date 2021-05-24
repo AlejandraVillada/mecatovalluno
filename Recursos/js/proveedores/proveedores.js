@@ -5,13 +5,36 @@ function proveedor() {
     var dt1 = $("#tabla1").DataTable({
 
         "ajax": "Controlador/controlador_proveedor.php?accion=lista_proveedor",
+        "dom": 'Bfrtip',
+
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        },
+        "buttons": [{
+            extend: 'excelHtml5',
+            text: '<i class="fas fa-file-excel "></i> ',
+            titleAttr: 'Exportar a Excel',
+            className: 'btn btn-success',
+            title: 'Proveedores'
+        },
+        {
+            extend: 'pdfHtml5',
+            text: '<i class="fas fa-file-pdf "></i> ',
+            titleAttr: 'Exportar a PDF',
+            className: 'btn btn-danger',
+            title: 'Proveedores'
+
+
+        }
+        ],
+
         "columns": [
             { "data": "IdProveedor" },
             { "data": "NombreProveedor" },
             { "data": "Estado" },
             {
                 "data": "IdProveedor",
-                render: function(data) {
+                render: function (data) {
                     return '<a href="#" data-codigo="' + data +
                         '" class="btn btn-info btn-sm editar1 m-2"> <i class="fa fa-edit"></i></a>' +
                         '<a href="#" data-codigo="' + data +
@@ -26,14 +49,14 @@ function proveedor() {
     $("#nuevo2").hide();
     $("#regresar").hide();
 
-    $("#nuevo1").click(function() {
+    $("#nuevo1").click(function () {
         $("#titulo").html("Registro de Proveedores");
         $(".titulo").html("Datos de Registro");
         $("#edicion1").show();
         $("#listado1").hide();
         $("#nuevo1").hide();
         $(".tablaDetalle").hide();
-        $("#edicion1").load('Vista/php/Proveedor/form_nuevo_proveedor.php', function() {
+        $("#edicion1").load('Vista/php/Proveedor/form_nuevo_proveedor.php', function () {
             // $("#edicion1").load('../../../Vista/php/Proveedor/form_nuevo_proveedor.php', function() {
             $.ajax({
                 type: "get",
@@ -41,15 +64,16 @@ function proveedor() {
                 // url: "../../../Controlador/controlador_proveedor.php",
                 data: { accion: 'lista_estados' },
                 dataType: "json"
-            }).done(function(resultado) {;
-                $.each(resultado.data, function(index, value) {
+            }).done(function (resultado) {
+                ;
+                $.each(resultado.data, function (index, value) {
                     $("#IdEstado").append("<option value='" + value.IdEstado + "'>" + value.Estado + "</option>")
                 });
             });
         });
     })
 
-    $("#edicion1").on("click", "button#grabar1", function() {
+    $("#edicion1").on("click", "button#grabar1", function () {
         var datos = $("#datos1").serialize();
         // console.log(datos);
         $.ajax({
@@ -58,7 +82,7 @@ function proveedor() {
             // url: "../../../Controlador/controlador_proveedor.php",
             data: datos,
             dataType: "json"
-        }).done(function(resultado) {
+        }).done(function (resultado) {
             if (resultado.respuesta) {
                 swal({
                     position: 'center',
@@ -87,7 +111,7 @@ function proveedor() {
         });
     });
 
-    $(".contenedor1").on("click", "a.editar1", function() {
+    $(".contenedor1").on("click", "a.editar1", function () {
         var codigo = $(this).data("codigo");
         var estado;
         console.log(codigo);
@@ -97,7 +121,7 @@ function proveedor() {
         $("#listado1").hide();
         $("#nuevo1").hide();
         $(".tablaDetalle").hide();
-        $("#edicion1").load('Vista/php/Proveedor/form_editar_proveedor.php', function() {
+        $("#edicion1").load('Vista/php/Proveedor/form_editar_proveedor.php', function () {
             // $("#edicion1").load('../../../Vista/php/Proveedor/form_editar_proveedor.php', function()
             $.ajax({
                 type: "get",
@@ -105,7 +129,7 @@ function proveedor() {
                 // url: "../../../Controlador/controlador_proveedor.php",
                 data: { codigo: codigo, accion: 'consultar_proveedor' },
                 dataType: "json"
-            }).done(function(proveedor) {
+            }).done(function (proveedor) {
                 if (proveedor.respuesta === "No Existe El Proveedor") {
                     swal({
                         type: 'error',
@@ -125,8 +149,8 @@ function proveedor() {
                 // url: "../../../Controlador/controlador_proveedor.php",
                 data: { accion: 'lista_estados' },
                 dataType: "json"
-            }).done(function(resultado) {
-                $.each(resultado.data, function(index, value) {
+            }).done(function (resultado) {
+                $.each(resultado.data, function (index, value) {
                     if (estado === value.IdEstado) {
                         $("#IdEstado").append("<option selected value='" + value.IdEstado + "'>" + value.Estado + "</option>")
                     } else {
@@ -138,7 +162,7 @@ function proveedor() {
         });
     })
 
-    $("#edicion1").on("click", "button#actualizar1", function() {
+    $("#edicion1").on("click", "button#actualizar1", function () {
         var datos = $("#datos1").serialize();
         // console.log(datos);
         $.ajax({
@@ -147,7 +171,7 @@ function proveedor() {
             // url: "../../../Controlador/controlador_proveedor.php",
             data: datos,
             dataType: "json"
-        }).done(function(resultado) {
+        }).done(function (resultado) {
             if (resultado.respuesta) {
                 swal({
                     position: 'center',
@@ -175,7 +199,7 @@ function proveedor() {
 
     var dt2;
 
-    $(".contenedor1").on("click", "a.agregar1", function() {
+    $(".contenedor1").on("click", "a.agregar1", function () {
 
         var codigo = $(this).data("codigo");
         // console.log(codigo);
@@ -195,19 +219,42 @@ function proveedor() {
                 data: { codigo: codigo, accion: 'consultar_det_proveedor' },
                 dataType: "json"
             },
+            "dom": 'Bfrtip',
+
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            },
+            "buttons": [{
+                extend: 'excelHtml5',
+                text: '<i class="fas fa-file-excel "></i> ',
+                titleAttr: 'Exportar a Excel',
+                className: 'btn btn-success',
+                title: 'Detalle Proveedor'
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="fas fa-file-pdf "></i> ',
+                titleAttr: 'Exportar a PDF',
+                className: 'btn btn-danger',
+                title: 'Detalle Proveedor'
+
+
+            }
+            ],
+
             "columns": [
                 { "data": "IdDetalleProveedor" },
                 { "data": "NombreProveedor" },
                 { "data": "NombreMateriaPrima" },
                 {
                     "data": "IdDetalleProveedor",
-                    render: function(data) {
+                    render: function (data) {
                         return '<a href="#" data-codigo="' + data +
                             '" class="btn btn-info btn-sm editar2"> <i class="fa fa-edit"></i></a>'
                     }
                 }, {
                     "data": "IdProveedor",
-                    render: function(data) {
+                    render: function (data) {
                         return '<a href="#" data-codigo="' + data +
                             '" class="btn btn-info btn-sm proveedor hide"> <i class="fa fa-edit"></i></a>'
                     }
@@ -219,14 +266,14 @@ function proveedor() {
 
     // Procesos del Detalle Proveedor
 
-    $("#nuevo2").click(function() {
+    $("#nuevo2").click(function () {
         var codigo = $(".proveedor").data("codigo");
         $("#titulo").html("Asignación de Productos a Proveedores");
         $(".titulo").html("Datos de Registro");
         $("#edicion1").show();
         $("#listado2").hide();
         $("#nuevo2").hide();
-        $("#edicion1").load('Vista/php/Proveedor/form_nuevo_det_proveedor.php', function() {
+        $("#edicion1").load('Vista/php/Proveedor/form_nuevo_det_proveedor.php', function () {
             // $("#edicion1").load('../../../Vista/php/Proveedor/form_nuevo_det_proveedor.php', function() {
 
             $.ajax({
@@ -235,7 +282,7 @@ function proveedor() {
                 // url: "../../../Controlador/controlador_proveedor.php",
                 data: { codigo: codigo, accion: 'consultar_proveedor' },
                 dataType: "json"
-            }).done(function(proveedor) {
+            }).done(function (proveedor) {
                 if (proveedor.respuesta === "No Existe El Proveedor") {
                     swal({
                         type: 'error',
@@ -252,15 +299,16 @@ function proveedor() {
                 // url: "../../../Controlador/controlador_proveedor.php",
                 data: { accion: 'lista_productos' },
                 dataType: "json"
-            }).done(function(resultado) {;
-                $.each(resultado.data, function(index, value) {
+            }).done(function (resultado) {
+                ;
+                $.each(resultado.data, function (index, value) {
                     $("#IdMateriaPrima").append("<option value='" + value.IdMateriaPrima + "'>" + value.NombreMateriaPrima + "</option>")
                 });
             });
         });
     })
 
-    $("#edicion1").on("click", "button#grabar2", function() {
+    $("#edicion1").on("click", "button#grabar2", function () {
 
         var datos = $("#datos2").serialize();
         // console.log(datos);
@@ -270,7 +318,7 @@ function proveedor() {
             // url: "../../../Controlador/controlador_proveedor.php",
             data: datos,
             dataType: "json"
-        }).done(function(resultado) {
+        }).done(function (resultado) {
             console.log(resultado);
             if (resultado.respuesta == 'correcto') {
                 swal({
@@ -300,7 +348,7 @@ function proveedor() {
         });
     });
 
-    $(".contenedor1").on("click", "a.editar2", function() {
+    $(".contenedor1").on("click", "a.editar2", function () {
         var codigo = $(this).data("codigo");
         var codigo2 = $(".proveedor").data("codigo");
         var proveedor;
@@ -313,7 +361,7 @@ function proveedor() {
         $("#nuevo2").hide();
         $("#regresar").hide();
         $(".tablaProveedor").show();
-        $("#edicion1").load('Vista/php/Proveedor/form_editar_det_proveedor.php', function() {
+        $("#edicion1").load('Vista/php/Proveedor/form_editar_det_proveedor.php', function () {
             // $("#edicion1").load('../../../Vista/php/Proveedor/form_editar_det_proveedor.php', function() {
             // console.log(codigo2);
             $.ajax({
@@ -322,7 +370,7 @@ function proveedor() {
                 // url: "../../../Controlador/controlador_proveedor.php",
                 data: { codigo: codigo, codigo2: codigo2, accion: 'consultar_det_proveedor2' },
                 dataType: "json"
-            }).done(function(det_proveedor) {
+            }).done(function (det_proveedor) {
                 if (det_proveedor.respuesta === "No Existe El Proveedor") {
                     swal({
                         type: 'error',
@@ -342,7 +390,7 @@ function proveedor() {
                 // url: "../../../Controlador/controlador_proveedor.php",
                 data: { codigo: codigo2, accion: 'consultar_proveedor' },
                 dataType: "json"
-            }).done(function(proveedor) {
+            }).done(function (proveedor) {
                 if (proveedor.respuesta === "No Existe El Proveedor") {
                     swal({
                         type: 'error',
@@ -360,8 +408,8 @@ function proveedor() {
                 // url: "../../../Controlador/controlador_proveedor.php",
                 data: { accion: 'lista_productos' },
                 dataType: "json"
-            }).done(function(resultado) {
-                $.each(resultado.data, function(index, value) {
+            }).done(function (resultado) {
+                $.each(resultado.data, function (index, value) {
                     if (materiaprima === value.IdMateriaPrima) {
                         $("#IdMateriaPrima").append("<option selected value='" + value.IdMateriaPrima + "'>" + value.NombreMateriaPrima + "</option>")
                     } else {
@@ -373,7 +421,7 @@ function proveedor() {
         });
     })
 
-    $("#edicion1").on("click", "button#actualizar2", function() {
+    $("#edicion1").on("click", "button#actualizar2", function () {
         var datos = $("#datos2").serialize();
         console.log(datos);
         $.ajax({
@@ -382,7 +430,7 @@ function proveedor() {
             // url: "../../../Controlador/controlador_proveedor.php",
             data: datos,
             dataType: "json"
-        }).done(function(resultado) {
+        }).done(function (resultado) {
             if (resultado.respuesta) {
                 swal({
                     position: 'center',

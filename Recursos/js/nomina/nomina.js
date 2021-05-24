@@ -5,13 +5,13 @@ function nomina() {
     $("#listado2").hide();
     $("#regresar").hide();
 
-    $("#generar").click(function() {
+    $("#generar").click(function () {
         $.ajax({
             type: "get",
             url: "Controlador/controlador_nomina.php",
             data: { accion: 'generar_nomina' },
             dataType: "json"
-        }).done(function(resultado) {
+        }).done(function (resultado) {
             console.log(resultado);
             if (resultado.respuesta == 'existe') {
                 swal({
@@ -35,12 +35,12 @@ function nomina() {
     })
 
 
-    $("#consultar").click(function() {
+    $("#consultar").click(function () {
         $("#edicion1").show();
     });
 
 
-    $("#buscar").click(function() {
+    $("#buscar").click(function () {
         $("#listado1").show();
         $("#consultar").hide();
         $("#generar").hide();
@@ -59,7 +59,7 @@ function nomina() {
                 { "data": "TotalNomina" },
                 {
                     "data": "IdNomina",
-                    render: function(data) {
+                    render: function (data) {
                         return '<a href="#" data-codigo="' + data +
                             '" class="btn btn-dark btn-sm ver"> <i class="fa fa-plus"> Ver Detalle Nómina</i></a>'
                     }
@@ -68,7 +68,7 @@ function nomina() {
         });
     });
 
-    $(".contenedor1").on("click", "a.ver", function() {
+    $(".contenedor1").on("click", "a.ver", function () {
         $("#edicion1").hide();
         $("#listado1").hide();
         $("#listado2").show();
@@ -81,6 +81,24 @@ function nomina() {
                 data: { codigo: codigo, accion: 'consultar_detalle' },
                 dataType: "json"
             },
+            "dom": 'lBfrtip',
+
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            },
+            "buttons": [{
+                extend: 'excelHtml5',
+                text: '<i class="fas fa-file-excel"></i> ',
+                titleAttr: 'Exportar a Excel',
+                className: 'btn btn-success ml-1'
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="fas fa-file-pdf "></i> ',
+                titleAttr: 'Exportar a PDF',
+                className: 'btn btn-danger'
+            }
+            ],
             "columns": [
                 { "data": "IdDetalleNomina" },
                 { "data": "IdNomina" },

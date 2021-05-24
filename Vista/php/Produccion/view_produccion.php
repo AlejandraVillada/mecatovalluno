@@ -85,6 +85,7 @@
                             <th>Producto Terminado</th>
                             <th>Cantidad de Porciones</th>
                             <th>Cantidad de Producto Terminado</th>
+                            <th>Estado</th>
                             <th>-</th>
                         </tr>
                     </thead>
@@ -98,9 +99,10 @@
     </div>
     </div>
     <!-- /.content-wrapper -->
-    <?php include_once "../../../Templates/footer1.php";?>
+    <?php include_once "../../../Templates/footer.php";?>
+    <?php //include_once "../../../Templates/datatable.html";?>
 
-    </script>
+   
     <script src="../../../Recursos/js/Produccion/Produccion.js"></script>
     <!-- <script src="Recursos/js/Produccion/Produccion.js"></script> -->
     <script>
