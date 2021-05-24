@@ -35,7 +35,9 @@
                 <button class="btn btn-dark" id="generar" data-toggle="tooltip" title="">Generar Nómina del Mes</button>
                 <button class="btn btn-dark" id="consultar" data-toggle="tooltip" title="">Consultar Nómina por
                     Fecha</button>
-                <a href="./adminper.php" class="btn btn-danger" id="regresar" data-toggle="tooltip" title="">Regresar</a>
+                <button class="btn btn-dark btn-sm" id="informe" data-toggle="tooltip" title="">Generar informe</button>
+                <a href="./adminper.php" class="btn btn-danger" id="regresar" data-toggle="tooltip"
+                    title="">Regresar</a>
                 <!-- <a href="./view_proveedores.php" class="btn btn-danger btn-sm" id="regresar"
                     data-toggle="tooltip" title="">Regresar</a> -->
             </div>
@@ -47,8 +49,9 @@
                     <label>Consultar Fecha Nómina</label>
                     <input type="text" name="FechaNomina" id="FechaNomina" class="form-control">
                 </div>
-                <button class="btn btn-info" id="buscar" data-toggle="tooltip" name="buscar" style="margin-bottom: 10px;">Buscar Nómina</button>
-                
+                <button class="btn btn-info" id="buscar" data-toggle="tooltip" name="buscar"
+                    style="margin-bottom: 10px;">Buscar Nómina</button>
+
             </div>
 
             <div id="listado1">
@@ -65,6 +68,7 @@
             </div>
 
             <div id="listado2">
+
                 <table id="tabla2" class="table table-striped table-bordered text-center">
                     <thead>
                         <tr class="text-center">
@@ -76,6 +80,7 @@
                             <th>Comisiones</th>
                             <th>Sueldo Base</th>
                             <th>Total Sueldo</th>
+                            <th>&nbsp;</th>
                         </tr>
                     </thead>
                 </table>

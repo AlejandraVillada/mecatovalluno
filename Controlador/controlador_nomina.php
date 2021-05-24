@@ -2,12 +2,28 @@
 
     require_once "../Modelo/modelo_nomina.php";
     require_once "../Modelo/modelo_detalleNomina.php";
+    require_once "../Vista/informe/tabla.php";
     header('Content-Type: application/json');
 
     $datos = $_GET;
     $accion = $_GET['accion'];
 
 switch ($accion) {
+    case "informe":
+        $infoDetalle = new detalle_nomina();
+        $listado = $infoDetalle->consultar($datos['codigo']);
+        $pdf = new PDF();
+            // T�tulos de las columnas
+            $titulos = array('IdDetalle', 'IdNomina', 'IdEmpleado', 'Nombre','IdSede','Sede','Comisiones','Sueldo','TotalSueldo');
+            // Carga de datos
+            // $tabla = $pdf->cargarDatos($listado);
+            $pdf->SetFont('Arial','',10);
+            $pdf->AddPage();
+            $pdf->TablaElegante($titulos,$listado);
+
+            $pdf->Output();
+        break;
+
     case "lista":
         $infoNomina = new modelo_nomina();
         $listado = $infoNomina->lista($datos['fecha']);
