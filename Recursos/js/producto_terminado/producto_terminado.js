@@ -15,7 +15,7 @@ function productoterminado() {
 
         "ajax": "Controlador/controlador_inventarioprodterminado.php?accion=listar",
         "dataSrc": "",
-        "dom": 'Bfrtip',
+        "dom": 'lBfrtip',
 
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
@@ -24,7 +24,7 @@ function productoterminado() {
             extend: 'excelHtml5',
             text: '<i class="fas fa-file-excel "></i> ',
             titleAttr: 'Exportar a Excel',
-            className: 'btn btn-success',
+            className: 'btn btn-success ml-1',
             title: 'Producto Terminado'
         },
         {
@@ -161,7 +161,7 @@ function productoterminado() {
             //"ajax": "../../../Controlador/controlador_inventarioprodterminado.php?accion=consultar&&id=" + codigo + "",
 
             "ajax": "Controlador/controlador_inventarioprodterminado.php?accion=consultar&&id=" + codigo + "",
-            "dom": 'Bfrtip',
+            "dom": 'lBfrtip',
 
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
@@ -170,7 +170,7 @@ function productoterminado() {
                 extend: 'excelHtml5',
                 text: '<i class="fas fa-file-excel "></i> ',
                 titleAttr: 'Exportar a Excel',
-                className: 'btn btn-success',
+                className: 'btn btn-success ml-1',
                 title: 'Detalle Producto Terminado'
             },
             {
