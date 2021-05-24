@@ -39,29 +39,28 @@
                 <div class="form-group">
                     <label for="Cargo">Cargo</label>
                     <select class="form-control" id="Cargo" name="Cargo" required>
-                        <option value="">Seleccione un cargo</option>
+                        <option value="">Seleccione un Cargo</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="IdSede">Sede</label>
                     <select class="form-control" id="IdSede" name="IdSede" required>
-                        <option value="">Seleccione una sede</option>
+                        <option value="">Seleccione una Sede</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>Estado</label>
                     <select class="form-control" id="IdEstado" name="IdEstado" required>
-                        <option value="">Seleccione Estado</option>
+                        <option value="">Seleccione el Estado</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" id="grabar" class="btn btn-primary" data-toggle="tooltip">Registrar
+                    <button type="submit" id="grabar" class="btn btn-primary" data-toggle="tooltip">Crear
                         Empleado</button>
-                        <a href="./adminper.php" id="cerrar" class="btn btn-danger"
-                        data-toggle="tooltip">Regresar</a>
+                    <a href="./adminper.php" id="cerrar" class="btn btn-danger" data-toggle="tooltip">Regresar</a>
                 </div>
 
                 <input type="hidden" id="nuevo" value="nuevo" name="accion" />

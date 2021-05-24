@@ -39,21 +39,21 @@
                 <div class="form-group">
                     <label for="Cargo">Cargo</label>
                     <select class="form-control" id="Cargo" name="Cargo" required>
-                        <option value="">Seleccione un cargo</option>
+                        <option value="">Seleccione un Cargo</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="IdSede">Sede</label>
                     <select class="form-control" id="IdSede" name="IdSede" required>
-                        <option value="">Seleccione una sede</option>
+                        <option value="">Seleccione una Sede</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>Estado</label>
                     <select class="form-control" id="IdEstado" name="IdEstado" required>
-                        <option value="">Seleccione Estado</option>
+                        <option value="">Seleccione el Estado</option>
                     </select>
                 </div>
 
