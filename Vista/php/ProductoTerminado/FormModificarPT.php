@@ -29,7 +29,7 @@
             <br>
             <input type="hidden" name="accion" id="accion" value="actualizar">
             <input type="submit" class="btn btn-dark nuevo" value="Actualizar">
-            <a href="view_ProductoTerminado.php" class="btn btn-dark">Regresar</a>
+            <a id="modprodter" class="btn btn-dark">Regresar</a>
         </form>
     </div>
 </div>
