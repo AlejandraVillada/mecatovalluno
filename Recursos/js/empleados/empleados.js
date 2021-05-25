@@ -83,7 +83,9 @@ function empleados() {
                 dataType: "json"
             }).done(function(resultado) {;
                 $.each(resultado.data, function(index, value) {
-                    $("#Cargo").append("<option value='" + value.IdTipoUsuario + "'>" + value.TipoUsuario + "</option>")
+                    if (value.IdTipoUsuario != 5) {
+                        $("#Cargo").append("<option value='" + value.IdTipoUsuario + "'>" + value.TipoUsuario + "</option>")
+                    }
                 });
             });
 
@@ -239,10 +241,12 @@ function empleados() {
                 dataType: "json"
             }).done(function(resultado) {
                 $.each(resultado.data, function(index, value) {
-                    if (cargo === value.IdTipoUsuario) {
-                        $("#Cargo").append("<option selected value='" + value.IdTipoUsuario + "'>" + value.TipoUsuario + "</option>")
-                    } else {
-                        $("#Cargo").append("<option value='" + value.IdTipoUsuario + "'>" + value.TipoUsuario + "</option>")
+                    if (value.IdTipoUsuario != 5) {
+                        if (cargo === value.IdTipoUsuario) {
+                            $("#Cargo").append("<option selected value='" + value.IdTipoUsuario + "'>" + value.TipoUsuario + "</option>")
+                        } else {
+                            $("#Cargo").append("<option value='" + value.IdTipoUsuario + "'>" + value.TipoUsuario + "</option>")
+                        }
                     }
                 });
             });
