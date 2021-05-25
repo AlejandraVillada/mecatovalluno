@@ -20,12 +20,13 @@ function Header()
 }
 
 // Cargar los datos
-function cargarDatos($json)
+function cargarDatos($file)
 {
     // Leer las l�neas del fichero
+    $archivo = file($file);
     $datos = array();
-    foreach($json as $linea)
-        $datos[] = $linea;
+    foreach($archivo as $linea)
+        $datos[] = explode(';',trim($linea));
     return $datos;
 }
 
@@ -73,7 +74,7 @@ function cargarDatos($json)
 }*/
 
 // Tabla Elegante
-function TablaElegante($titulos,$datos)
+function TablaElegante($titulos, $datos)
 {
     // Colores, ancho de l�nea y fuente en negrita
     $this->SetFillColor(255,0,0);
@@ -82,7 +83,7 @@ function TablaElegante($titulos,$datos)
     $this->SetLineWidth(.2);
     $this->SetFont('','B',14);
     // Cabecera de titulos
-    $w = array(20,20, 20, 20);
+    $w = array(25,80, 60, 25);
     for($i=0;$i<count($titulos);$i++)
         $this->Cell($w[$i],7,$titulos[$i],1,0,'C',true);
     $this->Ln();
@@ -96,13 +97,8 @@ function TablaElegante($titulos,$datos)
     {
         $this->Cell($w[0],6,$row[0],'LR',0,'L',$fill);
         $this->Cell($w[1],6,$row[1],'LR',0,'L',$fill);
-        $this->Cell($w[2],6,$row[2],'LR',0,'R',$fill);
-		$this->Cell($w[3],6,$row[3],'LR',0,'R',$fill);
-        $this->Cell($w[4],6,$row[4],'LR',0,'R',$fill);
-        $this->Cell($w[5],6,$row[5],'LR',0,'R',$fill);
-        $this->Cell($w[6],6,$row[6],'LR',0,'R',$fill);
-        $this->Cell($w[7],6,$row[7],'LR',0,'R',$fill);
-        $this->Cell($w[8],6,$row[8],'LR',0,'R',$fill);
+        $this->Cell($w[2],6,number_format($row[2]),'LR',0,'R',$fill);
+		$this->Cell($w[3],6,number_format($row[3]),'LR',0,'R',$fill);
         $this->Ln();
         $fill = !$fill;
     }

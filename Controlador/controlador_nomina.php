@@ -8,18 +8,22 @@
     $datos = $_GET;
     $accion = $_GET['accion'];
 
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
 switch ($accion) {
     case "informe":
         $infoDetalle = new detalle_nomina();
         $listado = $infoDetalle->consultar($datos['codigo']);
         $pdf = new PDF();
             // T�tulos de las columnas
-            $titulos = array('IdDetalle', 'IdNomina', 'IdEmpleado', 'Nombre','IdSede','Sede','Comisiones','Sueldo','TotalSueldo');
+            $titulos = array('IdDetalle', 'IdNomina', 'IdEmpleado', 'Nombre','Sede','Comisiones','Sueldo','TotalSueldo');
             // Carga de datos
-            // $tabla = $pdf->cargarDatos($listado);
+            $tabla = $pdf->cargarDatos('paises.txt');
             $pdf->SetFont('Arial','',10);
             $pdf->AddPage();
-            $pdf->TablaElegante($titulos,$listado);
+            $pdf->TablaElegante($titulos,$tabla);
 
             $pdf->Output();
         break;

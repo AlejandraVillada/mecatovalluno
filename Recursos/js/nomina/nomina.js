@@ -134,5 +134,10 @@ function nomina() {
 
 
     });
+    // $("#informe").click(function() {
+    //     DescargarPDF('reporte', 'Archivo');
+
+
+    // });
 
 }
