@@ -1,5 +1,5 @@
 function proveedor() {
-
+    $("#cancelar").hide();
     // Espacio para Proveedor
     // "ajax": "../../../Controlador/controlador_proveedor.php?accion=lista_proveedor",
     var dt1 = $("#tabla1").DataTable({
@@ -42,6 +42,15 @@ function proveedor() {
                 }
             }
         ]
+    });
+    $("#edicion1").on("click", "button#cerrar", function() {
+        $("#titulo").html("Gestión de Proveedores");
+        $("#edicion1").html('');
+        $("#edicion1").hide();
+        $("#listado1").show();
+        $("#nuevo1").show();
+        $(".tablaDetalle").show();
+        dt1.ajax.reload(null, false);
     });
 
     $("#edicion1").hide();
@@ -201,6 +210,21 @@ function proveedor() {
         });
     });
 
+    $(".tablaProveedor").on("click", "button#cancelar", function() {
+        $("#titulo").html("Gestión de Proveedores");
+        $("#edicion1").html('');
+        $("#edicion1").hide();
+        $("#listado1").show();
+        $("#listado2").hide();
+        $("#nuevo1").show();
+        $("#nuevo2").hide();
+        $(".tablaProveedor").show();
+        $("#cancelar").hide();
+        dt1.ajax.reload(null, false);
+        dt2.ajax.reload(null, false);
+    });
+
+
     var dt2;
 
     $(".contenedor1").on("click", "a.agregar1", function() {
@@ -214,6 +238,7 @@ function proveedor() {
         $("#nuevo1").hide();
         $("#nuevo2").show();
         $("#regresar").show();
+        $("#cancelar").show();
 
         dt2 = $("#tabla2").DataTable({
             ajax: {
@@ -267,6 +292,17 @@ function proveedor() {
             ]
         });
     });
+
+    $("#edicion1").on("click", "button#cerrar2", function() {
+        $("#titulo").html("Asignacion de productos");
+        $("#edicion1").html('');
+        $("#edicion1").hide();
+        $("#listado2").show();
+        $("#nuevo2").show();
+        $(".tablaProveedor").show();
+        dt2.ajax.reload(null, false);
+    });
+
 
     // Procesos del Detalle Proveedor
 
@@ -333,7 +369,7 @@ function proveedor() {
                     showConfirmButton: false,
                     timer: 3500
                 })
-                $("#titulo").html("Gestión de Proveedores");
+                $("#titulo").html("Asignacion de productos");
                 $("#edicion1").html('');
                 $("#edicion1").hide();
                 $("#listado2").show();
@@ -447,7 +483,7 @@ function proveedor() {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                $("#titulo").html("Gestión de Proveedores");
+                $("#titulo").html("Asignacion de productos");
                 $(".titulo").html("Proveedores");
                 $("#edicion1").hide();
                 $("#listado2").show();

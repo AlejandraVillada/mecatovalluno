@@ -42,12 +42,13 @@ function materiaPrima() {
 
     });
 
-    // $(".regresar").on("click", function() {
-    //     $("#titulo").html("Gestión Materia Prima");
-    //     $("#editado").hide();
-    //     $(".listado").show();
-    //     $(".listado").load("../../../Vista/php/MateriaPrima/view_MateriaPrima.php");
-    // });
+    $("#editado").on("click", "button#cerrar", function() {
+        $("#titulo").html("Gestión Materia Prima");
+        $("#editado").html('');
+        $("#editado").hide();
+        $(".listado").show();
+        dt.ajax.reload(null, false);
+    });
 
     $("#editado").hide();
 

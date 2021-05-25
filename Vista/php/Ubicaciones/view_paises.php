@@ -46,6 +46,7 @@
                             <tr class="text-center">
                                 <th scope="col">Id País</th>
                                 <th scope="col">País</th>
+                                <th scope="col">Estado</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>

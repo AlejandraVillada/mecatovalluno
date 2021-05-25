@@ -1,4 +1,5 @@
 function pais() {
+    $("#crear").show();
     var dt = $("#tabla").DataTable({
 
         // "ajax": "../../../Controlador/controlador_ubicaciones.php?accion=listar_pais",
@@ -29,6 +30,7 @@ function pais() {
         "columns": [
             { "data": "IdPais" },
             { "data": "NombrePais" },
+            { "data": "Estado" },
             {
                 "data": "IdPais",
                 render: function(data) {
@@ -40,6 +42,15 @@ function pais() {
 
     });
 
+    $("#editado").on("click", "button#cerrar", function() {
+        $("#titulo").html("Gestión de Paises");
+        $("#editado").html('');
+        $("#editado").hide();
+        $(".listado").show();
+        $("#crear").show();
+        dt.ajax.reload(null, false);
+    });
+
     $("#editado").hide();
 
     $("#crear").on("click", function() {
@@ -47,13 +58,26 @@ function pais() {
         $("#editado").show();
         $(".listado").hide();
         $("#crear").hide();
-        $("#editado").load('Vista/php/Ubicaciones/formCrearPais.php')
-            // $("#editado").load('../../../Vista/php/Ubicaciones/formCrearPais.php')
+        $("#editado").load('Vista/php/Ubicaciones/formCrearPais.php', function() {
+            $.ajax({
+                type: "get",
+                url: "Controlador/controlador_ubicaciones.php",
+                // url: "../../../Controlador/controlador_empleados.php",
+                data: { accion: 'listar_estados' },
+                dataType: "json"
+            }).done(function(resultado) {
+                $.each(resultado.data, function(index, value) {
+                    $("#IdEstado").append("<option value='" + value.IdEstado + "'>" + value.Estado + "</option>")
+                });
+            });
+        });
+        // $("#editado").load('../../../Vista/php/Ubicaciones/formCrearPais.php')
 
     });
 
     $(".contenido").on("click", "a.editar", function() {
         var codigo = $(this).data("codigo");
+        var estado;
         $("#titulo").html("Modificar Datos de País");
         $("#editado").show();
         $(".listado").hide();
@@ -76,7 +100,24 @@ function pais() {
                 } else {
                     $("#IdPais").val(pais.codigo);
                     $("#NombrePais").val(pais.pais);
+                    estado = pais.estado;
                 }
+            });
+
+            $.ajax({
+                type: "get",
+                url: "Controlador/controlador_ubicaciones.php",
+                // url: "../../../Controlador/controlador_empleados.php",
+                data: { accion: 'listar_estados' },
+                dataType: "json"
+            }).done(function(resultado) {
+                $.each(resultado.data, function(index, value) {
+                    if (estado === value.IdEstado) {
+                        $("#IdEstado").append("<option selected value='" + value.IdEstado + "'>" + value.Estado + "</option>")
+                    } else {
+                        $("#IdEstado").append("<option value='" + value.IdEstado + "'>" + value.Estado + "</option>")
+                    }
+                });
             });
 
 
@@ -84,7 +125,8 @@ function pais() {
 
     });
 
-    $("#editado").on("click", "button#grabar", function() {
+    $("#editado").on("click", "button#grabar", function(e) {
+        e.preventDefault();
         var datos = $("#formCrearPais").serialize();
         $.ajax({
             type: "get",
@@ -120,7 +162,8 @@ function pais() {
         });
     });
 
-    $("#editado").on("click", "button#actualizar", function() {
+    $("#editado").on("click", "button#actualizar", function(e) {
+        e.preventDefault();
         var datos = $("#formModificarPais").serialize();
         console.log(datos);
         $.ajax({

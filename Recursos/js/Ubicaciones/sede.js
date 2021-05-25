@@ -1,4 +1,5 @@
 function sede() {
+    $("#crear").show();
     var dt = $("#tabla").DataTable({
         // "ajax": "../../../Controlador/controlador_ubicaciones.php?accion=listar_sede",
         "ajax": "Controlador/controlador_ubicaciones.php?accion=listar_sede",
@@ -29,6 +30,7 @@ function sede() {
             { "data": "IdSede" },
             { "data": "NombreCiudad" },
             { "data": "NombreSede" },
+            { "data": "Estado" },
             {
                 "data": "IdSede",
                 render: function(data) {
@@ -38,6 +40,15 @@ function sede() {
             }
         ]
 
+    });
+
+    $("#editado").on("click", "button#cerrar", function() {
+        $("#titulo").html("Gestión de Paises");
+        $("#editado").html('');
+        $("#editado").hide();
+        $(".listado").show();
+        $("#crear").show();
+        dt.ajax.reload(null, false);
     });
 
     $("#editado").hide();
@@ -60,13 +71,24 @@ function sede() {
                     $("#editado #IdCiudad").append("<option value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
                 });
             });
+            $.ajax({
+                type: "get",
+                url: "Controlador/controlador_ubicaciones.php",
+                // url: "../../../Controlador/controlador_empleados.php",
+                data: { accion: 'listar_estados' },
+                dataType: "json"
+            }).done(function(resultado) {
+                $.each(resultado.data, function(index, value) {
+                    $("#IdEstado").append("<option value='" + value.IdEstado + "'>" + value.Estado + "</option>")
+                });
+            });
         });
 
     });
 
     $(".contenido").on("click", "a.editar", function() {
         var codigo = $(this).data("codigo");
-        var ciudad;
+        var ciudad, estado;
         $("#titulo").html("Modificar Sede");
         $("#editado").show();
         $("#crear").hide();
@@ -90,6 +112,7 @@ function sede() {
                     $("#IdSede").val(sede.codigo);
                     $("#NombreSede").val(sede.sede);
                     ciudad = sede.ciudad;
+                    estado = sede.estado;
                 }
             });
 
@@ -108,10 +131,26 @@ function sede() {
                     }
                 });
             });
+            $.ajax({
+                type: "get",
+                url: "Controlador/controlador_ubicaciones.php",
+                // url: "../../../Controlador/controlador_empleados.php",
+                data: { accion: 'listar_estados' },
+                dataType: "json"
+            }).done(function(resultado) {
+                $.each(resultado.data, function(index, value) {
+                    if (estado === value.IdEstado) {
+                        $("#IdEstado").append("<option selected value='" + value.IdEstado + "'>" + value.Estado + "</option>")
+                    } else {
+                        $("#IdEstado").append("<option value='" + value.IdEstado + "'>" + value.Estado + "</option>")
+                    }
+                });
+            });
         });
 
     });
-    $("#editado").on("click", "button#grabar", function() {
+    $("#editado").on("click", "button#grabar", function(e) {
+        e.preventDefault();
         var datos = $("#formCrearSede").serialize();
         console.log(datos);
         $.ajax({
@@ -133,6 +172,7 @@ function sede() {
                 $("#editado").html('');
                 $("#editado").hide();
                 $(".listado").show();
+                $("#crear").show();
                 dt.page('last').draw('page');
                 dt.ajax.reload(null, false);
             } else {
@@ -148,7 +188,8 @@ function sede() {
         });
     });
 
-    $("#editado").on("click", "button#actualizar", function() {
+    $("#editado").on("click", "button#actualizar", function(e) {
+        e.preventDefault();
         var datos = $("#formModificarSede").serialize();
         console.log(datos);
         $.ajax({
@@ -171,6 +212,7 @@ function sede() {
                 $("#editado").html('');
                 $("#editado").hide();
                 $(".listado").show();
+                $("#crear").show();
                 dt.ajax.reload(null, false);
             } else {
                 swal({

@@ -7,6 +7,7 @@ class modelo_ciudad extends ModeloAbstractoDB
     private $IdCiudad;
     private $IdPais;
     private $NombreCiudad;
+    private $IdEstado;
 
     public function __construct()
     {
@@ -16,8 +17,8 @@ class modelo_ciudad extends ModeloAbstractoDB
     {
         if ($id != ''):
             $this->query = "
-			    SELECT IdCiudad,IdPais,NombreCiudad
-			    FROM ciudad
+			    SELECT IdCiudad,IdPais,NombreCiudad,IdEstado
+			    FROM ciudad 
 	            WHERE IdCiudad = '$id'";
             $this->obtener_resultados_query();
         endif;
@@ -35,8 +36,8 @@ class modelo_ciudad extends ModeloAbstractoDB
         endforeach;
         $this->query = "
         INSERT INTO ciudad
-        (IdPais, NombreCiudad)
-        VALUES ('$IdPais','$NombreCiudad')";
+        (IdPais, NombreCiudad,IdEstado)
+        VALUES ('$IdPais','$NombreCiudad','$IdEstado')";
         $resultado = $this->ejecutar_query_simple();
         return $resultado;
     }
@@ -48,7 +49,8 @@ class modelo_ciudad extends ModeloAbstractoDB
         $this->query = "
         UPDATE ciudad
         SET IdPais='$IdPais',
-        NombreCiudad='$NombreCiudad'
+        NombreCiudad='$NombreCiudad',
+        IdEstado = '$IdEstado'
         WHERE IdCiudad = '$IdCiudad'";
         $resultado = $this->ejecutar_query_simple();
         return $resultado;
@@ -62,9 +64,11 @@ class modelo_ciudad extends ModeloAbstractoDB
     public function lista()
     {
         $this->query = "
-		SELECT IdCiudad,NombreCiudad,p.NombrePais
+		SELECT IdCiudad,NombreCiudad,p.NombrePais,e.Estado
 		FROM ciudad AS c INNER JOIN pais AS p
-        ON(c.IdPais = p.IdPais)";
+        ON(c.IdPais = p.IdPais)
+        INNER JOIN estados AS e
+        ON(c.IdEstado = e.IdEstado)";
         $this->obtener_resultados_query();
         return $this->rows;
 
@@ -128,5 +132,13 @@ class modelo_ciudad extends ModeloAbstractoDB
         $this->NombreCiudad = $NombreCiudad;
 
         return $this;
+    }
+
+    /**
+     * Get the value of IdEstado
+     */ 
+    public function getIdEstado()
+    {
+        return $this->IdEstado;
     }
 }

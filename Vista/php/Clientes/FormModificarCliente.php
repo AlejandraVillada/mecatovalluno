@@ -36,8 +36,8 @@
             <br>
             <div class="form-group">
                 <button type="submit" id="actualizar" data-toggle="tooltip" class="btn btn-primary">Actualizar</button>
-                <a href="./adminper.php" id="cancelar" data-toggle="tooltip" class="btn btn-danger btncerrar3">
-                    Regresar</a>
+                <button id="cerrar" type="button" data-toggle="tooltip" class="btn btn-danger btncerrar3">
+                    Regresar</button>
                 <!-- <a href="../Clientes/view_Clientes.php" id="cancelar" data-toggle="tooltip"
                         class="btn btn-danger btncerrar3">
                         Regresar</a> -->

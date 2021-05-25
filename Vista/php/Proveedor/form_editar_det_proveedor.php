@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <button type="submit" id="actualizar2" class="btn btn-primary" data-toggle="tooltip">Actualizar
                         Producto</button>
-                    <a href="./adminper.php" id="cerrar" class="btn btn-danger" data-toggle="tooltip">Regresar</a>
+                    <button id="cerrar2" type="button" class="btn btn-danger" data-toggle="tooltip">Regresar</button>
                 </div>
 
                 <input type="hidden" id="editar_det_proveedor" value="editar_det_proveedor" name="accion" />

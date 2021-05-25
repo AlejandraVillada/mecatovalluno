@@ -1,4 +1,5 @@
 function usuarios() {
+    $("#crear").show();
     // "ajax": "../../../Controlador/controlador_usuario.php?accion=listar",
     var dt = $("#tabla").DataTable({
 
@@ -40,6 +41,15 @@ function usuarios() {
             }
         ]
 
+    });
+
+    $("#editado").on("click", "button#cerrar", function() {
+        $("#titulo").html("Gestión Usuarios");
+        $("#editado").html('');
+        $("#editado").hide();
+        $(".listado").show();
+        $("#crear").show();
+        dt.ajax.reload(null, false);
     });
 
     $("#editado").hide();
@@ -151,6 +161,7 @@ function usuarios() {
                     $("#editado").html('');
                     $("#editado").hide();
                     $(".listado").show();
+                    $("#crear").show();
                     dt.page('last').draw('page');
                     dt.ajax.reload(null, false);
                 } else {
@@ -201,6 +212,7 @@ function usuarios() {
                     $("#editado").html('');
                     $("#editado").hide();
                     $(".listado").show();
+                    $("#crear").show();
                     dt.ajax.reload(null, false);
                 } else {
                     swal({

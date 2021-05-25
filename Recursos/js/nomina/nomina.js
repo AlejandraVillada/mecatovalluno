@@ -34,7 +34,15 @@ function nomina() {
 
         });
     })
-
+    $("#editado").on("click", "button#cerrar", function() {
+        $("#listado1").hide();
+        $("#consultar").show();
+        $("#generar").show();
+        $("#edicion1").hide();
+        $("#listado2").hide();
+        $("#regresar").hide();
+        $("#informe").hide();
+    });
 
     $("#consultar").click(function() {
         $("#edicion1").show();

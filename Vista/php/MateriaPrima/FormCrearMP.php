@@ -20,7 +20,7 @@
               <br>
               <div class="form-group">
                   <button type="submit" id="grabar" class="btn btn-primary" data-toggle="tooltip">Registrar</button>
-                  <a href="./adminper.php" id="cerrar" class="btn btn-danger" data-toggle="tooltip">Regresar</a>
+                  <button id="cerrar" type="button" class="btn btn-danger" data-toggle="tooltip">Regresar</button>
               </div>
 
               <input type="hidden" id="nuevo" value="nuevo" name="accion" />

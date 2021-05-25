@@ -45,6 +45,13 @@ function clientes() {
 
     });
 
+    $("#editado").on("click", "button#cerrar", function() {
+        $("#titulo").html("Gestión Clientes");
+        $("#editado").html('');
+        $("#editado").hide();
+        $(".listado").show();
+        dt.ajax.reload();
+    });
 
     $("#editado").hide();
 

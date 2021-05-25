@@ -44,14 +44,14 @@ function empleados() {
         ]
     });
 
-    //   $("#cerrar").on("click", function(){
-    //       $("#titulo").html("Listado de Empleados");
-    //       $(".titulo").html("Empleados");
-    //       $("#edicion").hide();
-    //       $("#listado").show();
-    //       $("#nuevo").show(); 
-    //       $("#listado").load(); 
-    //   })  
+    $("#edicion").on("click", "button#cerrar", function() {
+        $("#titulo").html("Gestión de Empleados");
+        $("#edicion").html('');
+        $("#edicion").hide();
+        $("#listado").show();
+        $("#nuevo").show();
+        dt.ajax.reload(null, false);
+    });
 
     $("#edicion").hide();
 
@@ -122,7 +122,7 @@ function empleados() {
                     showConfirmButton: false,
                     timer: 3500
                 })
-                $("#titulo").html("Listado de Empleados");
+                $("#titulo").html("Gestión de Empleados");
                 $("#edicion").html('');
                 $("#edicion").hide();
                 $("#listado").show();
@@ -161,7 +161,7 @@ function empleados() {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                $("#titulo").html("Listado de Empleados");
+                $("#titulo").html("Gestión de Empleados");
                 $("#edicion").html('');
                 $("#edicion").hide();
                 $("#listado").show();

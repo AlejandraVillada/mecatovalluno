@@ -46,6 +46,7 @@
                                 <th scope="col">Id Sede</th>
                                 <th scope="col">Id Ciudad</th>
                                 <th scope="col">Sede</th>
+                                <th scope="col">Estados</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>

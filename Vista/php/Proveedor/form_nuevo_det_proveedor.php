@@ -28,7 +28,7 @@
                 <div class="form-group">
                     <button id="grabar2" class="btn btn-primary" data-toggle="tooltip" type="submit">Asignar
                         Producto</button>
-                    <a href="./adminper.php" id="cerrar" class="btn btn-danger" data-toggle="tooltip">Regresar</a>
+                    <button id="cerrar2" type="button" class="btn btn-danger" data-toggle="tooltip">Regresar</button>
                 </div>
 
                 <input type="hidden" id="nuevo_det_proveedor" value="nuevo_det_proveedor" name="accion" />

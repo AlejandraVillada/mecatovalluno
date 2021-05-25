@@ -20,7 +20,7 @@
             <br>
             <div class="form-group">
                 <button type="submit" id="actualizar" data-toggle="tooltip" class="btn btn-primary">Actualizar</button>
-                <a href="./adminper.php" id="cerrar" class="btn btn-danger" data-toggle="tooltip">Regresar</a>
+                <button id="cerrar" type="button" class="btn btn-danger" data-toggle="tooltip">Regresar</button>
 
             </div>
 

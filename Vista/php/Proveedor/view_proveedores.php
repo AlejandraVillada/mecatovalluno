@@ -36,8 +36,8 @@
                         Proveedor</button>
                     <button class="btn btn-dark btn-sm" id="nuevo2" data-toggle="tooltip" title="">Asignar
                         Producto</button>
-                    <a href="./adminper.php" class="btn btn-danger btn-sm" id="regresar" data-toggle="tooltip"
-                    title="">Regresar</a>
+                    <button id="cancelar" type="button" class="btn btn-danger btn-sm" data-toggle="tooltip"
+                    title="">Regresar</button>
                 </div>
             </div>
 

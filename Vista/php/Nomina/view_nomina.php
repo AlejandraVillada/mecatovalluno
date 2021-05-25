@@ -39,8 +39,8 @@
                     Fecha</button>
                 <button class="btn btn-dark btn-sm" id="informe" data-toggle="tooltip" title=""
                     onclick="DescargarPDF('listado2', 'ReporteNomina');">Generar informe</button>
-                <a href="./adminper.php" class="btn btn-danger" id="regresar" data-toggle="tooltip"
-                    title="">Regresar</a>
+                <button id="cerrar" type="button" class="btn btn-danger" id="regresar" data-toggle="tooltip"
+                    title="">Regresar</button>
                 <!-- <a href="./view_proveedores.php" class="btn btn-danger btn-sm" id="regresar"
                     data-toggle="tooltip" title="">Regresar</a> -->
             </div>
@@ -143,7 +143,8 @@
     //     doc.text("Hello world!", 1, 1);
     //     doc.save("two-by-four.pdf");
     // }
-    // </script>
+    // 
+    </script>
 
 </body>
 
