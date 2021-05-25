@@ -210,21 +210,6 @@ function proveedor() {
         });
     });
 
-    $(".tablaProveedor").on("click", "button#cancelar", function() {
-        $("#titulo").html("Gestión de Proveedores");
-        $("#edicion1").html('');
-        $("#edicion1").hide();
-        $("#listado1").show();
-        $("#listado2").hide();
-        $("#nuevo1").show();
-        $("#nuevo2").hide();
-        $(".tablaProveedor").show();
-        $("#cancelar").hide();
-        dt1.ajax.reload(null, false);
-        dt2.ajax.reload(null, false);
-    });
-
-
     var dt2;
 
     $(".contenedor1").on("click", "a.agregar1", function() {
@@ -303,6 +288,19 @@ function proveedor() {
         dt2.ajax.reload(null, false);
     });
 
+    $(".tablaProveedor").on("click", "button#cancelar", function() {
+        $("#titulo").html("Gestión de Proveedores");
+        $("#edicion1").html('');
+        $("#edicion1").hide();
+        $("#listado1").show();
+        // $("#listado2").hide();
+        $("#nuevo1").show();
+        $("#nuevo2").hide();
+        $(".tablaProveedor").show();
+        $("#cancelar").hide();
+        dt2.destroy();
+        // dt1.ajax.reload(null, false);
+    });
 
     // Procesos del Detalle Proveedor
 
