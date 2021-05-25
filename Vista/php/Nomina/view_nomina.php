@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
 </head> -->
 <!-- <script src="../../../Recursos/js/jspdf.debug.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script> -->
 
 <body class="container">
     <div class="mt-4">
@@ -132,18 +132,18 @@
         });
     });
 
-    function DescargarPDF(ContenidoID, nombre) {
+    // function DescargarPDF(ContenidoID, nombre) {
 
-        const doc = new jsPDF({
-            orientation: "landscape",
-            unit: "in",
-            format: [4, 2]
-        });
+    //     const doc = new jsPDF({
+    //         orientation: "landscape",
+    //         unit: "in",
+    //         format: [4, 2]
+    //     });
 
-        doc.text("Hello world!", 1, 1);
-        doc.save("two-by-four.pdf");
-    }
-    </script>
+    //     doc.text("Hello world!", 1, 1);
+    //     doc.save("two-by-four.pdf");
+    // }
+    // </script>
 
 </body>
 
