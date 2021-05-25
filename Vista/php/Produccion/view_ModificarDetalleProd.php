@@ -33,7 +33,7 @@
             </div>
             <input type="hidden" name="accion" value="nuevo">
     <input type="submit" class=" btn btn-dark " id="guardarmodificar" value="Agregar">
-    <a href="view_ProduccionTerminado.php" class="btn btn-dark">Regresar</a>
+    <a id="moddetalleprod" class="btn btn-dark">Regresar</a>
     </div>
 
 

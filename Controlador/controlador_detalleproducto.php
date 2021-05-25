@@ -1,5 +1,6 @@
 <?php
 include_once "../Modelo/modelo_detalle_producto.php";
+include_once "../pdf/tabla.php";
 header('Content-Type: application/json');
 $datos = $_POST; //datos
 ini_set('display_errors', 1);
@@ -69,4 +70,22 @@ switch ($accion) {
         $datos = $detalle_producto->buscar($IdProducto);
         echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
         break;
+    case "informe":
+        $datos1 = $detalle_producto->listamp();
+        $a=array();
+        foreach ($datos1 as $key => $value) {
+         $a[]= implode(";",$value);
+        
+        }
+        $pdf = new PDF();
+        // T�tulos de las columnas
+        $titulos = array('IdMateriaPrima', 'NombreMateriaPrima', 'Stock','IdMedida');
+        // Carga de datos
+        $datos = $pdf->cargarDatos($a);
+        $pdf->SetFont('Arial', '', 10);
+        $pdf->AddPage();
+        $pdf->TablaElegante($titulos, $datos);
+        $pdf->Output();
+        break;
+
 }

@@ -5,6 +5,7 @@ $datos = $_POST; //datos
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
 if (!empty($_GET['accion'])) {
     $accion = $_GET['accion'];
     if (!empty($_GET['iddetalle'])) {
@@ -18,11 +19,16 @@ if (!empty($_GET['accion'])) {
     if (!empty($_POST['IdProduccion'])) {
         $IdProduccion = $_POST['IdProduccion'];
     }
+    if (!empty($_POST['IdProducto'])) {
+        $IdProducto = $_POST['IdProducto'];
+    }
     //  $id = $_POST['id'];
     $accion = $_POST['accion'];
     //var_dump($datos);
 }
+
 $detalle_produccion = new detalle_produccion();
+
 switch ($accion) {
     //Case/ contenido variable accion
     case "listar":
@@ -71,7 +77,8 @@ switch ($accion) {
         break;
 
     case "cantidadmaxima":
-        $datos = $detalle_produccion->cantidadmaxima($IdProduccion);
+
+        $datos = $detalle_produccion->validarproducto($IdProducto,$IdProduccion);
         echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
         break;
     break;

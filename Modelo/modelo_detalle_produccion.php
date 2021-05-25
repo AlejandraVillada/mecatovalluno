@@ -21,10 +21,10 @@ class detalle_produccion extends ModeloAbstractoDB
 
         if ($id != ''):
             $this->query = "SELECT dp.*,s.Estado
-	            FROM detalle_produccion dp
-	            INNER JOIN producto p ON(dp.IdProducto=p.IdProducto)
-	            INNER JOIN estadosproduccion s ON(dp.Estado=s.IdEstado)
-	            WHERE dp.IdDetalleProduccion='$id' AND dp.IdProduccion='$producto'";
+		            FROM detalle_produccion dp
+		            INNER JOIN producto p ON(dp.IdProducto=p.IdProducto)
+		            INNER JOIN estadosproduccion s ON(dp.Estado=s.IdEstado)
+		            WHERE dp.IdDetalleProduccion='$id' AND dp.IdProduccion='$producto'";
             $this->obtener_resultados_query();
             //var_dump ($this->rows);
         endif;
@@ -90,6 +90,32 @@ class detalle_produccion extends ModeloAbstractoDB
          WHERE dp.IdProducto='$IdProducto'";
         $this->obtener_resultados_query();
         return $this->rows;
+    }
+    public function validarproducto($IdProducto, $IdProduccion)
+    {
+        $this->query = "SELECT dp.*,m.NombreProducto,s.Estado
+        FROM detalle_produccion dp
+        INNER JOIN producto m ON(dp.IdProducto=m.IdProducto)
+        INNER JOIN estadosproduccion s ON(dp.Estado=s.IdEstado)
+        WHERE dp.Idproduccion='$IdProduccion'";
+        $this->obtener_resultados_query();
+        $resultado=$this->rows;
+        $a=0;
+
+        foreach ($resultado as $key => $value) {
+            foreach ($value as $key1 => $value1) {
+               if($key1=="IdProducto"&& $value1==$IdProducto ){
+                $a=1;
+               }
+            }
+        }
+        if(!$a==1){
+          return  $this->cantidadmaxima($IdProducto);
+
+        }else{
+            return array("Habilitado" => "NoProducto");
+
+        }
     }
     public function cantidadmaxima($id)
     {

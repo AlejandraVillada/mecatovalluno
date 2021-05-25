@@ -31,8 +31,8 @@
 
             </div>
             <input type="hidden" name="accion" value="nuevo">
-    <input type="submit" class=" btn btn-dark guardarnuevo" value="Agregar">
-    <a href="view_ProduccionTerminado.php" class="btn btn-dark">Regresar</a>
+    <input type="submit" class=" btn btn-dark guardarnuevo" id="guardarnuevo"value="Agregar">
+    <a id="newdetaproduccion" class="btn btn-dark">Regresar</a>
     </div>
 
 

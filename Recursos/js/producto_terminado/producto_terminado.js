@@ -436,7 +436,6 @@ function productoterminado() {
 
                                     $("#editar .guardarmod").attr('disabled', true);
                                     b = 1;
-
                                 }
                                 a = 0;
                             } else if (b == 1) {

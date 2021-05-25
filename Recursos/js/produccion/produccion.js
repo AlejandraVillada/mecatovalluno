@@ -241,6 +241,14 @@ function Produccion() {
                 });
 
             });
+            $("#editar #newdetaproduccion").on("click",function (e) {
+                $("#editar").addClass('hide');
+                $("#editar").removeClass('show');
+                $(".listado").addClass('show');
+                $(".listado").removeClass('hide');
+                $(".detalle").addClass('show');
+                $(".detalle").removeClass('hide');
+            })
             $("select[id=IdProductoTerminado]").change(function () {
 
                 var cantidad = $(this).children('option:selected').data('cantidad');
@@ -252,32 +260,39 @@ function Produccion() {
                     type: "post",
                     // url: "Controlador/controlador_inventarioMP.php",
                     url: "../../../Controlador/controlador_detalleproduccion.php",
-                    data: { accion: 'cantidadmaxima', IdProduccion: prod },
+                    data: { accion: 'cantidadmaxima', IdProducto: prod ,IdProduccion:IdProduccion},
                     dataType: "json"
                 }).done(function (resultado) {
 
                     if (resultado.data.Habilitado == "Si") {
-                        //validación si ya existe en el detalle
-
-
-
-
-
                         $("#Cantidad").attr('disabled', false);
                         $("#Cantidad").attr("max", resultado.data.max);
                         $("input[id=guardarmodificar]").attr('disabled', false);
+                        $("#guardarnuevo").attr('disabled', false);
 
-
-                    } else {
+                    } else if(resultado.data.Habilitado =="NoProducto"){
                         swal({
                             position: 'center',
                             type: 'error',
-                            title: 'No puede agregar al inventario el producto porque no hay materia prima suficiente para su producción',
+                            title: 'No puede agregar un mismo producto varias veces',
                             showConfirmButton: false,
                             timer: 1500
                         })
                         $("input[id=guardarmodificar]").attr('disabled', true);
                         $("#Cantidad").attr('disabled', true);
+                        $("#guardarnuevo").attr('disabled', true);
+                    }else {
+                        swal({
+                            position: 'center',
+                            type: 'error',
+                            title: 'No puede agregar el producto porque no hay materia prima suficiente para su producción',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        $("input[id=guardarmodificar]").attr('disabled', true);
+                        $("#Cantidad").attr('disabled', true);
+                        $("#guardarnuevo").attr('disabled', true);
+
                     }
                 });
 
@@ -385,6 +400,14 @@ function Produccion() {
                     });
 
                 });
+                $("#editar #moddetalleprod").on("click",function (e) {
+                    $("#editar").addClass('hide');
+                    $("#editar").removeClass('show');
+                    $(".listado").addClass('show');
+                    $(".listado").removeClass('hide');
+                    $(".detalle").addClass('show');
+                    $(".detalle").removeClass('hide');
+                })
                 $("select[id=IdProductoTerminado]").change(function () {
 
                     var cantidad = $(this).children('option:selected').data('cantidad');
@@ -395,28 +418,38 @@ function Produccion() {
                         type: "post",
                         // url: "Controlador/controlador_inventarioMP.php",
                         url: "../../../Controlador/controlador_detalleproduccion.php",
-                        data: { accion: 'cantidadmaxima', IdProduccion: prod },
+                        data: { accion: 'cantidadmaxima', IdProducto: prod ,IdProduccion:IdProduccion},
                         dataType: "json"
                     }).done(function (resultado) {
-                        console.log(resultado.data.Habilitado);
                         if (resultado.data.Habilitado == "Si") {
-                            //validación si ya existe en el detalle
-
                             $("#Cantidad").attr('disabled', false);
                             $("#Cantidad").attr("max", resultado.data.max);
                             $("input[id=guardarmodificar]").attr('disabled', false);
-
-
-                        } else {
+                            $("#guardarmodificar").attr('disabled', false);
+    
+                        } else if(resultado.data.Habilitado =="NoProducto"){
                             swal({
                                 position: 'center',
                                 type: 'error',
-                                title: 'No puede agregar al inventario el producto porque no hay materia prima suficiente para su producción',
+                                title: 'No puede agregar un mismo producto varias veces',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
                             $("input[id=guardarmodificar]").attr('disabled', true);
                             $("#Cantidad").attr('disabled', true);
+                            $("#guardarmodificar").attr('disabled', true);
+                        }else {
+                            swal({
+                                position: 'center',
+                                type: 'error',
+                                title: 'No puede agregar el producto porque no hay materia prima suficiente para su producción',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $("input[id=guardarmodificar]").attr('disabled', true);
+                            $("#Cantidad").attr('disabled', true);
+                            $("#guardarmodificar").attr('disabled', true);
+    
                         }
                     });
 
