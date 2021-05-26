@@ -25,7 +25,7 @@
     <div>
         <div class="mt-4">
             <div class="jumbotron">
-                <h1 class="text-center" id="titulo">Gestión de Nómina</h1>
+                <h1 class="text-center display-4" id="titulo">Gestión de Nómina</h1>
             </div>
         </div>
 
@@ -35,17 +35,16 @@
             <div class="card card-primary tablaNomina">
                 <div class="card-header bg-dark text-center text-white titulo">Pagos de Nómina</div>
                 <div class="card-body prueba">
-                    <div class="pull-center box-tools text-center">
+                    <div class="pull-center box-tools">
                         <button class="btn btn-dark" id="generar" data-toggle="tooltip" title="">Generar Nómina del
                             Mes</button>
                         <button class="btn btn-dark" id="consultar" data-toggle="tooltip" title="">Consultar Nómina por
                             Fecha</button>
-                        <button class="btn btn-primary btn-sm" id="informe" data-toggle="tooltip" title=""
-                            onclick="DescargarPDF('listado2', 'ReporteNomina');">Generar Informe</button>
-                        <button id="cerrar" type="button" class="btn btn-danger" id="regresar" data-toggle="tooltip"
+                        <a href="" target="_blank" class="btn btn-dark btn-sm" id="informe" data-toggle="tooltip"
+                            title="Generar informe">Generar informe</a>
+                        <button id="cerrar" type="button" class="btn btn-danger btn-sm" id="regresar" data-toggle="tooltip"
                             title="">Regresar</button>
-                        <!-- <a href="./view_proveedores.php" class="btn btn-danger btn-sm" id="regresar"
-                    data-toggle="tooltip" title="">Regresar</a> -->
+
                     </div>
                 </div>
 
@@ -134,19 +133,6 @@
                 dateFormat: "yy-mm-dd"
             });
         });
-
-        // function DescargarPDF(ContenidoID, nombre) {
-
-        //     const doc = new jsPDF({
-        //         orientation: "landscape",
-        //         unit: "in",
-        //         format: [4, 2]
-        //     });
-
-        //     doc.text("Hello world!", 1, 1);
-        //     doc.save("two-by-four.pdf");
-        // }
-        // 
         </script>
     </div>
 </body>

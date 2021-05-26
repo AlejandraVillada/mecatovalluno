@@ -17,11 +17,11 @@ function Header()
     $this->Ln(10);
     $this->Cell(40);
 
-    $this->Cell(100,5,'Informe de Nomina',0,0,'L');
+    $this->Cell(100,5,'Informe de Usuarios',0,0,'L');
 
     // Salto de l�nea
     $this->Ln(40);
-	$this->SetFont('Arial','',14);
+	$this->SetFont('Arial','',10);
 }
 
 // Cargar los datos
@@ -88,9 +88,9 @@ function TablaElegante($titulos, $datos)
     $this->SetTextColor(255);
     $this->SetDrawColor(128,0,0);
     $this->SetLineWidth(.2);
-    $this->SetFont('','B',14);
+    $this->SetFont('','B',10);
     // Cabecera de titulos
-    $w = array(25,80, 60, 25);
+    $w = array(30,50, 55, 140);
     for($i=0;$i<count($titulos);$i++)
         $this->Cell($w[$i],7,$titulos[$i],1,0,'C',true);
     $this->Ln();
@@ -103,9 +103,9 @@ function TablaElegante($titulos, $datos)
     foreach($datos as $row)
     {
         $this->Cell($w[0],6,number_format($row[0]),'LR',0,'L',$fill);
-        $this->Cell($w[1],6,$row[1],'LR',0,'L',$fill);
-        $this->Cell($w[2],6,number_format($row[2]),'LR',0,'R',$fill);
-		$this->Cell($w[3],6,number_format($row[3]),'LR',0,'R',$fill);
+		$this->Cell($w[1],6,$row[1],'LR',0,'R',$fill);
+        $this->Cell($w[2],6,$row[2],'LR',0,'R',$fill);
+        $this->Cell($w[3],6,$row[3],'LR',0,'R',$fill);
         $this->Ln();
         $fill = !$fill;
     }

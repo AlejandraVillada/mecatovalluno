@@ -35,6 +35,7 @@
             <div class="card-header bg-dark text-center text-white titulo">Usuarios</div>
             <div class="pull-right box-tools">
                 <button class="btn btn-dark btn-sm" id="crear" data-toggle="tooltip" title="">Registrar Usuario</button>
+                <a href="Controlador/controlador_usuario.php?accion=informe" target="_blank" class="btn btn-dark btn-sm mt-3" id="informe" data-toggle="tooltip" title="Generar informe" style="float: right; display: abstract;">Generar informe</a>
             </div>
 
             <div class="card-body contenido">

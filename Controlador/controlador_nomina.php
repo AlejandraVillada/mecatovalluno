@@ -2,7 +2,8 @@
 
     require_once "../Modelo/modelo_nomina.php";
     require_once "../Modelo/modelo_detalleNomina.php";
-    // require_once "../Vista/informe/tabla.php";
+    include_once "../pdf/informe_nomina.php";
+
     header('Content-Type: application/json');
 
     $datos = $_GET;
@@ -13,21 +14,7 @@
     error_reporting(E_ALL);
 
 switch ($accion) {
-    // case "informe":
-    //     $infoDetalle = new detalle_nomina();
-    //     $listado = $infoDetalle->consultar($datos['codigo']);
-    //     $pdf = new PDF();
-    //         // T�tulos de las columnas
-    //         $titulos = array('IdDetalle', 'IdNomina', 'IdEmpleado', 'Nombre','Sede','Comisiones','Sueldo','TotalSueldo');
-    //         // Carga de datos
-    //         $tabla = $pdf->cargarDatos('paises.txt');
-    //         $pdf->SetFont('Arial','',10);
-    //         $pdf->AddPage();
-    //         $pdf->TablaElegante($titulos,$tabla);
-
-    //         $pdf->Output();
-    //     break;
-
+  
     case "lista":
         $infoNomina = new modelo_nomina();
         $listado = $infoNomina->lista($datos['fecha']);
@@ -185,6 +172,27 @@ switch ($accion) {
         );
         echo json_encode($respuesta);
         break;
+
+
+        case "informe":
+            $nomina = new detalle_nomina();
+            $datos1 = $nomina->consultar($datos['codigo']);
+            $a=array();
+            foreach ($datos1 as $key => $value) {
+             $a[]= implode(";",$value);
+            
+            }
+            $pdf = new PDF('L');
+            // T�tulos de las columnas
+            $titulos = array('Id', 'Nomina', 'IdEmpleado','Nombre','IdSede','Sede','Comisiones','SueldoBase');
+            // Carga de datos
+            $datos = $pdf->cargarDatos($a);
+            $pdf->SetFont('Arial', '', 10);
+            $pdf->AddPage();
+            $pdf->TablaElegante($titulos, $datos);
+            $pdf->Output();
+            break;
+
 
     case 'borrar':
         //No se usa

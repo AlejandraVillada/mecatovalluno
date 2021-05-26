@@ -32,6 +32,7 @@
             <div class="pull-right box-tools">
                 <button class="btn btn-dark btn-sm" id="nuevo" data-toggle="tooltip"
                     title="Registrar Nuevo Empleado">Registrar Empleado</button>
+                    <a href="Controlador/controlador_empleados.php?accion=informe" target="_blank" class="btn btn-dark btn-sm" id="informe" data-toggle="tooltip" title="Generar informe">Generar informe</a>
             </div>
         </div>
 

@@ -1,5 +1,5 @@
 function nomina() {
-
+    var dt1, dt2;
     $("#edicion1").hide();
     $("#listado1").hide();
     $("#listado2").hide();
@@ -36,16 +36,19 @@ function nomina() {
         });
     })
 
-    $("#editado").on("click", "button#cerrar", function() {
+    $(".card-body").on("click", "button#cerrar", function() {
         $("#listado1").hide();
         $("#consultar").show();
         $("#generar").show();
         $("#edicion1").hide();
         $("#listado2").hide();
-        $("#regresar").hide();
         $("#informe").hide();
-    });
+        $("#cerrar").hide();
+        $("#FechaNomina").val('');
+        dt1.destroy();
+        dt2.destroy();
 
+    });
     $("#consultar").click(function() {
         $("#edicion1").show();
     });
@@ -57,7 +60,7 @@ function nomina() {
         $("#generar").hide();
 
         fecha = $("#FechaNomina").val();
-        var dt1 = $("#tabla1").DataTable({
+        dt1 = $("#tabla1").DataTable({
             ajax: {
                 type: "get",
                 url: "Controlador/controlador_nomina.php",
@@ -100,8 +103,11 @@ function nomina() {
         $("#listado2").show();
         $("#regresar").show();
         $("#informe").show();
+        $("#cerrar").show();
         var codigo = $(this).data("codigo");
-        var dt2 = $("#tabla2").DataTable({
+        $('#informe').attr('href', 'Controlador/controlador_nomina.php?accion=informe&codigo=' + codigo);
+
+        dt2 = $("#tabla2").DataTable({
             ajax: {
                 type: "get",
                 url: "Controlador/controlador_nomina.php",
@@ -146,21 +152,6 @@ function nomina() {
         });
     });
 
-    $("#informe").click(function() {
 
-        var codigo = $(".idnomina").data("codigo");
-        $.ajax({
-            type: "get",
-            url: "Controlador/controlador_nomina.php",
-            data: { codigo: codigo, accion: 'informe' },
-            dataType: "json"
-        });
-
-    });
-    // $("#informe").click(function() {
-    //     DescargarPDF('reporte', 'Archivo');
-
-
-    // });
 
 }

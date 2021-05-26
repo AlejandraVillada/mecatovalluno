@@ -1,6 +1,7 @@
 <?php
 
 require_once "../Modelo/modelo_empleados.php";
+include_once "../pdf/informe_empleados.php";
 header('Content-Type: application/json');
 $datos = $_GET;
 $accion = $_GET['accion'];
@@ -66,6 +67,25 @@ switch ($accion) {
         );
         echo json_encode($respuesta);
         break;
+
+        case "informe":
+            $empleado = new modelo_empleados();
+            $datos1 = $empleado->lista();
+            $a=array();
+            foreach ($datos1 as $key => $value) {
+             $a[]= implode(";",$value);
+            
+            }
+            $pdf = new PDF('L');
+            // T�tulos de las columnas
+            $titulos = array('Cedula', 'Nombre', 'Email','SueldoBase','Telefono','Cargo','Sede','Estado');
+            // Carga de datos
+            $datos = $pdf->cargarDatos($a);
+            $pdf->SetFont('Arial', '', 10);
+            $pdf->AddPage();
+            $pdf->TablaElegante($titulos, $datos);
+            $pdf->Output();
+            break;
 
     case 'borrar':
         //No se usa
