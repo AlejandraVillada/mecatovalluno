@@ -82,20 +82,7 @@ function nomina() {
         });
     });
 
-    // $(".prueba").on("click", "button#cerrar", function() {
-    //     $("#titulo").html("Gestión de Nómina");
-    //     // $("#edicion").html('');
-    //     // $("#edicion").hide();
-    //     $(".prueba").show();
-    //     $("#generar").show();
-    //     $("#consultar").show();
-    //     $("#cerrar").hide();
-    //     $("#edicion1").hide();
-    //     $("#listado1").hide();
-    //     $("#listado2").hide();
-    //     $("#informe").hide();
-    //     dt.ajax.reload(null, false);
-    // });
+
 
     $(".contenedor1").on("click", "a.ver", function() {
         $("#edicion1").hide();
