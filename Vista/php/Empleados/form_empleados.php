@@ -22,7 +22,7 @@
 <body class="container">
     <div class="mt-4">
         <div class="jumbotron">
-            <h1 id="titulo" class="display-4 text-center">Gestión Empleados</h1>
+            <h1 id="titulo" class="display-4 text-center">Gestión de Empleados</h1>
         </div>
     </div>
 

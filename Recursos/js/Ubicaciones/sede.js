@@ -43,7 +43,7 @@ function sede() {
     });
 
     $("#editado").on("click", "button#cerrar", function() {
-        $("#titulo").html("Gestión de Paises");
+        $("#titulo").html("Gestión de Sedes");
         $("#editado").html('');
         $("#editado").hide();
         $(".listado").show();
@@ -89,7 +89,7 @@ function sede() {
     $(".contenido").on("click", "a.editar", function() {
         var codigo = $(this).data("codigo");
         var ciudad, estado;
-        $("#titulo").html("Modificar Sede");
+        $("#titulo").html("Modificar Datos de Sede");
         $("#editado").show();
         $("#crear").hide();
         $(".listado").hide();
@@ -105,7 +105,7 @@ function sede() {
                 if (sede.respuesta === "no existe") {
                     swal({
                         type: 'error',
-                        title: 'Oops...',
+                        title: '¡Error!',
                         text: 'La sede no existe'
                     })
                 } else {
@@ -217,8 +217,8 @@ function sede() {
             } else {
                 swal({
                     type: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong!'
+                    title: '¡Error!',
+                    text: 'Revise la información'
                 })
             }
         });

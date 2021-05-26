@@ -43,9 +43,10 @@ function materiaPrima() {
     });
 
     $("#editado").on("click", "button#cerrar", function() {
-        $("#titulo").html("Gestión Materia Prima");
+        $("#titulo").html("Gestión de Materia Prima");
         $("#editado").html('');
         $("#editado").hide();
+        $("#crear").show();
         $(".listado").show();
         dt.ajax.reload(null, false);
     });
@@ -53,9 +54,10 @@ function materiaPrima() {
     $("#editado").hide();
 
     $("#crear").on("click", function() {
-        $("#titulo").html("Ingresar Nueva Materia Prima");
+        $("#titulo").html("Registrar Nueva Materia Prima");
         $("#editado").show();
         $(".listado").hide();
+        $("#crear").hide();
         $("#editado").load('Vista/php/MateriaPrima/FormCrearMP.php', function() {
             // $("#editado").load('../../../Vista/php/MateriaPrima/FormCrearMP.php', function() {
             $.ajax({
@@ -77,8 +79,9 @@ function materiaPrima() {
         console.log("algo");
         var codigo = $(this).data("codigo");
         var medida;
-        $("#titulo").html("Modificar Campo Materia Prima");
+        $("#titulo").html("Modificar Datos de Materia Prima");
         $("#editado").show();
+        $("#crear").hide();
         $(".listado").hide();
         $("#editado").load('Vista/php/MateriaPrima/FormModificarMP.php', function() {
             // $("#editado").load('../../../Vista/php/MateriaPrima/FormModificarMP.php', function() {
@@ -93,8 +96,8 @@ function materiaPrima() {
                 if (mp.respuesta === "no existe") {
                     swal({
                         type: 'error',
-                        title: 'Oops...',
-                        text: 'Materia Prima no existe!'
+                        title: '¡Error!',
+                        text: 'Materia Prima no existe'
                     })
                 } else {
                     $("#IdMateriaPrima").val(mp.codigo);
@@ -143,7 +146,7 @@ function materiaPrima() {
                     showConfirmButton: false,
                     timer: 1200
                 })
-                $("#titulo").html("Gestión Materia Prima");
+                $("#titulo").html("Gestión de Materia Prima");
                 $("#editado").html('');
                 $("#editado").hide();
                 $(".listado").show();
@@ -153,7 +156,7 @@ function materiaPrima() {
                 swal({
                     position: 'center',
                     type: 'error',
-                    title: 'Ocurrió un erro al grabar',
+                    title: 'Ocurrió un error al grabar',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -178,11 +181,11 @@ function materiaPrima() {
                 swal({
                     position: 'center',
                     type: 'success',
-                    title: 'Se actaulizaron los datos correctamente',
+                    title: 'Se actualizaron los datos correctamente',
                     showConfirmButton: false,
                     timer: 1500
                 })
-                $("#titulo").html("Gestión Materia Prima");
+                $("#titulo").html("Gestión de Materia Prima");
                 $("#editado").html('');
                 $("#editado").hide();
                 $(".listado").show();
@@ -190,8 +193,8 @@ function materiaPrima() {
             } else {
                 swal({
                     type: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong!'
+                    title: '¡Error!',
+                    text: 'Revisa la información'
                 })
             }
         });

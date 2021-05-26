@@ -43,7 +43,7 @@ function ciudad() {
     });
 
     $("#editado").on("click", "button#cerrar", function() {
-        $("#titulo").html("Gestión de Paises");
+        $("#titulo").html("Gestión de Ciudades");
         $("#editado").html('');
         $("#editado").hide();
         $(".listado").show();
@@ -89,7 +89,7 @@ function ciudad() {
     $(".contenido").on("click", "a.editar", function() {
         var codigo = $(this).data("codigo");
         var pais, estado;
-        $("#titulo").html("Modificar Ciudad");
+        $("#titulo").html("Modificar Datos de Ciudad");
         $("#editado").show();
         $(".listado").hide();
         $("#crear").hide();
@@ -105,7 +105,7 @@ function ciudad() {
                 if (ciudad.respuesta === "no existe") {
                     swal({
                         type: 'error',
-                        title: 'Oops...',
+                        title: '¡Error!',
                         text: 'La ciudad no existe'
                     })
                 } else {
@@ -219,8 +219,8 @@ function ciudad() {
             } else {
                 swal({
                     type: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong!'
+                    title: '¡Error!',
+                    text: 'Revise la información'
                 })
             }
         });

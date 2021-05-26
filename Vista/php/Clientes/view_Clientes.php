@@ -23,7 +23,7 @@
     <div class="">
         <div class="jumbotron jumbotron-fluid" style="text-align: center;">
             <div class="container">
-                <h1 id="titulo" class="display-4">Gestión Clientes</h1>
+                <h1 id="titulo" class="display-4">Gestión de Clientes</h1>
             </div>
         </div>
         <div class="card card-primary">

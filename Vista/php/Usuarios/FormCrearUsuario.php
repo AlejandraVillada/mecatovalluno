@@ -22,7 +22,7 @@
         <input type="password" class="form-control" name="Contrasena" id="Contrasena" required>
     </div>
     <br>
-    <button type="submit" class="btn btn-info" id="grabar">Crear Usuario</button>
+    <button type="submit" class="btn btn-primary" id="grabar">Crear Usuario</button>
     <button id="cerrar" type="button" class="btn btn-danger" data-toggle="tooltip">Regresar</button>
     <!-- </div> -->
 </div>

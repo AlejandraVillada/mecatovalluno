@@ -13,18 +13,21 @@
     <form class="form" role="form" id="finventariomp">
         <div class="form-group">
             <!-- <div class="form-group col-sm-10"> -->
-            <label class="form-group mr-2"><i class="fas fa-building"><label
-                        class="form-label">Producto</label></i></label>
+            <!-- <label class="form-group mr-2"><i class="fas fa-building"><label
+                        class="form-label">Producto</label></i></label> -->
+            <label class="form-label">Producto</label>
             <select class="form-control" name="IdMateriaPrima" id="Productos">
             </select>
             <!-- </div> -->
         </div>
         <div class="form-group">
             <!-- <div class="form-group col-sm-5"> -->
-            <label class="form-group mr-2">
+            <!-- <label class="form-group mr-2">
                 <i class="fas fa-building"> <label class="control-label " for="NombreMateriaPrima">Cantidad
                         Actual</label> </i>
-            </label>
+            </label> -->
+            <label for="NombreMateriaPrima">Cantidad
+                Actual</label>
             <input class="form-control" type="text" id="Cantidad_Actual1" disabled>
             <input class="form-control" type="hidden" id="Cantidad_Actual" name="Cantidad_Actual">
             <!-- </div> -->
@@ -37,7 +40,7 @@
                                     for="NombreMateriaPrima">Cantidad a
                                     Ingresar</label></i></label> -->
                         <label for="NombreMateriaPrima">Cantidad a
-                                    Ingresar</label></i></label>
+                            Ingresar</label>
 
                         <input class="form-control" type="text" name="Stock">
 
@@ -56,7 +59,7 @@
             <div class="col-sm-10">
                 <input type="submit" class="btn btn-primary" value=" Actualizar Stock">
 
-                <button type="button" id="cerrar" class="btn btn-success btncerrar" data-toggle="tooltip"
+                <button type="button" id="cerrar" class="btn btn-danger btncerrar" data-toggle="tooltip"
                     title="Cancelar">Cancelar</button>
             </div>
         </div>

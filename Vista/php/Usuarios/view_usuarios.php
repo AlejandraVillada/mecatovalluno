@@ -27,7 +27,7 @@
     <div class="">
         <div class="jumbotron jumbotron-fluid" style="text-align: center;">
             <div class="container">
-                <h1 id="titulo" class="display-4">Gestión de Usarios</h1>
+                <h1 id="titulo" class="display-4">Gestión de Usuarios</h1>
             </div>
         </div>
         

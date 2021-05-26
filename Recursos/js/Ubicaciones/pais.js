@@ -94,7 +94,7 @@ function pais() {
                 if (pais.respuesta === "no existe") {
                     swal({
                         type: 'error',
-                        title: 'Oops...',
+                        title: '¡Error!',
                         text: 'El país no existe'
                     })
                 } else {

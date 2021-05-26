@@ -44,7 +44,7 @@ function usuarios() {
     });
 
     $("#editado").on("click", "button#cerrar", function() {
-        $("#titulo").html("Gestión Usuarios");
+        $("#titulo").html("Gestión de Usuarios");
         $("#editado").html('');
         $("#editado").hide();
         $(".listado").show();
@@ -55,7 +55,7 @@ function usuarios() {
     $("#editado").hide();
 
     $("#crear").on("click", function() {
-        $("#titulo").html("Ingresar Nuevo Usuario");
+        $("#titulo").html("Registrar Usuario");
         $("#editado").show();
         $(".listado").hide();
         $("#crear").hide();
@@ -97,7 +97,7 @@ function usuarios() {
                 if (usuario.respuesta === "no existe") {
                     swal({
                         type: 'error',
-                        title: 'Oops...',
+                        title: '¡Error!',
                         text: 'El usuario no existe'
                     })
                 } else {
@@ -157,7 +157,7 @@ function usuarios() {
                         showConfirmButton: false,
                         timer: 1200
                     })
-                    $("#titulo").html("Gestión Usuarios");
+                    $("#titulo").html("Gestión de Usuarios");
                     $("#editado").html('');
                     $("#editado").hide();
                     $(".listado").show();
@@ -208,7 +208,7 @@ function usuarios() {
                         showConfirmButton: false,
                         timer: 1500
                     })
-                    $("#titulo").html("Gestión Usuarios");
+                    $("#titulo").html("Gestión de Usuarios");
                     $("#editado").html('');
                     $("#editado").hide();
                     $(".listado").show();
@@ -217,8 +217,8 @@ function usuarios() {
                 } else {
                     swal({
                         type: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!'
+                        title: '¡Error!',
+                        text: 'Revise la información'
                     })
                 }
             });

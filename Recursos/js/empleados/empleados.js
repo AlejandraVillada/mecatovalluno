@@ -57,7 +57,6 @@ function empleados() {
 
     $("#nuevo").click(function() {
         $("#titulo").html("Registro de Empleados");
-        $(".titulo").html("Datos de Registro");
         $("#edicion").show();
         $("#listado").hide();
         $("#nuevo").hide();
@@ -120,7 +119,7 @@ function empleados() {
                 swal({
                     position: 'center',
                     type: 'success',
-                    title: 'El Empleado Fue Registrado Exitosamente',
+                    title: 'El empleado fue registrado exitosamente',
                     showConfirmButton: false,
                     timer: 3500
                 })
@@ -135,7 +134,7 @@ function empleados() {
                 swal({
                     position: 'center',
                     type: 'error',
-                    title: 'Error Al Registrar El Empleado',
+                    title: 'Error al registrar el empleado',
                     showConfirmButton: false,
                     timer: 3500
                 });
@@ -159,7 +158,7 @@ function empleados() {
                 swal({
                     position: 'center',
                     type: 'success',
-                    title: 'Se Actualizaron Los Datos Correctamente',
+                    title: 'Se actualizaron los datos correctamente',
                     showConfirmButton: false,
                     timer: 1500
                 })
@@ -173,7 +172,7 @@ function empleados() {
                 swal({
                     type: 'error',
                     title: '¡Error!',
-                    text: 'Verifique la información'
+                    text: 'Revise la información'
                 })
             }
         });
@@ -186,7 +185,6 @@ function empleados() {
         var estado;
         console.log(codigo);
         $("#titulo").html("Actualización de Datos Empleados");
-        $(".titulo").html("Datos a Actualizar");
         $("#edicion").show();
         $("#listado").hide();
         $("#nuevo").hide();

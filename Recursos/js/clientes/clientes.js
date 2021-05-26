@@ -46,7 +46,7 @@ function clientes() {
     });
 
     $("#editado").on("click", "button#cerrar", function() {
-        $("#titulo").html("Gestión Clientes");
+        $("#titulo").html("Gestión de Clientes");
         $("#editado").html('');
         $("#editado").hide();
         $(".listado").show();
@@ -56,7 +56,7 @@ function clientes() {
     $("#editado").hide();
 
     $("#crear").on("click", function() {
-        $("#titulo").html("Registrar Nuevo Cliente");
+        $("#titulo").html("Registrar Cliente");
         $("#editado").show();
         $(".listado").hide();
         $("#crear").hide();
@@ -110,7 +110,7 @@ function clientes() {
                 if (cliente.respuesta === "no existe") {
                     swal({
                         type: 'error',
-                        title: 'Oops...',
+                        title: '¡Error!',
                         text: 'El cliente no existe'
                     })
                 } else {
@@ -177,7 +177,7 @@ function clientes() {
                     showConfirmButton: false,
                     timer: 1200
                 })
-                $("#titulo").html("Gestión Clientes");
+                $("#titulo").html("Gestión de Clientes");
                 $("#editado").html('');
                 $("#editado").hide();
                 $(".listado").show();
@@ -219,7 +219,7 @@ function clientes() {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                $("#titulo").html("Gestión Clientes");
+                $("#titulo").html("Gestión de Clientes");
                 $("#editado").html('');
                 $("#editado").hide();
                 $(".listado").show();
@@ -228,8 +228,8 @@ function clientes() {
             } else {
                 swal({
                     type: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong!'
+                    title: '¡Error!',
+                    text: 'Revise la información'
                 })
             }
         }).fail(function(jqXHR, textStatus, errorThrown) {

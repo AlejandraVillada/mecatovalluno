@@ -25,10 +25,10 @@
 
 <body>
 
-    <div class="container">
+    <div class="">
         <div class="jumbotron jumbotron-fluid" style="text-align: center;">
             <div class="container">
-                <h1 id="titulo" class="display-4">Gestión Paises</h1>
+                <h1 id="titulo" class="display-4">Gestión de Paises</h1>
             </div>
         </div>
         <div class="card card-primary">

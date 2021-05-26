@@ -45,6 +45,7 @@ function proveedor() {
     });
     $("#edicion1").on("click", "button#cerrar", function() {
         $("#titulo").html("Gestión de Proveedores");
+        $(".titulo").html("Proveedores");
         $("#edicion1").html('');
         $("#edicion1").hide();
         $("#listado1").show();
@@ -60,7 +61,7 @@ function proveedor() {
 
     $("#nuevo1").click(function() {
         $("#titulo").html("Registro de Proveedores");
-        $(".titulo").html("Datos de Registro");
+        // $(".titulo").html("Datos de Registro");
         $("#edicion1").show();
         $("#listado1").hide();
         $("#nuevo1").hide();
@@ -97,7 +98,7 @@ function proveedor() {
                 swal({
                     position: 'center',
                     type: 'success',
-                    title: 'El Proveedor Fue Registrado Exitosamente',
+                    title: 'El proveedor fue registrado exitosamente',
                     showConfirmButton: false,
                     timer: 3500
                 })
@@ -126,7 +127,7 @@ function proveedor() {
         var estado;
         console.log(codigo);
         $("#titulo").html("Modificación de Proveedores");
-        $(".titulo").html("Datos a Modificar");
+        // $(".titulo").html("Datos a Modificar");
         $("#edicion1").show();
         $("#listado1").hide();
         $("#nuevo1").hide();
@@ -189,7 +190,7 @@ function proveedor() {
                 swal({
                     position: 'center',
                     type: 'success',
-                    title: 'Se Actualizaron Los Datos Correctamente',
+                    title: 'Se actualizaron los datos correctamente',
                     showConfirmButton: false,
                     timer: 1500
                 })
@@ -217,7 +218,7 @@ function proveedor() {
         var codigo = $(this).data("codigo");
         // console.log(codigo);
         $("#titulo").html("Asignación de Productos");
-        $(".titulo").html("Datos de Registro");
+        $(".titulo").html("Productos");
         $("#listado1").hide();
         $("#listado2").show();
         $("#nuevo1").hide();
@@ -279,8 +280,10 @@ function proveedor() {
     });
 
     $("#edicion1").on("click", "button#cerrar2", function() {
-        $("#titulo").html("Asignacion de productos");
+        $("#titulo").html("Asignación de Productos");
+        $(".titulo").html("Productos");
         $("#edicion1").html('');
+        $("#cancelar").show();
         $("#edicion1").hide();
         $("#listado2").show();
         $("#nuevo2").show();
@@ -290,9 +293,11 @@ function proveedor() {
 
     $(".tablaProveedor").on("click", "button#cancelar", function() {
         $("#titulo").html("Gestión de Proveedores");
+        $(".titulo").html("Proveedores");
         $("#edicion1").html('');
         $("#edicion1").hide();
         $("#listado1").show();
+        $("#listado2").hide();
         // $("#listado2").hide();
         $("#nuevo1").show();
         $("#nuevo2").hide();
@@ -307,9 +312,10 @@ function proveedor() {
     $("#nuevo2").click(function() {
         var codigo = $(".proveedor").data("codigo");
         $("#titulo").html("Asignación de Productos a Proveedores");
-        $(".titulo").html("Datos de Registro");
+        $(".titulo").html("Productos");
         $("#edicion1").show();
         $("#listado2").hide();
+        $("#cancelar").hide();
         $("#nuevo2").hide();
         $("#regresar").hide();
         $("#edicion1").load('Vista/php/Proveedor/form_nuevo_det_proveedor.php', function() {
@@ -367,7 +373,7 @@ function proveedor() {
                     showConfirmButton: false,
                     timer: 3500
                 })
-                $("#titulo").html("Asignacion de productos");
+                $("#titulo").html("Asignación de productos");
                 $("#edicion1").html('');
                 $("#edicion1").hide();
                 $("#listado2").show();
@@ -394,8 +400,9 @@ function proveedor() {
         var materiaprima;
         // console.log(codigo);
         $("#titulo").html("Modificación de Asignación de Productos");
-        $(".titulo").html("Datos a Modificar");
+        $(".titulo").html("Productos");
         $("#edicion1").show();
+        $("#cancelar").hide();
         $("#listado2").hide();
         $("#nuevo2").hide();
         $("#regresar").hide();
@@ -477,11 +484,11 @@ function proveedor() {
                 swal({
                     position: 'center',
                     type: 'success',
-                    title: 'Se Actualizaron Los Datos Correctamente',
+                    title: 'Se actualizaron los datos correctamente',
                     showConfirmButton: false,
                     timer: 1500
                 })
-                $("#titulo").html("Asignacion de productos");
+                $("#titulo").html("Asignacion de Productos");
                 $(".titulo").html("Proveedores");
                 $("#edicion1").hide();
                 $("#listado2").show();

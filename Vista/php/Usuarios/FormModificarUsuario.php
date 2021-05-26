@@ -23,7 +23,7 @@
             placeholder="Escribir la contraseña por la cual se modificará">
     </div>
     <br>
-    <button type="submit" class="btn btn-info" id="actualizar">Actualizar Usuario</button>
+    <button type="submit" class="btn btn-primary" id="actualizar">Actualizar Usuario</button>
     <button id="cerrar" type="button" class="btn btn-danger" data-toggle="tooltip">Regresar</button>
 
 

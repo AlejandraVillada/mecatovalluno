@@ -4,6 +4,7 @@ function nomina() {
     $("#listado1").hide();
     $("#listado2").hide();
     $("#regresar").hide();
+    $("#cerrar").hide();
     $("#informe").hide();
 
     $("#generar").click(function() {
@@ -34,6 +35,7 @@ function nomina() {
 
         });
     })
+
     $("#editado").on("click", "button#cerrar", function() {
         $("#listado1").hide();
         $("#consultar").show();
@@ -48,9 +50,9 @@ function nomina() {
         $("#edicion1").show();
     });
 
-
     $("#buscar").click(function() {
         $("#listado1").show();
+        $("#cerrar").show();
         $("#consultar").hide();
         $("#generar").hide();
 
@@ -76,6 +78,21 @@ function nomina() {
             ]
         });
     });
+
+    // $(".prueba").on("click", "button#cerrar", function() {
+    //     $("#titulo").html("Gestión de Nómina");
+    //     // $("#edicion").html('');
+    //     // $("#edicion").hide();
+    //     $(".prueba").show();
+    //     $("#generar").show();
+    //     $("#consultar").show();
+    //     $("#cerrar").hide();
+    //     $("#edicion1").hide();
+    //     $("#listado1").hide();
+    //     $("#listado2").hide();
+    //     $("#informe").hide();
+    //     dt.ajax.reload(null, false);
+    // });
 
     $(".contenedor1").on("click", "a.ver", function() {
         $("#edicion1").hide();
@@ -129,7 +146,6 @@ function nomina() {
         });
     });
 
-
     $("#informe").click(function() {
 
         var codigo = $(".idnomina").data("codigo");
@@ -139,7 +155,6 @@ function nomina() {
             data: { codigo: codigo, accion: 'informe' },
             dataType: "json"
         });
-
 
     });
     // $("#informe").click(function() {

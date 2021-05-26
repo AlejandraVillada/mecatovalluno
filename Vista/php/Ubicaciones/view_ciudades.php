@@ -24,7 +24,7 @@
 
 <body>
 
-    <div class="container">
+    <div class="">
         <div class="jumbotron jumbotron-fluid" style="text-align: center;">
             <div class="container">
                 <h1 id="titulo" class="display-4">Gestión de Ciudades</h1>
