@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header" style="text-align: center; ">
-        <h1>Crear Produccion Terminado</h1>
+        <h1>Crear Produccion </h1>
     </div>
     <div class="card-body">
         <form action="" method="POST" id="formCrearP">

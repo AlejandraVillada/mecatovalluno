@@ -80,6 +80,12 @@ switch ($accion) {
 
         $datos = $detalle_produccion->validarproducto($IdProducto,$IdProduccion);
         echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
+        
+    break;
+    case "cantidadmaxima1":
+
+        $datos = $detalle_produccion->validarproductos($IdProducto,$IdProduccion);
+        echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
         break;
     break;
 }

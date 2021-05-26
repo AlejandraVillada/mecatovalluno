@@ -134,6 +134,9 @@ function Produccion() {
 
 
     $(".table").on("click", "a.ver", function () {
+        var boton = document.getElementById("nuevodetalle");
+        delete boton.dataset.produccion;
+        console.log(boton);
         $("#editar").addClass('hide');
         $("#editar").removeClass('show');
 
@@ -143,8 +146,8 @@ function Produccion() {
             dt1.destroy();
         }
         codigo = $(this).data("codigo");
-        var boton = document.getElementById("nuevodetalle");
-        boton.dataset.IdProduccion = codigo;
+        boton.dataset.produccion = codigo;
+        // console.log(boton);
 
         dt1 = $("#tabla1").DataTable({
 
@@ -191,6 +194,7 @@ function Produccion() {
     });
     $("#nuevodetalle").on("click", function (e) {
         e.preventDefault();
+        var IdProdu = 0;
         $("#editar").addClass('show');
         $("#editar").removeClass('hide');
         $(".listado").removeClass('show');
@@ -200,16 +204,22 @@ function Produccion() {
         var secuencia = 0;
         var secuencia1 = 1;
         var secuencia2 = 0;
-        var IdProduccion = $(this).data("IdProduccion");
+        var boton1 = document.getElementById("nuevodetalle");
+
+        IdProdu = boton1.dataset.produccion;
+        
+        console.log("----" + IdProdu);
+
         $("#editar").load('../../../Vista/php/Produccion/view_CrearDetalleProd.php', function () {
-            console.log(IdProduccion);
+            console.log("----" + IdProdu);
             $.ajax({
                 type: "post",
                 // url: "Controlador/controlador_inventarioMP.php",
                 url: "../../../Controlador/controlador_detalleproduccion.php",
-                data: { accion: 'secuencia', IdProduccion: IdProduccion },
+                data: { accion: 'secuencia', IdProduccion: IdProdu },
                 dataType: "json"
             }).done(function (resultado) {
+                console.log(resultado);
                 if (!resultado.data == "") {
                     secuencia = parseFloat(resultado.data);
                     secuencia2 = secuencia + secuencia1;
@@ -219,10 +229,10 @@ function Produccion() {
                     console.log("secuencia" + secuencia2);
 
                 }
-                $("#IdProduccion").val(IdProduccion);
+                $("#IdProduccion").val(IdProdu);
                 $("#IdDetalleProduccion").val(secuencia2);
                 $("#IdDetalleProduccion1").val(secuencia2);
-
+               
 
             });
             // productos
@@ -241,7 +251,7 @@ function Produccion() {
                 });
 
             });
-            $("#editar #newdetaproduccion").on("click",function (e) {
+            $("#editar #newdetaproduccion").on("click", function (e) {
                 $("#editar").addClass('hide');
                 $("#editar").removeClass('show');
                 $(".listado").addClass('show');
@@ -253,24 +263,30 @@ function Produccion() {
 
                 var cantidad = $(this).children('option:selected').data('cantidad');
 
-                $("#Cantidadunidades").val(cantidad);
-                var prod = $('select[name=IdProductoTerminado]').val();
-                console.log(prod);
+                $("#CantidadProductoTerminado").val(cantidad);
+                $("#CantidadProductoTerminado1").val(cantidad);
+                var prod = $('select[name=IdProducto]').val();
+                
+                var produccion=$("#IdProduccion").val();
+                console.log(produccion);
                 $.ajax({
                     type: "post",
                     // url: "Controlador/controlador_inventarioMP.php",
                     url: "../../../Controlador/controlador_detalleproduccion.php",
-                    data: { accion: 'cantidadmaxima', IdProducto: prod ,IdProduccion:IdProduccion},
+                    data: { accion: 'cantidadmaxima', IdProducto: prod, IdProduccion: produccion },
                     dataType: "json"
+                }).fail( function( jqXHR, textStatus, errorThrown ) {
+                    alert( 'Error!!' );
                 }).done(function (resultado) {
+                    console.log(cantidad);
 
                     if (resultado.data.Habilitado == "Si") {
-                        $("#Cantidad").attr('disabled', false);
-                        $("#Cantidad").attr("max", resultado.data.max);
+                        $("#CantidadProduccion").attr('disabled', false);
+                        $("#CantidadProduccion").attr("max", resultado.data.max);
                         $("input[id=guardarmodificar]").attr('disabled', false);
                         $("#guardarnuevo").attr('disabled', false);
 
-                    } else if(resultado.data.Habilitado =="NoProducto"){
+                    } else if (resultado.data.Habilitado == "NoProducto") {
                         swal({
                             position: 'center',
                             type: 'error',
@@ -279,9 +295,9 @@ function Produccion() {
                             timer: 1500
                         })
                         $("input[id=guardarmodificar]").attr('disabled', true);
-                        $("#Cantidad").attr('disabled', true);
+                        $("#CantidadProduccion").attr('disabled', true);
                         $("#guardarnuevo").attr('disabled', true);
-                    }else {
+                    } else {
                         swal({
                             position: 'center',
                             type: 'error',
@@ -290,7 +306,7 @@ function Produccion() {
                             timer: 1500
                         })
                         $("input[id=guardarmodificar]").attr('disabled', true);
-                        $("#Cantidad").attr('disabled', true);
+                        $("#CantidadProduccion").attr('disabled', true);
                         $("#guardarnuevo").attr('disabled', true);
 
                     }
@@ -373,8 +389,9 @@ function Produccion() {
                 $("#IdProduccion").val(resultado.data.IdProduccion);
                 $("#IdDetalleProduccion").val(resultado.data.IdDetalleProduccion);
                 $("#IdDetalleProduccion1").val(resultado.data.IdDetalleProduccion);
-                $("#Cantidadunidades").val(resultado.data.CantidadProductoTerminado);
-                $("#Cantidad").val(resultado.data.CantidadProduccion);
+                $("#CantidadProductoTerminado1").val(resultado.data.CantidadProductoTerminado);
+                $("#CantidadProductoTerminado").val(resultado.data.CantidadProductoTerminado);
+                $("#CantidadProduccion").val(resultado.data.CantidadProduccion);
 
                 var productoterminado = resultado.data.IdProducto;
                 // productos
@@ -385,14 +402,64 @@ function Produccion() {
                     data: { accion: 'listar' },
                     dataType: "json"
                 }).done(function (resultado) {
-                    $("#editar #IdProductoTerminado").append("<option>Seleccione el producto</option>");
+                    // console.log(document.getElementById("IdProducto"));
+                    $("#editar #IdProducto").append("<option>Seleccione el producto</option>");
                     $.each(resultado.data, function (index, value) {
 
                         if (value.IdProducto == productoterminado) {
-                            $("#editar #IdProductoTerminado").append("<option selected data-cantidad='" + value.CantidadProducto + "' value='" + value.IdProducto + "'>" + value.NombreProducto + "</option>")
+                            $.ajax({
+                                type: "post",
+                                // url: "Controlador/controlador_inventarioMP.php",
+                                url: "../../../Controlador/controlador_detalleproduccion.php",
+                                data: { accion: 'cantidadmaxima1', IdProducto: productoterminado, IdProduccion: IdProduccion },
+                                dataType: "json"
+                            }).done(function (resultado) {
+                                console.log("hola");
+                                console.log(resultado);
+                                if (resultado.data.Habilitado == "Si") {
+                                    $("#CantidadProduccion").attr('disabled', false);
+                                    $("#CantidadProduccion").attr("max", resultado.data.max);
+                                    $("input[id=guardarmodificar]").attr('disabled', false);
+                                    $("#guardarmodificar").attr('disabled', false);
+
+                                } else if (resultado.data.Habilitado == "NoProducto") {
+                                    if (resultado.data.IdProducto = productoterminado) {
+                                        $("#CantidadProduccion").attr('disabled', false);
+                                        $("#CantidadProduccion").attr("max", resultado.data.max);
+                                        $("input[id=guardarmodificar]").attr('disabled', false);
+                                        $("#guardarmodificar").attr('disabled', false);
+                                    } else {
+                                        swal({
+                                            position: 'center',
+                                            type: 'error',
+                                            title: 'No puede agregar un mismo producto varias veces',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        })
+                                        $("input[id=guardarmodificar]").attr('disabled', true);
+                                        $("#CantidadProduccion").attr('disabled', true);
+                                        $("#guardarmodificar").attr('disabled', true);
+                                    }
+                                } else {
+                                    swal({
+                                        position: 'center',
+                                        type: 'error',
+                                        title: 'No puede agregar el producto porque no hay materia prima suficiente para su producción',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                    $("input[id=guardarmodificar]").attr('disabled', true);
+                                    $("#CantidadProduccion").attr('disabled', true);
+                                    $("#guardarmodificar").attr('disabled', true);
+
+                                }
+
+
+                            });
+                            $("#editar #IdProducto").append("<option selected data-cantidad='" + value.CantidadProducto + "' value='" + value.IdProducto + "'>" + value.NombreProducto + "</option>")
 
                         } else {
-                            $("#editar #IdProductoTerminado").append("<option data-cantidad='" + value.CantidadProducto + "' value='" + value.IdProducto + "'>" + value.NombreProducto + "</option>")
+                            $("#editar #IdProducto").append("<option data-cantidad='" + value.CantidadProducto + "' value='" + value.IdProducto + "'>" + value.NombreProducto + "</option>")
 
                         }
 
@@ -400,7 +467,7 @@ function Produccion() {
                     });
 
                 });
-                $("#editar #moddetalleprod").on("click",function (e) {
+                $("#editar #moddetalleprod").on("click", function (e) {
                     $("#editar").addClass('hide');
                     $("#editar").removeClass('show');
                     $(".listado").addClass('show');
@@ -408,37 +475,45 @@ function Produccion() {
                     $(".detalle").addClass('show');
                     $(".detalle").removeClass('hide');
                 })
-                $("select[id=IdProductoTerminado]").change(function () {
+                $("select[id=IdProducto]").change(function () {
 
                     var cantidad = $(this).children('option:selected').data('cantidad');
-
-                    var prod = $('select[name=IdProductoTerminado]').val();
+                    $("#CantidadProductoTerminado").val(cantidad);
+                    $("#CantidadProductoTerminado1").val(cantidad);
+                    var prod = $('select[name=IdProducto]').val();
                     console.log(prod);
                     $.ajax({
                         type: "post",
                         // url: "Controlador/controlador_inventarioMP.php",
                         url: "../../../Controlador/controlador_detalleproduccion.php",
-                        data: { accion: 'cantidadmaxima', IdProducto: prod ,IdProduccion:IdProduccion},
+                        data: { accion: 'cantidadmaxima1', IdProducto: prod, IdProduccion: IdProduccion },
                         dataType: "json"
                     }).done(function (resultado) {
                         if (resultado.data.Habilitado == "Si") {
-                            $("#Cantidad").attr('disabled', false);
-                            $("#Cantidad").attr("max", resultado.data.max);
+                            $("#CantidadProduccion").attr('disabled', false);
+                            $("#CantidadProduccion").attr("max", resultado.data.max);
                             $("input[id=guardarmodificar]").attr('disabled', false);
                             $("#guardarmodificar").attr('disabled', false);
-    
-                        } else if(resultado.data.Habilitado =="NoProducto"){
-                            swal({
-                                position: 'center',
-                                type: 'error',
-                                title: 'No puede agregar un mismo producto varias veces',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                            $("input[id=guardarmodificar]").attr('disabled', true);
-                            $("#Cantidad").attr('disabled', true);
-                            $("#guardarmodificar").attr('disabled', true);
-                        }else {
+
+                        } else if (resultado.data.Habilitado == "NoProducto") {
+                            if (resultado.data.IdProducto = productoterminado) {
+                                $("#CantidadProduccion").attr('disabled', false);
+                                $("#CantidadProduccion").attr("max", resultado.data.max);
+                                $("input[id=guardarmodificar]").attr('disabled', false);
+                                $("#guardarmodificar").attr('disabled', false);
+                            } else {
+                                swal({
+                                    position: 'center',
+                                    type: 'error',
+                                    title: 'No puede agregar un mismo producto varias veces',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                                $("input[id=guardarmodificar]").attr('disabled', true);
+                                $("#CantidadProduccion").attr('disabled', true);
+                                $("#guardarmodificar").attr('disabled', true);
+                            }
+                        } else {
                             swal({
                                 position: 'center',
                                 type: 'error',
@@ -447,9 +522,9 @@ function Produccion() {
                                 timer: 1500
                             })
                             $("input[id=guardarmodificar]").attr('disabled', true);
-                            $("#Cantidad").attr('disabled', true);
+                            $("#CantidadProduccion").attr('disabled', true);
                             $("#guardarmodificar").attr('disabled', true);
-    
+
                         }
                     });
 
@@ -457,7 +532,7 @@ function Produccion() {
 
 
             });
-            $("#editar #formModdetPT").on("submit", function (e) {
+            $("#editar #formmoddetP").on("submit", function (e) {
                 console.log("hvg");
                 e.preventDefault();
                 var datos = $(this).serialize();
@@ -545,12 +620,26 @@ function Produccion() {
             }).done(function (resultado) {
                 $("#editar #Estado").append("<option>Seleccione el Estado </option>");
                 $.each(resultado.data, function (index, value) {
-                    if (value.IdEstado == Estado) {
-                        $("#editar #Estado").append("<option selected value='" + value.IdEstado + "'>" + value.Estado + "</option>")
+                    console.log(value);
+                    if (Estado == 1) {
+                        if (value.IdEstado == Estado) {
+                            $("#editar #Estado").append("<option selected value='" + value.IdEstado + "'>" + value.Estado + "</option>")
 
-                    } else {
-                        $("#editar #Estado").append("<option value='" + value.IdEstado + "'>" + value.Estado + "</option>")
+                        } else {
+                            $("#editar #Estado").append("<option value='" + value.IdEstado + "'>" + value.Estado + "</option>")
 
+                        }
+                    } if (Estado == 2) {
+                        if (value.IdEstado == Estado || value.IdEstado == 3) {
+                            $("#editar #Estado").append("<option selected value='" + value.IdEstado + "'>" + value.Estado + "</option>")
+
+                        }
+
+                    } if (Estado == 3) {
+                        if (value.IdEstado == Estado) {
+                            $("#editar #Estado").append("<option selected value='" + value.IdEstado + "'>" + value.Estado + "</option>")
+
+                        }
                     }
 
                 });
@@ -567,9 +656,6 @@ function Produccion() {
                 $.each(resultado.data, function (index, value) {
                     if (value.IdSede == sede) {
                         $("#editar #IdSede").append("<option selected value='" + value.IdSede + "'>" + value.NombreSede + "</option>")
-
-                    } else {
-                        $("#editar #IdSede").append("<option value='" + value.IdSede + "'>" + value.NombreSede + "</option>")
 
                     }
 
