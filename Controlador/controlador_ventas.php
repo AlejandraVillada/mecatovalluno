@@ -27,4 +27,9 @@ switch ($accion) {
       
 
     break; //cierre
+
+    case "listarProdHome":
+        $datos = $ventas->listaprodVista();
+        echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
+    break;
 }

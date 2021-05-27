@@ -66,6 +66,7 @@ session_start();
                     <li><a href="#menu">Productos</a></li>
                     <li><a href="#gallery">Fotos</a></li>
                     <li><a href="#chefs">Proveedores</a></li>
+                    <li><button class="btn btn-dark"><i class="fas fa-cart-arrow-down"></i></button></li>
                     <?php if(!isset($_SESSION['NombreCliente'])){ ?>
                     <li><a href="../../login.php">Login</a></li>
                     <li><a href="../../Vista/php/Usuarios/FormCrearCliente_registrar.php">Registrarse</a></li>

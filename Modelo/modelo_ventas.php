@@ -42,4 +42,15 @@ class modelo_ventas extends ModeloAbstractoDB
         $this->obtener_resultados_query();
         return $this->rows;
     }
+
+
+    public function listaprodVista(){
+        $this->query="
+        SELECT v.IdProducto,v.NombreProducto,v.CantidadProductoTerminado,v.DiaProduccion,v.IdSede,v.NombreSede,v.IdCiudad,v.vendido,v.disponible,p.Foto,p.ValorUnitario FROM vista_ventas AS v
+        INNER JOIN producto AS p
+        ON(v.IdProducto = p.IdProducto)
+        ";
+        $this->obtener_resultados_query();
+        return $this->rows;
+    }
 }
