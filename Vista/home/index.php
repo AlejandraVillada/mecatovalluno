@@ -61,7 +61,7 @@ session_start();
             <!-- <span class="logo mr-auto"><img src="../img/logo.png" ></span> -->
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li class="active"><a href="index.php">Home</a></li>
+                    <li class="active"><a href="#">Home</a></li>
                     <li><a href="#about">Sobre Nosotros</a></li>
                     <li><a href="#menu">Productos</a></li>
                     <li><a href="#gallery">Fotos</a></li>
