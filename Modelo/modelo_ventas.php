@@ -35,7 +35,11 @@ class modelo_ventas extends ModeloAbstractoDB
     {
 
     }
-
+    public function listarhistoria(){
+        $this->query="SELECT * FROM vista_historial_ventas";
+        $this->obtener_resultados_query();
+        return $this->rows;
+    }
     public function lista()
     {
         $this->query="SELECT * FROM vista_ventas";

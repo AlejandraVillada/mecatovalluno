@@ -1,5 +1,6 @@
 <?php
 include_once "../Modelo/modelo_producto.php";
+include_once "../Modelo/modelo_ventas.php";
 header('Content-Type: application/json');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -21,14 +22,14 @@ if (!empty($_GET['accion'])) {
         $revisar = getimagesize($_FILES["Foto"]["tmp_name"]);
         $image = $_FILES['Foto']['tmp_name'];
         $tamaño = $_FILES['Foto']['size'];
-        
+
         // var_dump(base64_encode($imgContenido));
         if (($_FILES["Foto"]["type"] == "image/pjpeg")
             || ($_FILES["Foto"]["type"] == "image/jpeg")
             || ($_FILES["Foto"]["type"] == "image/png")
             || ($_FILES["Foto"]["type"] == "image/gif")) {
             if (move_uploaded_file($_FILES["Foto"]["tmp_name"], "images/" . $_FILES['Foto']['name'])) {
-               
+
                 // echo "images/" . $_FILES['Foto']['name'];
             } else {
                 // echo 0;
@@ -36,12 +37,12 @@ if (!empty($_GET['accion'])) {
         } else {
             // echo 0;
         }
-            $archivo_objetivo=fopen("images/" . $_FILES['Foto']['name'],"r");
-            $contenidoimg=fread($archivo_objetivo,$tamaño);
-            fclose($archivo_objetivo);
-            $imgContenido1 = ($contenidoimg);
-            // var_dump(base64_encode(($imgContenido1)));
-           $datos['Foto']=$imgContenido1;
+        $archivo_objetivo = fopen("images/" . $_FILES['Foto']['name'], "r");
+        $contenidoimg = fread($archivo_objetivo, $tamaño);
+        fclose($archivo_objetivo);
+        $imgContenido1 = ($contenidoimg);
+        // var_dump(base64_encode(($imgContenido1)));
+        $datos['Foto'] = $imgContenido1;
     }
 
     $accion = $_POST['accion'];
@@ -95,5 +96,10 @@ switch ($accion) {
         $datos = $producto->nuevo($datos);
         echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
         break;
-
+    case "listarestadisticas":
+        $modelo_ventas= new modelo_ventas();
+        $datos = $modelo_ventas->listarhistoria($datos);
+        echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
+    
+        break;
 }

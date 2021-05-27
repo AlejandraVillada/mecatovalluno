@@ -21,10 +21,8 @@ $ventas= new modelo_ventas();
 switch ($accion) {
     //Case/ contenido variable accion
     case "listarestadisticas":
-
         $datos = $ventas->lista();
         echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
-      
 
     break; //cierre
 
@@ -32,4 +30,9 @@ switch ($accion) {
         $datos = $ventas->listaprodVista();
         echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
     break;
+    case "": 
+        $datos = $ventas->lista();
+        echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
+
+        break; 
 }
