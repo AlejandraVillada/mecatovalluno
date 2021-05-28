@@ -1,4 +1,4 @@
-<?php// include_once "../../../Templates/header1.php";?>
+<?php // include_once "../../../Templates/header1.php";?>
 
 <!-- quick email widget -->
 
@@ -68,7 +68,7 @@
 
     </form>
 </div>
-<?php// include_once "../../../Templates/footer1.php";?>
+<?php // include_once "../../../Templates/footer1.php";?>
 
 <!-- <script src="../../../Recursos/js/materia_prima/materia_prima_invntario1.js"></script> -->
 <script>

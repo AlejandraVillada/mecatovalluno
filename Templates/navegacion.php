@@ -146,7 +146,7 @@
                     <span> Ventas</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fas fa-money-bill-alt"></i>
+                    <li><a href="./Vista/php/Ventas/view_ventas.php"><i class="fas fa-money-bill-alt"></i>
                             Gestion de Ventas</a></li>
                 </ul>
             </li>
