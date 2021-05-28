@@ -48,6 +48,7 @@ function usuarios() {
         $("#editado").html('');
         $("#editado").hide();
         $(".listado").show();
+        $("#informe").show();
         $("#crear").show();
         dt.ajax.reload(null, false);
     });
@@ -58,6 +59,7 @@ function usuarios() {
         $("#titulo").html("Registrar Usuario");
         $("#editado").show();
         $(".listado").hide();
+        $("#informe").hide();
         $("#crear").hide();
         $("#editado").load('Vista/php/Usuarios/FormCrearUsuario.php', function() {
             //  $("#editado").load('../../../Vista/php/Usuarios/FormCrearUsuario.php', function() {
@@ -83,6 +85,7 @@ function usuarios() {
         $("#titulo").html("Modificar Datos de Usuario");
         $("#editado").show();
         $(".listado").hide();
+        $("#informe").hide();
         $("#crear").hide();
         $("#editado").load('Vista/php/Usuarios/FormModificarUsuario.php', function() {
             // $("#editado").load('../../../Vista/php/Usuarios/FormModificarUsuario.php', function() {

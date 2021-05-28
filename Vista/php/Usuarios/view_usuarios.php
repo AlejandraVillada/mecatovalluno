@@ -23,19 +23,20 @@
 
 
 <body>
-
     <div class="">
         <div class="jumbotron jumbotron-fluid" style="text-align: center;">
             <div class="container">
                 <h1 id="titulo" class="display-4">Gestión de Usuarios</h1>
             </div>
         </div>
-        
+
         <div class="card card-primary">
             <div class="card-header bg-dark text-center text-white titulo">Usuarios</div>
             <div class="pull-right box-tools">
                 <button class="btn btn-dark btn-sm" id="crear" data-toggle="tooltip" title="">Registrar Usuario</button>
-                <a href="Controlador/controlador_usuario.php?accion=informe" target="_blank" class="btn btn-dark btn-sm mt-3" id="informe" data-toggle="tooltip" title="Generar informe" style="float: right; display: abstract;">Generar informe</a>
+                <a href="Controlador/controlador_usuario.php?accion=informe" target="_blank"
+                    class="btn btn-dark btn-sm mt-3" id="informe" data-toggle="tooltip" title="Generar Informe"
+                    style="float: right; display: abstract;">Generar Informe</a>
             </div>
 
             <div class="card-body contenido">

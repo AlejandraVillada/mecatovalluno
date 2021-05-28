@@ -19,6 +19,7 @@
                         Compra</button>
                 </div>
             </div>
+
             <style>
             .form-inline {
                 display: inline;
@@ -28,7 +29,6 @@
             <!-- /.box-header -->
             <div class="card-body">
                 <div id="editar"></div>
-
                 <div style="display:normal;">
                     <div class="listado">
                         <table id="tabla" class="table table-striped table-bordered text-center">

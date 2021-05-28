@@ -37,7 +37,9 @@
                 <button class="btn btn-dark btn-sm" id="crear" data-toggle="tooltip"
                     title="Registrar Nuevo Empleado">Registrar Materia Prima</button>
 
-                    <a href="Controlador/controlador_mp.php?accion=informe" target="_blank" class="btn btn-dark btn-sm mt-3" id="informe" data-toggle="tooltip" title="Generar informe" style="float: right; display: abstract;">Generar informe</a>
+                <a href="Controlador/controlador_mp.php?accion=informe" target="_blank" class="btn btn-dark btn-sm mt-3"
+                    id="informe" data-toggle="tooltip" title="Generar Informe"
+                    style="float: right; display: abstract;">Generar Informe</a>
 
             </div>
 

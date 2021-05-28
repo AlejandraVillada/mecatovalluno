@@ -70,7 +70,7 @@ session_start();
                     <li><a href="../../login.php">Login</a></li>
                     <li><a href="../../Vista/php/Usuarios/FormCrearCliente_registrar.php">Registrarse</a></li>
                     <?php }else{ ?>
-                    <li><a id="act" href="#actualizacion">Actualizar Datos personales</a></li>
+                    <li><a id="act" href="#actualizacion">Actualizar Datos Personales</a></li>
                     <li><a href="index.php"><?php session_destroy(); ?>Cerrar Sesion</a></li>
                     <?php } ?>
 
@@ -301,7 +301,7 @@ session_start();
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="tituloCarrito" style="color: black;">Carrito de compras</h5>
+                                <h5 class="modal-title" id="tituloCarrito" style="color: black;">Carrito de Compras</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>

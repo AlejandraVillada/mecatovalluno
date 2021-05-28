@@ -47,6 +47,7 @@ function materiaPrima() {
         $("#editado").html('');
         $("#editado").hide();
         $("#crear").show();
+        $("#informe").show();
         $(".listado").show();
         dt.ajax.reload(null, false);
     });
@@ -58,6 +59,7 @@ function materiaPrima() {
         $("#editado").show();
         $(".listado").hide();
         $("#crear").hide();
+        $("#informe").hide();
         $("#editado").load('Vista/php/MateriaPrima/FormCrearMP.php', function() {
             // $("#editado").load('../../../Vista/php/MateriaPrima/FormCrearMP.php', function() {
             $.ajax({
@@ -82,6 +84,7 @@ function materiaPrima() {
         $("#titulo").html("Modificar Datos de Materia Prima");
         $("#editado").show();
         $("#crear").hide();
+        $("#informe").hide();
         $(".listado").hide();
         $("#editado").load('Vista/php/MateriaPrima/FormModificarMP.php', function() {
             // $("#editado").load('../../../Vista/php/MateriaPrima/FormModificarMP.php', function() {

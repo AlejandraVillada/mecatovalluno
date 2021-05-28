@@ -49,6 +49,7 @@ function empleados() {
         $("#edicion").html('');
         $("#edicion").hide();
         $("#listado").show();
+        $("#informe").show();
         $("#nuevo").show();
         dt.ajax.reload(null, false);
     });
@@ -60,6 +61,7 @@ function empleados() {
         $("#edicion").show();
         $("#listado").hide();
         $("#nuevo").hide();
+        $("#informe").hide();
         $("#edicion").load('Vista/php/Empleados/form_nuevo_empleado.php', function() {
             // $("#edicion").load('../../../Vista/php/Empleados/form_nuevo_empleado.php', function() {
             $.ajax({
@@ -187,6 +189,7 @@ function empleados() {
         $("#titulo").html("Actualización de Datos Empleados");
         $("#edicion").show();
         $("#listado").hide();
+        $("#informe").hide();
         $("#nuevo").hide();
         $("#edicion").load('Vista/php/Empleados/form_editar_empleado.php', function() {
             // $("#edicion").load('../../../Vista/php/Empleados/form_editar_empleado.php', function() {
