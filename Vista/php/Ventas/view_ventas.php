@@ -1,4 +1,4 @@
-<?php include_once "../../../Templates/header1.php";?>
+<?php //include_once "../../../Templates/header1.php";?>
 
 <body class="container">
     <div class=" jumbotron mt-3 text-center">
@@ -77,12 +77,12 @@
     </div>
     </div>
     <!-- /.content-wrapper -->
-    <?php include_once "../../../Templates/footer.php";?>
+    <?php //include_once "../../../Templates/footer.php";?>
     <?php //include_once "../../../Templates/datatable.html";?>
 
 
-    <script src="../../../Recursos/js/ventas/ventas.js"></script>
-    <!-- <script src="Recursos/js/ventas/ventas.js"></script> -->
+    <!-- <script src="../../../Recursos/js/ventas/ventas.js"></script> -->
+    <script src="Recursos/js/ventas/ventas.js"></script>
     <script>
     $(document).ready(ventas);
     </script>

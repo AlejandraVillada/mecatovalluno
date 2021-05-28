@@ -17,12 +17,20 @@ class modelo_ventas extends ModeloAbstractoDB
 
     }
 
-    public function consultar()
+    public function consultarprod($IdProducto,$IdSede)
     {
-
+        $this->query="SELECT vv.*,prod.ValorUnitario FROM vista_ventas vv
+        INNER JOIN  producto prod  ON(vv.IdProducto=prod.IdProducto)
+        where vv.IdProducto=$IdProducto AND vv.IdSede=$IdSede" ;
+        $this->obtener_resultados_query();
+        return $this->rows;
     }
 
     public function nuevo()
+    {
+
+    }
+    public function consultar()
     {
 
     }
@@ -46,6 +54,12 @@ class modelo_ventas extends ModeloAbstractoDB
         $this->obtener_resultados_query();
         return $this->rows;
     }
+    public function listaprod($IdSede)
+    {
+        $this->query="SELECT * FROM vista_ventas where IdSede=$IdSede";
+        $this->obtener_resultados_query();
+        return $this->rows;
+    }
 
 
     public function listaprodVista(){
@@ -55,6 +69,7 @@ class modelo_ventas extends ModeloAbstractoDB
         ON(v.IdProducto = p.IdProducto)
         ";
         $this->obtener_resultados_query();
+        // var_dump($this->rows);
         return $this->rows;
     }
 }
