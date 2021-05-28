@@ -66,7 +66,6 @@ session_start();
                     <li><a href="#menu">Productos</a></li>
                     <li><a href="#gallery">Fotos</a></li>
                     <li><a href="#chefs">Proveedores</a></li>
-                    <li><button class="btn btn-dark"><i class="fas fa-cart-arrow-down"></i></button></li>
                     <?php if(!isset($_SESSION['NombreCliente'])){ ?>
                     <li><a href="../../login.php">Login</a></li>
                     <li><a href="../../Vista/php/Usuarios/FormCrearCliente_registrar.php">Registrarse</a></li>
@@ -295,6 +294,29 @@ session_start();
 
                     </div>
 
+                </div>
+
+                <div class="modal fade" id="carrito" tabindex="-1" aria-labelledby="carrito"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="tituloCarrito" style="color: black;">Carrito de compras</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" id="cuerpoCarrito" style="color: black;">
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <div class="row text-left" style="color: black;">
+                                <div class="col-6 mt-2"><p>Total</p></div><div class="col-6 mt-2"><p id="total">0</p></div>
+                                </div>
+                                <button type="button" class="btn btn-dark btn-sm">Facturar</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
             <!-- End Menu Section -->

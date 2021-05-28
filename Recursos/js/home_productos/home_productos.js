@@ -9,7 +9,7 @@ function productos() {
         dataType: "json"
     }).done(function(resultado) {
         $.each(resultado.data, function(index, value) {
-            $("#menu .menu-container").append("<div class='col-lg-6 menu-item'><img src = 'data:image/png; base64," + value.Foto + "' class = 'menu-img'><div class = 'menu-content'><a href = '#'> " + value.NombreProducto + " </a><span>" + value.ValorUnitario + "</span> </div><div class='menu-ingredients'><p style='float:left;'>Cantidad disponible:</p><p style = 'float:left;' class = 'ml-2 mr-4 prod'> " + value.disponible + " </p><button data-codigo='" + value.IdProducto + "' class = 'btn btn-danger btn-sm mr-2' style = 'float: right;'><i class = 'fas fa-cart-plus'></i></button><input class = 'spinner mr-2' type= 'number' min = '0' max = '" + value.disponible + "'style='float:right; width:50px;'></div> </div>")
+            $("#menu .menu-container").append("<div class='col-lg-6 menu-item'><img src = 'data:image/png; base64," + value.Foto + "' class = 'menu-img'><div class = 'menu-content'><a href = '#'> " + value.NombreProducto + " </a><span>" + value.ValorUnitario + "</span> </div><div class='menu-ingredients'><p style='float:left;'>Cantidad disponible:</p><p style = 'float:left;' class = 'ml-2 mr-4 prod'> " + value.disponible + " </p><button data-codigo='" + value.IdProducto + "'data-target='#carrito' class='btn btn-danger btn-sm mr-2 comprar' data-toggle='modal' style = 'float: right;'><i class = 'fas fa-cart-plus'></i></button><input class = 'spinner mr-2' type= 'number' min = '0' max = '" + value.disponible + "'style='float:right; width:50px;' value='0'></div></div>")
         });
     });
 
@@ -143,4 +143,56 @@ function productos() {
         $("#pagina").show();
         $("#actualizacion").hide();
     });
+
+    var cantidad, total, subtotal;
+    var contador = 1;
+
+    $("#menu .menu-container").on("click", "button.comprar", function() {
+        var codigo = $(this).data("codigo");
+
+        if ($("#menu .menu-container .spinner").val() != 0) {
+            $("#carrito").show();
+            cantidad = $("#menu .menu-container .spinner").val();
+            $.ajax({
+                type: "get",
+                url: "../../Controlador/controlador_inventarioprodterminado.php",
+                data: { id: codigo, accion: 'consultarprod' },
+                dataType: "json"
+            }).done(function(resultado) {
+
+                console.log(resultado.data[0].IdProducto);
+                $("#cuerpoCarrito").append("<div data-codigo='" + resultado.data[0].IdProducto + "' class='row contenedorPord' id='" + contador + "'><div class='col-4'><p>" + resultado.data[0].NombreProducto + "</p></div><div class='col-4'><p data-cantidad='" + cantidad + "'>" + resultado.data[0].ValorUnitario + "</p></div><div class=' col-3 '><p>" + cantidad + "</p></div><button data-codigo='" + resultado.data[0].IdProducto + " 'class=' btn btn-danger btn-sm mr-2 remover' style = 'float:right;'>-</button></div>");
+
+                var anterior = parseFloat(document.getElementById("total").innerText);
+                // console.log(anterior);
+                var subtotal = cantidad * resultado.data[0].ValorUnitario;
+                total = anterior + subtotal;
+
+                document.getElementById("total").innerText = total;
+                // console.log(subtotal + " " + total);
+                contador++;
+            });
+        } else if ($("#menu .menu-container .spinner").val() == 0) {
+            alert("llene cuanta cantidad del producto necesita");
+            $("#carrito").hide();
+        }
+
+
+    });
+
+    $("#cuerpoCarrito").on("click", "button.remover", function() {
+
+        var boton = $(this).data("codigo");
+        var div = $("#cuerpoCarrito .contenedorPord").data("codigo");
+
+        var elemento = document.querySelector('#cuerpoCarrito .contenedorPord');
+        var id = elemento.getAttribute('id');
+        // console.log(id);
+
+        $("#" + id).remove();
+
+
+    });
+
+
 }
