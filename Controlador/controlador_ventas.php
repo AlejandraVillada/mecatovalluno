@@ -16,6 +16,12 @@ if (!empty($_GET['accion'])) {
         $iddetalle = $_GET['iddetalle'];
     }
 
+}elseif (!empty($_POST['accion'])) {
+    $accion = $_POST['accion'];
+    if (!empty($_POST['iddetalle'])) {
+        $iddetalle = $_POST['iddetalle'];
+    }
+
 }
 $ventas= new modelo_ventas();
 switch ($accion) {

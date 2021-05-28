@@ -1,19 +1,24 @@
 <?php include_once "../../../Templates/header1.php";?>
 
-<body>
-    <div class="container card mb-3 mt-3 ">
-        <div class="jumbotron mt-3" style="height: 100px;background-color:rgb(0,0,0,0.8);color:rgb(255,255,255);">
-            <h4>ventas  </h4>
+<body class="container">
+    <div class=" jumbotron mt-3 text-center">
+        <h1>Productos Disponibles para ventas </h1>
 
-        </div>
+    </div>
+    <div class=" card mb-3 mt-3 ">
+
         <div class="card-header">
             <div class=" row">
                 <div class="col">
-                    <h5 class="card-title pt-1">ventas </h5>
+                    <h5 class="card-title pt-1">Productos Disponibles para ventas </h5>
 
                 </div>
                 <div class="col-2 justify-content-end" style="display:block;">
-                    <button class="btn btn-dark btn-sm" id="nuevo" data-toggle="tooltip" title="Nuevo ventas">Ingresar
+                    <button class="btn btn-dark btn-sm" id="nuevo" data-toggle="tooltip" title="Nuevo ventas">Registrar
+                        venta</button>
+                </div>
+                <div class="col-3 justify-content-end" style="display:block;">
+                    <button class="btn btn-dark btn-sm" id="factura" data-toggle="tooltip" title="Ver Factura">Facturas de
                         ventas</button>
                 </div>
             </div>
@@ -33,11 +38,11 @@
 
                             <!-- /.box-header -->
                             <div class="card-bg-dark">
-                                <div id="editar"></div>
+                                <div id="contenidos"></div>
 
 
                                 <div style="display:normal;">
-                                    <div class="listado">
+                                    <div id="estaventas">
                                         <table id="tabla" class="table table-striped text-center table-bordered">
                                             <thead>
                                                 <tr>
@@ -68,14 +73,14 @@
             </section>
             <!-- /.content -->
         </div>
-        
+
     </div>
     </div>
     <!-- /.content-wrapper -->
     <?php include_once "../../../Templates/footer.php";?>
     <?php //include_once "../../../Templates/datatable.html";?>
 
-   
+
     <script src="../../../Recursos/js/ventas/ventas.js"></script>
     <!-- <script src="Recursos/js/ventas/ventas.js"></script> -->
     <script>
