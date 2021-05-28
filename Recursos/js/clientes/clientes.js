@@ -81,9 +81,13 @@ function clientes() {
                 data: { accion: 'listar_ciudad' },
                 dataType: "json"
             }).done(function(resultado) {
+
                 $.each(resultado.data, function(index, value) {
-                    $("#editado #IdCiudad").append("<option value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
+                    if (value.Estado == 'ACTIVO') {
+                        $("#editado #IdCiudad").append("<option value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
+                    }
                 });
+
             });
         });
 
@@ -147,12 +151,15 @@ function clientes() {
                 dataType: "json"
             }).done(function(resultado) {
                 $.each(resultado.data, function(index, value) {
-                    if (ciudad === value.IdCiudad) {
-                        $("#editado #IdCiudad").append("<option selected value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
-                    } else {
-                        $("#editado #IdCiudad").append("<option value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
+                    if (value.Estado == 'ACTIVO' || value.IdCiudad == ciudad) {
+                        if (ciudad === value.IdCiudad) {
+                            $("#editado #IdCiudad").append("<option selected value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
+                        } else {
+                            $("#editado #IdCiudad").append("<option value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
+                        }
                     }
                 });
+
             });
         });
 

@@ -68,7 +68,9 @@ function sede() {
                 dataType: "json"
             }).done(function(resultado) {
                 $.each(resultado.data, function(index, value) {
-                    $("#editado #IdCiudad").append("<option value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
+                    if (value.Estado == 'ACTIVO') {
+                        $("#editado #IdCiudad").append("<option value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
+                    }
                 });
             });
             $.ajax({
@@ -124,10 +126,12 @@ function sede() {
                 dataType: "json"
             }).done(function(resultado) {
                 $.each(resultado.data, function(index, value) {
-                    if (ciudad === value.IdCiudad) {
-                        $("#IdCiudad").append("<option selected value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
-                    } else {
-                        $("#IdCiudad").append("<option value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
+                    if (value.Estado == 'ACTIVO' || value.IdCiudad == ciudad) {
+                        if (ciudad === value.IdCiudad) {
+                            $("#IdCiudad").append("<option selected value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
+                        } else {
+                            $("#IdCiudad").append("<option value='" + value.IdCiudad + "'>" + value.NombreCiudad + "</option>")
+                        }
                     }
                 });
             });

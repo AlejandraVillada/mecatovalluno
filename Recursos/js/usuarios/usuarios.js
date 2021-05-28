@@ -1,6 +1,6 @@
 function usuarios() {
     $("#crear").show();
-    // "ajax": "../../../Controlador/controlador_usuario.php?accion=listar",
+   
     var dt = $("#tabla").DataTable({
 
         "ajax": "Controlador/controlador_usuario.php?accion=listar",

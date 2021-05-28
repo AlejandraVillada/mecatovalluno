@@ -1,5 +1,6 @@
 function proveedor() {
     $("#cancelar").hide();
+
     // Espacio para Proveedor
     // "ajax": "../../../Controlador/controlador_proveedor.php?accion=lista_proveedor",
     var dt1 = $("#tabla1").DataTable({
@@ -43,6 +44,11 @@ function proveedor() {
             }
         ]
     });
+
+
+
+
+
     $("#edicion1").on("click", "button#cerrar", function() {
         $("#titulo").html("Gestión de Proveedores");
         $(".titulo").html("Proveedores");
@@ -123,8 +129,9 @@ function proveedor() {
     });
 
     $(".contenedor1").on("click", "a.editar1", function() {
-        var codigo = $(this).data("codigo");
+
         var estado;
+        var codigo = $(this).data("codigo");
         console.log(codigo);
         $("#titulo").html("Modificación de Proveedores");
         // $(".titulo").html("Datos a Modificar");
@@ -212,10 +219,13 @@ function proveedor() {
     });
 
     var dt2;
+    var proveedor;
 
     $(".contenedor1").on("click", "a.agregar1", function() {
 
         var codigo = $(this).data("codigo");
+        console.log(codigo);
+        proveedor = codigo;
         // console.log(codigo);
         $("#titulo").html("Asignación de Productos");
         $(".titulo").html("Productos");
@@ -310,7 +320,8 @@ function proveedor() {
     // Procesos del Detalle Proveedor
 
     $("#nuevo2").click(function() {
-        var codigo = $(".proveedor").data("codigo");
+        var codigo = proveedor;
+        console.log(codigo);
         $("#titulo").html("Asignación de Productos a Proveedores");
         $(".titulo").html("Productos");
         $("#edicion1").show();

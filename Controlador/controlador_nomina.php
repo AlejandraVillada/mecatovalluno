@@ -33,16 +33,34 @@ switch ($accion) {
         $fecha1 = date("Y-m-d");
         $fechaEntera = strtotime($fecha1);
         $mesConsulta = date("m", $fechaEntera);
+        
 
         $fechaNomina = new modelo_nomina();      
         $fechaNomina->fechas($fecha1); 
 
-        $fechaEntera1 = strtotime($fechaNomina->getFechaNomina());
-        $mesBase = date("m", $fechaEntera1);
+        $fechaNomina1 = new modelo_nomina();   
+        $fechaNomina1->fechamaxima();
+        $fechaFinal=0;
+        $mesBase=0;
+        if($fechaNomina->getFechaNomina() != NULL){
+            $fechaEntera1 = strtotime($fechaNomina->getFechaNomina());
+            $fechaFinal=$fechaNomina->getFechaNomina();
+            $mesBase = date("m", $fechaEntera1);
+        }else{
+            
+            $fechaEntera2 = strtotime($fechaNomina1->getFechaNomina());
+            $fechaFinal=$fechaNomina1->getFechaNomina();
+            $mesBase = date("m", $fechaEntera2);
+            // var_dump($mesBase);
+        }
+
+        // var_dump($fechaFinal);
 
         // var_dump($fechaConsulta."".$fechaBase);
-
-    if($mesConsulta != $mesBase || $fecha1 != $fechaNomina->getFechaNomina()){
+        // var_dump($mesConsulta);
+    
+if($mesConsulta != $mesBase){
+    if($fecha1 != $fechaNomina->getFechaNomina() || $fecha1 != $fechaNomina1->getFechaNomina()){
 
     //Nómina
 
@@ -57,7 +75,7 @@ switch ($accion) {
         $nomina-> nuevo($datos);
 
 
-    //Detalle Nómina
+    // //Detalle Nómina
 
         $empleados = new detalle_nomina();
         $listado = $empleados->listaEmpleados();
@@ -119,8 +137,12 @@ switch ($accion) {
         $respuesta = array(
             'respuesta'=> 'no existe'
         );
-    }       
-
+    } 
+}else {
+    $respuesta = array(
+        'respuesta'=> 'no existe'
+    );
+} 
     echo json_encode($respuesta);
 
     break;

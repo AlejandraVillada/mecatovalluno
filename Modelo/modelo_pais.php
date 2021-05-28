@@ -44,7 +44,7 @@ class modelo_pais extends ModeloAbstractoDB
     public function lista()
     {
         $this->query = "
-		SELECT IdPais, NombrePais, e.Estado
+		SELECT p.IdPais, p.NombrePais, e.Estado,p.IdEstado
             FROM pais AS p
             INNER JOIN estados AS e
             ON (p.IdEstado = e.IdEstado)

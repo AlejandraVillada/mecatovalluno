@@ -68,7 +68,10 @@ function ciudad() {
                 dataType: "json"
             }).done(function(resultado) {
                 $.each(resultado.data, function(index, value) {
-                    $("#editado #IdPais").append("<option value='" + value.IdPais + "'>" + value.NombrePais + "</option>")
+                    // console.log(value.IdEstado);
+                    if (value.Estado == 'ACTIVO') {
+                        $("#editado #IdPais").append("<option value='" + value.IdPais + "'>" + value.NombrePais + "</option>")
+                    }
                 });
             });
             $.ajax({
@@ -124,10 +127,12 @@ function ciudad() {
                 dataType: "json"
             }).done(function(resultado) {
                 $.each(resultado.data, function(index, value) {
-                    if (pais === value.IdPais) {
-                        $("#IdPais").append("<option selected value='" + value.IdPais + "'>" + value.NombrePais + "</option>")
-                    } else {
-                        $("#IdPais").append("<option value='" + value.IdPais + "'>" + value.NombrePais + "</option>")
+                    if (value.Estado == 'ACTIVO' || value.IdPais == pais) {
+                        if (pais === value.IdPais) {
+                            $("#IdPais").append("<option selected value='" + value.IdPais + "'>" + value.NombrePais + "</option>")
+                        } else {
+                            $("#IdPais").append("<option value='" + value.IdPais + "'>" + value.NombrePais + "</option>")
+                        }
                     }
                 });
             });

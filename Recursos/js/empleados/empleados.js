@@ -72,7 +72,9 @@ function empleados() {
                 dataType: "json"
             }).done(function(resultado) {;
                 $.each(resultado.data, function(index, value) {
-                    $("#IdSede").append("<option value='" + value.IdSede + "'>" + value.NombreSede + "</option>")
+                    if (value.Estado == 'ACTIVO') {
+                        $("#IdSede").append("<option value='" + value.IdSede + "'>" + value.NombreSede + "</option>")
+                    }
                 });
             });
 
@@ -226,10 +228,12 @@ function empleados() {
                 dataType: "json"
             }).done(function(resultado) {
                 $.each(resultado.data, function(index, value) {
-                    if (sede === value.IdSede) {
-                        $("#IdSede").append("<option selected value='" + value.IdSede + "'>" + value.NombreSede + "</option>")
-                    } else {
-                        $("#IdSede").append("<option value='" + value.IdSede + "'>" + value.NombreSede + "</option>")
+                    if (value.Estado == 'ACTIVO' || value.IdSede == sede) {
+                        if (sede === value.IdSede) {
+                            $("#IdSede").append("<option selected value='" + value.IdSede + "'>" + value.NombreSede + "</option>")
+                        } else {
+                            $("#IdSede").append("<option value='" + value.IdSede + "'>" + value.NombreSede + "</option>")
+                        }
                     }
                 });
             });
