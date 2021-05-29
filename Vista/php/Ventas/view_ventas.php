@@ -5,12 +5,12 @@
     <div class="">
         <div class="jumbotron jumbotron-fluid" style="text-align: center;">
             <div class="container">
-                <h1 class="display-4" id="titulo">Gestión Producto Terminado</h1>
+                <h1 class="display-4" id="titulo">Gestión de Ventas</h1>
             </div>
         </div>
 
         <div class="card card-primary">
-            <div class="card-header bg-dark text-center text-white titulo">Producto Terminado</div>
+            <div class="card-header bg-dark text-center text-white titulo">Ventas</div>
             <div class="card-body">
                 <div class="pull-right box-tools" style="display:block;">
                     <button class="btn btn-dark btn-sm" id="nuevo" data-toggle="tooltip" title="Nuevo ventas">Registrar
