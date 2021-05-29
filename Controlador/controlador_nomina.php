@@ -40,6 +40,7 @@ switch ($accion) {
 
         $fechaNomina1 = new modelo_nomina();   
         $fechaNomina1->fechamaxima();
+        
         $fechaFinal=0;
         $mesBase=0;
         if($fechaNomina->getFechaNomina() != NULL){

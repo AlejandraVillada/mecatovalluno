@@ -6,7 +6,7 @@ function proveedor() {
     var dt1 = $("#tabla1").DataTable({
 
         "ajax": "Controlador/controlador_proveedor.php?accion=lista_proveedor",
-        "dom": 'Bfrtip',
+        "dom": 'lBfrtip',
 
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
@@ -44,9 +44,6 @@ function proveedor() {
             }
         ]
     });
-
-
-
 
 
     $("#edicion1").on("click", "button#cerrar", function() {
