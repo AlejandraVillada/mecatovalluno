@@ -1,13 +1,27 @@
 <?php //include_once "../../../Templates/header1.php";?>
 
-<body class="container">
-    <div class=" jumbotron mt-3 text-center">
-        <h1>Productos Disponibles para ventas </h1>
 
-    </div>
-    <div class=" card mb-3 mt-3 ">
+<body>
+    <div class="">
+        <div class="jumbotron jumbotron-fluid" style="text-align: center;">
+            <div class="container">
+                <h1 class="display-4" id="titulo">Gestión Producto Terminado</h1>
+            </div>
+        </div>
 
-        <div class="card-header">
+        <div class="card card-primary">
+            <div class="card-header bg-dark text-center text-white titulo">Producto Terminado</div>
+            <div class="card-body">
+                <div class="pull-right box-tools" style="display:block;">
+                <button class="btn btn-dark btn-sm" id="nuevo" data-toggle="tooltip" title="Nuevo ventas">Registrar
+                        venta</button>
+                    <button class="btn btn-dark btn-sm" id="factura" data-toggle="tooltip" title="Ver Factura">Facturas
+                        de
+                        ventas</button>
+                </div>
+            </div><!-- 
+
+            <div class="card-body">
             <div class=" row">
                 <div class="col">
                     <h5 class="card-title pt-1">Productos Disponibles para ventas </h5>
@@ -18,12 +32,14 @@
                         venta</button>
                 </div>
                 <div class="col-3 justify-content-end" style="display:block;">
-                    <button class="btn btn-dark btn-sm" id="factura" data-toggle="tooltip" title="Ver Factura">Facturas de
+                    <button class="btn btn-dark btn-sm" id="factura" data-toggle="tooltip" title="Ver Factura">Facturas
+                        de
                         ventas</button>
                 </div>
             </div>
+        </div>--->
         </div>
-        <div class="card-body pt-1 pr-1" style="">
+        <div class="card-body pt-1 pr-1" style=""> 
             <!-- Main content -->
             <section class="content">
                 <div class="row">
@@ -93,6 +109,7 @@
     </div>
 
 
+    </div>
     </div>
 
 </body>

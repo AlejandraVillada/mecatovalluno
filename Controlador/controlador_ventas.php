@@ -8,7 +8,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
-$Sede = $_SESSION["IdSede"];
+$IdSede = $_SESSION["IdSede"];
 $datos = $_POST; //datos
 
 if (!empty($_GET['accion'])) {
@@ -38,12 +38,26 @@ switch ($accion) {
         echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
         break;
     case "listarProd":
-        $datos = $ventas->consultarprod($IdProducto, $Sede);
+        $datos = $ventas->consultarprod($IdProducto, $IdSede);
         echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
 
         break;
     case "listarProductos":
-        $datos = $ventas->listaprod($Sede);
+        $datos = $ventas->listaprod($IdSede);
         echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
+        break;
+    case 'GenerarFactura':
+
+        $array = explode("&", $datos['datos']);
+        foreach ($array as $value) {
+            $a = explode("=", $value);
+            $b[$a[0]] = $a[1];
+        }
+        $b['IdEmpleado'] = $_SESSION['IdEmpleado'];
+        $b['IdSede']=$IdSede;
+        $productos = $_POST['Productos'];
+        $datos = $ventas->nuevo($b, $productos);
+        var_dump($b);
+
         break;
 }

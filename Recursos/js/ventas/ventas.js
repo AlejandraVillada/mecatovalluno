@@ -69,6 +69,7 @@ function ventas() {
                         var productos = new Array();
                         var c = 0;
                         var totalventa = 0;
+                        var NombreProducto;
                         $.ajax({
                             type: "get",
                             // url: "../../../Controlador/controlador_ventas.php",
@@ -106,9 +107,18 @@ function ventas() {
                                 data: { accion: "listarProd", "IdProducto": codigo1 },
                                 dataType: "json"
                             }).done(function (resultado) {
-                                console.log(resultado);
-                                $("#CantidadVendida").attr('max', resultado.data[0].disponible);
+                                console.log(resultado.data[0].CantidadProductoTerminado);
+                                if(resultado.data[0].disponible){
+                                console.log(resultado.data[0].disponible);
+                                    
+                                    $("#CantidadVendida").attr('max', resultado.data[0].disponible);
+
+                                }else{
+                                    $("#CantidadVendida").attr('max', resultado.data[0].CantidadProductoTerminado);
+
+                                }
                                 document.getElementById("CantidadVendida").dataset.valor = resultado.data[0].ValorUnitario;
+                                document.getElementById("IdProducto").dataset.nombre = resultado.data[0].NombreProducto;
                             });
                         });
                         $("input[id=CantidadVendida]").change(function () {
@@ -128,9 +138,11 @@ function ventas() {
                         $("#AgregarProducto").on('click', function (e) {
                             e.preventDefault();
                             var IdProducto = $("#IdProducto").val();
-                            var NombreProducto = $("#IdProducto").data('nombre');
                             var CantidadVendida = $("#CantidadVendida").val();
-                            var valor = document.getElementById("CantidadVendida").dataset.valor
+                            var valor = document.getElementById("CantidadVendida").dataset.valor;
+                            NombreProducto = document.getElementById("IdProducto").dataset.nombre;
+
+
                             var x = 0;
                             var dtventa;
                             $.each(productos, function (index, value) {
@@ -150,7 +162,7 @@ function ventas() {
                                 var total = CantidadVendida * valor;
                                 totalventa = totalventa + total;
                                 console.log(NombreProducto);
-                                productos.push({ 'Posicion': c, 'IdProducto': IdProducto, 'Nombre': NombreProducto, "CantidadVendida": CantidadVendida, "ValorUnitario": valor, "Total": total });
+                                productos.push({ 'Posicion': c, 'IdProducto': IdProducto, 'NombreProducto': NombreProducto, "CantidadVendida": CantidadVendida, "ValorUnitario": valor, "Total": total });
                                 $("#subtotal").val(totalventa);
                                 var totalcop = parseFloat(totalventa) + parseFloat(totalventa * 0.19)
                                 $("#total").val(totalcop);
@@ -159,7 +171,7 @@ function ventas() {
                                 swal({
                                     position: 'center',
                                     type: 'error',
-                                    title: 'Ya agregó este producto, modifíquelo',
+                                    title: 'Ya agregó este producto',
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -171,7 +183,7 @@ function ventas() {
                                     "data": productos,
                                     "columns": [
 
-                                        { "data": "Nombre" },
+                                        { "data": "NombreProducto" },
                                         { "data": "CantidadVendida" },
                                         { "data": "Total" },
                                         {
@@ -193,14 +205,13 @@ function ventas() {
                                     "data": productos,
                                     "columns": [
 
-                                        { "data": "Nombre" },
+                                        { "data": "NombreProducto" },
                                         { "data": "CantidadVendida" },
                                         { "data": "Total" },
                                         {
                                             "data": "Posicion",
                                             render: function (data) {
                                                 return '<a  data-codigo="' + data +
-                                                    '" class="btn btn-info btn-sm modificar"> <i class="fa fa-edit"></i></a><a  data-codigo="' + data +
                                                     '" class="btn btn-danger btn-sm eliminar"> <i class="fas fa-trash"></i></a>'
                                             }
                                         },
@@ -209,7 +220,7 @@ function ventas() {
                                     ]
                                 });
                             }
-                            console.log("c" + dtventa);
+                            // console.log("c" + dtventa);
 
 
                         })
@@ -226,23 +237,29 @@ function ventas() {
 
                             }
 
-                            var remove = productos.splice(position);
+                            var remove = productos.splice(position, 1);
                             console.log(remove);
-                                
+
+                            // var totalcop = parseFloat(totalventa) - parseFloat(remove[0].Total* 0.19)
+                            totalventa = totalventa - remove[0].Total;
+
+                            var totalcop = parseFloat(totalventa) + parseFloat(totalventa * 0.19)
+                            $("#subtotal").val(totalventa);
+
+                            $("#total").val(totalcop);
                             dtventa = null;
                             dtventa = $("#tabla_venta").DataTable({
                                 "destroy": true,
                                 "data": productos,
                                 "columns": [
 
-                                    { "data": "Nombre" },
+                                    { "data": "NombreProducto" },
                                     { "data": "CantidadVendida" },
                                     { "data": "Total" },
                                     {
                                         "data": "Posicion",
                                         render: function (data) {
                                             return '<a  data-codigo="' + data +
-                                                '" class="btn btn-info btn-sm modificar"> <i class="fa fa-edit"></i></a><a  data-codigo="' + data +
                                                 '" class="btn btn-danger btn-sm eliminar"> <i class="fas fa-trash"></i></a>'
                                         }
                                     },
@@ -252,14 +269,42 @@ function ventas() {
                             });
 
 
+                        })// generar factura
+                        $("#formventa").on("submit", function (e) {
+                            e.preventDefault();
+                            document.getElementById("IdProducto").setAttribute("disabled",true);
+                            document.getElementById("CantidadVendida").setAttribute("disabled",true);
+
+                            var datos = $(this).serialize();
+                            console.log(datos);
+                            console.log(productos);
+                            $.ajax({
+                                type: "post",
+                                // url: "../../../Controlador/controlador_ventas.php",
+                                url: "Controlador/controlador_ventas.php",
+                                data: { accion: "GenerarFactura", "datos": datos,"Productos":productos },
+                                dataType: "json"
+                            }).done(function (resultado) {
+                                productos=null;
+
+                            });
+                            
+
                         })
-                    }
+                    }//termina else
                 });
             })
 
         })//terminaload
 
 
+    })
+
+    $('#factura').on("click",function () {
+        $("#contenidos").load("Vista/php/Ventas/FormVenta.php", function (e) {
+        
+        });
+        
     })
 
 

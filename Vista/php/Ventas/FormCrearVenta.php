@@ -22,7 +22,7 @@
 
             <hr>
 
-            <form name="formulario" class="mt-5" action="" method="POST">
+            <form name="formulario" id="formventa" class="mt-5" action="" method="POST">
 
                 <div class="form-group row">
                     <div class="col-sm-2">
@@ -58,19 +58,19 @@
                             <div class="form-group row">
                                 <label>Subtotal</label>
                                 <input type="text" class="form-control" name="subtotal" id="subtotal"
-                                    placeholder="Ingrese Sub-Total">
+                                    placeholder="Ingrese Sub-Total" readonly>
                             </div>
 
                             <div class="form-group row">
                                 <label>Total</label>
                                 <input type="text" class="form-control" name="total" id="total"
-                                    placeholder="Total Factura">
+                                    placeholder="Total Factura" readonly>
                             </div>
 
 
                             <div class="form-group row">
-                                <button type="submit" class="btn btn-success">Generar Factura</button>
-                                <a href="#" class="btn btn-dark">Regresar</a>
+                                <input type="submit" class="btn btn-primary" id="facturar" value="Generar Factura">
+                                <a href="" class="ml-2 btn btn-danger">Regresar</a>
                             </div>
                         </div>
                     </div>
