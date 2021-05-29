@@ -60,6 +60,7 @@ function Produccion() {
     $("#nuevo").on("click", function() {
         $(this).hide();
         $(".card-title").html("Agregar Producción");
+        $("#titulo").html("Registrar Producción");
         $("#editar").addClass('show');
         $("#editar").removeClass('hide');
         $(".listado").addClass('hide');
@@ -197,6 +198,8 @@ function Produccion() {
         e.preventDefault();
         var IdProdu = 0;
         $("#editar").addClass('show');
+        $("#nuevo").hide();
+        $("#titulo").html("Registrar Detalle de Producción");
         $("#editar").removeClass('hide');
         $(".listado").removeClass('show');
         $(".listado").addClass('hide');
@@ -370,6 +373,8 @@ function Produccion() {
     $(".table").on("click", " a.modificar", function(e) {
         e.preventDefault();
         $("#editar").addClass('show');
+        $("#nuevo").hide();
+        $("#titulo").html("Modificar Datos de Detalle Producción");
         $("#editar").removeClass('hide');
         $(".listado").removeClass('show');
         $(".listado").addClass('hide');
@@ -589,6 +594,8 @@ function Produccion() {
         console.log(codigo + "hola");
         $(".card-title").html("Modificar Produccion");
         $("#editar").addClass('show');
+        $("#nuevo").hide();
+        $("#titulo").html("Modificar Datos de Producción");
         $("#editar").removeClass('hide');
         $(".listado").addClass('hide');
         $(".listado").removeClass('show');
