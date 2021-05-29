@@ -45,37 +45,42 @@ class modelo_ventas extends ModeloAbstractoDB
         $datos1 = $this->secuencia();
         $now = new DateTime;
         // $now2 = Date('Y-m-d',$now);
-        $fechafact =  date('Y-m-d');;
+        $fechafact = date('Y-m-d');
         $IdFactura = $datos1[0]['secuencia'];
 // var_dump($IdFactura);
         if ($IdFactura == 0) {
             $IdFactura = 1;
-        }else{
-            $IdFactura=$IdFactura+1;
+        } else {
+            $IdFactura = $IdFactura + 1;
         }
-        $this->query = "INSERT INTO factura
-        VALUES($IdFactura,now(),$subtotal,$total,$IdEmpleado,$comision,$IdCliente,$IdSede)";
-        $this->ejecutar_query_simple();
-
+        if ($IdEmpleado == "") {
+            $this->query = "INSERT INTO factura
+            VALUES($IdFactura,now(),$subtotal,$total,null,0,$IdCliente,1)";
+                $this->ejecutar_query_simple();
+        } else {
+            $this->query = "INSERT INTO factura
+            VALUES($IdFactura,now(),$subtotal,$total,$IdEmpleado,$comision,$IdCliente,$IdSede)";
+            $this->ejecutar_query_simple();
+        }
         $cant = count($productos);
 
         for ($i = 0; $i < $cant; $i++) {
-            
-            $producto= $productos[$i]['IdProducto'];
-            $cantidad=$productos[$i]['CantidadVendida'];
-            $iddet=$i+1;
-            $this->query = "INSERT INTO detalle_factura 
+
+            $producto = $productos[$i]['IdProducto'];
+            $cantidad = $productos[$i]['CantidadVendida'];
+            $iddet = $i + 1;
+            $this->query = "INSERT INTO detalle_factura
             VALUES($iddet,$IdFactura,$producto,$cantidad)";
-             $this->ejecutar_query_simple();
+            $a=$this->ejecutar_query_simple();
 
         }
-
+        return $a;
 
     }
     public function consultar()
     {
-        $this->query = " SELECT fac.*,emp.NombreEmpleado,cli.NombreCliente,se.NombreSede FROM factura fac
-        INNER JOIN empleados emp ON( fac.IdEmpleado=emp.IdEmpleado)
+        $this->query = " 
+        SELECT fac.*,cli.NombreCliente,se.NombreSede FROM factura fac
         INNER JOIN clientes cli ON(fac.Id_Cliente=cli.IdCliente)
         INNER JOIN sede se ON(fac.IdSede=se.IdSede)
          ";
@@ -122,7 +127,7 @@ class modelo_ventas extends ModeloAbstractoDB
         $this->query = "
         SELECT v.IdProducto,v.NombreProducto,v.CantidadProductoTerminado,v.DiaProduccion,v.IdSede,v.NombreSede,v.IdCiudad,v.vendido,v.disponible,p.Foto,p.ValorUnitario FROM vista_ventas AS v
         INNER JOIN producto AS p
-        ON(v.IdProducto = p.IdProducto)
+        ON(v.IdProducto = p.IdProducto) where IdSede=1
         ";
         $this->obtener_resultados_query();
         // var_dump($this->rows);

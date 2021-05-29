@@ -71,7 +71,7 @@ session_start();
                     <li><a href="../../Vista/php/Usuarios/FormCrearCliente_registrar.php">Registrarse</a></li>
                     <?php }else{ ?>
                     <li><a id="act" href="#actualizacion">Actualizar Datos Personales</a></li>
-                    <li><a href="index.php"><?php session_destroy(); ?>Cerrar Sesion</a></li>
+                    <li><a href="../../login.php?cerrar_session=true"><?php //session_destroy(); ?>Cerrar Sesion</a></li>
                     <?php } ?>
 
                 </ul>
@@ -311,9 +311,10 @@ session_start();
                             </div>
                             <div class="modal-footer">
                                 <div class="row text-left" style="color: black;">
+                                <div class="col-6 mt-2"><p>Subtotal</p></div><div class="col-6 mt-2"><p id="Subtotal">0</p></div>
                                 <div class="col-6 mt-2"><p>Total</p></div><div class="col-6 mt-2"><p id="total">0</p></div>
                                 </div>
-                                <button type="button" class="btn btn-dark btn-sm">Facturar</button>
+                                <button type="button" id="facturar" class="btn btn-dark btn-sm">Facturar</button>
                             </div>
                         </div>
                     </div>

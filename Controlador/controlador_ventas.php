@@ -8,7 +8,10 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
-$IdSede = $_SESSION["IdSede"];
+// var_dump($_SESSION);
+if (!empty($_SESSION["IdSede"])) {
+    $IdSede = $_SESSION["IdSede"];
+}
 $datos = $_POST; //datos
 
 if (!empty($_GET['accion'])) {
@@ -57,13 +60,29 @@ switch ($accion) {
         $b['IdSede'] = $IdSede;
         $productos = $_POST['Productos'];
         $datos = $ventas->nuevo($b, $productos);
-        var_dump($b);
-
+        // var_dump($b);
+        echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
         break;
 
     case 'listarfacturas':
         $datos = $ventas->consultar($IdSede);
         echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
-      
+
+        break;
+    case 'GenerarFacturacliente':
+
+        if(!empty($_SESSION['IdCliente'])){
+            $b['IdEmpleado']="";
+            $b['IdCliente']=$_SESSION['IdCliente'];
+            $b['subtotal']=$_POST['subtotal'];
+            $b['total']=$_POST['total'];
+            $productos = $_POST['Productos'];
+            $datos = $ventas->nuevo($b, $productos);
+        }else{
+            $datos =2;
+        }
+        
+        echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
+
         break;
 }

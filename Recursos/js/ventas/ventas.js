@@ -286,7 +286,23 @@ function ventas() {
                                 dataType: "json"
                             }).done(function (resultado) {
                                 productos = null;
-
+                                if (resultado.data = 1) {
+                                    swal({
+                                        position: 'center',
+                                        type: 'success',
+                                        title: 'Su Compra fue generada, espere su pedido cómodamente en su hogar',
+                                        showConfirmButton: false,
+                                        timer: 2500
+                                    })
+                                }else{
+                                    swal({
+                                        position: 'center',
+                                        type: 'error',
+                                        title: 'Su Compra no fue generada',
+                                        showConfirmButton: false,
+                                        timer: 2500
+                                    })
+                                }
                             });
 
 
@@ -351,7 +367,7 @@ function tablafacturas() {
             { "data": "FechaFactura" },
             { "data": "Subtotal" },
             { "data": "TotalFactura" },
-            { "data": "NombreEmpleado" },
+            { "data": "IdEmpleado" },
             { "data": "NombreCliente" },
             { "data": "NombreSede" },
 
