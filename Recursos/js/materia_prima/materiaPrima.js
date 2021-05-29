@@ -192,6 +192,7 @@ function materiaPrima() {
                 $("#editado").html('');
                 $("#editado").hide();
                 $(".listado").show();
+                 $("#nuevo").show();
                 dt.ajax.reload(null, false);
             } else {
                 swal({
