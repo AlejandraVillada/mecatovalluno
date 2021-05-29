@@ -76,7 +76,7 @@
                 <ul class="treeview-menu">
                     <li><a href="./Vista/php/InventarioMateriaPrima/view_inventarioMateriaPrima1.php"><i
                                 class="fas fa-clipboard-list"></i> Inventario Materia Prima</a></li>
-                    <li><a href="./Vista/php/InventarioProductoTerminado/inventarioProductoTerminado.php"><i class="fas fa-clipboard-check"></i> Inventario Producto Terminado</a></li>
+                    <li><a href="./Vista/php/InventarioProductoTerminado/InventarioProductoTerminado.php"><i class="fas fa-clipboard-check"></i> Inventario Producto Terminado</a></li>
                 </ul>
             </li>
             <li class="treeview">
