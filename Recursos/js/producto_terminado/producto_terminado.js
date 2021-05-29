@@ -15,7 +15,7 @@ function productoterminado() {
 
         "ajax": "Controlador/controlador_inventarioprodterminado.php?accion=listar",
         "dataSrc": "",
-        "dom": 'lBfrtip',
+        "dom": 'Bfrtip',
 
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
@@ -164,7 +164,7 @@ function productoterminado() {
             //"ajax": "../../../Controlador/controlador_inventarioprodterminado.php?accion=consultar&&id=" + codigo + "",
 
             "ajax": "Controlador/controlador_inventarioprodterminado.php?accion=consultar&&id=" + codigo + "",
-            "dom": 'lBfrtip',
+            "dom": 'Bfrtip',
 
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
