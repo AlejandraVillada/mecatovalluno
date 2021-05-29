@@ -1,4 +1,3 @@
-
 <!-- <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +24,7 @@
 
 <body>
 
-    <div class="container">
+    <div class="">
         <div class="jumbotron jumbotron-fluid" style="text-align: center;">
             <div class="container">
                 <h1 id="titulo" class="display-4">Gestión de Sedes</h1>
@@ -33,23 +32,21 @@
         </div>
         <div class="card card-primary">
             <div class="card-header bg-dark text-center text-white titulo">Sedes</div>
-            <div class="card-body">
-                <div class="pull-right box-tools">
-                    <button class="btn btn-dark btn-sm" id="crear" data-toggle="tooltip"
-                        title="Registrar Nuevo Empleado">Registrar Sede</button>
-                </div>
+            <div class="pull-right box-tools">
+                <button class="btn btn-dark btn-sm" id="crear" data-toggle="tooltip" title="">Registrar Sede</button>
             </div>
 
             <div class="card-body contenido">
                 <div id="editado">
                 </div>
                 <div class="listado">
-                    <table id="tabla" class="table table-bordered table-striped">
+                    <table id="tabla" class="table table-bordered table-striped text-center">
                         <thead>
-                            <tr>
+                            <tr class="text-center">
                                 <th scope="col">Id Sede</th>
                                 <th scope="col">Id Ciudad</th>
                                 <th scope="col">Sede</th>
+                                <th scope="col">Estados</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>

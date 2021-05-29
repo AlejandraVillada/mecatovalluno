@@ -14,21 +14,22 @@
 
                 <div class="form-group">
                     <label>Proveedor</label>
-                    <input class="form-control" id="IdProveedor" name="IdProveedor" required readonly>
+                    <input class="form-control" id="Proveedor" name="Proveedor" required readonly type="text">
                         
                 </div>
+                <input class="form-control" id="IdProveedor" name="IdProveedor" type="hidden">
 
                 <div class="form-group">
                     <label>Materia Prima</label>
                     <select class="form-control" id="IdMateriaPrima" name="IdMateriaPrima" required>
-                        <option value="">Seleccione El Producto</option>
+                        <option value="">Seleccione el Producto</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" id="actualizar2" class="btn btn-primary" data-toggle="tooltip">Cambiar
+                    <button type="submit" id="actualizar2" class="btn btn-primary" data-toggle="tooltip">Actualizar
                         Producto</button>
-                    <a href="./adminper.php" id="cerrar" class="btn btn-danger" data-toggle="tooltip">Regresar</a>
+                    <button id="cerrar2" type="button" class="btn btn-danger" data-toggle="tooltip">Regresar</button>
                 </div>
 
                 <input type="hidden" id="editar_det_proveedor" value="editar_det_proveedor" name="accion" />

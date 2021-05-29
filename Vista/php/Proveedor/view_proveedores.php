@@ -18,63 +18,64 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head> -->
 
-<body class="container">
-    <div class="mt-4">
-        <div class="jumbotron">
-            <h1 class="text-center" id="titulo">Gestión de Proveedores</h1>
-        </div>
-    </div>
-
-    <!-- Proveedores -->
-
-    <div class="card card-primary tablaProveedor">
-        <div class="card-header bg-dark text-center text-white titulo">Proveedores</div>
-        <div class="card-body">
-            <div class="pull-right box-tools">
-                <button class="btn btn-dark btn-sm" id="nuevo1" data-toggle="tooltip"
-                    title="Registrar Nuevo Proveedor">Registrar Proveedor</button>
-                <button class="btn btn-dark btn-sm" id="nuevo2" data-toggle="tooltip"
-                    title="Registrar Nuevo Proveedor">Asignar Producto</button>
-                <a href="./view_proveedores.php" class="btn btn-danger btn-sm" id="regresar"
-                    data-toggle="tooltip" title="">Regresar</a>
+<body>
+    <div class="">
+        <div class="jumbotron jumbotron-fluid" style="text-align: center;">
+            <div class="container">
+                <h1 class="display-4" id="titulo">Gestión de Proveedores</h1>
             </div>
         </div>
 
-        <div class="card-body contenedor1">
-            <div id="edicion1"></div>
-            <div id="listado1">
-                <table id="tabla1" class="table table-striped table-bordered text-center">
-                    <thead>
-                        <tr class="text-center">
-                            <th># Proveedor</th>
-                            <th>Proveedor</th>
-                            <th>Estado</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                </table>
+        <!-- Proveedores -->
+
+        <div class="card card-primary tablaProveedor">
+            <div class="card-header bg-dark text-center text-white titulo">Proveedores</div>
+            <div class="card-body">
+                <div class="pull-right box-tools">
+                    <button class="btn btn-dark btn-sm" id="nuevo1" data-toggle="tooltip" title="">Registrar
+                        Proveedor</button>
+                    <button class="btn btn-dark btn-sm" id="nuevo2" data-toggle="tooltip" title="">Asignar
+                        Producto</button>
+                    <button id="cancelar" type="button" class="btn btn-danger btn-sm" data-toggle="tooltip"
+                    title="">Regresar</button>
+                </div>
             </div>
 
-            <div id="listado2">
-                <table id="tabla2" class="table table-striped table-bordered text-center">
-                    <thead>
-                        <tr class="text-center">
-                            <th># Detalle Proveedor</th>
-                            <th>Proveedor</th>
-                            <th>Materia Prima</th>
-                            <th>&nbsp;</th>
-                            <th class="hide">&nbsp;</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+            <div class="card-body contenedor1">
+                <div id="edicion1"></div>
+                <div id="listado1">
+                    <table id="tabla1" class="table table-striped table-bordered text-center">
+                        <thead>
+                            <tr class="text-center">
+                                <th># Proveedor</th>
+                                <th>Proveedor</th>
+                                <th>Estado</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
 
+                <div id="listado2">
+                    <table id="tabla2" class="table table-striped table-bordered text-center">
+                        <thead>
+                            <tr class="text-center">
+                                <th># Detalle Proveedor</th>
+                                <th>Proveedor</th>
+                                <th>Materia Prima</th>
+                                <th>&nbsp;</th>
+                                <th class="hide">&nbsp;</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+            </div>
         </div>
-    </div>
 
-    <!-- Detalle Proveedores -->
+        <!-- Detalle Proveedores -->
 
-    <!-- <div class="card card-primary mt-5 tablaDetalle">
+        <!-- <div class="card card-primary mt-5 tablaDetalle">
         <div class="card-header bg-dark text-center text-white titulo">Detalle de Proveedores</div>
         <div class="card-body">
             <div class="pull-right box-tools">
@@ -100,7 +101,7 @@
         </div>
     </div> -->
 
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
@@ -119,12 +120,12 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.all.js"></script> -->
 
-    <script src="Recursos/js/proveedores/proveedores.js"></script>
-    <!-- <script src="../../../Recursos/js/proveedores/proveedores.js"></script> -->
+        <script src="Recursos/js/proveedores/proveedores.js"></script>
+        <!-- <script src="../../../Recursos/js/proveedores/proveedores.js"></script> -->
 
-    <script>
-    $(document).ready(proveedor);
-    </script>
+        <script>
+        $(document).ready(proveedor);
+        </script>
 
 </body>
 

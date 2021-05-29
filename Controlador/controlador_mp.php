@@ -1,6 +1,7 @@
 <?php
 
 require_once "../Modelo/modelo_MP.php";
+include_once "../pdf/informe_mp.php";
 header('Content-Type: application/json');
 $datos = $_GET; //datos
 
@@ -60,5 +61,24 @@ switch ($_GET['accion']) {
         $listado = $medidas->lista_medidas();
         echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE);
         break;
+
+        case "informe":
+            $mp = new modelo_materiaPrima();
+            $datos1 = $mp->lista();
+            $a=array();
+            foreach ($datos1 as $key => $value) {
+             $a[]= implode(";",$value);
+            
+            }
+            $pdf = new PDF();
+            // T�tulos de las columnas
+            $titulos = array('IdMateriaPrima', 'NombreMateriaPrima', 'Stock','Medida');
+            // Carga de datos
+            $datos = $pdf->cargarDatos($a);
+            $pdf->SetFont('Arial', '', 10);
+            $pdf->AddPage();
+            $pdf->TablaElegante($titulos, $datos);
+            $pdf->Output();
+            break;
 
 }

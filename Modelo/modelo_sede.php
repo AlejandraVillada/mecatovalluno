@@ -6,6 +6,7 @@ class modelo_sede extends ModeloAbstractoDB
     private $IdSede;
     private $IdCiudad;
     private $NombreSede;
+    private $IdEstado;
 
     public function __construct()
     {
@@ -45,9 +46,11 @@ class modelo_sede extends ModeloAbstractoDB
     public function lista()
     {
         $this->query = "
-		SELECT IdSede,NombreSede,c.NombreCiudad
+		SELECT IdSede,NombreSede,c.NombreCiudad,e.Estado
 		FROM sede AS s INNER JOIN ciudad AS c
-                ON(s.IdCiudad = c.IdCiudad)";
+        ON(s.IdCiudad = c.IdCiudad)
+        INNER JOIN estados AS e
+        ON(s.IdEstado= e.IdEstado)";
         $this->obtener_resultados_query();
         return $this->rows;
 
@@ -57,7 +60,7 @@ class modelo_sede extends ModeloAbstractoDB
     {
         if ($id != ''):
             $this->query = "
-	                        SELECT IdSede,IdCiudad,NombreSede
+	                        SELECT IdSede,IdCiudad,NombreSede,IdEstado
 	                        FROM sede
 	                        WHERE IdSede = '$id'";
             $this->obtener_resultados_query();
@@ -76,8 +79,8 @@ class modelo_sede extends ModeloAbstractoDB
         endforeach;
         $this->query = "
                     INSERT INTO sede
-                    (IdCiudad, NombreSede)
-                    VALUES ('$IdCiudad','$NombreSede')";
+                    (IdCiudad, NombreSede,IdEstado)
+                    VALUES ('$IdCiudad','$NombreSede','$IdEstado')";
         $resultado = $this->ejecutar_query_simple();
         return $resultado;
     }
@@ -90,7 +93,8 @@ class modelo_sede extends ModeloAbstractoDB
         $this->query = "
                 UPDATE sede
                 SET IdCiudad='$IdCiudad',
-                NombreSede='$NombreSede'
+                NombreSede='$NombreSede',
+                IdEstado='$IdEstado'
                 WHERE IdSede = '$IdSede'";
         $resultado = $this->ejecutar_query_simple();
         return $resultado;
@@ -101,4 +105,12 @@ class modelo_sede extends ModeloAbstractoDB
 
     }
 
+
+    /**
+     * Get the value of IdEstado
+     */ 
+    public function getIdEstado()
+    {
+        return $this->IdEstado;
+    }
 }

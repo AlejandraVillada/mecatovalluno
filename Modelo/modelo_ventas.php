@@ -1,0 +1,75 @@
+<?php
+require_once "modeloAbstractoDB.php";
+
+class modelo_ventas extends ModeloAbstractoDB
+{
+    private $IdProducto;
+    private $NombreProducto;
+    private $CantidadProductoTerminado;
+    private $DiaProduccion;
+    private $IdSede;
+    private $IdCiudad;
+    private $Vendido;
+    private $disponible;
+
+    public function __construct()
+    {
+
+    }
+
+    public function consultarprod($IdProducto,$IdSede)
+    {
+        $this->query="SELECT vv.*,prod.ValorUnitario FROM vista_ventas vv
+        INNER JOIN  producto prod  ON(vv.IdProducto=prod.IdProducto)
+        where vv.IdProducto=$IdProducto AND vv.IdSede=$IdSede" ;
+        $this->obtener_resultados_query();
+        return $this->rows;
+    }
+
+    public function nuevo()
+    {
+
+    }
+    public function consultar()
+    {
+
+    }
+    public function editar()
+    {
+
+    }
+
+    public function borrar()
+    {
+
+    }
+    public function listarhistoria(){
+        $this->query="SELECT * FROM vista_historial_ventas";
+        $this->obtener_resultados_query();
+        return $this->rows;
+    }
+    public function lista()
+    {
+        $this->query="SELECT * FROM vista_ventas";
+        $this->obtener_resultados_query();
+        return $this->rows;
+    }
+    public function listaprod($IdSede)
+    {
+        $this->query="SELECT * FROM vista_ventas where IdSede=$IdSede";
+        $this->obtener_resultados_query();
+        return $this->rows;
+    }
+
+
+    public function listaprodVista(){
+        $this->query="
+        SELECT v.IdProducto,v.NombreProducto,v.CantidadProductoTerminado,v.DiaProduccion,v.IdSede,v.NombreSede,v.IdCiudad,v.vendido,v.disponible,p.Foto,p.ValorUnitario FROM vista_ventas AS v
+        INNER JOIN producto AS p
+        ON(v.IdProducto = p.IdProducto)
+        ";
+        $this->obtener_resultados_query();
+        // var_dump($this->rows);
+        return $this->rows;
+    }
+}

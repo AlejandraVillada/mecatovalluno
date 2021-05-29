@@ -165,9 +165,8 @@ class modelo_detProveedor extends ModeloAbstractoDB
         endforeach;
         $this->query = "
 			UPDATE detalle_proveedor
-			SET IdProveedor = '$IdProveedor',
-			IdMateriaPrima = '$IdMateriaPrima'
-			WHERE IdDetalleProveedor = '$IdDetalleProveedor'
+			SET IdMateriaPrima = '$IdMateriaPrima'
+			WHERE IdDetalleProveedor = '$IdDetalleProveedor' AND IdProveedor = '$IdProveedor'
 			";
         $resultado = $this->ejecutar_query_simple();
         return $resultado;

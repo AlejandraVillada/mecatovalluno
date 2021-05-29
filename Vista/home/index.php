@@ -61,7 +61,7 @@ session_start();
             <!-- <span class="logo mr-auto"><img src="../img/logo.png" ></span> -->
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li class="active"><a href="index.php">Home</a></li>
+                    <li class="active"><a href="#">Home</a></li>
                     <li><a href="#about">Sobre Nosotros</a></li>
                     <li><a href="#menu">Productos</a></li>
                     <li><a href="#gallery">Fotos</a></li>
@@ -70,7 +70,7 @@ session_start();
                     <li><a href="../../login.php">Login</a></li>
                     <li><a href="../../Vista/php/Usuarios/FormCrearCliente_registrar.php">Registrarse</a></li>
                     <?php }else{ ?>
-                    <li><a id="act" href="#actualizacion">Actualizar Datos personales</a></li>
+                    <li><a id="act" href="#actualizacion">Actualizar Datos Personales</a></li>
                     <li><a href="index.php"><?php session_destroy(); ?>Cerrar Sesion</a></li>
                     <?php } ?>
 
@@ -107,7 +107,7 @@ session_start();
                 <div class="jumbotron jumbotron-fluid"
                     style="text-align: center; background-color: #0c0b09; color: white;">
                     <div class="container">
-                        <h1 id="titulo" class="display-4" style="text-align: center;">Actualizacion datos Personales
+                        <h1 id="titulo" class="display-4" style="text-align: center;">Actualización Datos Personales
                         </h1>
                     </div>
                 </div>
@@ -121,7 +121,7 @@ session_start();
 
                                 <form id="formModificarCliente" class="php-email-form">
                                     <div class="form-group">
-                                        <label for="IdCliente">Cédula del cliente</label>
+                                        <label for="IdCliente">Cédula del Cliente</label>
                                         <input type="number" class="form-control" name="IdCliente" id="IdCliente"
                                             readonly required>
                                     </div>
@@ -131,16 +131,16 @@ session_start();
                                             required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="Email">Correo Electronico</label>
+                                        <label for="Email">Correo Electrónico</label>
                                         <input type="email" class="form-control" name="Email" id="Email" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="Direccion">Direccion</label>
+                                        <label for="Direccion">Dirección</label>
                                         <input type="text" class="form-control" name="Direccion" id="Direccion"
                                             required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="Telefono">Telefono</label>
+                                        <label for="Telefono">Teléfono</label>
                                         <input type="number" class="form-control" name="Telefono" id="Telefono"
                                             required>
                                     </div>
@@ -192,17 +192,17 @@ session_start();
                             </div>
                         </div>
                         <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-                            <h3>MecatoValluno N°1 En el mercado en alimentos</h3>
+                            <h3>MecatoValluno N°1 en el mercado en alimentos</h3>
                             <p class="font-italic">
-                                Nuestros Productos estan caracterizados por manejar la menor cantidad de coresterol y
+                                Nuestros productos estan caracterizados por manejar la menor cantidad de coresterol y
                                 excesos en sodio, liberados de aceite tradicional con un empaquetado profesional y
                                 completo
                                 tanto para nuestros clientes como para el usuario final.
                             </p>
                             <ul>
-                                <li><i class="icofont-check-circled"></i> Lideres en elegancia y calidad</li>
+                                <li><i class="icofont-check-circled"></i> Líderes en elegancia y calidad</li>
                                 <li><i class="icofont-check-circled"></i> Exportaciones internacionales</li>
-                                <li><i class="icofont-check-circled"></i> Exclusividad e envio de productos al por mayor
+                                <li><i class="icofont-check-circled"></i> Exclusividad y envío de productos al por mayor
                                     y
                                     al detal</li>
                             </ul>
@@ -294,6 +294,29 @@ session_start();
 
                     </div>
 
+                </div>
+
+                <div class="modal fade" id="carrito" tabindex="-1" aria-labelledby="carrito"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="tituloCarrito" style="color: black;">Carrito de Compras</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" id="cuerpoCarrito" style="color: black;">
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <div class="row text-left" style="color: black;">
+                                <div class="col-6 mt-2"><p>Total</p></div><div class="col-6 mt-2"><p id="total">0</p></div>
+                                </div>
+                                <button type="button" class="btn btn-dark btn-sm">Facturar</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
             <!-- End Menu Section -->
@@ -648,7 +671,7 @@ session_start();
 
                 <div class="container" data-aos="fade-up">
                     <div class="section-title">
-                        <h2>Galeria de fotos</h2>
+                        <h2>Galería de fotos</h2>
                         <p>Algunas fotos de nuestros maravillosos productos</p>
                     </div>
                 </div>
@@ -740,8 +763,8 @@ session_start();
                 <div class="container" data-aos="fade-up">
 
                     <div class="section-title">
-                        <h2>Proveeores</h2>
-                        <p>Nuestros mas poderosos proveedores</p>
+                        <h2>Proveedores</h2>
+                        <p>Nuestros más poderosos proveedores</p>
                     </div>
 
                     <div class="row">
@@ -751,8 +774,8 @@ session_start();
                                 <img src="assets/img/chefs/refisal.jpg" class="img-fluid" alt="" style="height: 350px;">
                                 <div class="member-info">
                                     <div class="member-info-content">
-                                        <h4>Resisal</h4>
-                                        <span>Proveedor lider en darle sabor a nuestros productos de la mejor
+                                        <h4>Refisal</h4>
+                                        <span>Proveedor líder en darle sabor a nuestros productos de la mejor
                                             calidad</span>
                                     </div>
                                 </div>
@@ -780,8 +803,8 @@ session_start();
                                 <div class="member-info">
                                     <div class="member-info-content">
                                         <h4>Cervalle</h4>
-                                        <span>Proveedor especializado del distriubuidor de carnes mas especializado en
-                                            sasonar de la mejor manera la mejor carne del pais</span>
+                                        <span>Proveedor especializado del distriubuidor de carnes más especializado en
+                                            sasonar de la mejor manera la mejor carne del país</span>
                                     </div>
 
                                 </div>

@@ -1,73 +1,65 @@
 <?php //include_once "../../../Templates/header1.php";?>
 
 <body>
-    <div class="container">
-        <div class="jumbotron" >
-            <h4>Inventario de Materia Prima </h4>
 
+    <div class="">
+        <div class="jumbotron jumbotron-fluid" style="text-align: center;">
+            <div class="container">
+                <h1 class="display-4" id="titulo">Inventario de Materia Prima</h1>
+            </div>
         </div>
-        <div class="card " >
+
+        <div class="card card-primary">
+            <div class="card-header bg-dark text-center text-white titulo">Materia Prima</div>
             <!-- Main content -->
-            <section class="content">
-                <div class="row">
-                    <div class="col">
-                        <div class="contenido">
-                            <div class=" row" >
-                                <div class="col" >
-                                    <h5 class="card-title pt-1">Inventario de Materia Prima</h5>
+            <!-- <section class="content"> -->
+            <!-- <div class="contenido"> -->
+            <div class="card-body">
+                <div class="pull-right box-tools">
+                    <button class="btn btn-dark btn-sm" id="nuevo" data-toggle="tooltip" title="Nuevo Stock">Ingresar
+                        Compra</button>
+                </div>
+            </div>
 
-                                </div>
-                                <div class="col-2 justify-content-end" style="display:block;">
-                                    <button class="btn btn-info btn-sm" id="nuevo" data-toggle="tooltip"
-                                        title="Nuevo stock">Ingresar Compra</button>
-                                </div>
-                            </div>
-                            <style>
-                                .form-inline{
-                                    display:inline;
-                                }
-                            </style>
+            <style>
+            .form-inline {
+                display: inline;
+            }
+            </style>
 
-                            <!-- /.box-header -->
-                            <div class="card-bg-dark">
-                            <div id="editar"></div>
+            <!-- /.box-header -->
+            <div class="card-body">
+                <div id="editar"></div>
+                <div style="display:normal;">
+                    <div class="listado">
+                        <table id="tabla" class="table table-striped table-bordered text-center">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>Codigo</th>
+                                    <th>Nombre</th>
+                                    <th>Stock</th>
+                                    <th>Medida</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                                <div  style="display:normal;">
-                                    <div class="listado">
-                                        <table id="tabla" class="table table-striped table-bordered"
-                                            >
-                                            <thead>
-                                                <tr>
-                                                    <th>Codigo</th>
-                                                    <th>Nombre</th>
-                                                    <th>Stock</th>
-                                                    <th>Medida</th>
-                                                    <th>Acciones</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>Codigo</th>
-                                                    <th>Nombre</th>
-                                                    <th>Stock</th>
-                                                    <th>Medida</th>
-                                                    <th>Acciones</th>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- /.box -->
-                        </div>
-                        <!-- /.col -->
+                            </tbody>
+                            <tfoot>
+                                <tr class="text-center">
+                                    <th>Codigo</th>
+                                    <th>Nombre</th>
+                                    <th>Stock</th>
+                                    <th>Medida</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
-                    <!-- /.row -->
-            </section>
+                </div>
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
             <!-- /.content -->
         </div>
     </div>
@@ -81,11 +73,7 @@
     $(document).ready(materiaprima);
     </script>
 
-
-
-
     </div>
-
 
     </div>
 

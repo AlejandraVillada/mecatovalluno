@@ -1,5 +1,6 @@
 <?php
 include_once "../Modelo/modelo_detalle_producto.php";
+
 header('Content-Type: application/json');
 $datos = $_POST; //datos
 ini_set('display_errors', 1);
@@ -69,4 +70,6 @@ switch ($accion) {
         $datos = $detalle_producto->buscar($IdProducto);
         echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
         break;
+   
+
 }

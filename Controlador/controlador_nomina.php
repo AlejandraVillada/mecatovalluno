@@ -2,12 +2,19 @@
 
     require_once "../Modelo/modelo_nomina.php";
     require_once "../Modelo/modelo_detalleNomina.php";
+    include_once "../pdf/informe_nomina.php";
+
     header('Content-Type: application/json');
 
     $datos = $_GET;
     $accion = $_GET['accion'];
 
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
 switch ($accion) {
+  
     case "lista":
         $infoNomina = new modelo_nomina();
         $listado = $infoNomina->lista($datos['fecha']);
@@ -26,19 +33,38 @@ switch ($accion) {
         $fecha1 = date("Y-m-d");
         $fechaEntera = strtotime($fecha1);
         $mesConsulta = date("m", $fechaEntera);
+        
 
         $fechaNomina = new modelo_nomina();      
         $fechaNomina->fechas($fecha1); 
 
-        $fechaEntera1 = strtotime($fechaNomina->getFechaNomina());
-        $mesBase = date("m", $fechaEntera1);
+        $fechaNomina1 = new modelo_nomina();   
+        $fechaNomina1->fechamaxima();
+        
+        $fechaFinal=0;
+        $mesBase=0;
+        if($fechaNomina->getFechaNomina() != NULL){
+            $fechaEntera1 = strtotime($fechaNomina->getFechaNomina());
+            $fechaFinal=$fechaNomina->getFechaNomina();
+            $mesBase = date("m", $fechaEntera1);
+        }else{
+            
+            $fechaEntera2 = strtotime($fechaNomina1->getFechaNomina());
+            $fechaFinal=$fechaNomina1->getFechaNomina();
+            $mesBase = date("m", $fechaEntera2);
+            // var_dump($mesBase);
+        }
+
+        // var_dump($fechaFinal);
 
         // var_dump($fechaConsulta."".$fechaBase);
-
-    if($mesConsulta != $mesBase || $fecha1 != $fechaNomina->getFechaNomina()){
+        // var_dump($mesConsulta);
+    
+if($mesConsulta != $mesBase){
+    if($fecha1 != $fechaNomina->getFechaNomina() || $fecha1 != $fechaNomina1->getFechaNomina()){
 
     //Nómina
-
+// jajisgsi
         date_default_timezone_set('America/Bogota');
         $fecha = date("Y-m-d");            
             
@@ -50,7 +76,7 @@ switch ($accion) {
         $nomina-> nuevo($datos);
 
 
-    //Detalle Nómina
+    // //Detalle Nómina
 
         $empleados = new detalle_nomina();
         $listado = $empleados->listaEmpleados();
@@ -67,13 +93,10 @@ switch ($accion) {
         $sueldoBase = array_column($listado,'SueldoBase');
 
         for ($i=0; $i < count($listado); $i++) { 
-                
-            $totalSueldo = $sueldoBase[$i];
+
             $totalNomina = $totalNomina + $totalSueldo;
                 
         }
-
-
     //Actualización de Total Nómina
 
         $datosTotal = array(
@@ -98,7 +121,6 @@ switch ($accion) {
                 'IdNomina'=> $idNomina->getIdNomina(),
                 'IdEmpleado'=> $idEmpleados[$i],
                 'SueldoBase'=> $sueldoBase[$i],
-                'TotalSueldo'=> $sueldoBase[$i],
             );
         }
 
@@ -112,8 +134,12 @@ switch ($accion) {
         $respuesta = array(
             'respuesta'=> 'no existe'
         );
-    }       
-
+    } 
+}else {
+    $respuesta = array(
+        'respuesta'=> 'no existe'
+    );
+} 
     echo json_encode($respuesta);
 
     break;
@@ -165,6 +191,27 @@ switch ($accion) {
         );
         echo json_encode($respuesta);
         break;
+
+
+        case "informe":
+            $nomina = new detalle_nomina();
+            $datos1 = $nomina->consultar($datos['codigo']);
+            $a=array();
+            foreach ($datos1 as $key => $value) {
+             $a[]= implode(";",$value);
+            
+            }
+            $pdf = new PDF('L');
+            // T�tulos de las columnas
+            $titulos = array('Id', 'Nomina', 'IdEmpleado','Nombre','IdSede','Sede','Comisiones','SueldoBase');
+            // Carga de datos
+            $datos = $pdf->cargarDatos($a);
+            $pdf->SetFont('Arial', '', 10);
+            $pdf->AddPage();
+            $pdf->TablaElegante($titulos, $datos);
+            $pdf->Output();
+            break;
+
 
     case 'borrar':
         //No se usa

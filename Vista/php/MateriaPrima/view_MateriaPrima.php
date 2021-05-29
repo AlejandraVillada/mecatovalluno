@@ -1,4 +1,3 @@
-
 <!-- <!DOCTYPE html>
 <html lang="en">
 
@@ -25,28 +24,32 @@
 
 <body>
 
-    <div class="container">
+    <div class="">
         <div class="jumbotron jumbotron-fluid" style="text-align: center;">
             <div class="container">
-                <h1 id="titulo" class="display-4">Gestión Materia Prima</h1>
+                <h1 id="titulo" class="display-4">Gestión de Materia Prima</h1>
             </div>
         </div>
         <div class="card card-primary">
             <div class="card-header bg-dark text-center text-white titulo">Materia Prima</div>
-            <div class="card-body">
-                <div class="pull-right box-tools">
-                    <button class="btn btn-dark btn-sm" id="crear" data-toggle="tooltip"
-                        title="Registrar Nuevo Empleado">Registrar Materia Prima</button>
-                </div>
+            <div class="pull-right box-tools">
+
+                <button class="btn btn-dark btn-sm" id="crear" data-toggle="tooltip"
+                    title="Registrar Nuevo Empleado">Registrar Materia Prima</button>
+
+                <a href="Controlador/controlador_mp.php?accion=informe" target="_blank" class="btn btn-dark btn-sm mt-3"
+                    id="informe" data-toggle="tooltip" title="Generar Informe"
+                    style="float: right; display: abstract;">Generar Informe</a>
+
             </div>
 
             <div class="card-body contenido">
                 <div id="editado">
                 </div>
                 <div class="listado">
-                    <table id="tabla" class="table table-bordered table-striped">
+                    <table id="tabla" class="table table-bordered table-striped text-center">
                         <thead>
-                            <tr>
+                            <tr class="text-center">
                                 <th scope="col">Id Materia Prima</th>
                                 <th scope="col">Materia Prima</th>
                                 <th scope="col">Stock</th>

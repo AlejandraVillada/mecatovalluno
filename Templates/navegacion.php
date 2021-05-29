@@ -76,7 +76,7 @@
                 <ul class="treeview-menu">
                     <li><a href="./Vista/php/InventarioMateriaPrima/view_inventarioMateriaPrima1.php"><i
                                 class="fas fa-clipboard-list"></i> Inventario Materia Prima</a></li>
-                    <li><a href="#"><i class="fas fa-clipboard-check"></i> Inventario Producto Terminado</a></li>
+                    <li><a href="./Vista/php/InventarioProductoTerminado/inventarioProductoTerminado.php"><i class="fas fa-clipboard-check"></i> Inventario Producto Terminado</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -127,7 +127,7 @@
                 <ul class="treeview-menu">
                     <li><a href="./Vista/php/ProductoTerminado/view_ProductoTerminado.php"><i class="fas fa-comment-dots"></i> Gestion
                             Producto terminado</a></li>
-                    <li><a href="#"><i class="fab fa-creative-commons-remix"></i> Gestion de Produccion</a></li>
+                    <li><a href="./Vista/php/Produccion/view_produccion.php"><i class="fab fa-creative-commons-remix"></i> Gestion de Produccion</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -146,7 +146,7 @@
                     <span> Ventas</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fas fa-money-bill-alt"></i>
+                    <li><a href="./Vista/php/Ventas/view_ventas.php"><i class="fas fa-money-bill-alt"></i>
                             Gestion de Ventas</a></li>
                 </ul>
             </li>
@@ -234,7 +234,7 @@
                             <span> Ventas</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fas fa-money-bill-alt"></i>
+                            <li><a href="./Vista/php/Ventas/view_ventas.php"><i class="fas fa-money-bill-alt"></i>
                                     Gestion de Ventas</a></li>
                         </ul>
                     </li>
@@ -269,8 +269,7 @@
                             <ul class="treeview-menu">
                                 <li><a href="./Vista/php/InventarioMateriaPrima/view_inventarioMateriaPrima1.php"><i
                                             class="fas fa-clipboard-list"></i> Inventario Materia Prima</a></li>
-                                <li><a href="./Vista/php/ProductoTerminado/view_ProductoTerminado.php"><i
-                                            class="fas fa-clipboard-check"></i> Inventario Producto Terminado</a>
+                                <li><a href="./Vista/php/InventarioProductoTerminado/inventarioProductoTerminado.php"><i class="fas fa-clipboard-check"></i> Inventario Producto Terminado</a>
                                 </li>
                             </ul>
                         </li>
@@ -292,9 +291,8 @@
                                 <span> Producto Terminado</span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="./Vista/php/Proveedor/view_proveedores.php"><i
-                                            class="fas fa-comment-dots"></i> Gestion Producto terminado</a></li>
-                                <li><a href="#"><i class="fab fa-creative-commons-remix"></i> Gestion de Produccion</a>
+                                <li><a href="./Vista/php/ProductoTerminado/view_ProductoTerminado.php"><i class="fas fa-comment-dots"></i> Gestion Producto terminado</a></li>
+                                <li><a href="./Vista/php/Produccion/view_produccion.php"><i class="fab fa-creative-commons-remix"></i> Gestion de Produccion</a>
                                 </li>
                             </ul>
                         </li>

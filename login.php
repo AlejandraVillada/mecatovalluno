@@ -53,7 +53,7 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body jumbotron "  style=" background-color:rgb(99, 96, 96,0.5); height: 300px; width: 450px; float:right">
-    <p class="login-box-msg" style="color: rgb(255,255,255);">Autenticarse para inciar sesión</p>
+    <p class="login-box-msg" style="color: rgb(255,255,255);">Autenticarse para iniciar sesión</p>
 
     <form id="login-form" action="" method="post" >
       <div class="form-group has-feedback">
@@ -67,9 +67,9 @@
       <div class="row">
        
         <!-- /.col -->
-        <div class="center-block" style="padding-top:30px">
+        <div class="center-block" style="padding-top:15px">
           <button href="submit" id="ingresar" class="btn btn-block btn-flat" style="background-color:#F3D70F; color: #0C0B0B; border-radius:10px; "><strong>Ingresar</strong></button>
-          <a href="./Vista/home/index.php" class="btn btn-block btn-flat btn-danger" style="border-radius:10px;">Regresar al home</a>
+          <a href="./Vista/home/index.php" class="btn btn-block btn-flat btn-danger" style="border-radius:10px;">Regresar al Home</a>
         </div>
         <!-- /.col -->
         <input type="hidden" value="login" name="accion">

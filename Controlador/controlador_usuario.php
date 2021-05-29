@@ -5,6 +5,7 @@ require_once "../Modelo/modelo_tipo_usuario.php";
 require_once "../Modelo/modelo_empleados.php";
 require_once "../Modelo/modelo_sede.php";
 require_once "../Modelo/modelo_clientes.php";
+include_once "../pdf/informe_usuarios.php";
 header('Content-Type: application/json');
 
 ini_set('display_errors', 1);
@@ -152,5 +153,24 @@ switch ($accion) {
         $listado = $tipoUsu->lista();
         echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE);
         break;
+
+        case "informe":
+            $usuario = new modelo_usuario();
+            $datos1 = $usuario->lista();
+            $a=array();
+            foreach ($datos1 as $key => $value) {
+             $a[]= implode(";",$value);
+            
+            }
+            $pdf = new PDF('L');
+            // T�tulos de las columnas
+            $titulos = array('Cedula', 'Usuario', 'TipoUsuario',utf8_decode('Contraseña'));
+            // Carga de datos
+            $datos = $pdf->cargarDatos($a);
+            $pdf->SetFont('Arial', '', 10);
+            $pdf->AddPage();
+            $pdf->TablaElegante($titulos, $datos);
+            $pdf->Output();
+            break;
 
 }

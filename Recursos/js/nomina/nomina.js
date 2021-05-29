@@ -1,17 +1,19 @@
 function nomina() {
-
+    var dt1, dt2;
     $("#edicion1").hide();
     $("#listado1").hide();
     $("#listado2").hide();
     $("#regresar").hide();
+    $("#cerrar").hide();
+    $("#informe").hide();
 
-    $("#generar").click(function () {
+    $("#generar").click(function() {
         $.ajax({
             type: "get",
             url: "Controlador/controlador_nomina.php",
             data: { accion: 'generar_nomina' },
             dataType: "json"
-        }).done(function (resultado) {
+        }).done(function(resultado) {
             console.log(resultado);
             if (resultado.respuesta == 'existe') {
                 swal({
@@ -34,19 +36,31 @@ function nomina() {
         });
     })
 
+    $(".card-body").on("click", "button#cerrar", function() {
+        $("#listado1").hide();
+        $("#consultar").show();
+        $("#generar").show();
+        $("#edicion1").hide();
+        $("#listado2").hide();
+        $("#informe").hide();
+        $("#cerrar").hide();
+        $("#FechaNomina").val('');
+        dt1.destroy();
+        dt2.destroy();
 
-    $("#consultar").click(function () {
+    });
+    $("#consultar").click(function() {
         $("#edicion1").show();
     });
 
-
-    $("#buscar").click(function () {
+    $("#buscar").click(function() {
         $("#listado1").show();
+        $("#cerrar").show();
         $("#consultar").hide();
         $("#generar").hide();
 
         fecha = $("#FechaNomina").val();
-        var dt1 = $("#tabla1").DataTable({
+        dt1 = $("#tabla1").DataTable({
             ajax: {
                 type: "get",
                 url: "Controlador/controlador_nomina.php",
@@ -59,7 +73,7 @@ function nomina() {
                 { "data": "TotalNomina" },
                 {
                     "data": "IdNomina",
-                    render: function (data) {
+                    render: function(data) {
                         return '<a href="#" data-codigo="' + data +
                             '" class="btn btn-dark btn-sm ver"> <i class="fa fa-plus"> Ver Detalle Nómina</i></a>'
                     }
@@ -68,13 +82,19 @@ function nomina() {
         });
     });
 
-    $(".contenedor1").on("click", "a.ver", function () {
+
+
+    $(".contenedor1").on("click", "a.ver", function() {
         $("#edicion1").hide();
         $("#listado1").hide();
         $("#listado2").show();
         $("#regresar").show();
+        $("#informe").show();
+        $("#cerrar").show();
         var codigo = $(this).data("codigo");
-        var dt2 = $("#tabla2").DataTable({
+        $('#informe').attr('href', 'Controlador/controlador_nomina.php?accion=informe&codigo=' + codigo);
+
+        dt2 = $("#tabla2").DataTable({
             ajax: {
                 type: "get",
                 url: "Controlador/controlador_nomina.php",
@@ -87,17 +107,17 @@ function nomina() {
                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
             },
             "buttons": [{
-                extend: 'excelHtml5',
-                text: '<i class="fas fa-file-excel"></i> ',
-                titleAttr: 'Exportar a Excel',
-                className: 'btn btn-success ml-1'
-            },
-            {
-                extend: 'pdfHtml5',
-                text: '<i class="fas fa-file-pdf "></i> ',
-                titleAttr: 'Exportar a PDF',
-                className: 'btn btn-danger'
-            }
+                    extend: 'excelHtml5',
+                    text: '<i class="fas fa-file-excel"></i> ',
+                    titleAttr: 'Exportar a Excel',
+                    className: 'btn btn-success ml-1'
+                },
+                {
+                    extend: 'pdfHtml5',
+                    text: '<i class="fas fa-file-pdf "></i> ',
+                    titleAttr: 'Exportar a PDF',
+                    className: 'btn btn-danger'
+                }
             ],
             "columns": [
                 { "data": "IdDetalleNomina" },
@@ -107,10 +127,18 @@ function nomina() {
                 { "data": "NombreSede" },
                 { "data": "Comisiones" },
                 { "data": "SueldoBase" },
-                { "data": "TotalSueldo" }
+                { "data": "TotalSueldo" },
+                {
+                    "data": "IdNomina",
+                    render: function(data) {
+                        return '<a href="#" data-codigo="' + data +
+                            '" class="hidden idnomina"> <i class="fa fa-plus"> Ver Detalle Nómina</i></a>'
+                    }
+                }
             ]
         });
     });
+
 
 
 }

@@ -15,76 +15,79 @@ function productoterminado() {
 
         "ajax": "Controlador/controlador_inventarioprodterminado.php?accion=listar",
         "dataSrc": "",
-        "dom": 'Bfrtip',
+        "dom": 'lBfrtip',
 
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
         },
         "buttons": [{
-            extend: 'excelHtml5',
-            text: '<i class="fas fa-file-excel "></i> ',
-            titleAttr: 'Exportar a Excel',
-            className: 'btn btn-success',
-            title: 'Producto Terminado'
-        },
-        {
-            extend: 'pdfHtml5',
-            text: '<i class="fas fa-file-pdf "></i> ',
-            titleAttr: 'Exportar a PDF',
-            className: 'btn btn-danger',
-            title: 'Producto Terminado'
+                extend: 'excelHtml5',
+                text: '<i class="fas fa-file-excel "></i> ',
+                titleAttr: 'Exportar a Excel',
+                className: 'btn btn-success ml-1',
+                title: 'Producto Terminado'
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="fas fa-file-pdf "></i> ',
+                titleAttr: 'Exportar a PDF',
+                className: 'btn btn-danger',
+                title: 'Producto Terminado'
 
 
-        }
+            }
         ],
 
         "paging": true,
         "pageLength": 3,
 
         "columns": [{
-            "data": "IdProducto",
-            render: function (data) {
-                return '<a href="#" data-codigo="' + data +
-                    '" class="btn btn-dark btn-sm ver"> <i class="fa fa-plus"></i></a>'
+                "data": "IdProducto",
+                render: function(data) {
+                    return '<a href="#" data-codigo="' + data +
+                        '" class="btn btn-dark btn-sm ver"> <i class="fa fa-plus"></i></a>'
+                }
+            },
+            { "data": "IdProducto" },
+            { "data": "NombreProducto" },
+            { "data": "CantidadProducto" },
+            { "data": "ValorUnitario" },
+            { "data": "Foto" },
+            {
+                "data": "IdProducto",
+                render: function(data) {
+                    return '<a href="#" data-codigo="' + data +
+                        '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>'
+                }
             }
-        },
-        { "data": "IdProducto" },
-        { "data": "NombreProducto" },
-        { "data": "CantidadProducto" },
-        { "data": "ValorUnitario" },
-        { "data": "Foto" },
-        {
-            "data": "IdProducto",
-            render: function (data) {
-                return '<a href="#" data-codigo="' + data +
-                    '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>'
-            }
-        }
         ]
     });
 
-    $("#nuevo").on("click", function () {
+    $("#nuevo").on("click", function() {
         $(this).hide();
         $(".card-title").html("Agregar Producto Terminado");
+        $("#titulo").html("Registrar Producto Terminado");
         $("#editar").addClass('show');
         $("#editar").removeClass('hide');
         $(".listado").addClass('hide');
         $(".listado").removeClass('show');
         $(".detalle").addClass('hide');
         $(".detalle").removeClass('show');
-        $("#editar").load('Vista/php/ProductoTerminado/FormCrearPT.php', function () {
+        $("#editar").load('Vista/php/ProductoTerminado/FormCrearPT.php', function() {
             // $("#editar").load('Vista/php/ProductoTerminado/FormCrearPT.php', function () {
-            $("#editar #nuevoprod").on("click", function (e) {
+            $("#editar #nuevoprod").on("click", function(e) {
                 console.log("hola");
                 $("#editar").addClass('hide');
                 $("#editar").removeClass('show');
                 $(".listado").addClass('show');
+                $("#nuevo").show();
+                $("#titulo").html("Gestión Producto Terminado");
                 $(".listado").removeClass('hide');
                 $(".detalle").addClass('hide');
                 $(".detalle").removeClass('show');
                 $(this).show();
             });
-            $("#editar #formCrearPT").on("submit", function (e) {
+            $("#editar #formCrearPT").on("submit", function(e) {
 
                 e.preventDefault();
                 var datos = $(this).serialize();
@@ -107,7 +110,7 @@ function productoterminado() {
                     processData: false,
                     cache: false,
                     contentType: false
-                }).done(function (resultado) {
+                }).done(function(resultado) {
                     console.log(resultado);
                     if (resultado.data == 1) {
                         swal({
@@ -133,7 +136,7 @@ function productoterminado() {
     });
 
 
-    $(".table").on("click", "a.ver", function () {
+    $(".table").on("click", "a.ver", function() {
         $("#editar").addClass('hide');
         $("#editar").removeClass('show');
 
@@ -151,7 +154,7 @@ function productoterminado() {
             //url: "../../../Controlador/controlador_detalleproducto.php",
             data: { accion: 'buscar', IdProducto: codigo },
             dataType: "json"
-        }).done(function (resultado) {
+        }).done(function(resultado) {
             var ingre = resultado.data[0].NombreProducto;
             $(".card-title").html("Ingredientes para la porción de " + ingre);
 
@@ -161,27 +164,27 @@ function productoterminado() {
             //"ajax": "../../../Controlador/controlador_inventarioprodterminado.php?accion=consultar&&id=" + codigo + "",
 
             "ajax": "Controlador/controlador_inventarioprodterminado.php?accion=consultar&&id=" + codigo + "",
-            "dom": 'Bfrtip',
+            "dom": 'lBfrtip',
 
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
             },
             "buttons": [{
-                extend: 'excelHtml5',
-                text: '<i class="fas fa-file-excel "></i> ',
-                titleAttr: 'Exportar a Excel',
-                className: 'btn btn-success',
-                title: 'Detalle Producto Terminado'
-            },
-            {
-                extend: 'pdfHtml5',
-                text: '<i class="fas fa-file-pdf "></i> ',
-                titleAttr: 'Exportar a PDF',
-                className: 'btn btn-danger',
-                title: 'Detalle Producto Terminado'
+                    extend: 'excelHtml5',
+                    text: '<i class="fas fa-file-excel "></i> ',
+                    titleAttr: 'Exportar a Excel',
+                    className: 'btn btn-success ml-1',
+                    title: 'Detalle Producto Terminado'
+                },
+                {
+                    extend: 'pdfHtml5',
+                    text: '<i class="fas fa-file-pdf "></i> ',
+                    titleAttr: 'Exportar a PDF',
+                    className: 'btn btn-danger',
+                    title: 'Detalle Producto Terminado'
 
 
-            }
+                }
             ],
 
 
@@ -194,7 +197,7 @@ function productoterminado() {
                 { "data": "DescripcionProducto" },
                 {
                     "data": "IdDetalleProducto",
-                    render: function (data) {
+                    render: function(data) {
                         return '<a href="#" data-producto="' + codigo + '" data-codigo="' + data +
                             '" class="btn btn-info btn-sm modificar"> <i class="fa fa-edit"></i></a>'
                     }
@@ -203,10 +206,12 @@ function productoterminado() {
         });
         d = "no";
     });
-    $("#nuevodetalle").on("click", function (e) {
+    $("#nuevodetalle").on("click", function(e) {
         e.preventDefault();
         $("#editar").addClass('show');
         $("#editar").removeClass('hide');
+        $("#titulo").html("Registrar Detalle del Producto Terminado");
+        $("#nuevo").hide();
         $(".listado").removeClass('show');
         $(".listado").addClass('hide');
         $(".detalle").removeClass('show');
@@ -215,7 +220,7 @@ function productoterminado() {
         var secuencia1 = 1;
         var secuencia2 = 0;
         var idproducto = $(this).data("idproducto");
-        $("#editar").load('Vista/php/ProductoTerminado/view_CrearDetalle.php', function () {
+        $("#editar").load('Vista/php/ProductoTerminado/view_CrearDetalle.php', function() {
             //$("#editar").load('../../../Vista/php/ProductoTerminado/view_CrearDetalle.php', function() {
             console.log(idproducto);
             $.ajax({
@@ -224,7 +229,7 @@ function productoterminado() {
                 url: "Controlador/controlador_detalleproducto.php",
                 data: { accion: 'secuencia', IdProducto: idproducto },
                 dataType: "json"
-            }).done(function (resultado) {
+            }).done(function(resultado) {
                 if (!resultado.data == "") {
                     secuencia = parseFloat(resultado.data);
                     secuencia2 = secuencia + secuencia1;
@@ -247,9 +252,9 @@ function productoterminado() {
                 url: "Controlador/controlador_mp.php",
                 data: { accion: 'listar' },
                 dataType: "json"
-            }).done(function (resultado) {
+            }).done(function(resultado) {
                 $("#editar #MP").append("<option>Seleccione el producto</option>");
-                $.each(resultado.data, function (index, value) {
+                $.each(resultado.data, function(index, value) {
 
                     $("#editar #MP").append("<option value='" + value.IdMateriaPrima + "'>" + value.NombreMateriaPrima + "</option>")
 
@@ -262,21 +267,23 @@ function productoterminado() {
                 url: "Controlador/controlador_detalleproducto.php",
                 data: { accion: 'listarmedida' },
                 dataType: "json"
-            }).done(function (resultado) {
+            }).done(function(resultado) {
                 $("#editar #Medidas").append("<option>Seleccione la Medida</option>");
-                $.each(resultado.data, function (index, value) {
+                $.each(resultado.data, function(index, value) {
                     $("#editar #Medidas").append("<option value='" + value.IdMedida + "'>" + value.NombreMedida + "</option>")
                 });
             });
-            $("#editar #nuevodprod").on("click", function (e) {
+            $("#editar #nuevodprod").on("click", function(e) {
                 $("#editar").addClass('hide');
+                $("#titulo").html("Gestión Producto Terminado");
+                $("#nuevo").show();
                 $("#editar").removeClass('show');
                 $(".listado").addClass('show');
                 $(".listado").removeClass('hide');
                 $(".detalle").addClass('show');
                 $(".detalle").removeClass('hide');
             })
-            $("#editar #formcreardetPT").on("submit", function (e) {
+            $("#editar #formcreardetPT").on("submit", function(e) {
                 console.log("hvg");
                 e.preventDefault();
                 var datos = $(this).serialize();
@@ -286,7 +293,7 @@ function productoterminado() {
                     url: "Controlador/controlador_detalleproducto.php",
                     data: datos,
                     dataType: "json"
-                }).done(function (resultado) {
+                }).done(function(resultado) {
                     if (resultado.data == 1) {
                         swal({
                             position: 'center',
@@ -327,10 +334,12 @@ function productoterminado() {
     });
 
 
-    $(".table").on("click", " a.modificar", function (e) {
+    $(".table").on("click", " a.modificar", function(e) {
         e.preventDefault();
         $("#editar").addClass('show');
         $("#editar").removeClass('hide');
+        $("#titulo").html("Modificar Detalle del Producto Terminado");
+        $("#nuevo").hide();
         $(".listado").removeClass('show');
         $(".listado").addClass('hide');
         $(".detalle").removeClass('show');
@@ -340,7 +349,7 @@ function productoterminado() {
         var IdMedida;
         // console.log("bjgnknj"+codigo);
         // console.log("bjgnknj"+IdProducto);
-        $("#editar").load('Vista/php/ProductoTerminado/view_ModificardetallePT.php', function () {
+        $("#editar").load('Vista/php/ProductoTerminado/view_ModificardetallePT.php', function() {
             //$("#editar").load('../../../Vista/php/ProductoTerminado/view_ModificardetallePT.php', function() {
             $.ajax({
                 type: "post",
@@ -348,7 +357,7 @@ function productoterminado() {
                 url: "Controlador/controlador_detalleproducto.php",
                 data: { iddetalle: codigo, IdProducto: IdProducto, accion: 'consultar' },
                 dataType: "json"
-            }).done(function (resultado) {
+            }).done(function(resultado) {
                 //    console.log(resultado.data.seq);//secuencia
                 $("#IdProducto").val(resultado.data.IdProducto);
                 $("#IdDetalleProducto").val(resultado.data.IdDetalleProducto);
@@ -366,9 +375,9 @@ function productoterminado() {
                     // url: "../../../Controlador/controlador_mp.php",
                     data: { accion: 'listar' },
                     dataType: "json"
-                }).done(function (resultado) {
+                }).done(function(resultado) {
                     $("#editar #MP").append("<option>Seleccione el producto</option>");
-                    $.each(resultado.data, function (index, value) {
+                    $.each(resultado.data, function(index, value) {
                         if (value.IdMateriaPrima == IdMateriaPrima) {
                             $("#editar #MP").append("<option selected value='" + value.IdMateriaPrima + "'>" + value.NombreMateriaPrima + "</option>")
 
@@ -387,9 +396,9 @@ function productoterminado() {
                     url: "Controlador/controlador_detalleproducto.php",
                     data: { accion: 'listarmedida' },
                     dataType: "json"
-                }).done(function (resultado) {
+                }).done(function(resultado) {
                     $("#editar #Medidas").append("<option>Seleccione la Medida</option>");
-                    $.each(resultado.data, function (index, value) {
+                    $.each(resultado.data, function(index, value) {
                         if (value.IdMedida == IdMedida) {
                             $("#editar #Medidas").append("<option selected value='" + value.IdMedida + "'>" + value.NombreMedida + "</option>")
                         } else {
@@ -399,7 +408,7 @@ function productoterminado() {
                     });
 
                 });
-                $("select[id=MP]").change(function () {
+                $("select[id=MP]").change(function() {
 
                     var codigo1 = $(this).children('option:selected').val();
                     console.log(codigo1);
@@ -409,11 +418,11 @@ function productoterminado() {
                         url: "Controlador/controlador_inventarioprodterminado.php?accion=consultar&&id=" + IdProducto + "",
                         // url: "../../../Controlador/controlador_inventarioprodterminado.php?accion=consultar&&id=" + IdProducto + "",
                         dataType: "json"
-                    }).done(function (resultado) {
+                    }).done(function(resultado) {
                         console.log(resultado.data);
                         var a = 0;
                         var b = 0;
-                        $.each(resultado.data, function (index, value) {
+                        $.each(resultado.data, function(index, value) {
                             // console.log("1-----"+value.IdMateriaPrima+"-"+IdMateriaPrima);
                             // console.log("2---" + value.IdMateriaPrima + "-" + codigo1);
                             if (value.IdMateriaPrima == codigo1) {
@@ -436,7 +445,6 @@ function productoterminado() {
 
                                     $("#editar .guardarmod").attr('disabled', true);
                                     b = 1;
-
                                 }
                                 a = 0;
                             } else if (b == 1) {
@@ -454,15 +462,17 @@ function productoterminado() {
 
 
             });
-            $("#editar #moddprod").on("click", function (e) {
+            $("#editar #moddprod").on("click", function(e) {
                 $("#editar").addClass('hide');
                 $("#editar").removeClass('show');
+                $("#titulo").html("Gestión Producto Terminado");
+                $("#nuevo").show();
                 $(".listado").addClass('show');
                 $(".listado").removeClass('hide');
                 $(".detalle").addClass('show');
                 $(".detalle").removeClass('hide');
             })
-            $("#editar #formModdetPT").on("submit", function (e) {
+            $("#editar #formModdetPT").on("submit", function(e) {
                 console.log("hvg");
                 e.preventDefault();
                 var datos = $(this).serialize();
@@ -473,7 +483,7 @@ function productoterminado() {
                     url: "Controlador/controlador_detalleproducto.php",
                     data: datos,
                     dataType: "json"
-                }).done(function (resultado) {
+                }).done(function(resultado) {
                     if (resultado.data == 1) {
                         swal({
                             position: 'center',
@@ -510,19 +520,21 @@ function productoterminado() {
 
     });
 
-    $(".table").on("click", "a.editar", function (e) {
+    $(".table").on("click", "a.editar", function(e) {
         e.preventDefault();
 
         var codigo = $(this).data("codigo");
         // console.log(codigo + "hola");
         $(".card-title").html("Modificar Compra de Materia Prima");
         $("#editar").addClass('show');
+        $("#nuevo").hide();
+        $("#titulo").html("Modificar Datos del Producto Terminado");
         $("#editar").removeClass('hide');
         $(".listado").addClass('hide');
         $(".listado").removeClass('show');
         $(".detalle").addClass('hide');
         $(".detalle").removeClass('show');
-        $("#editar").load('Vista/php/ProductoTerminado/FormModificarPT.php', function () {
+        $("#editar").load('Vista/php/ProductoTerminado/FormModificarPT.php', function() {
             // $("#editar").load('../../../Vista/php/ProductoTerminado/FormModificarPT.php', function() {
             $.ajax({
                 type: "post",
@@ -530,7 +542,7 @@ function productoterminado() {
                 url: "Controlador/controlador_inventarioprodterminado.php",
                 data: { id: codigo, accion: 'consultarprod' },
                 dataType: "json"
-            }).done(function (resultado) {
+            }).done(function(resultado) {
                 console.log(resultado.data[0]);
                 $("#IdProducto").val(resultado.data[0].IdProducto);
                 $("#IdProducto1").val(resultado.data[0].IdProducto);
@@ -539,15 +551,17 @@ function productoterminado() {
                 $("#ValorUnitario").val(resultado.data[0].ValorUnitario);
 
             });
-            $("#editar #modprodter").on("click", function (e) {
+            $("#editar #modprodter").on("click", function(e) {
                 $("#editar").addClass('hide');
+                $("#titulo").html("Gestión Producto Terminado");
+                $("#nuevo").show();
                 $("#editar").removeClass('show');
                 $(".listado").addClass('show');
                 $(".listado").removeClass('hide');
                 $(".detalle").addClass('hide');
                 $(".detalle").removeClass('show');
             });
-            $("#editar #formModPT").on("submit", function (e) {
+            $("#editar #formModPT").on("submit", function(e) {
                 e.preventDefault();
                 console.log("hooo");
                 var datos = $(this).serialize();
@@ -569,7 +583,7 @@ function productoterminado() {
                     processData: false,
                     cache: false,
                     contentType: false
-                }).done(function (resultado) {
+                }).done(function(resultado) {
                     console.log(resultado);
                     if (resultado.data == 1) {
                         swal({

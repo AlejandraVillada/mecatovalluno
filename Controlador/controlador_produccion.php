@@ -18,6 +18,8 @@ if (!empty($_GET['accion'])) {
     //var_dump($datos);
 }
 $produccion = new modelo_produccion();
+
+
 switch ($accion) {
     //Case/ contenido variable accion
     case "listar":

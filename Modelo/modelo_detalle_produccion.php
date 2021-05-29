@@ -21,10 +21,10 @@ class detalle_produccion extends ModeloAbstractoDB
 
         if ($id != ''):
             $this->query = "SELECT dp.*,s.Estado
-	            FROM detalle_produccion dp
-	            INNER JOIN producto p ON(dp.IdProducto=p.IdProducto)
-	            INNER JOIN estadosproduccion s ON(dp.Estado=s.IdEstado)
-	            WHERE dp.IdDetalleProduccion='$id' AND dp.IdProduccion='$producto'";
+		            FROM detalle_produccion dp
+		            INNER JOIN producto p ON(dp.IdProducto=p.IdProducto)
+		            INNER JOIN estadosproduccion s ON(dp.Estado=s.IdEstado)
+		            WHERE dp.IdDetalleProduccion='$id' AND dp.IdProduccion='$producto'";
             $this->obtener_resultados_query();
             //var_dump ($this->rows);
         endif;
@@ -49,9 +49,12 @@ class detalle_produccion extends ModeloAbstractoDB
         foreach ($datos as $campo => $valor):
             $$campo = $valor;
         endforeach;
+
+        $cantidad=$CantidadProductoTerminado*$CantidadProduccion;
+
         $this->query = "INSERT INTO  detalle_produccion
         VALUES($IdDetalleProduccion,$IdProduccion,
-        $IdProducto,$CantidadProduccion,$CantidadProductoTerminado)";
+        $IdProducto,$CantidadProduccion,$cantidad,1)";
         $resultado = $this->ejecutar_query_simple();
         return $resultado;
     }
@@ -60,13 +63,14 @@ class detalle_produccion extends ModeloAbstractoDB
         foreach ($datos as $campo => $valor):
             $$campo = $valor;
         endforeach;
-
+        $cantidad=$CantidadProductoTerminado*$CantidadProduccion;
+        
         $this->query = "UPDATE detalle_produccion SET
         IdProducto = '$IdProducto',CantidadProduccion='$CantidadProduccion',
-        CantidadProductoTerminado='$CantidadProductoTerminado'
+        CantidadProductoTerminado='$cantidad'
         WHERE IdProduccion = '$IdProduccion' AND IdDetalleProduccion='$IdDetalleProduccion'
         ";
-        // print_r($this->query);
+        //  print_r($this->query);
         $resultado = $this->ejecutar_query_simple();
         return $resultado;
     }
@@ -91,6 +95,33 @@ class detalle_produccion extends ModeloAbstractoDB
         $this->obtener_resultados_query();
         return $this->rows;
     }
+    public function validarproducto($IdProducto, $IdProduccion)
+    {
+        $this->query = "SELECT dp.*,m.NombreProducto,s.Estado
+        FROM detalle_produccion dp
+        INNER JOIN producto m ON(dp.IdProducto=m.IdProducto)
+        INNER JOIN estadosproduccion s ON(dp.Estado=s.IdEstado)
+        WHERE dp.Idproduccion='$IdProduccion'";
+        $this->obtener_resultados_query();
+        $resultado=$this->rows;
+        $a=0;
+
+        foreach ($resultado as $key => $value) {
+            foreach ($value as $key1 => $value1) {
+               if($key1=="IdProducto"&& $value1==$IdProducto ){
+                $a=1;
+               }
+            }
+        }
+        if(!$a==1){
+          return  $this->cantidadmaxima($IdProducto);
+
+        }else{
+            return array("Habilitado" => "NoProducto");
+
+        }
+    }
+    
     public function cantidadmaxima($id)
     {
 
@@ -212,7 +243,7 @@ class detalle_produccion extends ModeloAbstractoDB
 
     }
 
-    private function validarmedida($medidainicial, $medidafinal, $valor)
+    public function validarmedida($medidainicial, $medidafinal, $valor)
     {
         switch ($medidainicial) {
             case 'Libras':
@@ -261,6 +292,145 @@ class detalle_produccion extends ModeloAbstractoDB
 
         }
 
+    }
+    public function validarproductos($IdProducto, $IdProduccion)
+    {
+        $this->query = "SELECT dp.*,m.NombreProducto,s.Estado
+        FROM detalle_produccion dp
+        INNER JOIN producto m ON(dp.IdProducto=m.IdProducto)
+        INNER JOIN estadosproduccion s ON(dp.Estado=s.IdEstado)
+        WHERE dp.Idproduccion='$IdProduccion'";
+        $this->obtener_resultados_query();
+        $resultado=$this->rows;
+        $a=0;
+
+        foreach ($resultado as $key => $value) {
+            foreach ($value as $key1 => $value1) {
+               if($key1=="IdProducto"&& $value1==$IdProducto ){
+                $a=1;
+               }
+            }
+        }
+        if(!$a==1){
+          return  $this->cantidadmaxima1($IdProducto,"");
+
+        }else{
+          return   $this->cantidadmaxima1($IdProducto,"igual");
+            // return array("Habilitado" => "NoProducto","IdProducto"=>$IdProducto);
+
+        }
+    }
+    public function cantidadmaxima1($id,$a="")
+    {
+
+        $producto = $this->buscar($id);
+        $this->rows = null;
+        $this->query = "SELECT mp.IdMateriaPrima,mp.Stock,m.NombreMedida
+		FROM materiaprima mp
+        INNER JOIN Medidas m ON(mp.IdMedida=m.IdMedida)";
+        $this->obtener_resultados_query();
+        $materiaprima = $this->rows;
+
+        // var_dump($materiaprima);
+
+        foreach ($producto as $key => $value) {
+            $stock;
+            $idmp;
+            $cantidad;
+            $idmp = 0;
+            foreach ($value as $key1 => $value1) {
+                $x = 0;
+
+                if ($key1 == "IdMateriaPrima") {
+                    $idmp = $value1;
+                    // echo "hola".$value1."+++";
+                    for ($i = 0; $i < count($materiaprima); $i++) {
+                        $x = 0;
+                        foreach ($materiaprima[$i] as $key2 => $value2) {
+                            if ($key2 == "IdMateriaPrima") {
+                                if ($value1 == $value2) {
+                                    $x = 1;
+
+                                }
+
+                            } else {
+                                if ($x == 1 && $key2 == "Stock") {
+                                    $stock = $value2;
+                                }
+                                if ($x == 1 && $key2 == "NombreMedida") {
+                                    $medida = $value2;
+                                }
+                            }
+                        }
+                    }
+                } else {
+
+                    if ($key1 == "Cantidad") {
+                        $cantidad = $value1;
+                        // echo $stock;
+                    }if ($key1 == "NombreMedida") {
+
+                        if ($medida == $value1) {
+                            $restante = $stock - $cantidad;
+                            // echo $idmp;
+
+                            $x = $this->validar($stock, $cantidad);
+                            if ($restante > 0) {
+                                $valor[] = array("Id" => $idmp, "val" => "ok", "veces" => $x);
+                            } else {
+                                $valor[] = array("Id" => $idmp, "val" => "No ok", "veces" => $x);
+
+                            }
+                        } else {
+                            $a = 0;
+                            $b = 0;
+                            $x = 0;
+                            // var_dump("fffff" . $cantidad);
+                            // var_dump($idmp);
+
+                            $hola = $this->validarmedida($value1, $medida, $cantidad);
+                            $restante = $stock - $hola;
+                            // var_dump("Medida" . $value1 . "Medida" . $medida . "Cantidad" . $cantidad);
+                            // echo ("stock" . $stock . "restar" . $hola . "resultado:" . $this->validarmedida($value1, $medida, $cantidad));
+                            $x = $this->validar($stock, $hola);
+
+                            //var_dump($restante);
+                            if ($restante > 0) {
+                                $valor[] = array("Id" => $idmp, "val" => "ok", "veces" => $x);
+                            } else {
+                                $valor[] = array("Id" => $idmp, "val" => "No ok", "veces" => $x);
+
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+        // var_dump($valor);
+        $c = 0;
+        $d = 0;
+        $a = array();
+        foreach ($valor as $key => $value) {
+            foreach ($value as $key1 => $value1) {
+                if ($key1 == "veces") {
+                    $a[] = $value1;
+                } else if ($value1 == "No ok") {
+                    $c++;
+                }
+            }
+        }
+        $d = min($a);
+        // echo $d;
+        if ($c > 0) {
+            if($a=="igual"){
+                return array("Habilitado" => "NoProducto", "max" => $d,"IdProducto"=>$id);
+            }else{
+                return array("Habilitado" => "No", "max" => $d,"IdProducto"=>$id);
+            }
+        } else {
+            return array("Habilitado" => "Si", "max" => $d,"IdProducto"=>$id);
+        }
     }
     /**
      * Get the value of IdDetalleProduccion

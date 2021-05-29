@@ -39,9 +39,9 @@ include_once __DIR__ . '/Templates/navegacion.php';
             </div>
         </div>
         <!-- Carrusel -->
-        <div class=" center-block">
+        <div class="center-block">
             <div id="carouselExampleControls" class="carousel slide center-block" data-ride="carousel">
-                <div class="carousel-inner ">
+                <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="./Vista/img/1.png" class="img-responsive" alt="...">
                     </div>
@@ -79,7 +79,7 @@ include_once __DIR__ . '/Templates/navegacion.php';
                 <div class="card cartas mb-5">
                     <div class="row">
                         <div class="col-4">
-                            <h1>%0</h1>
+                            <h1>0%</h1>
                         </div>
                         <div class="col">
                             <h1>Producción</h1>

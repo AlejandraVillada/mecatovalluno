@@ -94,11 +94,10 @@ class modelo_proveedor extends ModeloAbstractoDB
             $$campo = $valor;
         endforeach;
         $this->query = "
-            UPDATE proveedor
-            SET NombreProveedor = '$NombreProveedor',
-            IdEstado = '$IdEstado'
-            WHERE IdProveedor = '$IdProveedor'
-            ";
+                UPDATE proveedor
+                SET NombreProveedor='$NombreProveedor',
+                IdEstado='$IdEstado'
+                WHERE IdProveedor = '$IdProveedor'";
         $resultado = $this->ejecutar_query_simple();
         return $resultado;
     }

@@ -44,7 +44,7 @@ class detalle_nomina extends ModeloAbstractoDB
                 $IdNomina = $detalle['IdNomina'];
                 $IdEmpleado = $detalle['IdEmpleado'];
                 $SueldoBase = $detalle['SueldoBase'];
-                $TotalSueldo = $detalle['TotalSueldo'];
+                $TotalSueldo = $detalle['SueldoBase'];
 
                 $this->query = "
                             INSERT INTO detalle_nomina

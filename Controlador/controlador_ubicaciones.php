@@ -45,10 +45,17 @@ switch ($accion) {
             $respuesta = array(
                 'codigo' => $pais->getIdPais(),
                 'pais' => $pais->getNombrePais(),
+                'estado' => $pais->getIdEstado(),
                 'respuesta' => 'existe',
             );
         }
         echo json_encode($respuesta);
+        break;
+
+    case 'listar_estados':
+        $estado = new modelo_pais();
+        $listado = $estado->estado();
+        echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE);
         break;
 
     case 'listar_pais':
@@ -94,6 +101,7 @@ switch ($accion) {
                 'codigo' => $ciudad->getIdCiudad(),
                 'pais' => $ciudad->getIdPais(),
                 'ciudad' => $ciudad->getNombreCiudad(),
+                'estado' => $ciudad->getIdEstado(),
                 'respuesta' => 'existe',
             );
         }
@@ -143,6 +151,7 @@ switch ($accion) {
                 'codigo' => $sede->getIdSede(),
                 'ciudad' => $sede->getIdCiudad(),
                 'sede' => $sede->getNombreSede(),
+                'estado' => $sede->getIdEstado(),
                 'respuesta' => 'existe',
             );
         }

@@ -27,12 +27,12 @@
 
         <div class="jumbotron jumbotron-fluid" style="text-align: center;">
             <div class="container">
-                <h1 id="titulo" class="display-4" style="color: maroon;">Actualización de Datos Personales</h1>
+                <h1 id="titulo" class="display-4">Actualización de Datos</h1>
             </div>
         </div>
 
         <div class="card card-primary">
-            <div class="card-header bg-dark text-center text-white titulo">Datos Personales del Empleado</div>
+            <div class="card-header bg-dark text-center text-white titulo">Datos del Empleado</div>
             <div class="card">
                 <div class="card-body">
 
@@ -59,7 +59,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Telefono</label>
+                                <label>Teléfono</label>
                                 <input type="number" class="form-control" id="Telefono" name="Telefono"
                                     placeholder="Modifique Telefono del Empleado" value="" required>
                             </div>

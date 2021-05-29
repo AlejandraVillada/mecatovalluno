@@ -5,6 +5,7 @@ class modelo_pais extends ModeloAbstractoDB
 {
     private $IdPais;
     private $NombrePais;
+    private $IdEstado;
 
     public function __construct()
     {
@@ -35,11 +36,19 @@ class modelo_pais extends ModeloAbstractoDB
         return $this;
     }
 
+    public function getIdEstado()
+    {
+        return $this->IdEstado;
+    }
+
     public function lista()
     {
         $this->query = "
-		SELECT IdPais,NombrePais
-		FROM pais";
+		SELECT p.IdPais, p.NombrePais, e.Estado,p.IdEstado
+            FROM pais AS p
+            INNER JOIN estados AS e
+            ON (p.IdEstado = e.IdEstado)
+        ";
         $this->obtener_resultados_query();
         return $this->rows;
     }
@@ -48,7 +57,7 @@ class modelo_pais extends ModeloAbstractoDB
     {
         if ($id != ''):
             $this->query = "
-			    SELECT IdPais,NombrePais
+			    SELECT IdPais,NombrePais,IdEstado
 			    FROM pais
 	            WHERE IdPais = '$id'";
             $this->obtener_resultados_query();
@@ -67,8 +76,8 @@ class modelo_pais extends ModeloAbstractoDB
         endforeach;
         $this->query = "
         INSERT INTO pais
-        (NombrePais)
-        VALUES ('$NombrePais')";
+        (NombrePais,IdEstado)
+        VALUES ('$NombrePais','$IdEstado')";
         $resultado = $this->ejecutar_query_simple();
         return $resultado;
     }
@@ -80,10 +89,21 @@ class modelo_pais extends ModeloAbstractoDB
         endforeach;
         $this->query = "
         UPDATE pais
-        SET NombrePais='$NombrePais'
+        SET NombrePais='$NombrePais',
+        IdEstado='$IdEstado'
         WHERE IdPais = '$IdPais'";
         $resultado = $this->ejecutar_query_simple();
         return $resultado;
+    }
+
+    public function estado()
+    {
+        $this->query = "
+			SELECT IdEstado, Estado
+			FROM estados
+			";
+        $this->obtener_resultados_query();
+        return $this->rows;
     }
 
     public function borrar()
@@ -91,4 +111,6 @@ class modelo_pais extends ModeloAbstractoDB
 
     }
 
+
+  
 }

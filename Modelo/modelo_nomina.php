@@ -90,6 +90,22 @@ class modelo_nomina extends ModeloAbstractoDB
         endif;
     }
 
+    public function fechamaxima()
+    {
+        $this->query = "
+            SELECT MAX(FechaNomina) AS FechaNomina
+            FROM nomina
+            ";        
+
+        $this->obtener_resultados_query();
+
+        if (count($this->rows) == 1):
+            foreach ($this->rows[0] as $propiedad => $valor):
+                $this->$propiedad = $valor;
+            endforeach;
+        endif;
+    }
+
     public function actualizar_nomina($datos = array())
     {
         foreach ($datos as $campo => $valor):
