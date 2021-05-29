@@ -59,12 +59,14 @@ switch ($accion) {
 
         // var_dump($fechaConsulta."".$fechaBase);
         // var_dump($mesConsulta);
+        $fechaInicioMes=("2021-".$mesConsulta."-01");
+        // var_dump($fechaInicioMes);
     
 if($mesConsulta != $mesBase){
     if($fecha1 != $fechaNomina->getFechaNomina() || $fecha1 != $fechaNomina1->getFechaNomina()){
 
     //Nómina
-// jajisgsi
+
         date_default_timezone_set('America/Bogota');
         $fecha = date("Y-m-d");            
             
@@ -92,11 +94,24 @@ if($mesConsulta != $mesBase){
         $sueldoBase = array();
         $sueldoBase = array_column($listado,'SueldoBase');
 
-        for ($i=0; $i < count($listado); $i++) { 
-
-            $totalNomina = $totalNomina + $totalSueldo;
-                
+        $idEmpleados = array_column($listado,'IdEmpleado');
+        $ConsultaCom = new detalle_nomina();
+        
+        foreach ($idEmpleados as $key => $value) {
+            
+            $Comisiones = $ConsultaCom->consultarComisiones($value,$fechaInicioMes,$fecha);
         }
+
+
+        for ($i=0; $i < count($listado) ; $i++) { 
+            $comision1=$Comisiones[$i]['Comisiones'];
+            // var_dump($comision);
+            settype($comision1,"integer");
+            $totalNomina = $totalNomina+$sueldoBase[$i]+$comision1;
+        }
+        // echo $totalNomina;
+       
+                
     //Actualización de Total Nómina
 
         $datosTotal = array(
@@ -109,19 +124,28 @@ if($mesConsulta != $mesBase){
         $total->actualizar_nomina($datosTotal);
 
 
-    //Insertar Datos en Detalle
+    // //Insertar Datos en Detalle
 
-        $idEmpleados = array_column($listado,'IdEmpleado');
+       
+        // var_dump($Comisiones);
 
         $detalle = new detalle_nomina();
 
         for ($i=0; $i < count($listado) ; $i++) { 
+            $comision=$Comisiones[$i]['Comisiones'];
+            // var_dump($comision);
+            settype($comision,"integer");
             $pruebaNomina[]=array(
                 'IdDetalleNomina'=> $i+1,
                 'IdNomina'=> $idNomina->getIdNomina(),
                 'IdEmpleado'=> $idEmpleados[$i],
                 'SueldoBase'=> $sueldoBase[$i],
+                'Comisiones'=>$comision,
+                'TotalSueldo'=>$sueldoBase[$i]+$comision,
             );
+
+
+            // var_dump($pruebaNomina[$i]);
         }
 
         $detalle->nuevo($pruebaNomina);
