@@ -49,7 +49,7 @@ function materiaprima() {
         $("#editar").removeClass('hide');
         $(".listado").addClass('hide');
         $(".listado").removeClass('show');
-        $("#editar").load('Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function() {
+        $("#editar").load('Vista/php/InventarioMateriaPrima/view_agregar_invmateriaPrima.php', function() {
             // $("#editar").load('../../../Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
             $.ajax({
                 type: "post",
@@ -76,7 +76,7 @@ function materiaprima() {
         $("#editar").removeClass('hide');
         $(".listado").addClass('hide');
         $(".listado").removeClass('show');
-        $("#editar").load('Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function() {
+        $("#editar").load('Vista/php/InventarioMateriaPrima/view_agregar_invmateriaPrima.php', function() {
             // $("#editar").load('../../../Vista/php/inventarioMateriaPrima/view_agregar_invmateriaPrima.php', function () {
             $.ajax({
                 type: "post",
