@@ -95,7 +95,7 @@
                     <span> Clientes</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="./Vista/php/Clientes/view_clientes.php"><i class="fas fa-street-view"></i> Gestion
+                    <li><a href="./Vista/php/Clientes/view_Clientes.php"><i class="fas fa-street-view"></i> Gestion
                             Clientes</a></li>
                 </ul>
             </li>
@@ -192,7 +192,7 @@
                         <span> Clientes</span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="./Vista/php/Clientes/view_clientes.php"><i class="fas fa-street-view"></i> Gestion
+                        <li><a href="./Vista/php/Clientes/view_Clientes.php"><i class="fas fa-street-view"></i> Gestion
                                 Clientes</a></li>
                     </ul>
                 </li>
@@ -223,7 +223,7 @@
                             <span> Clientes</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="./Vista/php/Clientes/view_clientes.php"><i class="fas fa-street-view"></i>
+                            <li><a href="./Vista/php/Clientes/view_Clientes.php"><i class="fas fa-street-view"></i>
                                     Gestion
                                     Clientes</a></li>
                         </ul>

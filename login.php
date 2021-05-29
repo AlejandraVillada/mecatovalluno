@@ -39,7 +39,7 @@
 </head>
 <style>
     .fondon {
-        background-image: url("vista/home/assets/img/fondoprueba.jpg");
+        background-image: url("Vista/home/assets/img/fondoprueba.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
@@ -49,7 +49,7 @@
 <body class="hold-transition login-page fondon" style="background-color:rgb(0,0,0,1); ">
 <div class=" container m-5">
   <div  style="margin-top:50px;margin-bottom:50px;">
-   <img src="vista/home/assets/img/text.png" class="center-block img-responsive" alt="" style="height: auto; width: auto;">
+   <img src="Vista/home/assets/img/text.png" class="center-block img-responsive" alt="" style="height: auto; width: auto;">
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body jumbotron "  style=" background-color:rgb(99, 96, 96,0.5); height: 300px; width: 450px; float:right">
