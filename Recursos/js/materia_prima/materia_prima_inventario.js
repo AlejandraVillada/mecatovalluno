@@ -172,6 +172,7 @@ function inventario(dt) {
                 $("#editar").removeClass('show');
                 $(".listado").addClass('show');
                 $(".listado").removeClass('hide');
+                 $("#nuevo").show();
             }
             dt.ajax.reload();
 
