@@ -88,7 +88,8 @@ function ventas() {
                             $("#IdProducto").append("<option > Seleccione un Producto</option>")
 
                             $.each(resultado.data, function (index, value) {
-                                $("#IdProducto").append("<option data-valor='" + value.ValorUnitario + "' value='" + value.IdProducto + "'>" + value.NombreProducto + "</option>")
+                                console.log(value);
+                                $("#IdProducto").append("<option data-nombre='" + value.NombreProducto + "' data-valor='" + value.ValorUnitario + "' value='" + value.IdProducto + "'>" + value.NombreProducto + "</option>")
                             });
 
                         });
@@ -127,6 +128,7 @@ function ventas() {
                         $("#AgregarProducto").on('click', function (e) {
                             e.preventDefault();
                             var IdProducto = $("#IdProducto").val();
+                            var NombreProducto = $("#IdProducto").data('nombre');
                             var CantidadVendida = $("#CantidadVendida").val();
                             var valor = document.getElementById("CantidadVendida").dataset.valor
                             var x = 0;
@@ -147,7 +149,8 @@ function ventas() {
                             if (x == 0) {
                                 var total = CantidadVendida * valor;
                                 totalventa = totalventa + total;
-                                productos.push({ 'Posicion': c, 'IdProducto': IdProducto, "CantidadVendida": CantidadVendida, "ValorUnitario": valor, "Total": total });
+                                console.log(NombreProducto);
+                                productos.push({ 'Posicion': c, 'IdProducto': IdProducto, 'Nombre': NombreProducto, "CantidadVendida": CantidadVendida, "ValorUnitario": valor, "Total": total });
                                 $("#subtotal").val(totalventa);
                                 var totalcop = parseFloat(totalventa) + parseFloat(totalventa * 0.19)
                                 $("#total").val(totalcop);
@@ -162,15 +165,77 @@ function ventas() {
                                 })
                             }
 
-                            if (!c == 0) {
+                            if (c == 0) {
+                                dtventa = $("#tabla_venta").DataTable({
+                                    "destroy": true,
+                                    "data": productos,
+                                    "columns": [
+
+                                        { "data": "Nombre" },
+                                        { "data": "CantidadVendida" },
+                                        { "data": "Total" },
+                                        {
+                                            "data": "Posicion",
+                                            render: function (data) {
+                                                return '<a  data-codigo="' + data +
+                                                    '" class="btn btn-danger btn-sm eliminar"> <i class="fas fa-trash"></i></a>'
+                                            }
+                                        },
+
+
+                                    ]
+                                });
+
+                            } else {
                                 dtventa = null;
+                                dtventa = $("#tabla_venta").DataTable({
+                                    "destroy": true,
+                                    "data": productos,
+                                    "columns": [
+
+                                        { "data": "Nombre" },
+                                        { "data": "CantidadVendida" },
+                                        { "data": "Total" },
+                                        {
+                                            "data": "Posicion",
+                                            render: function (data) {
+                                                return '<a  data-codigo="' + data +
+                                                    '" class="btn btn-info btn-sm modificar"> <i class="fa fa-edit"></i></a><a  data-codigo="' + data +
+                                                    '" class="btn btn-danger btn-sm eliminar"> <i class="fas fa-trash"></i></a>'
+                                            }
+                                        },
+
+
+                                    ]
+                                });
+                            }
+                            console.log("c" + dtventa);
+
+
+                        })
+
+                        $(".table").on("click", "a.eliminar", function (e) {
+                            var cod = $(this).data('codigo');
+                            var position = null;
+                            for (let i = 0; i < productos.length; i++) {
+                                //console.log(productos[i].Posicion);
+                                if (productos[i].Posicion == cod) {
+                                    position = i;
+
+                                }
+
                             }
 
+                            var remove = productos.splice(position);
+                            console.log(remove);
+                                
+                            dtventa = null;
                             dtventa = $("#tabla_venta").DataTable({
+                                "destroy": true,
                                 "data": productos,
                                 "columns": [
 
-                                    { "data": "IdProducto" },
+                                    { "data": "Nombre" },
                                     { "data": "CantidadVendida" },
                                     { "data": "Total" },
                                     {
@@ -185,23 +250,6 @@ function ventas() {
 
                                 ]
                             });
-
-                        })
-
-                        $(".table").on("click", "a.eliminar", function (e) {
-                            var cod = $(this).data('codigo');
-                            var position=null;
-                            for (let i = 0; i < productos.length; i++) {
-                                //console.log(productos[i].Posicion);
-                                if (productos[i].Posicion == cod) {
-                                    position = i;
-
-                                }
-
-                            }
-
-                           var remove= productos.splice(position);
-                            console.log(productos);
 
 
                         })
