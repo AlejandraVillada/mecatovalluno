@@ -9,7 +9,15 @@ function usuario() {
             // url: "../../../Controlador/controlador_usuario.php",
             data: datos,
             dataType: "json"
-        }).done(function(resultado) {
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+                    swal({
+                            position: 'center',
+                            type: 'error',
+                            title: 'El usuario no se encuentra Asignado',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                }).done(function(resultado) {
             if (resultado.respuesta == "existe") {
                 if (resultado.tipoUsuario != 5) {
                     location.href = "adminper.php";
