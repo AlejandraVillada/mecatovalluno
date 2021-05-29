@@ -19,45 +19,45 @@ function Produccion() {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
         },
         "buttons": [{
-                extend: 'excelHtml5',
-                text: '<i class="fas fa-file-excel "></i> ',
-                titleAttr: 'Exportar a Excel',
-                className: 'btn btn-success',
-                title: 'Producción General'
-            },
-            {
-                extend: 'pdfHtml5',
-                text: '<i class="fas fa-file-pdf "></i> ',
-                titleAttr: 'Exportar a PDF',
-                className: 'btn btn-danger',
-                title: 'Producción General'
+            extend: 'excelHtml5',
+            text: '<i class="fas fa-file-excel "></i> ',
+            titleAttr: 'Exportar a Excel',
+            className: 'btn btn-success',
+            title: 'Producción General'
+        },
+        {
+            extend: 'pdfHtml5',
+            text: '<i class="fas fa-file-pdf "></i> ',
+            titleAttr: 'Exportar a PDF',
+            className: 'btn btn-danger',
+            title: 'Producción General'
 
-            }
+        }
         ],
 
         "columns": [{
-                "data": "IdProduccion",
-                render: function(data) {
-                    return '<a href="#" data-codigo="' + data +
-                        '" class="btn btn-dark btn-sm ver"> <i class="fa fa-plus"></i></a>'
-                }
-            },
-            { "data": "NombreSede" },
-            { "data": "DiaProduccion" },
-            { "data": "HorarioInicioProduccion" },
-            { "data": "HorarioFinProduccion" },
-            { "data": "Estado" },
-            {
-                "data": "IdProduccion",
-                render: function(data) {
-                    return '<a href="#" data-codigo="' + data +
-                        '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>'
-                }
+            "data": "IdProduccion",
+            render: function (data) {
+                return '<a href="#" data-codigo="' + data +
+                    '" class="btn btn-dark btn-sm ver"> <i class="fa fa-plus"></i></a>'
             }
+        },
+        { "data": "NombreSede" },
+        { "data": "DiaProduccion" },
+        { "data": "HorarioInicioProduccion" },
+        { "data": "HorarioFinProduccion" },
+        { "data": "Estado" },
+        {
+            "data": "IdProduccion",
+            render: function (data) {
+                return '<a href="#" data-codigo="' + data +
+                    '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>'
+            }
+        }
         ]
     });
 
-    $("#nuevo").on("click", function() {
+    $("#nuevo").on("click", function () {
         $(this).hide();
         $(".card-title").html("Agregar Producción");
         $("#titulo").html("Registrar Producción");
@@ -67,7 +67,7 @@ function Produccion() {
         $(".listado").removeClass('show');
         $(".detalle").addClass('hide');
         $(".detalle").removeClass('show');
-        $("#editar").load('Vista/php/Produccion/FormCrearProduccion.php', function() {
+        $("#editar").load('Vista/php/Produccion/FormCrearProduccion.php', function () {
             // $("#editar").load('../../../Vista/php/Produccion/FormCrearProduccion.php', function() {
             $.ajax({
                 type: "get",
@@ -75,9 +75,9 @@ function Produccion() {
                 url: "Controlador/controlador_produccion.php",
                 data: { accion: 'listar_estados' },
                 dataType: "json"
-            }).done(function(resultado) {
+            }).done(function (resultado) {
                 $("#editar #Estado").append("<option>Seleccione el Estado </option>");
-                $.each(resultado.data, function(index, value) {
+                $.each(resultado.data, function (index, value) {
 
                     $("#editar #Estado").append("<option value='" + value.IdEstado + "'>" + value.Estado + "</option>")
 
@@ -90,16 +90,24 @@ function Produccion() {
                 url: "Controlador/controlador_ubicaciones.php",
                 data: { accion: 'listar_sede' },
                 dataType: "json"
-            }).done(function(resultado) {
+            }).done(function (resultado) {
                 $("#editar #IdSede").append("<option>Seleccione la Sede</option>");
-                $.each(resultado.data, function(index, value) {
+                $.each(resultado.data, function (index, value) {
 
                     $("#editar #IdSede").append("<option value='" + value.IdSede + "'>" + value.NombreSede + "</option>")
 
                 });
 
             });
-            $("#editar #formCrearP").on("submit", function(e) {
+            $("#editar #volvercrearprod").on("click", function (e) {
+                $("#editar").addClass('hide');
+                $("#editar").removeClass('show');
+                $(".listado").addClass('show');
+                $(".listado").removeClass('hide');
+                $(".detalle").addClass('hide');
+                $(".detalle").removeClass('show');
+            })
+            $("#editar #formCrearP").on("submit", function (e) {
                 console.log("h");
                 e.preventDefault();
                 var datos = $(this).serialize();
@@ -109,7 +117,7 @@ function Produccion() {
                     url: "Controlador/controlador_produccion.php",
                     data: datos,
                     dataType: "json"
-                }).done(function(resultado) {
+                }).done(function (resultado) {
                     console.log(resultado);
                     if (resultado.data == 1) {
                         swal({
@@ -134,7 +142,7 @@ function Produccion() {
     });
 
 
-    $(".table").on("click", "a.ver", function() {
+    $(".table").on("click", "a.ver", function () {
         var boton = document.getElementById("nuevodetalle");
         delete boton.dataset.produccion;
         console.log(boton);
@@ -161,20 +169,20 @@ function Produccion() {
                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
             },
             "buttons": [{
-                    extend: 'excelHtml5',
-                    text: '<i class="fas fa-file-excel "></i> ',
-                    titleAttr: 'Exportar a Excel',
-                    className: 'btn btn-success',
-                    title: 'Detalle Produccion'
-                },
-                {
-                    extend: 'pdfHtml5',
-                    text: '<i class="fas fa-file-pdf "></i> ',
-                    titleAttr: 'Exportar a PDF',
-                    className: 'btn btn-danger',
-                    title: 'Detalle Produccion',
+                extend: 'excelHtml5',
+                text: '<i class="fas fa-file-excel "></i> ',
+                titleAttr: 'Exportar a Excel',
+                className: 'btn btn-success',
+                title: 'Detalle Produccion'
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="fas fa-file-pdf "></i> ',
+                titleAttr: 'Exportar a PDF',
+                className: 'btn btn-danger',
+                title: 'Detalle Produccion',
 
-                }
+            }
             ],
             "columns": [
 
@@ -185,7 +193,7 @@ function Produccion() {
                 { "data": "Estado" },
                 {
                     "data": "IdDetalleProduccion",
-                    render: function(data) {
+                    render: function (data) {
                         return '<a href="#" data-produccion="' + codigo + '" data-codigo="' + data +
                             '" class="btn btn-info btn-sm modificar"> <i class="fa fa-edit"></i></a>'
                     }
@@ -194,7 +202,7 @@ function Produccion() {
         });
         d = "no";
     });
-    $("#nuevodetalle").on("click", function(e) {
+    $("#nuevodetalle").on("click", function (e) {
         e.preventDefault();
         var IdProdu = 0;
         $("#editar").addClass('show');
@@ -214,7 +222,7 @@ function Produccion() {
 
         console.log("----" + IdProdu);
 
-        $("#editar").load('Vista/php/Produccion/view_CrearDetalleProd.php', function() {
+        $("#editar").load('Vista/php/Produccion/view_CrearDetalleProd.php', function () {
             // $("#editar").load('../../../Vista/php/Produccion/view_CrearDetalleProd.php', function() {
             console.log("----" + IdProdu);
             $.ajax({
@@ -223,7 +231,7 @@ function Produccion() {
                 url: "Controlador/controlador_detalleproduccion.php",
                 data: { accion: 'secuencia', IdProduccion: IdProdu },
                 dataType: "json"
-            }).done(function(resultado) {
+            }).done(function (resultado) {
                 console.log(resultado);
                 if (!resultado.data == "") {
                     secuencia = parseFloat(resultado.data);
@@ -247,16 +255,16 @@ function Produccion() {
                 url: "Controlador/controlador_inventarioprodterminado.php",
                 data: { accion: 'listar' },
                 dataType: "json"
-            }).done(function(resultado) {
+            }).done(function (resultado) {
                 $("#editar #IdProductoTerminado").append("<option>Seleccione el producto</option>");
-                $.each(resultado.data, function(index, value) {
+                $.each(resultado.data, function (index, value) {
 
                     $("#editar #IdProductoTerminado").append("<option data-cantidad='" + value.CantidadProducto + "' value='" + value.IdProducto + "'>" + value.NombreProducto + "</option>")
 
                 });
 
             });
-            $("#editar #newdetaproduccion").on("click", function(e) {
+            $("#editar #newdetaproduccion").on("click", function (e) {
                 $("#editar").addClass('hide');
                 $("#editar").removeClass('show');
                 $(".listado").addClass('show');
@@ -264,7 +272,7 @@ function Produccion() {
                 $(".detalle").addClass('show');
                 $(".detalle").removeClass('hide');
             })
-            $("select[id=IdProductoTerminado]").change(function() {
+            $("select[id=IdProductoTerminado]").change(function () {
 
                 var cantidad = $(this).children('option:selected').data('cantidad');
 
@@ -280,9 +288,9 @@ function Produccion() {
                     url: "Controlador/controlador_detalleproduccion.php",
                     data: { accion: 'cantidadmaxima', IdProducto: prod, IdProduccion: produccion },
                     dataType: "json"
-                }).fail(function(jqXHR, textStatus, errorThrown) {
+                }).fail(function (jqXHR, textStatus, errorThrown) {
                     alert('Error!!');
-                }).done(function(resultado) {
+                }).done(function (resultado) {
                     console.log(cantidad);
 
                     if (resultado.data.Habilitado == "Si") {
@@ -319,7 +327,7 @@ function Produccion() {
 
             });
 
-            $("#editar #formcreardetPT").on("submit", function(e) {
+            $("#editar #formcreardetPT").on("submit", function (e) {
                 console.log("hvg");
                 e.preventDefault();
                 var datos = $(this).serialize();
@@ -329,7 +337,7 @@ function Produccion() {
                     url: "Controlador/controlador_detalleproduccion.php",
                     data: datos,
                     dataType: "json"
-                }).done(function(resultado) {
+                }).done(function (resultado) {
                     if (resultado.data == 1) {
                         swal({
                             position: 'center',
@@ -370,7 +378,7 @@ function Produccion() {
     });
     editar
 
-    $(".table").on("click", " a.modificar", function(e) {
+    $(".table").on("click", " a.modificar", function (e) {
         e.preventDefault();
         $("#editar").addClass('show');
         $("#nuevo").hide();
@@ -384,7 +392,7 @@ function Produccion() {
         var IdProduccion = $(this).data("produccion");
         var IdMedida;
 
-        $("#editar").load('Vista/php/Produccion/view_ModificardetalleProd.php', function() {
+        $("#editar").load('Vista/php/Produccion/view_ModificardetalleProd.php', function () {
             // $("#editar").load('../../../Vista/php/Produccion/view_ModificardetalleProd.php', function() {
             $.ajax({
                 type: "post",
@@ -392,7 +400,7 @@ function Produccion() {
                 url: "Controlador/controlador_detalleproduccion.php",
                 data: { iddetalle: codigo, IdProduccion: IdProduccion, accion: 'consultar' },
                 dataType: "json"
-            }).done(function(resultado) {
+            }).done(function (resultado) {
                 console.log(resultado.data);
                 $("#IdProduccion").val(resultado.data.IdProduccion);
                 $("#IdDetalleProduccion").val(resultado.data.IdDetalleProduccion);
@@ -409,10 +417,10 @@ function Produccion() {
                     url: "Controlador/controlador_inventarioprodterminado.php",
                     data: { accion: 'listar' },
                     dataType: "json"
-                }).done(function(resultado) {
+                }).done(function (resultado) {
                     // console.log(document.getElementById("IdProducto"));
                     $("#editar #IdProducto").append("<option>Seleccione el producto</option>");
-                    $.each(resultado.data, function(index, value) {
+                    $.each(resultado.data, function (index, value) {
 
                         if (value.IdProducto == productoterminado) {
                             $.ajax({
@@ -421,7 +429,7 @@ function Produccion() {
                                 url: "Controlador/controlador_detalleproduccion.php",
                                 data: { accion: 'cantidadmaxima1', IdProducto: productoterminado, IdProduccion: IdProduccion },
                                 dataType: "json"
-                            }).done(function(resultado) {
+                            }).done(function (resultado) {
                                 console.log("hola");
                                 console.log(resultado);
                                 if (resultado.data.Habilitado == "Si") {
@@ -475,7 +483,7 @@ function Produccion() {
                     });
 
                 });
-                $("#editar #moddetalleprod").on("click", function(e) {
+                $("#editar #moddetalleprod").on("click", function (e) {
                     $("#editar").addClass('hide');
                     $("#editar").removeClass('show');
                     $(".listado").addClass('show');
@@ -483,7 +491,7 @@ function Produccion() {
                     $(".detalle").addClass('show');
                     $(".detalle").removeClass('hide');
                 })
-                $("select[id=IdProducto]").change(function() {
+                $("select[id=IdProducto]").change(function () {
 
                     var cantidad = $(this).children('option:selected').data('cantidad');
                     $("#CantidadProductoTerminado").val(cantidad);
@@ -496,7 +504,7 @@ function Produccion() {
                         url: "Controlador/controlador_detalleproduccion.php",
                         data: { accion: 'cantidadmaxima1', IdProducto: prod, IdProduccion: IdProduccion },
                         dataType: "json"
-                    }).done(function(resultado) {
+                    }).done(function (resultado) {
                         if (resultado.data.Habilitado == "Si") {
                             $("#CantidadProduccion").attr('disabled', false);
                             $("#CantidadProduccion").attr("max", resultado.data.max);
@@ -540,7 +548,7 @@ function Produccion() {
 
 
             });
-            $("#editar #formmoddetP").on("submit", function(e) {
+            $("#editar #formmoddetP").on("submit", function (e) {
                 console.log("hvg");
                 e.preventDefault();
                 var datos = $(this).serialize();
@@ -550,7 +558,7 @@ function Produccion() {
                     url: "Controlador/controlador_detalleproduccion.php",
                     data: datos,
                     dataType: "json"
-                }).done(function(resultado) {
+                }).done(function (resultado) {
                     if (resultado.data == 1) {
                         swal({
                             position: 'center',
@@ -587,7 +595,7 @@ function Produccion() {
 
     });
 
-    $(".table").on("click", "a.editar", function(e) {
+    $(".table").on("click", "a.editar", function (e) {
         e.preventDefault();
 
         var codigo = $(this).data("codigo");
@@ -601,7 +609,7 @@ function Produccion() {
         $(".listado").removeClass('show');
         $(".detalle").addClass('hide');
         $(".detalle").removeClass('show');
-        $("#editar").load('Vista/php/Produccion/FormModificarProduccion.php', function() {
+        $("#editar").load('Vista/php/Produccion/FormModificarProduccion.php', function () {
             // $("#editar").load('../../../Vista/php/Produccion/FormModificarProduccion.php', function() {
             var sede;
             var Estado;
@@ -611,7 +619,7 @@ function Produccion() {
                 url: "Controlador/controlador_produccion.php",
                 data: { id: codigo, accion: 'consultarprod' },
                 dataType: "json"
-            }).done(function(resultado) {
+            }).done(function (resultado) {
                 console.log(resultado.data[0]);
                 $("#IdProduccion").val(resultado.data[0].IdProduccion);
 
@@ -628,9 +636,9 @@ function Produccion() {
                 url: "Controlador/controlador_produccion.php",
                 data: { accion: 'listar_estados' },
                 dataType: "json"
-            }).done(function(resultado) {
+            }).done(function (resultado) {
                 $("#editar #Estado").append("<option>Seleccione el Estado </option>");
-                $.each(resultado.data, function(index, value) {
+                $.each(resultado.data, function (index, value) {
                     console.log(value);
                     if (Estado == 1) {
                         if (value.IdEstado == Estado) {
@@ -664,9 +672,9 @@ function Produccion() {
                 url: "Controlador/controlador_ubicaciones.php",
                 data: { accion: 'listar_sede' },
                 dataType: "json"
-            }).done(function(resultado) {
+            }).done(function (resultado) {
                 $("#editar #IdSede").append("<option>Seleccione la Sede</option>");
-                $.each(resultado.data, function(index, value) {
+                $.each(resultado.data, function (index, value) {
                     if (value.IdSede == sede) {
                         $("#editar #IdSede").append("<option selected value='" + value.IdSede + "'>" + value.NombreSede + "</option>")
 
@@ -675,8 +683,15 @@ function Produccion() {
                 });
 
             });
-
-            $("#editar #formModP").on("submit", function(e) {
+            $("#editar #volvermodprod").on("click", function (e) {
+                $("#editar").addClass('hide');
+                $("#editar").removeClass('show');
+                $(".listado").addClass('show');
+                $(".listado").removeClass('hide');
+                $(".detalle").addClass('hide');
+                $(".detalle").removeClass('show');
+            })
+            $("#editar #formModP").on("submit", function (e) {
                 e.preventDefault();
                 console.log("hooo");
                 var datos = $(this).serialize();
@@ -686,7 +701,7 @@ function Produccion() {
                     url: "Controlador/controlador_produccion.php",
                     data: datos,
                     dataType: "json"
-                }).done(function(resultado) {
+                }).done(function (resultado) {
                     console.log(resultado);
                     if (resultado.data == 1) {
                         swal({

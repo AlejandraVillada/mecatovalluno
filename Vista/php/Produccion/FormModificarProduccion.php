@@ -30,6 +30,6 @@
         <br>
         <input type="hidden" name="accion" value="actualizar">
         <input type="submit" class="btn btn-primary nuevo" value="Actualizar">
-        <a href="view_Produccion.php" class="btn btn-danger">Regresar</a>
+        <a id="volvermodprod" class="btn btn-danger">Regresar</a>
     </form>
 </div>

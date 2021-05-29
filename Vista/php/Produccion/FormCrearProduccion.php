@@ -28,6 +28,6 @@
         <br>
         <input type="hidden" name="accion" value="nuevo">
         <input type="submit" class="btn btn-primary nuevo" value="Crear Registro">
-        <a href="view_Produccion.php" class="btn btn-danger">Regresar</a>
+        <a id="volvercrearprod" class="btn btn-danger">Regresar</a>
     </form>
 </div>
