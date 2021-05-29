@@ -289,7 +289,13 @@ function Produccion() {
                     data: { accion: 'cantidadmaxima', IdProducto: prod, IdProduccion: produccion },
                     dataType: "json"
                 }).fail(function (jqXHR, textStatus, errorThrown) {
-                    alert('Error!!');
+                    swal({
+                            position: 'center',
+                            type: 'error',
+                            title: 'No puede agregar un producto que no tenga detalle',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                 }).done(function (resultado) {
                     console.log(cantidad);
 
