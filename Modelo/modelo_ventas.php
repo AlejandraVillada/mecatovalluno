@@ -74,6 +74,13 @@ class modelo_ventas extends ModeloAbstractoDB
     }
     public function consultar()
     {
+        $this->query = " SELECT fac.*,emp.NombreEmpleado,cli.NombreCliente,se.NombreSede FROM factura fac
+        INNER JOIN empleados emp ON( fac.IdEmpleado=emp.IdEmpleado)
+        INNER JOIN clientes cli ON(fac.Id_Cliente=cli.IdCliente)
+        INNER JOIN sede se ON(fac.IdSede=se.IdSede)
+         ";
+        $this->obtener_resultados_query();
+        return $this->rows;
 
     }
     public function editar()

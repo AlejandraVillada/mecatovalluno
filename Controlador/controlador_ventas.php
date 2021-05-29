@@ -54,10 +54,16 @@ switch ($accion) {
             $b[$a[0]] = $a[1];
         }
         $b['IdEmpleado'] = $_SESSION['IdEmpleado'];
-        $b['IdSede']=$IdSede;
+        $b['IdSede'] = $IdSede;
         $productos = $_POST['Productos'];
         $datos = $ventas->nuevo($b, $productos);
         var_dump($b);
 
+        break;
+
+    case 'listarfacturas':
+        $datos = $ventas->consultar($IdSede);
+        echo json_encode(array('data' => $datos), JSON_UNESCAPED_UNICODE);
+      
         break;
 }

@@ -13,13 +13,14 @@
             <div class="card-header bg-dark text-center text-white titulo">Producto Terminado</div>
             <div class="card-body">
                 <div class="pull-right box-tools" style="display:block;">
-                <button class="btn btn-dark btn-sm" id="nuevo" data-toggle="tooltip" title="Nuevo ventas">Registrar
+                    <button class="btn btn-dark btn-sm" id="nuevo" data-toggle="tooltip" title="Nuevo ventas">Registrar
                         venta</button>
                     <button class="btn btn-dark btn-sm" id="factura" data-toggle="tooltip" title="Ver Factura">Facturas
                         de
                         ventas</button>
                 </div>
-            </div><!-- 
+            </div>
+            <!--
 
             <div class="card-body">
             <div class=" row">
@@ -39,7 +40,7 @@
             </div>
         </div>--->
         </div>
-        <div class="card-body pt-1 pr-1" style=""> 
+        <div class="card-body pt-1 pr-1" style="">
             <!-- Main content -->
             <section class="content">
                 <div class="row">
@@ -70,7 +71,6 @@
                                                     <th>Fecha Produccion</th>
                                                     <th>Sede</th>
                                                     <th>Ciudad</th>
-                                                    <th>-</th>
 
                                                 </tr>
                                             </thead>
@@ -79,6 +79,7 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                    
                                 </div>
 
                                 <!-- /.box -->

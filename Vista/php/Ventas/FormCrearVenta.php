@@ -70,7 +70,7 @@
 
                             <div class="form-group row">
                                 <input type="submit" class="btn btn-primary" id="facturar" value="Generar Factura">
-                                <a href="" class="ml-2 btn btn-danger">Regresar</a>
+                                <a id="regresarcrearventa" class="ml-2 btn btn-danger">Regresar</a>
                             </div>
                         </div>
                     </div>

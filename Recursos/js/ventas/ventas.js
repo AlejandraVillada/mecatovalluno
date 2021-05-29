@@ -1,9 +1,9 @@
 function ventas() {
 
-    $("#estaventas").hide();
     $("#contenidos").show();
+    tablaventasdia();
     // $("#contenidos").load("../../../Vista/php/Ventas/FormCrearVenta.php")
-
+    var dt2;
     $("#nuevo").on("click", function (e) {
         // $("#contenidos").load("../../../Vista/php/Ventas/FormCrearVenta.php", function (e) {
         $("#contenidos").load("Vista/php/Ventas/FormCrearVenta.php", function (e) {
@@ -108,12 +108,12 @@ function ventas() {
                                 dataType: "json"
                             }).done(function (resultado) {
                                 console.log(resultado.data[0].CantidadProductoTerminado);
-                                if(resultado.data[0].disponible){
-                                console.log(resultado.data[0].disponible);
-                                    
+                                if (resultado.data[0].disponible) {
+                                    console.log(resultado.data[0].disponible);
+
                                     $("#CantidadVendida").attr('max', resultado.data[0].disponible);
 
-                                }else{
+                                } else {
                                     $("#CantidadVendida").attr('max', resultado.data[0].CantidadProductoTerminado);
 
                                 }
@@ -272,8 +272,8 @@ function ventas() {
                         })// generar factura
                         $("#formventa").on("submit", function (e) {
                             e.preventDefault();
-                            document.getElementById("IdProducto").setAttribute("disabled",true);
-                            document.getElementById("CantidadVendida").setAttribute("disabled",true);
+                            document.getElementById("IdProducto").setAttribute("disabled", true);
+                            document.getElementById("CantidadVendida").setAttribute("disabled", true);
 
                             var datos = $(this).serialize();
                             console.log(datos);
@@ -282,39 +282,88 @@ function ventas() {
                                 type: "post",
                                 // url: "../../../Controlador/controlador_ventas.php",
                                 url: "Controlador/controlador_ventas.php",
-                                data: { accion: "GenerarFactura", "datos": datos,"Productos":productos },
+                                data: { accion: "GenerarFactura", "datos": datos, "Productos": productos },
                                 dataType: "json"
                             }).done(function (resultado) {
-                                productos=null;
+                                productos = null;
 
                             });
-                            
+
 
                         })
                     }//termina else
+
                 });
             })
+            $('#contenidos #regresarcrearventa').on("click", function () {
+                $("#estaventas").show();
+                $("#contenidos").hide();
+                dt1.ajax.reload();
 
+            })
         })//terminaload
 
 
     })
+    $("#factura").on("click", function (e) {
+        $("#contenidos").load("Vista/php/Ventas/FormConsultarVenta.php", function (e) {
+            tablafacturas();
+            $("#estaventas").hide();
+            $("#contenidos").show();
 
-    $('#factura').on("click",function () {
-        $("#contenidos").load("Vista/php/Ventas/FormVenta.php", function (e) {
-        
         });
-        
     })
+
 
 
 }
 
+function tablafacturas() {
 
+    dt2 = $("#tabla_facturas").DataTable({
+
+        "ajax": "Controlador/controlador_ventas.php?accion=listarfacturas",
+        // "ajax": "Controlador/controlador_produccion.php?accion=listar",
+        "dom": 'Bfrtip',
+
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        },
+        "buttons": [{
+            extend: 'excelHtml5',
+            text: '<i class="fas fa-file-excel "></i> ',
+            titleAttr: 'Exportar a Excel',
+            className: 'btn btn-success',
+            title: 'Detalle Produccion'
+        },
+        {
+            extend: 'pdfHtml5',
+            text: '<i class="fas fa-file-pdf "></i> ',
+            titleAttr: 'Exportar a PDF',
+            className: 'btn btn-danger',
+            title: 'Detalle Produccion',
+
+        }
+        ],
+        "columns": [
+
+            { "data": "IdFactura" },
+            { "data": "FechaFactura" },
+            { "data": "Subtotal" },
+            { "data": "TotalFactura" },
+            { "data": "NombreEmpleado" },
+            { "data": "NombreCliente" },
+            { "data": "NombreSede" },
+
+        ]
+    });
+    d = "no";
+
+}
 function tablaventasdia() {
     dt1 = $("#tabla").DataTable({
 
-        "ajax": "../../../Controlador/controlador_ventas.php?accion=listarestadisticas",
+        "ajax": "Controlador/controlador_ventas.php?accion=listarestadisticas",
         // "ajax": "Controlador/controlador_produccion.php?accion=listar",
         "dom": 'Bfrtip',
 
