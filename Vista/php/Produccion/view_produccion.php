@@ -84,7 +84,7 @@
     <?php //include_once "../../../Templates/footer.php";?>
     <?php //include_once "../../../Templates/datatable.html";?>
 
-    <script src="Recursos/js/Produccion/Produccion.js"></script>
+    <script src="Recursos/js/produccion/produccion.js"></script>
     <!-- <script src="../../../Recursos/js/Produccion/Produccion.js"></script> -->
     <script>
     $(document).ready(Produccion);
