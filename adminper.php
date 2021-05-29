@@ -14,7 +14,7 @@ include_once __DIR__ . './Templates/navegacion.php';
     max-width: 350px;
     max-height: 200px;
     margin-bottom: 100px;
-    border-radius: 50px;
+    border-radius: 7px;
     text-align: center;
     padding-top: auto;
     padding-bottom: auto;
