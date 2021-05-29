@@ -1,5 +1,5 @@
 function materiaprima() {
-
+$("#nuevo").show();
     var dt = $("#tabla").DataTable({
         // "ajax": "../../../Controlador/controlador_inventarioMP.php?accion=listar",
         "ajax": "Controlador/controlador_inventarioMP.php?accion=listar",
