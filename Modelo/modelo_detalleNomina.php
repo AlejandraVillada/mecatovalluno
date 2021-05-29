@@ -34,8 +34,7 @@ class detalle_nomina extends ModeloAbstractoDB
         endif;
     }
 
-    public function nuevo($datos = array())
-    {
+    public function nuevo($datos = array())    {
         foreach ($datos as $key => $detalle) {
             // var_dump($detalle['IdDetalleNomina']);
             
@@ -44,19 +43,34 @@ class detalle_nomina extends ModeloAbstractoDB
                 $IdNomina = $detalle['IdNomina'];
                 $IdEmpleado = $detalle['IdEmpleado'];
                 $SueldoBase = $detalle['SueldoBase'];
-                $TotalSueldo = $detalle['SueldoBase'];
+                $Comisiones=$detalle['Comisiones'];
+                $TotalSueldo = $detalle['TotalSueldo'];
+                
 
                 $this->query = "
                             INSERT INTO detalle_nomina
                             (IdDetalleNomina, IdNomina, IdEmpleado, Comisiones, SueldoBase, TotalSueldo)
                             VALUES
-                            ('$IdDetalleNomina', '$IdNomina', '$IdEmpleado', 'NULL', '$SueldoBase', '$TotalSueldo')
+                            ('$IdDetalleNomina', '$IdNomina', '$IdEmpleado', '$Comisiones', '$SueldoBase', '$TotalSueldo')
                             ";
                 $resultado = $this->ejecutar_query_simple();
                 // return $resultado;
                 
             
         }        
+    }
+
+    public function consultarComisiones($id='',$fechaInicioMes='',$fechaFinal=''){
+       
+            $this->query = "
+				SELECT SUM(comision) AS Comisiones
+				FROM factura
+				WHERE IdEmpleado = '$id' AND FechaFactura BETWEEN '$fechaInicioMes' AND '$fechaFinal'
+				";
+            $this->obtener_resultados_query();
+  
+       return $this->rows;
+
     }
 
     public function editar()
