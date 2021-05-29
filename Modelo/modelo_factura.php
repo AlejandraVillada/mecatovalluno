@@ -55,6 +55,7 @@ class modelo_factura extends ModeloAbstractoDB
 
     public function lista()
     {
+        
 
     }
 
