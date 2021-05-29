@@ -1,7 +1,7 @@
 <?php
-include_once "../modelo/modelo_factura.php";
-include_once "../modelo/modelo_ventas.php";
-include_once "../modelo/modelo_detallefact.php";
+include_once "../Modelo/modelo_factura.php";
+include_once "../Modelo/modelo_ventas.php";
+include_once "../Modelo/modelo_detallefact.php";
 header('Content-Type: application/json');
 $datos = $_POST; //datos
 ini_set('display_errors', 1);
