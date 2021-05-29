@@ -63,7 +63,7 @@ if($mesConsulta != $mesBase){
     if($fecha1 != $fechaNomina->getFechaNomina() || $fecha1 != $fechaNomina1->getFechaNomina()){
 
     //Nómina
-
+// jajisgsi
         date_default_timezone_set('America/Bogota');
         $fecha = date("Y-m-d");            
             
@@ -92,13 +92,10 @@ if($mesConsulta != $mesBase){
         $sueldoBase = array_column($listado,'SueldoBase');
 
         for ($i=0; $i < count($listado); $i++) { 
-                
-            $totalSueldo = $sueldoBase[$i];
+
             $totalNomina = $totalNomina + $totalSueldo;
                 
         }
-
-
     //Actualización de Total Nómina
 
         $datosTotal = array(
@@ -123,7 +120,6 @@ if($mesConsulta != $mesBase){
                 'IdNomina'=> $idNomina->getIdNomina(),
                 'IdEmpleado'=> $idEmpleados[$i],
                 'SueldoBase'=> $sueldoBase[$i],
-                'TotalSueldo'=> $sueldoBase[$i],
             );
         }
 
